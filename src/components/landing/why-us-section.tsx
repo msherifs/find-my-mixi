@@ -9,7 +9,7 @@ const WhyUsSection = () => {
 	return (
 		// biome-ignore lint/correctness/useUniqueElementIds: <false>
 		<section
-			className="w-full flex flex-col items-start gap-[64px] py-[96px] max-w-[1280px] mx-auto px-9"
+			className="w-full flex flex-col items-start gap-[64px] py-[96px] max-w-[1280px] mx-auto px-9 scroll-mt-10"
 			id="why-us"
 		>
 			<div className="flex flex-col px-8 gap-5 max-w-[768px]">

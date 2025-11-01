@@ -8,7 +8,7 @@ const TestimonialSection = () => {
 	return (
 		// biome-ignore lint/correctness/useUniqueElementIds: <false>
 		<section
-			className="w-full flex items-center justify-center py-[96px] relative mb-15"
+			className="w-full flex items-center justify-center py-[96px] relative mb-15 scroll-mt-10"
 			id="testimonials"
 		>
 			<div className="max-w-[1280px] mx-auto w-full px-9 rounded-[56px] py-[56px] px-[32px] bg-[#F5F4F4] flex items-center justify-center">
