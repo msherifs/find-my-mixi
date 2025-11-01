@@ -1,0 +1,19 @@
+/** @type {import('tailwindcss').Config} */
+export default {
+  content: [
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
+  ],
+  theme: {
+    extend: {
+      fontFamily: {
+        'epilogue': ['Epilogue', 'sans-serif'],
+        'dmsans': ['DMSans', 'sans-serif'],
+      },
+      colors: {
+        primary: '#DD198E',
+      },
+    },
+  },
+  plugins: [],
+}

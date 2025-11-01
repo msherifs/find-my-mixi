@@ -1,0 +1,27 @@
+{
+	"header": {
+		"home": "Home",
+		"whyUs": "Why Us?",
+		"contactUs": "Contact Us",
+		"testimonials": "Testimonials",
+		"login": "Log In",
+		"signUp": "Sign Up"
+	},
+	"heroSection": {
+		"lost_your": "Lost Your",
+		"mixi": "Mixi?",
+		"we_will_help_bring_them_home": "We'll help bring them home",
+		"we_quickly_reunite_text": "We quickly reunite lost cats with their families using geolocation and social media promotion.",
+		"lost_a_cat": "Lost a Cat",
+		"found_a_cat": "Found a Cat"
+	},
+	"footer": {
+		"home": "Home",
+		"whyUs": "Why Us?",
+		"contactUs": "Contact Us",
+		"testimonials": "Testimonials",
+		"privacyPolicy": "Privacy Policy",
+		"faq": "FAQ",
+		"copyright": "© 2025 FindMyMixi. All rights reserved"
+	}
+}
