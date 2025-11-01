@@ -4,7 +4,9 @@
 @theme {
   --color-primary: #DD198E;
   --color-gray-900: #181D27;
+  --color-gray-700: #414651;
   --color-gray-600: #535862;
+  --color-gray-500: #717680;
 }
 
 @layer base {

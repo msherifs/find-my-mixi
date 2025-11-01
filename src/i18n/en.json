@@ -67,5 +67,26 @@
 			"faq": "FAQ",
 			"copyright": "© 2025 FindMyMixi. All rights reserved"
 		}
+	},
+	"login": {
+		"login": "Login",
+		"enter_email_and_password": "Enter your email and password",
+		"email": "Email",
+		"password": "Password",
+		"forgot_password": "Forgot Password",
+		"remember_me": "Remember Me",
+		"sign_in": "Sign In",
+		"sign_up": "Sign Up",
+		"dont_have_account": "Don't have an account?"
+	},
+	"signup": {
+		"sign_up": "Sign Up",
+		"enter_required_data": "Enter the required data and you are good to go! ",
+		"first_name": "First Name",
+		"last_name": "Last Name",
+		"email": "Email",
+		"password": "Password",
+		"already_have_account": "Already have an account?",
+		"login": "Log In"
 	}
 }
