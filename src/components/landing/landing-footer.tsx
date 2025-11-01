@@ -20,25 +20,25 @@ const LandingFooter = () => {
 									to="/"
 									className="bg-transparent font-medium text-base leading-6 text-justify text-white"
 								>
-									{t("footer.home")}
+									{t("landing.footer.home")}
 								</Link>
 								<Link
 									to="/"
 									className="bg-transparent font-medium text-base leading-6 text-justify text-white"
 								>
-									{t("footer.whyUs")}
+									{t("landing.footer.whyUs")}
 								</Link>
 								<Link
 									to="/"
 									className="bg-transparent font-medium text-base leading-6 text-justify text-white"
 								>
-									{t("footer.testimonials")}
+									{t("landing.footer.testimonials")}
 								</Link>
 								<Link
 									to="/contact-us"
 									className="bg-transparent font-medium text-base leading-6 text-justify text-white"
 								>
-									{t("footer.contactUs")}
+									{t("landing.footer.contactUs")}
 								</Link>
 							</div>
 							<div className="flex flex-col items-start gap-3 min-w-[96px]">
@@ -46,13 +46,13 @@ const LandingFooter = () => {
 									to="/privacy-policy"
 									className="bg-transparent font-medium text-base leading-6 text-justify text-white"
 								>
-									{t("footer.privacyPolicy")}
+									{t("landing.footer.privacyPolicy")}
 								</Link>
 								<Link
 									to="/faq"
 									className="bg-transparent font-medium text-base leading-6 text-justify text-white"
 								>
-									{t("footer.faq")}
+									{t("landing.footer.faq")}
 								</Link>
 							</div>
 						</div>
@@ -63,7 +63,7 @@ const LandingFooter = () => {
 				<div className="max-w-[1280px] px-8 mx-auto">
 					<div className="flex items-center justify-between">
 						<p className="font-normal text-base leading-6 text-justify text-white">
-							{t("footer.copyright")}
+							{t("landing.footer.copyright")}
 						</p>
 						<div className="flex items-center gap-6">
 							<a href="https://x.com" target="_blank" rel="noopener noreferrer">

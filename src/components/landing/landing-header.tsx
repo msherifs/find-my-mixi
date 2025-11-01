@@ -19,29 +19,25 @@ const LandingHeader = () => {
 						inactiveProps={{ className: "text-black" }}
 					>
 						<p className="px-[2px] font-semibold text-[14px] leading-[24px] tracking-[0]">
-							{t("header.home")}
+							{t("landing.header.home")}
 						</p>
 					</Link>
-					<Link
-						to="/why-us"
-						className="py-1 px-[6px] rounded-[8px] bg-transparent hover:bg-gray-100 transition-colors focus:outline-none focus:ring-0"
-						activeProps={{ className: "text-primary" }}
-						inactiveProps={{ className: "text-black" }}
+					<a
+						href="#why-us"
+						className="py-1 px-[6px] rounded-[8px] bg-transparent hover:bg-gray-100 transition-colors focus:outline-none focus:ring-0 text-black"
 					>
 						<p className="px-[2px] font-semibold text-[14px] leading-[24px] tracking-[0]">
-							{t("header.whyUs")}
+							{t("landing.header.whyUs")}
 						</p>
-					</Link>
-					<Link
-						to="./testimonials"
-						className="py-1 px-[6px] rounded-[8px] bg-transparent hover:bg-gray-100 transition-colors focus:outline-none focus:ring-0"
-						activeProps={{ className: "text-primary" }}
-						inactiveProps={{ className: "text-black" }}
+					</a>
+					<a
+						href="#testimonials"
+						className="py-1 px-[6px] rounded-[8px] bg-transparent hover:bg-gray-100 transition-colors focus:outline-none focus:ring-0 text-black"
 					>
 						<p className="px-[2px] font-semibold text-[14px] leading-[24px] tracking-[0]">
 							Testimonials
 						</p>
-					</Link>
+					</a>
 					<Link
 						to="/contact-us"
 						className="py-1 px-[6px] rounded-[8px] bg-transparent hover:bg-gray-100 transition-colors focus:outline-none focus:ring-0"
@@ -49,7 +45,7 @@ const LandingHeader = () => {
 						inactiveProps={{ className: "text-black" }}
 					>
 						<p className="px-[2px] font-semibold text-[14px] leading-[24px] tracking-[0]">
-							{t("header.contactUs")}
+							{t("landing.header.contactUs")}
 						</p>
 					</Link>
 				</div>
@@ -58,10 +54,10 @@ const LandingHeader = () => {
 						variant={"secondary"}
 						onClick={() => navigate({ to: "/login" })}
 					>
-						{t("header.login")}
+						{t("landing.header.login")}
 					</Button>
 					<Button onClick={() => navigate({ to: "/register" })}>
-						{t("header.signUp")}
+						{t("landing.header.signUp")}
 					</Button>
 				</div>
 			</div>

@@ -1,27 +1,71 @@
 {
-	"header": {
-		"home": "Home",
-		"whyUs": "Why Us?",
-		"contactUs": "Contact Us",
-		"testimonials": "Testimonials",
-		"login": "Log In",
-		"signUp": "Sign Up"
-	},
-	"heroSection": {
-		"lost_your": "Lost Your",
-		"mixi": "Mixi?",
-		"we_will_help_bring_them_home": "We'll help bring them home",
-		"we_quickly_reunite_text": "We quickly reunite lost cats with their families using geolocation and social media promotion.",
-		"lost_a_cat": "Lost a Cat",
-		"found_a_cat": "Found a Cat"
-	},
-	"footer": {
-		"home": "Home",
-		"whyUs": "Why Us?",
-		"contactUs": "Contact Us",
-		"testimonials": "Testimonials",
-		"privacyPolicy": "Privacy Policy",
-		"faq": "FAQ",
-		"copyright": "© 2025 FindMyMixi. All rights reserved"
+	"landing": {
+		"header": {
+			"home": "Home",
+			"whyUs": "Why Us?",
+			"contactUs": "Contact Us",
+			"testimonials": "Testimonials",
+			"login": "Log In",
+			"signUp": "Sign Up"
+		},
+		"heroSection": {
+			"lost_your": "Lost Your",
+			"mixi": "Mixi?",
+			"we_will_help_bring_them_home": "We'll help bring them home",
+			"we_quickly_reunite_text": "We quickly reunite lost cats with their families using geolocation and social media promotion.",
+			"lost_a_cat": "Lost a Cat",
+			"found_a_cat": "Found a Cat"
+		},
+		"howItWorksSection": {
+			"title": "How It Works",
+			"description": "Our simple 3-step process helps reunite families with their beloved cats quickly and safely.",
+			"report_your_lost_cat": {
+				"title": "Report Your Missing Cat",
+				"description": "Lost Your Mixi? Report it here to start the journey home."
+			},
+			"wait_for_notifications": {
+				"title": "Wait for Notification",
+				"description": "Stay alert: Await notifications on your Mixi's whereabouts."
+			},
+			"reunite_with_your_cat": {
+				"title": "Get Your Cat Home",
+				"description": "Reunite with your furry friend: Bring your Mixi home safely."
+			}
+		},
+		"statsSection": {
+			"cats_found": "Cats Found",
+			"cats_reported": "Cats Reported",
+			"cats_delivered": "Cats Delivered",
+			"community_members": "Community Members"
+		},
+		"whyUsSection": {
+			"title": "Why Choose FindMyMixi ?",
+			"description": "Your Dedicated Platform for Reuniting Lost Cats with Their Caring Families",
+			"fast_notifications": {
+				"title": "Fast and Reliable Notifications",
+				"description": "Receive real-time updates whenever your Mixi is found or sighted."
+			},
+			"network": {
+				"title": "Extensive Network",
+				"description": "Large community boosts your chances of quickly reuniting with your Mixi."
+			},
+			"user_friendly": {
+				"title": "User-Friendly Reporting",
+				"description": "Easily report missing or found Mixis with just a few clicks."
+			}
+		},
+		"testimonialSection": {
+			"testimonial": "“ When I lost my cat, I posted in every Facebook group I could find, but they were for all kinds of pets. It was frustrating; I received disorganized comments with no results. Then I found FindMyMixi, and everything changed. The platform is easy to use, and the social media ad service was incredibly helpful. Within a few days, thanks to the real-time notifications and the support from the community, I was able to find my Mixi.” ",
+			"user_description": "Cat Mom of {{name}}"
+		},
+		"footer": {
+			"home": "Home",
+			"whyUs": "Why Us?",
+			"contactUs": "Contact Us",
+			"testimonials": "Testimonials",
+			"privacyPolicy": "Privacy Policy",
+			"faq": "FAQ",
+			"copyright": "© 2025 FindMyMixi. All rights reserved"
+		}
 	}
 }

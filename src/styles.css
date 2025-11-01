@@ -3,6 +3,8 @@
 
 @theme {
   --color-primary: #DD198E;
+  --color-gray-900: #181D27;
+  --color-gray-600: #535862;
 }
 
 @layer base {
@@ -43,12 +45,14 @@
     height: 100%;
     font-family: "DMSans";
     color: black;
+    scroll-behavior: smooth;
   }
 
   #root {
     height: 100%;
     display: flex;
     flex-direction: column;
+    scroll-behavior: smooth;
   }
 
   .font-epilogue {
