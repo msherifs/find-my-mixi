@@ -98,5 +98,31 @@
 		"get_assistance": "Get Assistance",
 		"lost_a_cat": "Lost a Cat",
 		"found_a_cat": "Found a Cat"
+	},
+	"privacyPolicy": {
+		"privacy_policy": "Privacy Policy",
+		"welcome_to_findmymixi": "Welcome to FindMyMixi. By accessing or using our platform, you agree to the following terms and conditions:",
+		"acceptance_of_terms_title": "Acceptance of Terms",
+		"acceptance_of_terms_description": "By using FindMyMixi, you confirm that you are at least 13 years old and agree to these Terms & Conditions. If you do not agree, please do not use our platform.",
+		"services_provided_title": "Services Provided",
+		"services_provided_description": "FindMyMixi is a digital platform designed to reunite lost cats with their families through reports, geolocation, and community support.",
+		"user_responsibilities_title": "User Responsibilities",
+		"user_responsibilities_description_1": "Provide accurate and truthful information when submitting lost or found cat reports.",
+		"user_responsibilities_description_2": "Respect other users and avoid inappropriate content.",
+		"user_responsibilities_description_3": "Do not misuse the platform for fraudulent or harmful purposes.",
+		"account_creation_title": "Account Creation",
+		"account_creation_description": "You are responsible for maintaining the confidentiality of your account credentials. Any activity under your account is your responsibility.",
+		"donations_payments_title": "Donations & Payments",
+		"donations_payments_description": "Donations and premium services are processed securely via OpenPay by BBVA. FindMyMixi does not store credit card information.",
+		"intellectual_property_title": "Intellectual Property",
+		"intellectual_property_description": "All content, design, and branding on FindMyMixi are the intellectual property of FindMyMixi and may not be copied, distributed, or used without prior consent.",
+		"limitation_of_liability_title": "Limitation of Liability",
+		"limitation_of_liability_description": "FindMyMixi provides its services “as is” and does not guarantee successful reunions. We are not liable for any indirect damages, losses, or third-party actions.",
+		"termination_of_accounts_title": "Termination of Accounts",
+		"termination_of_accounts_description": "We reserve the right to suspend or terminate accounts that violate these Terms.",
+		"governing_law_title": "Governing Law",
+		"governing_law_description": "These Terms are governed by the applicable data protection and consumer laws of the United States, Mexico, and the European Union.",
+		"contact_title": "Contact",
+		"contact_description": "For questions, please contact us at:"
 	}
 }
