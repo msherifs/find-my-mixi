@@ -124,5 +124,26 @@
 		"governing_law_description": "These Terms are governed by the applicable data protection and consumer laws of the United States, Mexico, and the European Union.",
 		"contact_title": "Contact",
 		"contact_description": "For questions, please contact us at:"
+	},
+	"forgotPassword": {
+		"forgot_password": "Forgot password?",
+		"no_worries": "No worries, we'll send you reset instructions.",
+		"email": "Email",
+		"reset_password": "Reset Password",
+		"back_to_login": "Back to Login",
+		"check_your_email": "Check Your Email",
+		"we_sent_reset_link": "We sent a password reset link to {{email}}.",
+		"did_not_receive": "Didn't receive the email?",
+		"click_to_resend": "Click to resend"
+	},
+	"resetPassword": {
+		"set_new_password": "Set New Password",
+		"new_password_must_be_different": "Your new password must be different to previously used passwords.",
+		"password": "Password",
+		"confirm_password": "Confirm Password",
+		"reset_password": "Reset Password",
+		"password_reset": " Password Reset",
+		"password_successfully_reset": "Your password has been successfully reset. Click below to log in magically.",
+		"continue": "Continue"
 	}
 }

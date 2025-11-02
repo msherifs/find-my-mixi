@@ -45,9 +45,12 @@ function RouteComponent() {
 						{t("login.remember_me")}
 					</p>
 				</div>
-				<p className="font-semibold text-sm leading-5 tracking-normal text-primary">
+				<Link
+					to="/forgot-password"
+					className="font-semibold text-sm leading-5 tracking-normal text-primary"
+				>
 					{t("login.forgot_password")}
-				</p>
+				</Link>
 			</div>
 			<Button className="w-full">{t("login.sign_in")}</Button>
 			<div className="flex items-center w-full justify-center gap-1">
