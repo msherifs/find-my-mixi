@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "@tanstack/react-router";
+import { Link, useLocation, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import HeaderIcon from "@/assets/images/header-icon.svg";
@@ -8,8 +8,14 @@ const LandingHeader = () => {
 	const { t } = useTranslation("");
 	const navigate = useNavigate();
 	const [activeSection, setActiveSection] = useState("home");
+	const location = useLocation();
+	const isHomePage = location.pathname === "/";
 
 	useEffect(() => {
+		if (!isHomePage) {
+			window.scrollTo(0, 0);
+			return;
+		}
 		const handleScroll = () => {
 			const sections = ["why-us", "testimonials"];
 			const scrollPosition = window.scrollY + 150;
@@ -44,13 +50,13 @@ const LandingHeader = () => {
 		return () => {
 			window.removeEventListener("scroll", handleScroll);
 		};
-	}, []);
+	}, [isHomePage]);
 
 	const getLinkClassName = (section: string) => {
 		const baseClasses =
 			"py-1 px-[6px] rounded-[8px] bg-transparent hover:bg-gray-100 transition-colors focus:outline-none focus:ring-0";
 		const activeClass =
-			activeSection === section ? "text-primary" : "text-black";
+			activeSection === section && isHomePage ? "text-primary" : "text-black";
 		return `${baseClasses} ${activeClass}`;
 	};
 
@@ -82,6 +88,7 @@ const LandingHeader = () => {
 					<Link
 						to="/contact-us"
 						className="py-1 px-[6px] rounded-[8px] bg-transparent hover:bg-gray-100 transition-colors focus:outline-none focus:ring-0 text-black"
+						activeProps={{ className: "text-primary" }}
 					>
 						<p className="px-[2px] font-semibold text-[14px] leading-[24px] tracking-[0]">
 							{t("landing.header.contactUs")}

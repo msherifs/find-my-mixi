@@ -88,5 +88,15 @@
 		"password": "Password",
 		"already_have_account": "Already have an account?",
 		"login": "Log In"
+	},
+	"contactUs": {
+		"contact_us": "Contact Us",
+		"already_part_of_community": "Already part of the FindMyMixi community? Sign in to customize your support experience. If you're not signed in, we're still here to help!",
+		"email": "Email",
+		"select_a_topic": "Select a Topic",
+		"or_tell_us_what_you_need": "Or tell us what you need help with",
+		"get_assistance": "Get Assistance",
+		"lost_a_cat": "Lost a Cat",
+		"found_a_cat": "Found a Cat"
 	}
 }

@@ -1,12 +1,10 @@
 import { cn } from "@/lib/utils";
-import { Input } from "../ui/input";
 
-const MixiInput = ({
+const MixiTextarea = ({
 	label,
 	className,
 	inputClassName,
 	placeholder,
-	type = "text",
 }: {
 	label?: string;
 	placeholder?: string;
@@ -23,17 +21,16 @@ const MixiInput = ({
 					{label}
 				</h3>
 			)}
-			<Input
+			<textarea
 				className={cn(
-					"h-12 py-[10px] px-[14px] rounded-[10px] border border-[#E6E6E6] bg-white font-normal text-base leading-6 tracking-normal text-gray-900 placeholder:text-gray-500",
-					"focus:ring-0 focus:outline-none focus-visible:ring-0",
+					"h-[154px] w-full py-[10px] px-[14px] rounded-[10px] border border-[#E6E6E6] bg-white font-normal text-base leading-6 tracking-normal text-gray-900 placeholder:text-gray-500",
+					"focus:ring-0 focus:outline-none focus-visible:ring-0 resize-none",
 					inputClassName,
 				)}
 				placeholder={placeholder}
-				type={type}
 			/>
 		</div>
 	);
 };
 
-export default MixiInput;
+export default MixiTextarea;
