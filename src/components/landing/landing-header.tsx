@@ -61,39 +61,41 @@ const LandingHeader = () => {
 	};
 
 	return (
-		<header className="w-full max-w-[1280px] mx-auto px-9 sticky top-0 z-50">
-			<div className="w-full flex items-center gap-4 border border-[#00000014] rounded-[56px] py-3 px-9 h-[78px] bg-white mt-8">
+		<header className="w-full max-w-[1280px] mx-auto px-4 md:px-9 sticky top-0 z-50">
+			<div className="w-full flex items-center gap-4 border border-[#00000014] rounded-[56px] py-3 px-4 md:px-9 h-[78px] bg-white mt-4 md:mt-8">
 				<div className="flex items-center gap-5 flex-grow ">
 					<img src={HeaderIcon} alt="Header Icon" />
-					<div className="flex items-center gap-[2px]"></div>
-					<Link to="/" hash="home" className={getLinkClassName("home")}>
-						<p className="px-[2px] font-semibold text-[14px] leading-[24px] tracking-[0]">
-							{t("landing.header.home")}
-						</p>
-					</Link>
-					<Link to="/" hash="why-us" className={getLinkClassName("why-us")}>
-						<p className="px-[2px] font-semibold text-[14px] leading-[24px] tracking-[0]">
-							{t("landing.header.whyUs")}
-						</p>
-					</Link>
-					<Link
-						to="/"
-						hash="testimonials"
-						className={getLinkClassName("testimonials")}
-					>
-						<p className="px-[2px] font-semibold text-[14px] leading-[24px] tracking-[0]">
-							Testimonials
-						</p>
-					</Link>
-					<Link
-						to="/contact-us"
-						className="py-1 px-[6px] rounded-[8px] bg-transparent hover:bg-gray-100 transition-colors focus:outline-none focus:ring-0 text-black"
-						activeProps={{ className: "text-primary" }}
-					>
-						<p className="px-[2px] font-semibold text-[14px] leading-[24px] tracking-[0]">
-							{t("landing.header.contactUs")}
-						</p>
-					</Link>
+					{/* Navigation Links - Hidden on screens smaller than 1024px (lg) */}
+					<div className="hidden lg:flex items-center gap-5 flex-grow">
+						<Link to="/" hash="home" className={getLinkClassName("home")}>
+							<p className="px-[2px] font-semibold text-[14px] leading-[24px] tracking-[0]">
+								{t("landing.header.home")}
+							</p>
+						</Link>
+						<Link to="/" hash="why-us" className={getLinkClassName("why-us")}>
+							<p className="px-[2px] font-semibold text-[14px] leading-[24px] tracking-[0]">
+								{t("landing.header.whyUs")}
+							</p>
+						</Link>
+						<Link
+							to="/"
+							hash="testimonials"
+							className={getLinkClassName("testimonials")}
+						>
+							<p className="px-[2px] font-semibold text-[14px] leading-[24px] tracking-[0]">
+								Testimonials
+							</p>
+						</Link>
+						<Link
+							to="/contact-us"
+							className="py-1 px-[6px] rounded-[8px] bg-transparent hover:bg-gray-100 transition-colors focus:outline-none focus:ring-0 text-black"
+							activeProps={{ className: "text-primary" }}
+						>
+							<p className="px-[2px] font-semibold text-[14px] leading-[24px] tracking-[0]">
+								{t("landing.header.contactUs")}
+							</p>
+						</Link>
+					</div>
 				</div>
 				<div className="flex items-center gap-3">
 					<Button
