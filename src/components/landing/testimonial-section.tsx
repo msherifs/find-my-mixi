@@ -8,12 +8,12 @@ const TestimonialSection = () => {
 	return (
 		// biome-ignore lint/correctness/useUniqueElementIds: <false>
 		<section
-			className="w-full flex items-center justify-center py-[96px] relative mb-15 scroll-mt-10"
+			className="w-full flex items-center justify-center lg:py-[96px] py-[64px] relative lg:mb-15 scroll-mt-10 px-4 lg:px-0"
 			id="testimonials"
 		>
 			<div className="max-w-[1280px] mx-auto w-full px-9 rounded-[56px] py-[56px] px-[32px] bg-[#F5F4F4] flex items-center justify-center">
 				<div className=" flex flex-col items-center gap-8 max-w-[1024px]">
-					<p className="text-gray-900 font-medium text-[36px] leading-[44px] tracking-[-2%] text-center">
+					<p className="text-gray-900 font-medium lg:text-[36px] text-[24px] leading-[44px] tracking-[-2%] text-center">
 						{t("landing.testimonialSection.testimonial")}
 					</p>
 					<div className="flex flex-col items-center gap-4">
@@ -34,12 +34,12 @@ const TestimonialSection = () => {
 			<img
 				src={GreenLines}
 				alt="Green Decorative Lines"
-				className="absolute top-0 right-0"
+				className="absolute top-0 right-0 lg:w-auto w-24"
 			/>
 			<img
 				src={OrangeLines}
 				alt="Orange Decorative Lines"
-				className="absolute bottom-0 left-0"
+				className="absolute lg:bottom-0 left-0 lg:w-auto w-36 bottom-10"
 			/>
 		</section>
 	);

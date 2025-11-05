@@ -31,16 +31,16 @@ const steps = [
 const HowItWorksSection = () => {
 	const { t } = useTranslation("");
 	return (
-		<section className="flex flex-col w-full gap-[43px] items-center mt-20 max-w-[1280px] mx-auto px-9">
+		<section className="flex flex-col w-full gap-[43px] items-center mt-20 max-w-[1280px] mx-auto lg:px-9 px-4">
 			<div className="flex flex-col items-center">
 				<h2 className="font-epilogue font-bold text-[40px] leading-[100%] tracking-[0%]">
 					{t("landing.howItWorksSection.title")}
 				</h2>
-				<p className="font-normal text-[18px] leading-[140%] tracking-[-0.01em] text-center w-[400px]">
+				<p className="font-normal text-[18px] leading-[140%] tracking-[-0.01em] text-center lg:w-[400px]">
 					{t("landing.howItWorksSection.description")}
 				</p>
 			</div>
-			<div className="flex items-center gap-6 w-full">
+			<div className="flex items-center gap-6 w-full lg:flex-row flex-col">
 				{steps.map((step) => (
 					<StepCard
 						key={step.title}

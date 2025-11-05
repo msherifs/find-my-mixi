@@ -11,7 +11,7 @@ export const Route = createFileRoute("/_landing/")({ component: App });
 
 function App() {
 	return (
-		<div className="my-8">
+		<div className="my-8 mb-0">
 			<HeroSection />
 			<HowItWorksSection />
 			<StatsSection />

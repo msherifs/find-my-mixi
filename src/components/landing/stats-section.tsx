@@ -10,8 +10,8 @@ const metrics = [
 const StatsSection = () => {
 	const { t } = useTranslation("");
 	return (
-		<section className="px-9 w-full max-w-[1280px] mt-5 mx-auto">
-			<div className="flex items-center w-full gap-2 py-[64px] mx-auto">
+		<section className="lg:px-9 w-full max-w-[1280px] mt-5 mx-auto px-4">
+			<div className="flex items-center w-full gap-2 py-[64px] mx-auto lg:flex-row flex-col">
 				{metrics.map((metric) => (
 					<MetricCard
 						key={metric.title}
