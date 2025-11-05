@@ -27,13 +27,13 @@ function RouteComponent() {
 const EnterEmailScreen = ({ onNext }: { onNext: () => void }) => {
 	const { t } = useTranslation();
 	return (
-		<div className="flex flex-col items-center w-[480px] gap-5">
+		<div className="flex flex-col items-center lg:w-[480px] gap-5 max-w-[80%]">
 			<img
 				src={ForgotPasswordCat}
 				alt="Forgot Password Cat"
-				className="absolute left-8 bottom-0 z-10"
+				className="absolute left-8 bottom-0 z-10 lg:w-auto w-36"
 			/>
-			<h2 className="font-epilogue font-bold text-[96.96px] leading-[1] tracking-[-0.02em] text-center">
+			<h2 className="font-epilogue font-bold lg:text-[96.96px] text-[36px] leading-[1] tracking-[-0.02em] text-center">
 				{t("forgotPassword.forgot_password")}
 			</h2>
 			<p className="font-normal text-[20.68px] leading-[31px] tracking-normal text-center">
@@ -64,9 +64,9 @@ const EnterEmailScreen = ({ onNext }: { onNext: () => void }) => {
 const CheckEmailScreen = () => {
 	const { t } = useTranslation();
 	return (
-		<div className="flex flex-col items-center gap-5">
+		<div className="flex flex-col items-center gap-5 max-w-[80%]">
 			<img src={CheckEmailCat} alt="Check Email Cat" />
-			<h2 className="font-epilogue font-bold text-[96.96px] leading-[1] tracking-[-0.02em] text-center">
+			<h2 className="font-epilogue font-bold lg:text-[96.96px] text-[36px] leading-[1] tracking-[-0.02em] text-center">
 				{t("forgotPassword.check_your_email")}
 			</h2>
 			<p className="font-normal text-[20.68px] leading-[31px] tracking-normal text-center">
