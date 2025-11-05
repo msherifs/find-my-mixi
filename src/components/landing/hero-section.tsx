@@ -11,7 +11,7 @@ const HeroSection = () => {
 	const { t } = useTranslation("");
 	return (
 		<section className="max-w-[1280px] mx-auto w-full px-4 md:px-9">
-			<div className="bg-[#FEDAFFB2] rounded-[40px] px-6 pt-10 lg:px-[72px] lg:pt-15">
+			<div className="bg-[#FEDAFFB2] rounded-[40px] px-6 pt-20 lg:px-[72px] lg:pt-28">
 				<svg className="absolute w-0 h-0">
 					<defs>
 						{/** biome-ignore lint/correctness/useUniqueElementIds: false*/}
@@ -33,30 +33,30 @@ const HeroSection = () => {
 					</defs>
 				</svg>
 
-				<div className="flex flex-col sm:flex-row lg:items-end relative">
-					<h1 className="font-epilogue font-bold text-[36px] lg:text-[50.68px] tracking-[-0.02em] text-black z-10">
+				<div className="flex flex-col sm:flex-row lg:items-end">
+					<h1 className="font-epilogue font-bold text-[36px] lg:text-[50.68px] tracking-[-0.02em] text-black">
 						{t("landing.heroSection.lost_your")}
-						<span className="font-[900] text-white uppercase pl-[24px]">
-							{t("landing.heroSection.mixi")}
-						</span>
+						<div className="relative inline-block pl-[24px]">
+							<img
+								src={NameContainer}
+								alt=""
+								className="absolute w-[120px] lg:w-auto bottom-1 right-[-10px] z-0"
+							/>
+							<span className="font-[900] text-white uppercase relative z-10">
+								{t("landing.heroSection.mixi")}
+							</span>
+						</div>
 					</h1>
-					<img
-						src={NameContainer}
-						alt=""
-						className="absolute w-[120px] lg:w-auto z-1 lg:relative lg:right-38 bottom-0 right-13"
-					/>
 				</div>
 
-				<div className="flex flex-row items-end lg:items-center">
-					<p className="font-epilogue font-bold text-[36px] lg:text-[50.68px] tracking-[-0.02em]">
-						{t("landing.heroSection.we_will_help_bring_them_home")}
-					</p>
+				<p className="font-epilogue font-bold text-[36px] lg:text-[50.68px] tracking-[-0.02em]">
+					{t("landing.heroSection.we_will_help_bring_them_home")}
 					<img
 						src={HeartIcon}
 						alt=""
-						className="relative bottom-6 right-28 w-[40px] lg:bottom-8 lg:right-3 lg:w-[60px]"
+						className="inline-block align-baseline relative bottom-2 lg:bottom-6 right-1 lg-right-6 w-[40px] lg:w-[60px]"
 					/>
-				</div>
+				</p>
 
 				<p className="font-normal text-base lg:text-[20.68px] leading-[31px] tracking-normal max-w-full lg:w-[511px]">
 					{t("landing.heroSection.we_quickly_reunite_text")}
