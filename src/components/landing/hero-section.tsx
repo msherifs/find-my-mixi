@@ -10,8 +10,8 @@ import { Button } from "../ui/button";
 const HeroSection = () => {
 	const { t } = useTranslation("");
 	return (
-		<section className="max-w-[1280px] mx-auto w-full px-9">
-			<div className="bg-[#FEDAFFB2] rounded-[40px] px-[72px] pt-15">
+		<section className="max-w-[1280px] mx-auto w-full px-4 md:px-9">
+			<div className="bg-[#FEDAFFB2] rounded-[40px] px-6 pt-10 lg:px-[72px] lg:pt-15">
 				<svg className="absolute w-0 h-0">
 					<defs>
 						{/** biome-ignore lint/correctness/useUniqueElementIds: false*/}
@@ -32,8 +32,9 @@ const HeroSection = () => {
 						</filter>
 					</defs>
 				</svg>
-				<div className="flex items-end">
-					<h1 className="font-epilogue font-bold text-[50.68px] tracking-[-0.02em] text-black z-10">
+
+				<div className="flex flex-col sm:flex-row lg:items-end relative">
+					<h1 className="font-epilogue font-bold text-[36px] lg:text-[50.68px] tracking-[-0.02em] text-black z-10">
 						{t("landing.heroSection.lost_your")}
 						<span className="font-[900] text-white uppercase pl-[24px]">
 							{t("landing.heroSection.mixi")}
@@ -42,48 +43,59 @@ const HeroSection = () => {
 					<img
 						src={NameContainer}
 						alt=""
-						className="z-1 right-38 bottom-1 relative"
+						className="absolute w-[120px] lg:w-auto z-1 lg:relative lg:right-38 bottom-0 right-13"
 					/>
 				</div>
-				<div className="flex items-center">
-					<p className="font-epilogue font-bold text-[50.68px] tracking-[-0.02em]">
+
+				<div className="flex flex-row items-end lg:items-center">
+					<p className="font-epilogue font-bold text-[36px] lg:text-[50.68px] tracking-[-0.02em]">
 						{t("landing.heroSection.we_will_help_bring_them_home")}
 					</p>
 					<img
 						src={HeartIcon}
 						alt=""
-						className="relative bottom-8 right-3 w-[60px]"
+						className="relative bottom-6 right-28 w-[40px] lg:bottom-8 lg:right-3 lg:w-[60px]"
 					/>
 				</div>
-				<p className="font-normal text-[20.68px] leading-[31px] tracking-normal w-[511px]">
+
+				<p className="font-normal text-base lg:text-[20.68px] leading-[31px] tracking-normal max-w-full lg:w-[511px]">
 					{t("landing.heroSection.we_quickly_reunite_text")}
 				</p>
-				<div className="flex items-center gap-4 mt-7">
-					<Button size={"lg"}>{t("landing.heroSection.lost_a_cat")}</Button>
+
+				<div className="flex flex-col sm:flex-row items-start lg:items-center gap-3 lg:gap-4 mt-7">
+					<Button size={"lg"} className="w-full sm:w-auto">
+						{t("landing.heroSection.lost_a_cat")}
+					</Button>
 					<Button
 						variant={"secondary"}
 						size={"lg"}
-						className="shadow-none border-none"
+						className="shadow-none border-none w-full sm:w-auto"
 					>
 						{t("landing.heroSection.found_a_cat")}
 					</Button>
 				</div>
-				<div className="h-[450px] relative">
-					<div className="absolute left-0 bottom-[40px] flex flex-col items-center">
-						<img src={UFO} alt="" className="relative left-5 mb-[10px]" />
-						<img src={UFOLight} alt="" />
-						<div className="backdrop-blur-[28px] bg-gradient-to-b from-[#DD198E38] to-transparent h-[35px] w-[100px] blur-[8px] relative" />
-						<p className="text-primary font-semibold text-[55.04px] leading-[39.98px] tracking-[-0.03em] mb-2 relative bottom-5 [filter:url(#roughen)]">
+
+				<div className="h-[300px] lg:h-[450px] relative">
+					<div className="absolute left-0 bottom-0 lg:bottom-[40px] flex flex-col items-center">
+						<img
+							src={UFO}
+							alt=""
+							className="relative w-[70px] left-5 lg:w-auto mb-[10px]"
+						/>
+						<img src={UFOLight} alt="" className="w-[100px] lg:w-auto" />
+						<div className="backdrop-blur-[28px] bg-gradient-to-b from-[#DD198E38] to-transparent h-[30px] w-[80px] lg:h-[35px] lg:w-[100px] blur-[8px] relative" />
+						<p className="text-primary font-semibold text-4xl lg:text-[55.04px] leading-tight lg:leading-[39.98px] tracking-[-0.03em] mb-1 lg:mb-2 relative bottom-4 lg:bottom-5 [filter:url(#roughen)]">
 							1,024
 						</p>
-						<p className="font-medium text-[21.5px] leading-[34.08px] tracking-[-0.04em] relative bottom-5">
+						<p className="font-medium text-sm lg:text-[21.5px] leading-snug lg:leading-[34.08px] tracking-[-0.04em] relative bottom-4 lg:bottom-5">
 							Cats Found
 						</p>
 					</div>
+
 					<img
 						src={GroupOfCats}
 						alt=""
-						className="absolute bottom-0 right-[-40px]"
+						className="absolute bottom-0 right-0 w-[60%] h-auto max-w-[400px] lg:right-[-40px] lg:w-auto lg:max-w-none"
 					/>
 				</div>
 			</div>
