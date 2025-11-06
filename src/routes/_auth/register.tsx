@@ -12,7 +12,6 @@ function RouteComponent() {
 	const { t } = useTranslation();
 	return (
 		<>
-			{" "}
 			<img
 				src={SignupCat}
 				alt="Signup Cat"
