@@ -57,7 +57,11 @@ const LoginScreen = () => {
 	const navigate = useNavigate();
 	return (
 		<div className="flex flex-col items-center gap-5 max-w-[80%]">
-			<img src={GreenCheckMark} alt="Reset Successful" />
+			<img
+				src={GreenCheckMark}
+				alt="Reset Successful"
+				className="lg:w-auto w-22"
+			/>
 			<h2 className="font-epilogue font-bold lg:text-[96.96px] text-[36px] leading-[1] tracking-[-0.02em] text-center">
 				{t("resetPassword.password_reset")}
 			</h2>

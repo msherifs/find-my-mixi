@@ -9,7 +9,7 @@ export const Route = createFileRoute("/_landing")({
 function RouteComponent() {
 	return (
 		// biome-ignore lint/correctness/useUniqueElementIds: <false>
-		<div className="min-h-screen flex flex-col" id="home">
+		<div className="min-h-screen min-h-[100dvh] flex flex-col" id="home">
 			<LandingHeader />
 			<div className="flex-grow">
 				<Outlet />

@@ -11,40 +11,43 @@ export const Route = createFileRoute("/_auth/register")({
 function RouteComponent() {
 	const { t } = useTranslation();
 	return (
-		<div className="flex flex-col items-center lg:w-[480px] gap-5 max-w-[80%]">
+		<>
+			{" "}
 			<img
 				src={SignupCat}
 				alt="Signup Cat"
 				className="absolute left-8 bottom-0 z-10 lg:w-auto w-22"
 			/>
-			<h2 className="font-epilogue font-bold lg:text-[96.96px] text-[36px] leading-[1] tracking-[-0.02em]">
-				{t("signup.sign_up")}
-			</h2>
-			<p className="font-normal text-[20.68px] leading-[31px] tracking-normal text-center">
-				{t("signup.enter_required_data")}
-			</p>
-			<div className="flex items-center gap-4 w-full">
-				<MixiInput label={t("signup.first_name")} placeholder="First Name" />
-				<MixiInput label={t("signup.last_name")} placeholder="Last Name" />
-			</div>
-			<MixiInput label={t("signup.email")} placeholder="you@email.com" />
-			<MixiInput
-				label={t("signup.password")}
-				placeholder="Password"
-				type="password"
-			/>
-			<Button className="w-full">{t("signup.sign_up")}</Button>
-			<div className="flex items-center w-full justify-center gap-1">
-				<p className="font-normal text-sm leading-5 tracking-normal text-[#626262]">
-					{t("signup.already_have_account")}
+			<div className="flex flex-col items-center lg:w-[480px] gap-5 max-w-[80%]">
+				<h2 className="font-epilogue font-bold lg:text-[96.96px] text-[36px] leading-[1] tracking-[-0.02em]">
+					{t("signup.sign_up")}
+				</h2>
+				<p className="font-normal text-[20.68px] leading-[31px] tracking-normal text-center">
+					{t("signup.enter_required_data")}
 				</p>
-				<Link
-					to="/login"
-					className="font-semibold text-sm leading-5 tracking-normal text-primary"
-				>
-					{t("signup.login")}
-				</Link>
+				<div className="flex items-center gap-4 w-full">
+					<MixiInput label={t("signup.first_name")} placeholder="First Name" />
+					<MixiInput label={t("signup.last_name")} placeholder="Last Name" />
+				</div>
+				<MixiInput label={t("signup.email")} placeholder="you@email.com" />
+				<MixiInput
+					label={t("signup.password")}
+					placeholder="Password"
+					type="password"
+				/>
+				<Button className="w-full">{t("signup.sign_up")}</Button>
+				<div className="flex items-center w-full justify-center gap-1">
+					<p className="font-normal text-sm leading-5 tracking-normal text-[#626262]">
+						{t("signup.already_have_account")}
+					</p>
+					<Link
+						to="/login"
+						className="font-semibold text-sm leading-5 tracking-normal text-primary"
+					>
+						{t("signup.login")}
+					</Link>
+				</div>
 			</div>
-		</div>
+		</>
 	);
 }

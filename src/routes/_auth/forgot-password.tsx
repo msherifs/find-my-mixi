@@ -65,7 +65,11 @@ const CheckEmailScreen = () => {
 	const { t } = useTranslation();
 	return (
 		<div className="flex flex-col items-center gap-5 max-w-[80%]">
-			<img src={CheckEmailCat} alt="Check Email Cat" />
+			<img
+				src={CheckEmailCat}
+				alt="Check Email Cat"
+				className="lg:w-auto w-22"
+			/>
 			<h2 className="font-epilogue font-bold lg:text-[96.96px] text-[36px] leading-[1] tracking-[-0.02em] text-center">
 				{t("forgotPassword.check_your_email")}
 			</h2>
