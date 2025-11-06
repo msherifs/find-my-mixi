@@ -33,12 +33,14 @@ const LandingFooter = () => {
 								</Link>
 								<Link
 									to="/"
+									hash="why-us"
 									className="bg-transparent font-medium text-base leading-6 text-justify text-white hover:text-gray-300 transition-colors"
 								>
 									{t("landing.footer.whyUs")}
 								</Link>
 								<Link
 									to="/"
+									hash="testimonials"
 									className="bg-transparent font-medium text-base leading-6 text-justify text-white hover:text-gray-300 transition-colors"
 								>
 									{t("landing.footer.testimonials")}

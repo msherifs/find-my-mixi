@@ -13,13 +13,13 @@ function RouteComponent() {
 	const { t } = useTranslation();
 	return (
 		<div className="flex flex-col items-center justify-center h-full gap-4 my-20 mx-auto">
-			<h2 className="font-epilogue font-bold text-[96.96px] leading-[1] tracking-[-0.02em]">
+			<h2 className="font-epilogue font-bold lg:text-[96.96px] text-[36px] leading-[1] tracking-[-0.02em]">
 				{t("contactUs.contact_us")}
 			</h2>
-			<p className="font-normal text-[20.68px] leading-[31px] tracking-normal text-center w-[668px]">
+			<p className="font-normal text-[20.68px] leading-[31px] tracking-normal text-center lg:w-[668px] max-w-[80%]">
 				{t("contactUs.already_part_of_community")}
 			</p>
-			<div className="w-[480px] flex flex-col items-center gap-5">
+			<div className="lg:w-[480px] w-[80%] flex flex-col items-center gap-5">
 				<MixiInput label={t("contactUs.email")} placeholder="you@email.com" />
 				<MixiSelect
 					label={t("contactUs.select_a_topic")}
@@ -34,7 +34,9 @@ function RouteComponent() {
 					placeholder={t("contactUs.or_tell_us_what_you_need")}
 				/>
 			</div>
-			<Button className="w-[480px]">{t("contactUs.get_assistance")}</Button>
+			<Button className="lg:w-[480px] max-w-[80%] w-full">
+				{t("contactUs.get_assistance")}
+			</Button>
 		</div>
 	);
 }

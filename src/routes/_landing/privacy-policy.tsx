@@ -61,10 +61,10 @@ function RouteComponent() {
 	const { t } = useTranslation();
 	return (
 		<div className="flex flex-col items-center justify-center h-full gap-16 my-20 mx-auto">
-			<h2 className="font-epilogue font-bold text-[96.96px] leading-[1] tracking-[-0.02em]">
+			<h2 className="font-epilogue font-bold lg:text-[96.96px] text-[36px] leading-[1] tracking-[-0.02em]">
 				{t("privacyPolicy.privacy_policy")}
 			</h2>
-			<div className="w-[600px]">
+			<div className="lg:w-[600px] max-w-[80%]">
 				<p className="font-normal text-base leading-6 tracking-normal">
 					{t("privacyPolicy.welcome_to_findmymixi")}
 				</p>
