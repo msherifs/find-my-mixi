@@ -4,9 +4,17 @@ import { Navigation } from "lucide-react";
 import { useEffect, useState } from "react";
 import { renderToString } from "react-dom/server";
 import { useTranslation } from "react-i18next";
-import { MapContainer, Marker, Popup, TileLayer, useMap } from "react-leaflet";
+import {
+	MapContainer,
+	Marker,
+	Popup,
+	TileLayer,
+	useMap,
+	ZoomControl,
+} from "react-leaflet";
 import CatImage from "@/assets/images/demo-image.svg";
 import GreenPin from "@/assets/images/green-pin.svg";
+import HeaderIcon from "@/assets/images/header-icon.svg";
 import RedPin from "@/assets/images/red-pin.svg";
 import LocationMarker from "@/components/map/location-marker";
 import { Button } from "@/components/ui/button";
@@ -36,13 +44,25 @@ function RouteComponent() {
 				zoom={50}
 				scrollWheelZoom={false}
 				className="h-full"
+				zoomControl={false}
 			>
+				<header className="w-[90vw] mx-auto sticky top-0 z-1000 cursor-default">
+					<div className="w-full flex items-center gap-4 border border-[#00000014] rounded-[56px] py-3 px-4 md:px-9 h-[78px] bg-white mt-4 md:mt-8">
+						<div className="flex items-center gap-5 flex-grow ">
+							<img src={HeaderIcon} alt="Header Icon" />
+						</div>
+						<div className="flex items-center gap-3">
+							<Button variant={"secondary"}>Mohamed El-Hawary</Button>
+						</div>
+					</div>
+				</header>
 				<TileLayer
 					// url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
 					// url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
 					url="http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}"
 					subdomains={["mt0", "mt1", "mt2", "mt3"]}
 				/>
+				<ZoomControl position="bottomleft" />
 				<ClientOnly>
 					<LocationMarker />
 				</ClientOnly>
