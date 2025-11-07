@@ -31,7 +31,7 @@ const steps = [
 const HowItWorksSection = () => {
 	const { t } = useTranslation("");
 	return (
-		<section className="flex flex-col w-full gap-[43px] items-center mt-20 max-w-[1280px] mx-auto lg:px-9 px-4">
+		<section className="flex flex-col w-full gap-[43px] items-center mt-20 max-w-[1280px] mx-auto md:px-9 px-4">
 			<div className="flex flex-col items-center">
 				<h2 className="font-epilogue font-bold text-[40px] leading-[100%] tracking-[0%]">
 					{t("landing.howItWorksSection.title")}

@@ -9,18 +9,18 @@ const WhyUsSection = () => {
 	return (
 		// biome-ignore lint/correctness/useUniqueElementIds: <false>
 		<section
-			className="w-full flex flex-col items-start gap-[64px] lg:py-[96px] py-[64px] max-w-[1280px] mx-auto lg:px-9 px-4 scroll-mt-10"
+			className="w-full flex flex-col items-start gap-[64px] lg:py-[96px] py-[64px] max-w-[1280px] mx-auto md:px-9 px-4 scroll-mt-10"
 			id="why-us"
 		>
-			<div className="flex flex-col lg:px-8 px-4 gap-5 max-w-[768px] w-full lg:w-auto items-center lg:items-start">
+			<div className="flex flex-col gap-5 max-w-[768px] w-full lg:w-auto items-start">
 				<h2 className="font-epilogue font-bold text-[36px] leading-[100%] tracking-[0%]">
 					{t("landing.whyUsSection.title")}
 				</h2>
-				<p className="font-normal text-[18px] leading-[140%] tracking-[-1%] max-w-[420px] text-center lg:text-start">
+				<p className="font-normal text-[18px] leading-[140%] tracking-[-1%] max-w-[420px] text-start">
 					{t("landing.whyUsSection.description")}
 				</p>
 			</div>
-			<div className="lg:px-8 px-4 flex lg:items-center gap-[64px] w-full lg:flex-row flex-col items-start">
+			<div className="flex lg:items-center gap-[64px] w-full lg:flex-row flex-col items-start lg:justify-between">
 				<div className="flex flex-col items-start gap-[64px] max-w-[560px]">
 					<div className="flex flex-col items-start w-full gap-2">
 						<img src={Lightning} alt="Fast Notifications" />
