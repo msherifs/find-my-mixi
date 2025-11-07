@@ -7,6 +7,7 @@ import { Marker, useMap } from "react-leaflet";
 
 function LocationMarker() {
 	const [position, setPosition] = useState<any | null>(null);
+	const [hasInitialized, setHasInitialized] = useState(false);
 	const map = useMap();
 
 	useEffect(() => {
@@ -17,14 +18,18 @@ function LocationMarker() {
 				const { latitude, longitude } = pos.coords;
 				const newPos: [number, number] = [latitude, longitude];
 				setPosition(newPos);
-				map.setView(newPos, 50);
+
+				if (!hasInitialized) {
+					map.setView(newPos, 50);
+					setHasInitialized(true);
+				}
 			},
 			(err) => console.error(err),
 			{ enableHighAccuracy: true, maximumAge: 10000, timeout: 5000 },
 		);
 
 		return () => navigator.geolocation.clearWatch(watcher);
-	}, [map]);
+	}, [map, hasInitialized]);
 
 	return position === null ? null : (
 		<Marker position={position} icon={createCustomIcon()} />
@@ -35,7 +40,8 @@ export default LocationMarker;
 
 const CustomMarkerIcon = () => (
 	<div className="relative w-11 h-11 flex items-center justify-center">
-		<div className="absolute rounded-full w-11 h-11 bg-[#3478F533] animate-ping" />
+		<div className="absolute rounded-full w-11 h-11 bg-[#3478F533] animate-ping [animation-duration:2s]" />
+		<div className="absolute rounded-full w-11 h-11 bg-[#3478F533]" />
 		<div className="relative rounded-full w-6 h-6 bg-[#3478F5] border-2 border-white" />
 	</div>
 );
