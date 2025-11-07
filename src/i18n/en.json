@@ -164,6 +164,11 @@
 		"eye_color": "Eye Color",
 		"size": "Size",
 		"pattern": "Pattern",
-		"i_am_the_owner": "I'm the Owner"
+		"i_am_the_owner": "I'm the Owner",
+		"filter": "Filter",
+		"fur": "Fur",
+		"length": "Length",
+		"collar": "Collar",
+		"embellishments": "Embellishments"
 	}
 }
