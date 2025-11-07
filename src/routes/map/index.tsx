@@ -1,6 +1,10 @@
-import { ClientOnly, createFileRoute } from "@tanstack/react-router";
+import {
+	ClientOnly,
+	createFileRoute,
+	useNavigate,
+} from "@tanstack/react-router";
 import L from "leaflet";
-import { Navigation } from "lucide-react";
+import { MoreVertical, Navigation } from "lucide-react";
 import { useEffect, useState } from "react";
 import { renderToString } from "react-dom/server";
 import { useTranslation } from "react-i18next";
@@ -16,14 +20,21 @@ import CatImage from "@/assets/images/demo-image.svg";
 import GreenPin from "@/assets/images/green-pin.svg";
 import HeaderIcon from "@/assets/images/header-icon.svg";
 import RedPin from "@/assets/images/red-pin.svg";
+import YellowPin from "@/assets/images/yellow-pin.svg";
 import LocationMarker from "@/components/map/location-marker";
 import { Button } from "@/components/ui/button";
+import "./map.css";
+import { useIsMobile } from "@/hooks/use-mobile";
+import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/map/")({
 	component: RouteComponent,
 });
 
 function RouteComponent() {
+	const { t } = useTranslation("");
+	const navigate = useNavigate();
+	const isMobile = useIsMobile();
 	const markers = [
 		{ lat: 30.0379, lng: 31.3448, label: "Marker 1" },
 		{ lat: 30.0386, lng: 31.3419, label: "Marker 2" },
@@ -46,16 +57,47 @@ function RouteComponent() {
 				className="h-full"
 				zoomControl={false}
 			>
-				<header className="w-[90vw] mx-auto sticky top-0 z-1000 cursor-default">
-					<div className="w-full flex items-center gap-4 border border-[#00000014] rounded-[56px] py-3 px-4 md:px-9 h-[78px] bg-white mt-4 md:mt-8">
+				<div className="sticky top-0 z-1000 w-[90vw] mx-auto mt-4 md:mt-8 flex flex-col gap-2 items-start">
+					<header className="w-full flex items-center gap-4 border border-[#00000014] rounded-[56px] py-3 px-4 md:px-9 md:h-[78px] bg-white cursor-default">
 						<div className="flex items-center gap-5 flex-grow ">
 							<img src={HeaderIcon} alt="Header Icon" />
 						</div>
 						<div className="flex items-center gap-3">
-							<Button variant={"secondary"}>Mohamed El-Hawary</Button>
+							<Button
+								variant={"secondary"}
+								className={cn(isMobile && "h-10 w-10")}
+							>
+								{isMobile ? "MH" : "Mohamed Hesham"}
+							</Button>
+							{isMobile && (
+								<Button className="w-10 h-10">
+									<MoreVertical />
+								</Button>
+							)}
+						</div>
+					</header>
+					{!isMobile && (
+						<div className="w-full flex items-center gap-4 border border-[#00000014] rounded-[56px] py-3 px-4 md:px-9 md:h-[78px] bg-white cursor-default"></div>
+					)}
+				</div>
+				{!isMobile && (
+					<div className="p-5 rounded-[28px] flex flex-col gap-3 bg-white shadow-[0px_7px_36px_0px_#0000000D] mt-2 w-[90vw] mx-auto md:w-fit md:ml-[5vw] sticky top-0 z-1000">
+						<p className="text-gray-700 font-[500] text-[14px] leading-[20px] tracking-[0]">
+							{t("map.quick_actions")}
+						</p>
+						<div className="flex flex-row md:flex-col gap-3 items-start">
+							<Button onClick={() => navigate({ to: "/report-lost-cat" })}>
+								{t("map.report_lost_cat")}
+							</Button>
+							<Button
+								variant={"secondary"}
+								onClick={() => navigate({ to: "/found-lost-cat" })}
+							>
+								{t("map.report_found_cat")}
+							</Button>
 						</div>
 					</div>
-				</header>
+				)}
 				<TileLayer
 					// url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
 					// url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
@@ -72,7 +114,71 @@ function RouteComponent() {
 						position={[m.lat, m.lng]}
 						icon={i % 2 === 0 ? createCustomIconGreen() : createCustomIconRed()}
 					>
-						<Popup>{m.label}</Popup>
+						<Popup
+							closeButton={false}
+							className="custom-popup"
+							offset={[0, 610]}
+						>
+							<div className="bg-white rounded-[28px] p-5 flex flex-col items-center min-w-[320px] shadow-[0px_7px_36px_0px_#0000000D] gap-[14px]">
+								<div className="w-full flex flex-col gap-3">
+									<img
+										src={CatImage}
+										alt="cat-image"
+										className="rounded-2xl w-full h-[280px] object-cover"
+									/>
+									<div className="flex w-full">
+										<div className="flex flex-col flex-1 gap-[6px] items-start w-full">
+											<div className="flex flex-col item-start w-full gap-1">
+												<p className="text-[#737373] font-medium text-[14px] leading-[20px] tracking-[0]">
+													20 Jan, 2025
+												</p>
+												<p className="text-[#0F0F0F] font-semibold text-[16px] leading-[24px] tracking-[0]">
+													Mixi Cat Name
+												</p>
+											</div>
+											<div className="flex items-center gap-2 w-full">
+												<img src={YellowPin} alt="yellow-pin" />
+												<p className="text-[#525252] font-medium text-[14px] leading-[20px] tracking-[0]">
+													Hay El Sefarat, Nasr City
+												</p>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div className="flex items-center w-full justify-between">
+									<div className="flex flex-col items-start gap-3">
+										<p className="font-semibold text-[14px] leading-[20px] tracking-[0] text-[#0F0F0F]">
+											{t("map.color")}{" "}
+											<span className="font-[500] text-[#737373]">
+												| Orange
+											</span>
+										</p>
+										<p className="font-semibold text-[14px] leading-[20px] tracking-[0] text-[#0F0F0F]">
+											{t("map.eye_color")}{" "}
+											<span className="font-[500] text-[#737373]">| Green</span>
+										</p>
+									</div>
+									<div className="flex flex-col items-start gap-3">
+										<p className="font-semibold text-[14px] leading-[20px] tracking-[0] text-[#0F0F0F]">
+											{t("map.size")}{" "}
+											<span className="font-[500] text-[#737373]">
+												| Medium
+											</span>
+										</p>
+										<p className="font-semibold text-[14px] leading-[20px] tracking-[0] text-[#0F0F0F]">
+											{t("map.pattern")}{" "}
+											<span className="font-[500] text-[#737373]">| Tabby</span>
+										</p>
+									</div>
+								</div>
+								<Button
+									variant={"secondary"}
+									className="w-full border-[#D5D7DA]"
+								>
+									{t("map.i_am_the_owner")}
+								</Button>
+							</div>
+						</Popup>
 					</Marker>
 				))}
 				<CenterLocationButton />
@@ -85,6 +191,7 @@ const CenterLocationButton = () => {
 	const map = useMap();
 	const { t } = useTranslation("");
 	const [position, setPosition] = useState<[number, number] | null>(null);
+	const isMobile = useIsMobile();
 
 	useEffect(() => {
 		if (!navigator.geolocation) return;
@@ -111,11 +218,18 @@ const CenterLocationButton = () => {
 		<Button
 			onClick={handleCenterLocation}
 			disabled={!position}
-			className="fixed bottom-[5vh] right-[4vw] z-1000 shadow-none border-[#ECECEC] text-[#1961E5] font-semibold text-sm leading-5 tracking-normal"
+			className={cn(
+				"fixed bottom-[4vh] right-[4vw] z-1000 shadow-none border-[#ECECEC]",
+				isMobile && "w-10 h-10 rounded-full",
+			)}
 			variant={"secondary"}
 		>
 			<Navigation fill="#1961E5" color="#1961E5" className="w-24" />
-			{t("map.center_my_location")}
+			{!isMobile && (
+				<p className="text-[#1961E5] font-semibold text-sm leading-5 tracking-normal">
+					{t("map.center_my_location")}
+				</p>
+			)}
 		</Button>
 	);
 };
