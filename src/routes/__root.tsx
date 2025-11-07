@@ -5,6 +5,7 @@ import {
 	Scripts,
 } from "@tanstack/react-router";
 import appCss from "../styles.css?url";
+import "leaflet/dist/leaflet.css";
 
 interface MyRouterContext {
 	queryClient: QueryClient;

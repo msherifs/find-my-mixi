@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as LandingRouteImport } from './routes/_landing'
 import { Route as AuthRouteImport } from './routes/_auth'
 import { Route as ReportLostCatIndexRouteImport } from './routes/report-lost-cat/index'
+import { Route as MapIndexRouteImport } from './routes/map/index'
 import { Route as FoundLostCatIndexRouteImport } from './routes/found-lost-cat/index'
 import { Route as LandingIndexRouteImport } from './routes/_landing/index'
 import { Route as DemoTanstackQueryRouteImport } from './routes/demo/tanstack-query'
@@ -43,6 +44,11 @@ const AuthRoute = AuthRouteImport.update({
 const ReportLostCatIndexRoute = ReportLostCatIndexRouteImport.update({
   id: '/report-lost-cat/',
   path: '/report-lost-cat/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MapIndexRoute = MapIndexRouteImport.update({
+  id: '/map/',
+  path: '/map/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const FoundLostCatIndexRoute = FoundLostCatIndexRouteImport.update({
@@ -153,6 +159,7 @@ export interface FileRoutesByFullPath {
   '/demo/tanstack-query': typeof DemoTanstackQueryRoute
   '/': typeof LandingIndexRoute
   '/found-lost-cat': typeof FoundLostCatIndexRoute
+  '/map': typeof MapIndexRoute
   '/report-lost-cat': typeof ReportLostCatIndexRoute
   '/demo/api/names': typeof DemoApiNamesRoute
   '/demo/api/tq-todos': typeof DemoApiTqTodosRoute
@@ -175,6 +182,7 @@ export interface FileRoutesByTo {
   '/demo/tanstack-query': typeof DemoTanstackQueryRoute
   '/': typeof LandingIndexRoute
   '/found-lost-cat': typeof FoundLostCatIndexRoute
+  '/map': typeof MapIndexRoute
   '/report-lost-cat': typeof ReportLostCatIndexRoute
   '/demo/api/names': typeof DemoApiNamesRoute
   '/demo/api/tq-todos': typeof DemoApiTqTodosRoute
@@ -200,6 +208,7 @@ export interface FileRoutesById {
   '/demo/tanstack-query': typeof DemoTanstackQueryRoute
   '/_landing/': typeof LandingIndexRoute
   '/found-lost-cat/': typeof FoundLostCatIndexRoute
+  '/map/': typeof MapIndexRoute
   '/report-lost-cat/': typeof ReportLostCatIndexRoute
   '/demo/api/names': typeof DemoApiNamesRoute
   '/demo/api/tq-todos': typeof DemoApiTqTodosRoute
@@ -224,6 +233,7 @@ export interface FileRouteTypes {
     | '/demo/tanstack-query'
     | '/'
     | '/found-lost-cat'
+    | '/map'
     | '/report-lost-cat'
     | '/demo/api/names'
     | '/demo/api/tq-todos'
@@ -246,6 +256,7 @@ export interface FileRouteTypes {
     | '/demo/tanstack-query'
     | '/'
     | '/found-lost-cat'
+    | '/map'
     | '/report-lost-cat'
     | '/demo/api/names'
     | '/demo/api/tq-todos'
@@ -270,6 +281,7 @@ export interface FileRouteTypes {
     | '/demo/tanstack-query'
     | '/_landing/'
     | '/found-lost-cat/'
+    | '/map/'
     | '/report-lost-cat/'
     | '/demo/api/names'
     | '/demo/api/tq-todos'
@@ -287,6 +299,7 @@ export interface RootRouteChildren {
   DemoTableRoute: typeof DemoTableRoute
   DemoTanstackQueryRoute: typeof DemoTanstackQueryRoute
   FoundLostCatIndexRoute: typeof FoundLostCatIndexRoute
+  MapIndexRoute: typeof MapIndexRoute
   ReportLostCatIndexRoute: typeof ReportLostCatIndexRoute
   DemoApiNamesRoute: typeof DemoApiNamesRoute
   DemoApiTqTodosRoute: typeof DemoApiTqTodosRoute
@@ -319,6 +332,13 @@ declare module '@tanstack/react-router' {
       path: '/report-lost-cat'
       fullPath: '/report-lost-cat'
       preLoaderRoute: typeof ReportLostCatIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/map/': {
+      id: '/map/'
+      path: '/map'
+      fullPath: '/map'
+      preLoaderRoute: typeof MapIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/found-lost-cat/': {
@@ -496,6 +516,7 @@ const rootRouteChildren: RootRouteChildren = {
   DemoTableRoute: DemoTableRoute,
   DemoTanstackQueryRoute: DemoTanstackQueryRoute,
   FoundLostCatIndexRoute: FoundLostCatIndexRoute,
+  MapIndexRoute: MapIndexRoute,
   ReportLostCatIndexRoute: ReportLostCatIndexRoute,
   DemoApiNamesRoute: DemoApiNamesRoute,
   DemoApiTqTodosRoute: DemoApiTqTodosRoute,

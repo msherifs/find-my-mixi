@@ -146,5 +146,8 @@
 		"password_reset": " Password Reset",
 		"password_successfully_reset": "Your password has been successfully reset. Click below to log in magically.",
 		"continue": "Continue"
+	},
+	"map": {
+		"center_my_location": "Center My Location"
 	}
 }
