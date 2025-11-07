@@ -12,15 +12,15 @@ const WhyUsSection = () => {
 			className="w-full flex flex-col items-start gap-[64px] lg:py-[96px] py-[64px] max-w-[1280px] mx-auto lg:px-9 px-4 scroll-mt-10"
 			id="why-us"
 		>
-			<div className="flex flex-col lg:px-8 px-4 gap-5 max-w-[768px]">
+			<div className="flex flex-col lg:px-8 px-4 gap-5 max-w-[768px] w-full lg:w-auto items-center lg:items-start">
 				<h2 className="font-epilogue font-bold text-[36px] leading-[100%] tracking-[0%]">
 					{t("landing.whyUsSection.title")}
 				</h2>
-				<p className="font-normal text-[18px] leading-[140%] tracking-[-1%] max-w-[420px]">
+				<p className="font-normal text-[18px] leading-[140%] tracking-[-1%] max-w-[420px] text-center lg:text-start">
 					{t("landing.whyUsSection.description")}
 				</p>
 			</div>
-			<div className="lg:px-8 px-4 flex items-center gap-[64px] w-full lg:flex-row flex-col">
+			<div className="lg:px-8 px-4 flex lg:items-center gap-[64px] w-full lg:flex-row flex-col items-start">
 				<div className="flex flex-col items-start gap-[64px] max-w-[560px]">
 					<div className="flex flex-col items-start w-full gap-2">
 						<img src={Lightning} alt="Fast Notifications" />
@@ -56,7 +56,11 @@ const WhyUsSection = () => {
 						</div>
 					</div>
 				</div>
-				<img src={CatImage} alt="Why Us Illustration" />
+				<img
+					src={CatImage}
+					alt="Why Us Illustration"
+					className="w-full lg:w-auto"
+				/>
 			</div>
 		</section>
 	);

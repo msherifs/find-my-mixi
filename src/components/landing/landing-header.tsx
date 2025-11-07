@@ -64,8 +64,9 @@ const LandingHeader = () => {
 		<header className="w-full max-w-[1280px] mx-auto px-4 md:px-9 sticky top-0 z-50">
 			<div className="w-full flex items-center gap-4 border border-[#00000014] rounded-[56px] py-3 px-4 md:px-9 h-[78px] bg-white mt-4 md:mt-8">
 				<div className="flex items-center gap-5 flex-grow ">
-					<img src={HeaderIcon} alt="Header Icon" />
-					{/* Navigation Links - Hidden on screens smaller than 1024px (lg) */}
+					<Link to="/">
+						<img src={HeaderIcon} alt="Header Icon" />
+					</Link>
 					<div className="hidden lg:flex items-center gap-5 flex-grow">
 						<Link to="/" hash="home" className={getLinkClassName("home")}>
 							<p className="px-[2px] font-semibold text-[14px] leading-[24px] tracking-[0]">

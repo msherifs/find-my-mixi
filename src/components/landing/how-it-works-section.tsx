@@ -73,7 +73,7 @@ const StepCard = ({
 	return (
 		<div
 			className={cn(
-				"p-6 rounded-[24px] flex-1 flex flex-col justify-between h-[310px]",
+				"p-6 rounded-[24px] flex-1 flex flex-col justify-between h-[310px] w-full",
 				className,
 			)}
 		>

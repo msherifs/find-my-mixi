@@ -1,4 +1,6 @@
 /** biome-ignore-all lint/a11y/noSvgWithoutTitle: <false> */
+
+import { useNavigate } from "@tanstack/react-router";
 import { useTranslation } from "react-i18next";
 import GroupOfCats from "@/assets/images/hero-cat-group.svg";
 import NameContainer from "@/assets/images/hero-cat-mixi.svg";
@@ -9,6 +11,7 @@ import { Button } from "../ui/button";
 
 const HeroSection = () => {
 	const { t } = useTranslation("");
+	const navigate = useNavigate();
 	return (
 		<section className="max-w-[1280px] mx-auto w-full px-4 md:px-9">
 			<div className="bg-[#FEDAFFB2] rounded-[40px] px-6 pt-20 lg:px-[72px] lg:pt-28">
@@ -63,13 +66,18 @@ const HeroSection = () => {
 				</p>
 
 				<div className="flex flex-col sm:flex-row items-start lg:items-center gap-3 lg:gap-4 mt-7">
-					<Button size={"lg"} className="w-full sm:w-auto">
+					<Button
+						size={"lg"}
+						className="w-full sm:w-auto"
+						onClick={() => navigate({ to: "/report-lost-cat" })}
+					>
 						{t("landing.heroSection.lost_a_cat")}
 					</Button>
 					<Button
 						variant={"secondary"}
 						size={"lg"}
 						className="shadow-none border-none w-full sm:w-auto"
+						onClick={() => navigate({ to: "/found-lost-cat" })}
 					>
 						{t("landing.heroSection.found_a_cat")}
 					</Button>
@@ -88,7 +96,7 @@ const HeroSection = () => {
 							1,024
 						</p>
 						<p className="font-medium text-sm lg:text-[21.5px] leading-snug lg:leading-[34.08px] tracking-[-0.04em] relative bottom-4 lg:bottom-5">
-							Cats Found
+							{t("landing.heroSection.cats_found")}
 						</p>
 					</div>
 
