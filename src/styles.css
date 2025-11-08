@@ -7,6 +7,18 @@
   --color-gray-700: #414651;
   --color-gray-600: #535862;
   --color-gray-500: #717680;
+  --color-error: #af2840;
+  --color-warning: #e6a700;
+  --color-on-success-container: #d8fdde;
+  --color-success-subtle: #106b3e;
+  --color-success-border: #cdeed3;
+  --color-alert-container: #fdf3d8;
+  --color-on-alert-container: #392d09;
+  --color-alert: #f7c122;
+  --color-toast-error: #fdd8d8;
+  --color-toast-warning: #fdecd8;
+  --color-error-border: #f5c6cb;
+  --color-warning-border: #ffeeba;
 }
 
 @layer base {

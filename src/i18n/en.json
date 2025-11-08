@@ -170,5 +170,18 @@
 		"length": "Length",
 		"collar": "Collar",
 		"embellishments": "Embellishments"
+	},
+	"errors": {
+		"invalidEmail": "Please enter a valid email address.",
+		"passwordRequired": "Please enter your password.",
+		"passwordTooShort": "Your password must be at least 6 characters long.",
+		"passwordTooLong": "Your password can't be longer than 100 characters.",
+		"fieldRequired": "This field can't be left empty.",
+		"firstNameRequired": "Please enter your first name.",
+		"lastNameRequired": "Please enter your last name.",
+		"firstNameTooShort": "First name must be at least 2 characters long.",
+		"lastNameTooShort": "Last name must be at least 2 characters long.",
+		"firstNameTooLong": "First name can't be longer than 100 characters.",
+		"lastNameTooLong": "Last name can't be longer than 100 characters."
 	}
 }
