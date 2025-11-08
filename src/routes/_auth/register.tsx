@@ -50,14 +50,13 @@ function RouteComponent() {
 			toast.success(t("signup.success"));
 			await router.navigate({ to: "/" });
 		} catch (error) {
-			const { message: errorMessage, fieldErrors: fieldErrorMessages } =
-				parseServerError(error, t("signup.error_generic"));
+			const fieldErrorMessages = parseServerError(error);
 			const message =
 				error instanceof Error && error.message === "Email already registered"
 					? t("signup.email_exists")
-					: errorMessage;
+					: t("signup.error_generic");
 			setFieldErrors(fieldErrorMessages);
-			message && setErrorMessage(message);
+			Object.keys(fieldErrorMessages).length === 0 && setErrorMessage(message);
 		} finally {
 			setIsSubmitting(false);
 		}

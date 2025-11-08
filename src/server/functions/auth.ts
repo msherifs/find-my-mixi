@@ -21,10 +21,7 @@ export const loginFn = createServerFn({ method: "POST" })
 	.inputValidator(
 		z.object({
 			email: z.email({ error: "errors.invalidEmail" }),
-			password: z
-				.string({ error: "errors.passwordRequired" })
-				.min(6, { error: "errors.passwordTooShort" })
-				.max(100, { error: "errors.passwordTooLong" }),
+			password: z.string({ error: "errors.passwordRequired" }),
 		}),
 	)
 	.handler(async ({ data }) => {

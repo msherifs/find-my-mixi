@@ -5,12 +5,9 @@ export function cn(...inputs: ClassValue[]) {
 	return twMerge(clsx(inputs));
 }
 
-export function parseServerError(
-	error: unknown,
-	genericMessage: string,
-): { message?: string; fieldErrors: Record<string, string> } {
+export function parseServerError(error: unknown): Record<string, string> {
 	if (!(error instanceof Error)) {
-		return { message: genericMessage, fieldErrors: {} };
+		return {};
 	}
 
 	try {
@@ -27,13 +24,10 @@ export function parseServerError(
 				messages.push(issue.message);
 			}
 
-			return {
-				message: undefined,
-				fieldErrors,
-			};
+			return fieldErrors;
 		}
-		return { message: error.message, fieldErrors: {} };
+		return {};
 	} catch {
-		return { message: error.message, fieldErrors: {} };
+		return {};
 	}
 }

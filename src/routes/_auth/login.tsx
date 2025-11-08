@@ -43,14 +43,13 @@ function RouteComponent() {
 			toast.success(t("login.success"));
 			await router.navigate({ to: "/" });
 		} catch (error) {
-			const { message: errorMessage, fieldErrors: fieldErrorMessages } =
-				parseServerError(error, t("login.error_generic"));
+			const fieldErrorMessages = parseServerError(error);
 			const message =
 				error instanceof Error && error.message === "Invalid credentials"
 					? t("login.invalid_credentials")
-					: errorMessage;
+					: t("login.error_generic");
 			setFieldErrors(fieldErrorMessages);
-			message && setErrorMessage(message);
+			Object.keys(fieldErrorMessages).length === 0 && setErrorMessage(message);
 		} finally {
 			setIsSubmitting(false);
 		}
