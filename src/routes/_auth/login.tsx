@@ -20,9 +20,6 @@ function RouteComponent() {
 
   const form = useForm({
     ...loginFormOptions,
-    // onSubmit: async ({ value }) => {
-    //   await loginFn({ data: value });
-    // },
     transform: useTransform((baseForm) => mergeForm(baseForm, state), [state]),
   });
 
@@ -37,10 +34,6 @@ function RouteComponent() {
         action={loginFn.url}
         method="POST"
         encType={"multipart/form-data"}
-        // onSubmit={(e) => {
-        //   e.preventDefault();
-        //   e.stopPropagation();
-        // }}
         className="flex flex-col items-center lg:w-[480px] gap-5 max-w-[80%]"
       >
         <h2 className="font-epilogue font-bold lg:text-[96.96px] text-[36px] leading-[1] tracking-[-0.02em]">
