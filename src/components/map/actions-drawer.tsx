@@ -1,8 +1,7 @@
-import { Button } from "@/components/ui/button";
-import "./map.css";
 import { useNavigate } from "@tanstack/react-router";
 import { MoreVertical } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import { Button } from "@/components/ui/button";
 import { Drawer, DrawerContent, DrawerTrigger } from "@/components/ui/drawer";
 
 const ActionsDrawer = () => {
