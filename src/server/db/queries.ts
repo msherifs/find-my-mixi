@@ -23,3 +23,28 @@ export const insertCatRequest = async (
 ) => {
   return await CatRequest.insertOne(args);
 };
+
+export const findCatRequestsInPolygon = async (
+  polygon: { coordinates: number[][] },
+  filter: PaprFilter<CatRequestDocument>,
+) => {
+  const pipeline: Record<string, unknown>[] = [
+    {
+      $match: {
+        "location.geoPoint": {
+          $geoWithin: {
+            $geometry: {
+              type: "Polygon",
+              coordinates: polygon.coordinates,
+            },
+          },
+        },
+      },
+    },
+    {
+      $match: filter,
+    },
+  ];
+
+  return await CatRequest.aggregate<CatRequestDocument>(pipeline);
+};

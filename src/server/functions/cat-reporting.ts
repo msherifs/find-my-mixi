@@ -1,7 +1,10 @@
 import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
 import { CatFormType } from "@/server/db/enums";
-import { insertCatRequest } from "@/server/db/queries";
+import {
+  findCatRequestsInPolygon,
+  insertCatRequest,
+} from "@/server/db/queries";
 
 const optionalTextField = () =>
   z
@@ -90,4 +93,25 @@ export const reportCatFn = createServerFn({ method: "POST" })
     });
 
     return {};
+  });
+
+export const getCatRequestsForMap = createServerFn()
+  .inputValidator(
+    z.object({
+      polygon: z.number().array().array(),
+      // TBD other needed fields
+    }),
+  )
+  .handler(async ({ data }) => {
+    const requests = await findCatRequestsInPolygon(
+      { coordinates: data.polygon },
+      {},
+    );
+
+    return {
+      catRequests: requests.map((request) => ({
+        ...request,
+        _id: request._id.toHexString(),
+      })),
+    };
   });

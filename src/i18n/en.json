@@ -1,187 +1,181 @@
 {
-	"landing": {
-		"header": {
-			"home": "Home",
-			"whyUs": "Why Us?",
-			"contactUs": "Contact Us",
-			"testimonials": "Testimonials",
-			"login": "Log In",
-			"signUp": "Sign Up"
-		},
-		"heroSection": {
-			"lost_your": "Lost Your",
-			"mixi": "Mixi?",
-			"we_will_help_bring_them_home": "We'll help bring them home",
-			"we_quickly_reunite_text": "We quickly reunite lost cats with their families using geolocation and social media promotion.",
-			"lost_a_cat": "Lost a Cat",
-			"found_a_cat": "Found a Cat",
-			"cats_found": "Cats Found"
-		},
-		"howItWorksSection": {
-			"title": "How It Works",
-			"description": "Our simple 3-step process helps reunite families with their beloved cats quickly and safely.",
-			"report_your_lost_cat": {
-				"title": "Report Your Missing Cat",
-				"description": "Lost Your Mixi? Report it here to start the journey home."
-			},
-			"wait_for_notifications": {
-				"title": "Wait for Notification",
-				"description": "Stay alert: Await notifications on your Mixi's whereabouts."
-			},
-			"reunite_with_your_cat": {
-				"title": "Get Your Cat Home",
-				"description": "Reunite with your furry friend: Bring your Mixi home safely."
-			}
-		},
-		"statsSection": {
-			"cats_found": "Cats Found",
-			"cats_reported": "Cats Reported",
-			"cats_delivered": "Cats Delivered",
-			"community_members": "Community Members"
-		},
-		"whyUsSection": {
-			"title": "Why Choose FindMyMixi ?",
-			"description": "Your Dedicated Platform for Reuniting Lost Cats with Their Caring Families",
-			"fast_notifications": {
-				"title": "Fast and Reliable Notifications",
-				"description": "Receive real-time updates whenever your Mixi is found or sighted."
-			},
-			"network": {
-				"title": "Extensive Network",
-				"description": "Large community boosts your chances of quickly reuniting with your Mixi."
-			},
-			"user_friendly": {
-				"title": "User-Friendly Reporting",
-				"description": "Easily report missing or found Mixis with just a few clicks."
-			}
-		},
-		"testimonialSection": {
-			"testimonial": "“ When I lost my cat, I posted in every Facebook group I could find, but they were for all kinds of pets. It was frustrating; I received disorganized comments with no results. Then I found FindMyMixi, and everything changed. The platform is easy to use, and the social media ad service was incredibly helpful. Within a few days, thanks to the real-time notifications and the support from the community, I was able to find my Mixi.” ",
-			"user_description": "Cat Mom of {{name}}"
-		},
-		"footer": {
-			"home": "Home",
-			"whyUs": "Why Us?",
-			"contactUs": "Contact Us",
-			"testimonials": "Testimonials",
-			"privacyPolicy": "Privacy Policy",
-			"faq": "FAQ",
-			"copyright": "© 2025 FindMyMixi. All rights reserved"
-		}
-	},
-	"login": {
-		"login": "Login",
-		"enter_email_and_password": "Enter your email and password",
-		"email": "Email",
-		"password": "Password",
-		"forgot_password": "Forgot Password",
-		"remember_me": "Remember Me",
-		"sign_in": "Sign In",
-		"signing_in": "Signing you in...",
-		"success": "Welcome back!",
-		"sign_up": "Sign Up",
-		"dont_have_account": "Don't have an account?",
-		"invalid_credentials": "Invalid email or password.",
-		"error_generic": "We couldn't sign you in. Please try again."
-	},
-	"signup": {
-		"sign_up": "Sign Up",
-		"enter_required_data": "Enter the required data and you are good to go! ",
-		"first_name": "First Name",
-		"last_name": "Last Name",
-		"email": "Email",
-		"password": "Password",
-		"creating_account": "Creating your account...",
-		"success": "Account created! Redirecting...",
-		"email_exists": "An account with this email already exists.",
-		"error_generic": "We couldn't complete your signup. Please try again.",
-		"already_have_account": "Already have an account?",
-		"login": "Log In"
-	},
-	"contactUs": {
-		"contact_us": "Contact Us",
-		"already_part_of_community": "Already part of the FindMyMixi community? Sign in to customize your support experience. If you're not signed in, we're still here to help!",
-		"email": "Email",
-		"select_a_topic": "Select a Topic",
-		"or_tell_us_what_you_need": "Or tell us what you need help with",
-		"get_assistance": "Get Assistance",
-		"lost_a_cat": "Lost a Cat",
-		"found_a_cat": "Found a Cat"
-	},
-	"privacyPolicy": {
-		"privacy_policy": "Privacy Policy",
-		"welcome_to_findmymixi": "Welcome to FindMyMixi. By accessing or using our platform, you agree to the following terms and conditions:",
-		"acceptance_of_terms_title": "Acceptance of Terms",
-		"acceptance_of_terms_description": "By using FindMyMixi, you confirm that you are at least 13 years old and agree to these Terms & Conditions. If you do not agree, please do not use our platform.",
-		"services_provided_title": "Services Provided",
-		"services_provided_description": "FindMyMixi is a digital platform designed to reunite lost cats with their families through reports, geolocation, and community support.",
-		"user_responsibilities_title": "User Responsibilities",
-		"user_responsibilities_description_1": "Provide accurate and truthful information when submitting lost or found cat reports.",
-		"user_responsibilities_description_2": "Respect other users and avoid inappropriate content.",
-		"user_responsibilities_description_3": "Do not misuse the platform for fraudulent or harmful purposes.",
-		"account_creation_title": "Account Creation",
-		"account_creation_description": "You are responsible for maintaining the confidentiality of your account credentials. Any activity under your account is your responsibility.",
-		"donations_payments_title": "Donations & Payments",
-		"donations_payments_description": "Donations and premium services are processed securely via OpenPay by BBVA. FindMyMixi does not store credit card information.",
-		"intellectual_property_title": "Intellectual Property",
-		"intellectual_property_description": "All content, design, and branding on FindMyMixi are the intellectual property of FindMyMixi and may not be copied, distributed, or used without prior consent.",
-		"limitation_of_liability_title": "Limitation of Liability",
-		"limitation_of_liability_description": "FindMyMixi provides its services “as is” and does not guarantee successful reunions. We are not liable for any indirect damages, losses, or third-party actions.",
-		"termination_of_accounts_title": "Termination of Accounts",
-		"termination_of_accounts_description": "We reserve the right to suspend or terminate accounts that violate these Terms.",
-		"governing_law_title": "Governing Law",
-		"governing_law_description": "These Terms are governed by the applicable data protection and consumer laws of the United States, Mexico, and the European Union.",
-		"contact_title": "Contact",
-		"contact_description": "For questions, please contact us at:"
-	},
-	"forgotPassword": {
-		"forgot_password": "Forgot password?",
-		"no_worries": "No worries, we'll send you reset instructions.",
-		"email": "Email",
-		"reset_password": "Reset Password",
-		"back_to_login": "Back to Login",
-		"check_your_email": "Check Your Email",
-		"we_sent_reset_link": "We sent a password reset link to {{email}}.",
-		"did_not_receive": "Didn't receive the email?",
-		"click_to_resend": "Click to resend"
-	},
-	"resetPassword": {
-		"set_new_password": "Set New Password",
-		"new_password_must_be_different": "Your new password must be different to previously used passwords.",
-		"password": "Password",
-		"confirm_password": "Confirm Password",
-		"reset_password": "Reset Password",
-		"password_reset": " Password Reset",
-		"password_successfully_reset": "Your password has been successfully reset. Click below to log in magically.",
-		"continue": "Continue"
-	},
-	"map": {
-		"center_my_location": "Center My Location",
-		"quick_actions": "Quick Actions",
-		"report_lost_cat": "Report Lost Cat",
-		"report_found_cat": "Report Found Cat",
-		"color": "Color",
-		"eye_color": "Eye Color",
-		"size": "Size",
-		"pattern": "Pattern",
-		"i_am_the_owner": "I'm the Owner",
-		"filter": "Filter",
-		"fur": "Fur",
-		"length": "Length",
-		"collar": "Collar",
-		"embellishments": "Embellishments"
-	},
-	"errors": {
-		"invalidEmail": "Please enter a valid email address.",
-		"passwordRequired": "Please enter your password.",
-		"passwordTooShort": "Your password must be at least 6 characters long.",
-		"passwordTooLong": "Your password can't be longer than 100 characters.",
-		"fieldRequired": "This field can't be left empty.",
-		"firstNameRequired": "Please enter your first name.",
-		"lastNameRequired": "Please enter your last name.",
-		"firstNameTooShort": "First name must be at least 2 characters long.",
-		"lastNameTooShort": "Last name must be at least 2 characters long.",
-		"firstNameTooLong": "First name can't be longer than 100 characters.",
-		"lastNameTooLong": "Last name can't be longer than 100 characters."
-	}
+  "landing": {
+    "header": {
+      "home": "Home",
+      "whyUs": "Why Us?",
+      "contactUs": "Contact Us",
+      "testimonials": "Testimonials",
+      "login": "Log In",
+      "signUp": "Sign Up"
+    },
+    "heroSection": {
+      "lost_your": "Lost Your",
+      "mixi": "Mixi?",
+      "we_will_help_bring_them_home": "We'll help bring them home",
+      "we_quickly_reunite_text": "We quickly reunite lost cats with their families using geolocation and social media promotion.",
+      "lost_a_cat": "Lost a Cat",
+      "found_a_cat": "Found a Cat",
+      "cats_found": "Cats Found"
+    },
+    "howItWorksSection": {
+      "title": "How It Works",
+      "description": "Our simple 3-step process helps reunite families with their beloved cats quickly and safely.",
+      "report_your_lost_cat": {
+        "title": "Report Your Missing Cat",
+        "description": "Lost Your Mixi? Report it here to start the journey home."
+      },
+      "wait_for_notifications": {
+        "title": "Wait for Notification",
+        "description": "Stay alert: Await notifications on your Mixi's whereabouts."
+      },
+      "reunite_with_your_cat": {
+        "title": "Get Your Cat Home",
+        "description": "Reunite with your furry friend: Bring your Mixi home safely."
+      }
+    },
+    "statsSection": {
+      "cats_found": "Cats Found",
+      "cats_reported": "Cats Reported",
+      "cats_delivered": "Cats Delivered",
+      "community_members": "Community Members"
+    },
+    "whyUsSection": {
+      "title": "Why Choose FindMyMixi ?",
+      "description": "Your Dedicated Platform for Reuniting Lost Cats with Their Caring Families",
+      "fast_notifications": {
+        "title": "Fast and Reliable Notifications",
+        "description": "Receive real-time updates whenever your Mixi is found or sighted."
+      },
+      "network": {
+        "title": "Extensive Network",
+        "description": "Large community boosts your chances of quickly reuniting with your Mixi."
+      },
+      "user_friendly": {
+        "title": "User-Friendly Reporting",
+        "description": "Easily report missing or found Mixis with just a few clicks."
+      }
+    },
+    "testimonialSection": {
+      "testimonial": "“ When I lost my cat, I posted in every Facebook group I could find, but they were for all kinds of pets. It was frustrating; I received disorganized comments with no results. Then I found FindMyMixi, and everything changed. The platform is easy to use, and the social media ad service was incredibly helpful. Within a few days, thanks to the real-time notifications and the support from the community, I was able to find my Mixi.” ",
+      "user_description": "Cat Mom of {{name}}"
+    },
+    "footer": {
+      "home": "Home",
+      "whyUs": "Why Us?",
+      "contactUs": "Contact Us",
+      "testimonials": "Testimonials",
+      "privacyPolicy": "Privacy Policy",
+      "faq": "FAQ",
+      "copyright": "© 2025 FindMyMixi. All rights reserved"
+    }
+  },
+  "login": {
+    "login": "Login",
+    "enter_email_and_password": "Enter your email and password",
+    "email": "Email",
+    "password": "Password",
+    "forgot_password": "Forgot Password",
+    "remember_me": "Remember Me",
+    "sign_in": "Sign In",
+    "signing_in": "Signing you in...",
+    "success": "Welcome back!",
+    "sign_up": "Sign Up",
+    "dont_have_account": "Don't have an account?",
+    "invalid_credentials": "Invalid email or password.",
+    "error_generic": "We couldn't sign you in. Please try again."
+  },
+  "signup": {
+    "sign_up": "Sign Up",
+    "enter_required_data": "Enter the required data and you are good to go! ",
+    "first_name": "First Name",
+    "last_name": "Last Name",
+    "email": "Email",
+    "password": "Password",
+    "creating_account": "Creating your account...",
+    "success": "Account created! Redirecting...",
+    "email_exists": "An account with this email already exists.",
+    "error_generic": "We couldn't complete your signup. Please try again.",
+    "already_have_account": "Already have an account?",
+    "login": "Log In"
+  },
+  "contactUs": {
+    "contact_us": "Contact Us",
+    "already_part_of_community": "Already part of the FindMyMixi community? Sign in to customize your support experience. If you're not signed in, we're still here to help!",
+    "email": "Email",
+    "select_a_topic": "Select a Topic",
+    "or_tell_us_what_you_need": "Or tell us what you need help with",
+    "get_assistance": "Get Assistance",
+    "lost_a_cat": "Lost a Cat",
+    "found_a_cat": "Found a Cat"
+  },
+  "privacyPolicy": {
+    "privacy_policy": "Privacy Policy",
+    "welcome_to_findmymixi": "Welcome to FindMyMixi. By accessing or using our platform, you agree to the following terms and conditions:",
+    "acceptance_of_terms_title": "Acceptance of Terms",
+    "acceptance_of_terms_description": "By using FindMyMixi, you confirm that you are at least 13 years old and agree to these Terms & Conditions. If you do not agree, please do not use our platform.",
+    "services_provided_title": "Services Provided",
+    "services_provided_description": "FindMyMixi is a digital platform designed to reunite lost cats with their families through reports, geolocation, and community support.",
+    "user_responsibilities_title": "User Responsibilities",
+    "user_responsibilities_description_1": "Provide accurate and truthful information when submitting lost or found cat reports.",
+    "user_responsibilities_description_2": "Respect other users and avoid inappropriate content.",
+    "user_responsibilities_description_3": "Do not misuse the platform for fraudulent or harmful purposes.",
+    "account_creation_title": "Account Creation",
+    "account_creation_description": "You are responsible for maintaining the confidentiality of your account credentials. Any activity under your account is your responsibility.",
+    "donations_payments_title": "Donations & Payments",
+    "donations_payments_description": "Donations and premium services are processed securely via OpenPay by BBVA. FindMyMixi does not store credit card information.",
+    "intellectual_property_title": "Intellectual Property",
+    "intellectual_property_description": "All content, design, and branding on FindMyMixi are the intellectual property of FindMyMixi and may not be copied, distributed, or used without prior consent.",
+    "limitation_of_liability_title": "Limitation of Liability",
+    "limitation_of_liability_description": "FindMyMixi provides its services “as is” and does not guarantee successful reunions. We are not liable for any indirect damages, losses, or third-party actions.",
+    "termination_of_accounts_title": "Termination of Accounts",
+    "termination_of_accounts_description": "We reserve the right to suspend or terminate accounts that violate these Terms.",
+    "governing_law_title": "Governing Law",
+    "governing_law_description": "These Terms are governed by the applicable data protection and consumer laws of the United States, Mexico, and the European Union.",
+    "contact_title": "Contact",
+    "contact_description": "For questions, please contact us at:"
+  },
+  "forgotPassword": {
+    "forgot_password": "Forgot password?",
+    "no_worries": "No worries, we'll send you reset instructions.",
+    "email": "Email",
+    "reset_password": "Reset Password",
+    "back_to_login": "Back to Login",
+    "check_your_email": "Check Your Email",
+    "we_sent_reset_link": "We sent a password reset link to {{email}}.",
+    "did_not_receive": "Didn't receive the email?",
+    "click_to_resend": "Click to resend"
+  },
+  "resetPassword": {
+    "set_new_password": "Set New Password",
+    "new_password_must_be_different": "Your new password must be different to previously used passwords.",
+    "password": "Password",
+    "confirm_password": "Confirm Password",
+    "reset_password": "Reset Password",
+    "password_reset": " Password Reset",
+    "password_successfully_reset": "Your password has been successfully reset. Click below to log in magically.",
+    "continue": "Continue"
+  },
+  "map": {
+    "center_my_location": "Center My Location",
+    "quick_actions": "Quick Actions",
+    "report_lost_cat": "Report Lost Cat",
+    "report_found_cat": "Report Found Cat",
+    "color": "Color",
+    "eye_color": "Eye Color",
+    "size": "Size",
+    "pattern": "Pattern",
+    "i_am_the_owner": "I'm the Owner",
+    "filter": "Filter",
+    "fur": "Fur",
+    "length": "Length",
+    "collar": "Collar",
+    "embellishments": "Embellishments"
+  },
+  "errors": {
+    "generic": "Please enter a valid value.",
+    "email": "Please enter a valid email address.",
+    "tooShort": "Field must be at least 2 characters long.",
+    "tooLong": "Field can't be longer than 100 characters.",
+    "required": "This field is required."
+  }
 }
