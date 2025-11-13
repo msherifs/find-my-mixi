@@ -1,6 +1,7 @@
 import {
 	ClientOnly,
 	createFileRoute,
+	redirect,
 	useNavigate,
 } from "@tanstack/react-router";
 import L from "leaflet";
@@ -29,9 +30,16 @@ import FiltersDrawer from "@/components/map/filters-drawer";
 import MixiSelect from "@/components/shared/mixi-select";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { cn } from "@/lib/utils";
+import { getIsAuthenticated } from "@/server/functions/auth";
 
 export const Route = createFileRoute("/map/")({
 	component: RouteComponent,
+	beforeLoad: async () => {
+		const isAuthenticated = await getIsAuthenticated();
+		if (!isAuthenticated) {
+			throw redirect({ to: "/login" });
+		}
+	},
 });
 
 function RouteComponent() {

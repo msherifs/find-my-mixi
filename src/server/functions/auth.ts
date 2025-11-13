@@ -31,23 +31,11 @@ import { LiteralError } from "../error";
 //   onServerValidate: zRegisterForm,
 // });
 
-export const getLoginServerForm = createServerFn({ method: "GET" }).handler(
+export const getIsAuthenticated = createServerFn({ method: "GET" }).handler(
 	async () => {
 		const session = await useAppSession();
 
-		if (session.data.userId) {
-			throw redirect({ to: "/" });
-		}
-	},
-);
-
-export const getRegisterServerForm = createServerFn({ method: "GET" }).handler(
-	async () => {
-		const session = await useAppSession();
-
-		if (session.data.userId) {
-			throw redirect({ to: "/" });
-		}
+		return Boolean(session.data.userId);
 	},
 );
 

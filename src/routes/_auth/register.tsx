@@ -1,5 +1,10 @@
 import { useForm } from "@tanstack/react-form";
-import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
+import {
+	createFileRoute,
+	Link,
+	redirect,
+	useNavigate,
+} from "@tanstack/react-router";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { toast } from "sonner";
@@ -7,12 +12,15 @@ import SignupCat from "@/assets/images/signup-cat.svg";
 import MixiInput from "@/components/shared/mixi-input";
 import { Button } from "@/components/ui/button";
 import { registerFormOptions, zRegisterForm } from "@/forms/auth";
-import { getRegisterServerForm, registerFn } from "@/server/functions/auth";
+import { getIsAuthenticated, registerFn } from "@/server/functions/auth";
 
 export const Route = createFileRoute("/_auth/register")({
 	component: RouteComponent,
 	beforeLoad: async () => {
-		await getRegisterServerForm();
+		const isAuthenticated = await getIsAuthenticated();
+		if (isAuthenticated) {
+			throw redirect({ to: "/map" });
+		}
 	},
 });
 
@@ -28,7 +36,7 @@ function RouteComponent() {
 			try {
 				await registerFn({ data: value });
 				toast.success(t("signup.success"));
-				navigate({ to: "/" });
+				navigate({ to: "/map" });
 			} catch (error) {
 				const message =
 					error instanceof Error && error.message === "ath.004"

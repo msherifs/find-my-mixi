@@ -1,17 +1,25 @@
 import { useForm } from "@tanstack/react-form";
-import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
+import {
+	createFileRoute,
+	Link,
+	redirect,
+	useNavigate,
+} from "@tanstack/react-router";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import LoginCat from "@/assets/images/login-cat.svg";
 import MixiInput from "@/components/shared/mixi-input";
 import { Button } from "@/components/ui/button";
 import { loginFormOptions, zLoginForm } from "@/forms/auth";
-import { getLoginServerForm, loginFn } from "@/server/functions/auth";
+import { getIsAuthenticated, loginFn } from "@/server/functions/auth";
 
 export const Route = createFileRoute("/_auth/login")({
 	component: RouteComponent,
 	beforeLoad: async () => {
-		await getLoginServerForm();
+		const isAuthenticated = await getIsAuthenticated();
+		if (isAuthenticated) {
+			throw redirect({ to: "/map" });
+		}
 	},
 });
 
@@ -27,7 +35,7 @@ function RouteComponent() {
 			setErrorMessage(null);
 			try {
 				await loginFn({ data: value });
-				navigate({ to: "/" });
+				navigate({ to: "/map" });
 			} catch (error) {
 				const message =
 					error instanceof Error && error.message === "ath.003"
