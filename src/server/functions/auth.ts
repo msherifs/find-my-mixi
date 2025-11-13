@@ -1,5 +1,4 @@
 /** biome-ignore-all lint/correctness/useHookAtTopLevel: false */
-import { redirect } from "@tanstack/react-router";
 import { createServerFn } from "@tanstack/react-start";
 import { ObjectId } from "mongodb";
 import { zLoginForm, zRegisterForm } from "@/forms/auth";
@@ -93,7 +92,7 @@ export const registerFn = createServerFn({ method: "POST" })
 export const logoutFn = createServerFn({ method: "POST" }).handler(async () => {
 	const session = await useAppSession();
 	await session.clear();
-	throw redirect({ to: "/" });
+	return { success: true };
 });
 
 export const getCurrentUserFn = createServerFn({ method: "GET" }).handler(

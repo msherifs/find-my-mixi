@@ -169,7 +169,10 @@
 		"fur": "Fur",
 		"length": "Length",
 		"collar": "Collar",
-		"embellishments": "Embellishments"
+		"embellishments": "Embellishments",
+		"logout_error": "We couldn't log you out. Please try again.",
+		"view_profile": "View Profile",
+		"sign_out": "Sign Out"
 	},
 	"errors": {
 		"generic": "Please enter a valid value.",
