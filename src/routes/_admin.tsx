@@ -14,9 +14,8 @@ export const Route = createFileRoute("/_admin")({
   beforeLoad: async () => {
     const { user } = await getCurrentUserFn();
     if (!user || user.role !== "ADMIN") {
-      throw new redirect({ to: "/map" });
+      throw redirect({ to: "/map" });
     }
-
     return { user };
   },
 });

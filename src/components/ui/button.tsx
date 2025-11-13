@@ -14,6 +14,8 @@ const buttonVariants = cva(
 					"bg-destructive text-white hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60",
 				secondary:
 					"bg-white text-[#414651] hover:bg-gray-100 shadow-[inset_0px_-1px_0px_0px_#0A0D120D] border border-[#00000014]",
+				outlined:
+					"bg-transparent text-primary border border-primary hover:bg-primary/5 shadow-none",
 			},
 			size: {
 				default: "h-10 px-[14px] py-[10px] has-[>svg]:px-4",
