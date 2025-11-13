@@ -1,66 +1,43 @@
-import { createFileRoute, Link, useRouter } from "@tanstack/react-router";
-import { type FormEvent, useState } from "react";
+import { useForm } from "@tanstack/react-form";
+import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { toast } from "sonner";
 import SignupCat from "@/assets/images/signup-cat.svg";
 import MixiInput from "@/components/shared/mixi-input";
 import { Button } from "@/components/ui/button";
-import { parseServerError } from "@/lib/utils";
-import { registerFn } from "@/server/functions/auth";
+import { registerFormOptions, zRegisterForm } from "@/forms/auth";
+import { getRegisterServerForm, registerFn } from "@/server/functions/auth";
 
 export const Route = createFileRoute("/_auth/register")({
 	component: RouteComponent,
+	beforeLoad: async () => {
+		await getRegisterServerForm();
+	},
 });
 
 function RouteComponent() {
 	const { t } = useTranslation();
-	const router = useRouter();
-	const [formValues, setFormValues] = useState({
-		firstName: "",
-		lastName: "",
-		email: "",
-		password: "",
-	});
-	const [isSubmitting, setIsSubmitting] = useState(false);
 	const [errorMessage, setErrorMessage] = useState<string | null>(null);
-	const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
+	const navigate = useNavigate();
 
-	const isSubmitDisabled =
-		isSubmitting ||
-		formValues.firstName.trim().length === 0 ||
-		formValues.lastName.trim().length === 0 ||
-		formValues.email.trim().length === 0 ||
-		formValues.password.trim().length === 0;
-
-	const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
-		event.preventDefault();
-		if (isSubmitDisabled) return;
-
-		setErrorMessage(null);
-		setIsSubmitting(true);
-		try {
-			await registerFn({
-				data: {
-					firstName: formValues.firstName,
-					lastName: formValues.lastName,
-					email: formValues.email,
-					password: formValues.password,
-				},
-			});
-			toast.success(t("signup.success"));
-			await router.navigate({ to: "/" });
-		} catch (error) {
-			const fieldErrorMessages = parseServerError(error);
-			const message =
-				error instanceof Error && error.message === "Email already registered"
-					? t("signup.email_exists")
-					: t("signup.error_generic");
-			setFieldErrors(fieldErrorMessages);
-			Object.keys(fieldErrorMessages).length === 0 && setErrorMessage(message);
-		} finally {
-			setIsSubmitting(false);
-		}
-	};
+	const form = useForm({
+		...registerFormOptions,
+		onSubmit: async ({ value }) => {
+			setErrorMessage(null);
+			try {
+				await registerFn({ data: value });
+				toast.success(t("signup.success"));
+				navigate({ to: "/" });
+			} catch (error) {
+				const message =
+					error instanceof Error && error.message === "ath.004"
+						? t("signup.email_exists")
+						: t("signup.error_generic");
+				setErrorMessage(message);
+			}
+		},
+	});
 
 	return (
 		<>
@@ -70,7 +47,10 @@ function RouteComponent() {
 				className="absolute left-8 bottom-0 z-10 lg:w-auto w-22"
 			/>
 			<form
-				onSubmit={handleSubmit}
+				onSubmit={(e) => {
+					e.preventDefault();
+					form.handleSubmit();
+				}}
 				className="flex flex-col items-center lg:w-[480px] gap-5 max-w-[80%]"
 			>
 				<h2 className="font-epilogue font-bold lg:text-[96.96px] text-[36px] leading-[1] tracking-[-0.02em]">
@@ -85,68 +65,107 @@ function RouteComponent() {
 					</p>
 				)}
 				<div className="flex items-center gap-4 w-full">
-					<MixiInput
-						label={t("signup.first_name")}
-						placeholder="First Name"
+					<form.Field
 						name="firstName"
-						value={formValues.firstName}
-						onChange={(event) =>
-							setFormValues((prev) => ({
-								...prev,
-								firstName: event.target.value,
-							}))
-						}
-						autoComplete="given-name"
-						errorMessage={t(fieldErrors.firstName)}
-					/>
-					<MixiInput
-						label={t("signup.last_name")}
-						placeholder="Last Name"
+						validators={{ onChange: zRegisterForm.shape.firstName }}
+					>
+						{(field) => (
+							<MixiInput
+								label={t("signup.first_name")}
+								placeholder={t("signup.first_name")}
+								name="firstName"
+								value={field.state.value}
+								onChange={(event) => field.handleChange(event.target.value)}
+								autoComplete="given-name"
+								onBlur={field.handleBlur}
+								errorMessage={
+									field.state.meta.errors[0]
+										? t(field.state.meta.errors[0].message)
+										: undefined
+								}
+							/>
+						)}
+					</form.Field>
+					<form.Field
 						name="lastName"
-						value={formValues.lastName}
-						onChange={(event) =>
-							setFormValues((prev) => ({
-								...prev,
-								lastName: event.target.value,
-							}))
-						}
-						autoComplete="family-name"
-						errorMessage={t(fieldErrors.lastName)}
-					/>
+						validators={{ onChange: zRegisterForm.shape.lastName }}
+					>
+						{(field) => (
+							<MixiInput
+								label={t("signup.last_name")}
+								placeholder={t("signup.last_name")}
+								name="lastName"
+								value={field.state.value}
+								onChange={(event) => field.handleChange(event.target.value)}
+								autoComplete="family-name"
+								onBlur={field.handleBlur}
+								errorMessage={
+									field.state.meta.errors[0]
+										? t(field.state.meta.errors[0].message)
+										: undefined
+								}
+							/>
+						)}
+					</form.Field>
 				</div>
-				<MixiInput
-					label={t("signup.email")}
-					placeholder="you@email.com"
-					type="email"
+				<form.Field
 					name="email"
-					value={formValues.email}
-					onChange={(event) =>
-						setFormValues((prev) => ({
-							...prev,
-							email: event.target.value,
-						}))
-					}
-					autoComplete="email"
-					errorMessage={t(fieldErrors.email)}
-				/>
-				<MixiInput
-					label={t("signup.password")}
-					placeholder="Password"
-					type="password"
+					validators={{ onChange: zRegisterForm.shape.email }}
+				>
+					{(field) => (
+						<MixiInput
+							label={t("signup.email")}
+							placeholder="you@email.com"
+							type="email"
+							name="email"
+							value={field.state.value}
+							onChange={(event) => field.handleChange(event.target.value)}
+							autoComplete="email"
+							onBlur={field.handleBlur}
+							errorMessage={
+								field.state.meta.errors[0]
+									? t(field.state.meta.errors[0].message)
+									: undefined
+							}
+						/>
+					)}
+				</form.Field>
+				<form.Field
 					name="password"
-					value={formValues.password}
-					onChange={(event) =>
-						setFormValues((prev) => ({
-							...prev,
-							password: event.target.value,
-						}))
-					}
-					autoComplete="new-password"
-					errorMessage={t(fieldErrors.password)}
-				/>
-				<Button className="w-full" type="submit" disabled={isSubmitDisabled}>
-					{isSubmitting ? t("signup.creating_account") : t("signup.sign_up")}
-				</Button>
+					validators={{ onChange: zRegisterForm.shape.password }}
+				>
+					{(field) => (
+						<MixiInput
+							label={t("signup.password")}
+							placeholder={t("signup.password")}
+							type="password"
+							name="password"
+							value={field.state.value}
+							onChange={(event) => field.handleChange(event.target.value)}
+							autoComplete="new-password"
+							onBlur={field.handleBlur}
+							errorMessage={
+								field.state.meta.errors[0]
+									? t(field.state.meta.errors[0].message)
+									: undefined
+							}
+						/>
+					)}
+				</form.Field>
+				<form.Subscribe
+					selector={(formState) => [
+						formState.canSubmit,
+						formState.isSubmitting,
+					]}
+				>
+					{([canSubmit, isSubmitting]) => (
+						<Button className="w-full" type="submit" disabled={!canSubmit}>
+							{isSubmitting
+								? t("signup.creating_account")
+								: t("signup.sign_up")}
+						</Button>
+					)}
+				</form.Subscribe>
 				<div className="flex items-center w-full justify-center gap-1">
 					<p className="font-normal text-sm leading-5 tracking-normal text-[#626262]">
 						{t("signup.already_have_account")}
