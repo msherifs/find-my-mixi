@@ -22,6 +22,7 @@ import LocationMarker from "@/components/map/location-marker";
 import "./map.css";
 import CatDetailsModal from "@/components/map/cat-details-modal";
 import CenterLocationButton from "@/components/map/center-location-button";
+import IAmTheOwnerModal from "@/components/map/i-am-the-owner-modal";
 import MapHeader from "@/components/map/map-header";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { getCurrentUserFn, getIsAuthenticated } from "@/server/functions/auth";
@@ -43,6 +44,7 @@ export const Route = createFileRoute("/map/")({
 function RouteComponent() {
 	const isMobile = useIsMobile();
 	const [selectedMarker, setSelectedMarker] = useState<number | null>(null);
+	const [isOwnerModalOpen, setIsOwnerModalOpen] = useState(false);
 	const user = useLoaderData({ from: "/map/" });
 	const markers = [
 		{ lat: 30.0379, lng: 31.3448, label: "Marker 1" },
@@ -59,6 +61,10 @@ function RouteComponent() {
 
 	return (
 		<div className="h-screen h-[100dvh] w-screen">
+			<IAmTheOwnerModal
+				isOpen={isOwnerModalOpen}
+				onClose={() => setIsOwnerModalOpen(false)}
+			/>
 			<MapContainer
 				center={[19.4326, -99.1332]}
 				zoom={50}
@@ -99,15 +105,22 @@ function RouteComponent() {
 								className="custom-popup"
 								offset={[0, 610]}
 							>
-								<CatDetailsModal />
+								<CatDetailsModal
+									onClickIAmTheOwner={() => {
+										setIsOwnerModalOpen(true);
+									}}
+								/>
 							</Popup>
 						)}
 					</Marker>
 				))}
-				{isMobile && selectedMarker !== null && (
+				{isMobile && selectedMarker !== null && !isOwnerModalOpen && (
 					<CatDetailsModal
 						isOpen={selectedMarker !== null}
 						onClose={() => setSelectedMarker(null)}
+						onClickIAmTheOwner={() => {
+							setIsOwnerModalOpen(true);
+						}}
 					/>
 				)}
 				<CenterLocationButton />

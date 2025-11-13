@@ -172,7 +172,11 @@
 		"embellishments": "Embellishments",
 		"logout_error": "We couldn't log you out. Please try again.",
 		"view_profile": "View Profile",
-		"sign_out": "Sign Out"
+		"sign_out": "Sign Out",
+		"submit": "Submit",
+		"leave_your_info": "Leave your info and we will contact you",
+		"phone_number": "Phone Number",
+		"email": "Email"
 	},
 	"errors": {
 		"generic": "Please enter a valid value.",

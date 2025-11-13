@@ -8,6 +8,7 @@ import { Dialog, DialogContent } from "../ui/dialog";
 interface CatDetailsModalProps {
 	isOpen?: boolean;
 	onClose?: () => void;
+	onClickIAmTheOwner: () => void;
 	catData?: {
 		date: string;
 		name: string;
@@ -23,6 +24,7 @@ const CatDetailsModal = ({
 	isOpen = true,
 	onClose,
 	catData,
+	onClickIAmTheOwner,
 }: CatDetailsModalProps) => {
 	const { t } = useTranslation();
 	const isMobile = useIsMobile();
@@ -88,7 +90,11 @@ const CatDetailsModal = ({
 					</p>
 				</div>
 			</div>
-			<Button variant={"secondary"} className="w-full border-[#D5D7DA]">
+			<Button
+				variant={"secondary"}
+				className="w-full border-[#D5D7DA]"
+				onClick={onClickIAmTheOwner}
+			>
 				{t("map.i_am_the_owner")}
 			</Button>
 		</>
