@@ -80,8 +80,10 @@ export const registerFn = createServerFn({ method: "POST" })
 			role: UserRole.USER,
 		});
 
+		console.log("Registered user:", user);
+
 		const session = await useAppSession();
-		session.update({
+		await session.update({
 			userId: user._id.toHexString(),
 			role: user.role,
 		});

@@ -92,7 +92,7 @@
 		"email": "Email",
 		"password": "Password",
 		"creating_account": "Creating your account...",
-		"success": "Account created! Redirecting...",
+		"success": "Account created!",
 		"email_exists": "An account with this email already exists.",
 		"error_generic": "We couldn't complete your signup. Please try again.",
 		"already_have_account": "Already have an account?",
