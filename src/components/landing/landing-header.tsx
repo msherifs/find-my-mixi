@@ -2,6 +2,7 @@ import { Link, useLocation, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import HeaderIcon from "@/assets/images/header-icon.svg";
+import * as LandingPageRoute from "@/routes/_landing";
 import { Button } from "../ui/button";
 
 const LandingHeader = () => {
@@ -10,6 +11,7 @@ const LandingHeader = () => {
 	const [activeSection, setActiveSection] = useState("home");
 	const location = useLocation();
 	const isHomePage = location.pathname === "/";
+	const user = LandingPageRoute.Route.useLoaderData();
 
 	useEffect(() => {
 		if (!isHomePage) {
@@ -99,15 +101,27 @@ const LandingHeader = () => {
 					</div>
 				</div>
 				<div className="flex items-center gap-3">
-					<Button
-						variant={"secondary"}
-						onClick={() => navigate({ to: "/login" })}
-					>
-						{t("landing.header.login")}
-					</Button>
-					<Button onClick={() => navigate({ to: "/register" })}>
-						{t("landing.header.signUp")}
-					</Button>
+					{user && (
+						<Button
+							variant={"secondary"}
+							onClick={() => navigate({ to: "/map" })}
+						>
+							{t("landing.header.goToApp")}
+						</Button>
+					)}
+					{!user && (
+						<>
+							<Button
+								variant={"secondary"}
+								onClick={() => navigate({ to: "/login" })}
+							>
+								{t("landing.header.login")}
+							</Button>
+							<Button onClick={() => navigate({ to: "/register" })}>
+								{t("landing.header.signUp")}
+							</Button>
+						</>
+					)}
 				</div>
 			</div>
 		</header>

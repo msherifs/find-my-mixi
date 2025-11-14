@@ -1,5 +1,3 @@
-/** biome-ignore-all lint/a11y/noSvgWithoutTitle: <false> */
-
 import { useNavigate } from "@tanstack/react-router";
 import { useTranslation } from "react-i18next";
 import GroupOfCats from "@/assets/images/hero-cat-group.svg";
@@ -17,7 +15,6 @@ const HeroSection = () => {
 			<div className="bg-[#FEDAFFB2] rounded-[40px] px-6 pt-20 lg:px-[72px] lg:pt-28">
 				<svg className="absolute w-0 h-0">
 					<defs>
-						{/** biome-ignore lint/correctness/useUniqueElementIds: false*/}
 						<filter id="roughen">
 							<feTurbulence
 								type="fractalNoise"
