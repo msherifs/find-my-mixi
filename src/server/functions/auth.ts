@@ -70,12 +70,11 @@ export const loginFn = createServerFn({ method: "POST" })
 				role: user.role,
 			});
 
-			throw redirect({ to: "/map" });
+			return redirect({ to: "/map" });
 		} catch (error) {
 			if (error instanceof ServerValidateError) {
 				return error.response;
 			}
-			console.error(error);
 			return "Internal Server Error";
 		}
 	});
