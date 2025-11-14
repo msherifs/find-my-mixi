@@ -1,27 +1,38 @@
 import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
-import { CatFormType } from "@/server/db/enums";
+import {
+	CatCoatType,
+	CatEyeColor,
+	CatFormType,
+	CatFurColor,
+	CatFurPattern,
+	CatSize,
+	CollarEmbellishment,
+	CollarPattern,
+	CollarSolidColor,
+} from "@/server/db/enums";
 import {
 	findCatRequestsInPolygon,
 	insertCatRequest,
 } from "@/server/db/queries";
 
-const optionalTextField = () =>
-	z
-		.string()
-		.trim()
-		.transform((value) => (value.length ? value : undefined))
-		.optional();
-
 const catDetailsSchema = z.object({
-	name: optionalTextField(),
-	furColor: optionalTextField(),
-	furPattern: optionalTextField(),
-	coatType: optionalTextField(),
-	distinctiveMarks: optionalTextField(),
-	eyeColor: optionalTextField(),
-	date: z.coerce.date().optional(),
-	additionalInfo: optionalTextField(),
+	name: z.string(),
+	furColor: z.enum(CatFurColor).array(),
+	furPattern: z.enum(CatFurPattern),
+	coatType: z.enum(CatCoatType),
+	distinctiveMarks: z.string().optional(),
+	eyeColor: z.enum(CatEyeColor),
+	size: z.enum(CatSize),
+	date: z.coerce.date(),
+	additionalInfo: z.string().optional(),
+	collar: z
+		.object({
+			color: z.enum(CollarSolidColor),
+			pattern: z.enum(CollarPattern),
+			embellishment: z.enum(CollarEmbellishment),
+		})
+		.optional(),
 });
 
 const userDetailsSchema = z.object({
@@ -37,7 +48,7 @@ const userDetailsSchema = z.object({
 		.max(25, { error: "errors.fieldRequired" })
 		.trim(),
 	dob: z.coerce.date().optional(),
-	photo: optionalTextField(),
+	photo: z.string(),
 });
 
 const locationSchema = z.object({
@@ -64,7 +75,6 @@ const locationSchema = z.object({
 		.string({ error: "errors.fieldRequired" })
 		.min(1, { error: "errors.fieldRequired" })
 		.trim(),
-	postalCode: optionalTextField(),
 });
 
 const reportCatSchema = z.object({
