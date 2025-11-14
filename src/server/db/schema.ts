@@ -1,6 +1,17 @@
 import { schema, types } from "papr";
-import { CatFormType, UserRole } from "./enums";
 import { papr } from ".";
+import {
+	CatCoatType,
+	CatEyeColor,
+	CatFormType,
+	CatFurColor,
+	CatFurPattern,
+	CatSize,
+	CollarEmbellishment,
+	CollarPattern,
+	CollarSolidColor,
+	UserRole,
+} from "./enums";
 
 export const UserSchema = schema({
 	firstName: types.string({ required: true }),
@@ -18,13 +29,28 @@ const CatRequestSchema = schema({
 	type: types.enum(Object.values(CatFormType), { required: true }),
 	catDetails: types.object(
 		{
-			name: types.string(),
-			furColor: types.string(),
-			furPattern: types.string(),
-			coatType: types.string(),
+			name: types.string({ required: true }),
+			furColor: types.array(
+				types.enum(Object.values(CatFurColor), { required: true }),
+				{ required: true },
+			),
+			furPattern: types.enum(Object.values(CatFurPattern), { required: true }),
+			coatType: types.enum(Object.values(CatCoatType), { required: true }),
 			distinctiveMarks: types.string(),
-			eyeColor: types.string(),
-			date: types.date(),
+			eyeColor: types.enum(Object.values(CatEyeColor), { required: true }),
+			size: types.enum(Object.values(CatSize), { required: true }),
+			collar: types.object({
+				color: types.enum(Object.values(CollarSolidColor), {
+					required: true,
+				}),
+				pattern: types.enum(Object.values(CollarPattern), {
+					required: true,
+				}),
+				embellishment: types.enum(Object.values(CollarEmbellishment), {
+					required: true,
+				}),
+			}),
+			date: types.date({ required: true }),
 			additionalInfo: types.string(),
 		},
 		{ required: true },
