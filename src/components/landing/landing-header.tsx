@@ -1,8 +1,12 @@
-import { Link, useLocation, useNavigate } from "@tanstack/react-router";
+import {
+	Link,
+	useLoaderData,
+	useLocation,
+	useNavigate,
+} from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import HeaderIcon from "@/assets/images/header-icon.svg";
-import * as LandingPageRoute from "@/routes/_landing";
 import { Button } from "../ui/button";
 
 const LandingHeader = () => {
@@ -11,7 +15,7 @@ const LandingHeader = () => {
 	const [activeSection, setActiveSection] = useState("home");
 	const location = useLocation();
 	const isHomePage = location.pathname === "/";
-	const user = LandingPageRoute.Route.useLoaderData();
+	const user = useLoaderData({ from: "/_landing" });
 
 	useEffect(() => {
 		if (!isHomePage) {
