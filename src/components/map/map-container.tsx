@@ -1,7 +1,6 @@
 "use client";
-
-import { ClientOnly } from "@tanstack/react-router";
 import L from "leaflet";
+import { useState } from "react";
 import { renderToString } from "react-dom/server";
 import {
 	MapContainer,
@@ -10,17 +9,15 @@ import {
 	TileLayer,
 	ZoomControl,
 } from "react-leaflet";
+import CatImage from "@/assets/images/demo-image.svg";
+import GreenPin from "@/assets/images/green-pin.svg";
+import RedPin from "@/assets/images/red-pin.svg";
+import { useIsMobile } from "@/hooks/use-mobile";
+import type { UserRole } from "@/server/db/enums";
 import CatDetailsModal from "./cat-details-modal";
 import CenterLocationButton from "./center-location-button";
 import LocationMarker from "./location-marker";
 import MapHeader from "./map-header";
-
-import CatImage from "@/assets/images/demo-image.svg";
-import GreenPin from "@/assets/images/green-pin.svg";
-import RedPin from "@/assets/images/red-pin.svg";
-import { useState } from "react";
-import { UserRole } from "@/server/db/enums";
-import { useIsMobile } from "@/hooks/use-mobile";
 
 import "@/styles/map.css";
 
@@ -92,9 +89,7 @@ export function MixiMapContainer({
 				subdomains={["mt0", "mt1", "mt2", "mt3"]}
 			/>
 			<ZoomControl position="bottomleft" />
-			<ClientOnly>
-				<LocationMarker />
-			</ClientOnly>
+			<LocationMarker />
 			{markers.map((m, i) => (
 				<Marker
 					key={`${m.lat}_${m.lng}_${m.label}`}

@@ -1,4 +1,5 @@
 import {
+	ClientOnly,
 	createFileRoute,
 	redirect,
 	useLoaderData,
@@ -6,8 +7,8 @@ import {
 import { useState } from "react";
 
 import IAmTheOwnerModal from "@/components/map/i-am-the-owner-modal";
-import { getCurrentUserFn } from "@/server/functions/auth";
 import { MixiMapContainer } from "@/components/map/map-container";
+import { getCurrentUserFn } from "@/server/functions/auth";
 
 export const Route = createFileRoute("/map/")({
 	component: RouteComponent,
@@ -42,11 +43,13 @@ function RouteComponent() {
 				isOpen={isOwnerModalOpen}
 				onClose={() => setIsOwnerModalOpen(false)}
 			/>
-			<MixiMapContainer
-				user={user}
-				markers={markers}
-				openOwnerModal={() => setIsOwnerModalOpen(true)}
-			></MixiMapContainer>
+			<ClientOnly>
+				<MixiMapContainer
+					user={user}
+					markers={markers}
+					openOwnerModal={() => setIsOwnerModalOpen(true)}
+				/>
+			</ClientOnly>
 		</div>
 	);
 }
