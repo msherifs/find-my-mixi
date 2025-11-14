@@ -6,13 +6,13 @@ import HowItWorksSection from "@/components/landing/how-it-works-section";
 import StatsSection from "@/components/landing/stats-section";
 import TestimonialSection from "@/components/landing/testimonial-section";
 import WhyUsSection from "@/components/landing/why-us-section";
-import { getIsAuthenticated } from "@/server/functions/auth";
+import { getCurrentUserFn } from "@/server/functions/auth";
 
 export const Route = createFileRoute("/_landing/")({
 	component: App,
 	beforeLoad: async () => {
-		const isAuthenticated = await getIsAuthenticated();
-		if (isAuthenticated) {
+		const { user } = await getCurrentUserFn();
+		if (user) {
 			throw redirect({ to: "/map" });
 		}
 	},

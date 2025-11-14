@@ -1,92 +1,120 @@
-/** biome-ignore-all lint/correctness/useHookAtTopLevel: false */
+/** biome-ignore-all lint/correctness/useHookAtTopLevel: this is a server component file */
+import {
+	createServerValidate,
+	getFormData,
+	ServerValidateError,
+} from "@tanstack/react-form-start";
+import { redirect } from "@tanstack/react-router";
 import { createServerFn } from "@tanstack/react-start";
 import { ObjectId } from "mongodb";
-import { zLoginForm, zRegisterForm } from "@/forms/auth";
+import {
+	loginFormOptions,
+	registerFormOptions,
+	zLoginForm,
+	zRegisterForm,
+} from "@/forms/auth";
 import { UserRole } from "@/server/db/enums";
 import { findUser, insertUser } from "@/server/db/queries";
 import { hashPassword, verifyPassword } from "@/server/utils/crypto";
 import { useAppSession } from "../auth";
 import { LiteralError } from "../error";
 
-// const loginServerValidate = createServerValidate({
-// 	...loginFormOptions,
-// 	onServerValidate: async (data) => {
-// 		const { email, password } = zLoginForm.parse(data);
-
-// 		if (typeof email !== "string" || typeof password !== "string") {
-// 			throw new LiteralError("MALFORMED_REQUEST");
-// 		}
-
-// 		const user = await findUser({ email });
-// 		if (!user) return "INVALID_CREDENTIALS";
-
-// 		const ok = await verifyPassword(user.hashedPassword, password);
-// 		if (!ok) return "INVALID_CREDENTIALS";
-// 	},
-// });
-
-// const registerServerValidate = createServerValidate({
-//   ...registerFormOptions,
-//   onServerValidate: zRegisterForm,
-// });
-
-export const getIsAuthenticated = createServerFn({ method: "GET" }).handler(
-	async () => {
-		const session = await useAppSession();
-
-		return Boolean(session.data.userId);
-	},
-);
-
-export const loginFn = createServerFn({ method: "POST" })
-	.inputValidator(zLoginForm)
-	.handler(async (ctx) => {
-		const { email, password } = ctx.data;
+const loginServerValidate = createServerValidate({
+	...loginFormOptions,
+	onServerValidate: async ({ value }) => {
+		const { email, password } = zLoginForm.parse(value);
 
 		const user = await findUser({ email });
 		if (!user) {
-			throw new LiteralError("INVALID_CREDENTIALS");
+			return "login.invalid_credentials";
 		}
 
-		const isValidPassword = await verifyPassword(user.hashedPassword, password);
-		if (!isValidPassword) {
-			throw new LiteralError("INVALID_CREDENTIALS");
+		if (!(await verifyPassword(user.hashedPassword, password))) {
+			return "login.invalid_credentials";
+		}
+	},
+});
+
+const registerServerValidate = createServerValidate({
+	...registerFormOptions,
+	onServerValidate: async ({ value }) => {
+		const { email } = zRegisterForm.parse(value);
+
+		const existingUser = await findUser({ email });
+		if (existingUser) {
+			return "errors.duplicate_email";
+		}
+	},
+});
+
+export const loginFn = createServerFn({ method: "POST" })
+	.inputValidator((data: unknown) => {
+		if (!(data instanceof FormData)) {
+			throw new LiteralError("MALFORMED_REQUEST");
 		}
 
-		const session = await useAppSession();
-		await session.update({
-			userId: user._id.toHexString(),
-			role: user.role,
-		});
+		return data;
+	})
+	.handler(async (ctx) => {
+		try {
+			const { email } = await loginServerValidate(ctx.data);
 
-		return { success: true };
+			const user = await findUser({ email });
+			if (!user) {
+				throw new LiteralError("INVALID_CREDENTIALS");
+			}
+
+			const session = await useAppSession();
+			await session.update({
+				userId: user._id.toHexString(),
+				role: user.role,
+			});
+
+			throw redirect({ to: "/map" });
+		} catch (error) {
+			if (error instanceof ServerValidateError) {
+				return error.response;
+			}
+			console.error(error);
+			return "Internal Server Error";
+		}
 	});
 
 export const registerFn = createServerFn({ method: "POST" })
-	.inputValidator(zRegisterForm)
-	.handler(async (ctx) => {
-		const { firstName, lastName, email, password } = ctx.data;
-		const existingUser = await findUser({ email });
-		if (existingUser) {
-			throw new LiteralError("EMAIL_ALREADY_USED");
+	.inputValidator((data: unknown) => {
+		if (!(data instanceof FormData)) {
+			throw new LiteralError("MALFORMED_REQUEST");
 		}
+		return data;
+	})
+	.handler(async (ctx) => {
+		try {
+			const { firstName, lastName, email, password } =
+				await registerServerValidate(ctx.data);
 
-		const hashedPassword = await hashPassword(password);
-		const user = await insertUser({
-			firstName: firstName.trim(),
-			lastName: lastName.trim(),
-			email,
-			hashedPassword,
-			role: UserRole.USER,
-		});
+			const hashedPassword = await hashPassword(password);
+			const user = await insertUser({
+				firstName: firstName.trim(),
+				lastName: lastName.trim(),
+				email,
+				hashedPassword,
+				role: UserRole.USER,
+			});
 
-		const session = await useAppSession();
-		await session.update({
-			userId: user._id.toHexString(),
-			role: user.role,
-		});
+			const session = await useAppSession();
+			await session.update({
+				userId: user._id.toHexString(),
+				role: user.role,
+			});
 
-		return { success: true };
+			return redirect({ to: "/map" });
+		} catch (error) {
+			if (error instanceof ServerValidateError) {
+				return error.response;
+			}
+			console.error(error);
+			return "Internal Server Error";
+		}
 	});
 
 export const logoutFn = createServerFn({ method: "POST" }).handler(async () => {
@@ -117,3 +145,7 @@ export const getCurrentUserFn = createServerFn({ method: "GET" }).handler(
 		};
 	},
 );
+
+export const getFormFn = createServerFn({ method: "GET" }).handler(async () => {
+	return getFormData();
+});

@@ -1,4 +1,4 @@
-import { formOptions } from "@tanstack/react-form";
+import { formOptions } from "@tanstack/react-form-start";
 import z from "zod";
 
 export const zLoginForm = z.object({

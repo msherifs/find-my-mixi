@@ -1,39 +1,39 @@
 "use client";
 import { type LucideIcon } from "lucide-react";
 import {
-  SidebarGroup,
-  SidebarGroupLabel,
-  SidebarMenu,
-  SidebarMenuButton,
-  SidebarMenuItem,
+	SidebarGroup,
+	SidebarGroupLabel,
+	SidebarMenu,
+	SidebarMenuButton,
+	SidebarMenuItem,
 } from "@/components/ui/sidebar";
 
 export function AdminNavMain({
-  items,
+	items,
 }: {
-  items: {
-    name: string;
-    url: string;
-    icon: LucideIcon;
-  }[];
+	items: {
+		name: string;
+		url: string;
+		icon: LucideIcon;
+	}[];
 }) {
-  // const { isMobile } = useSidebar();
+	// const { isMobile } = useSidebar();
 
-  return (
-    <SidebarGroup className="group-data-[collapsible=icon]:hidden">
-      <SidebarGroupLabel>Sections</SidebarGroupLabel>
-      <SidebarMenu>
-        {items.map((item) => (
-          <SidebarMenuItem key={item.name}>
-            <SidebarMenuButton asChild>
-              <a href={item.url}>
-                <item.icon />
-                <span>{item.name}</span>
-              </a>
-            </SidebarMenuButton>
-          </SidebarMenuItem>
-        ))}
-      </SidebarMenu>
-    </SidebarGroup>
-  );
+	return (
+		<SidebarGroup className="group-data-[collapsible=icon]:hidden">
+			<SidebarGroupLabel>Sections</SidebarGroupLabel>
+			<SidebarMenu>
+				{items.map((item) => (
+					<SidebarMenuItem key={item.name}>
+						<SidebarMenuButton asChild>
+							<a href={item.url}>
+								<item.icon />
+								<span>{item.name}</span>
+							</a>
+						</SidebarMenuButton>
+					</SidebarMenuItem>
+				))}
+			</SidebarMenu>
+		</SidebarGroup>
+	);
 }

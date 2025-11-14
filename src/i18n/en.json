@@ -176,7 +176,8 @@
 		"submit": "Submit",
 		"leave_your_info": "Leave your info and we will contact you",
 		"phone_number": "Phone Number",
-		"email": "Email"
+		"email": "Email",
+		"admin": "Go to Admin"
 	},
 	"errors": {
 		"generic": "Please enter a valid value.",
@@ -184,6 +185,7 @@
 		"tooShort": "Field must be at least 2 characters long.",
 		"tooLong": "Field can't be longer than 100 characters.",
 		"required": "This field is required.",
-		"password_criteria": "Password must be at least 8 characters long."
+		"password_criteria": "Password must be at least 8 characters long.",
+		"duplicate_email": "this email already exists."
 	}
 }

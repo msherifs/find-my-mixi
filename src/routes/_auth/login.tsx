@@ -1,23 +1,23 @@
 import { useForm } from "@tanstack/react-form";
-import {
-	createFileRoute,
-	Link,
-	redirect,
-	useNavigate,
-} from "@tanstack/react-router";
-import { useState } from "react";
+import { mergeForm, useStore, useTransform } from "@tanstack/react-form-start";
+import { createFileRoute, Link, redirect } from "@tanstack/react-router";
 import { useTranslation } from "react-i18next";
 import LoginCat from "@/assets/images/login-cat.svg";
 import MixiInput from "@/components/shared/mixi-input";
 import { Button } from "@/components/ui/button";
 import { loginFormOptions, zLoginForm } from "@/forms/auth";
-import { getIsAuthenticated, loginFn } from "@/server/functions/auth";
+import { getCurrentUserFn, getFormFn, loginFn } from "@/server/functions/auth";
 
 export const Route = createFileRoute("/_auth/login")({
 	component: RouteComponent,
+	loader: async () => {
+		return {
+			state: await getFormFn(),
+		};
+	},
 	beforeLoad: async () => {
-		const isAuthenticated = await getIsAuthenticated();
-		if (isAuthenticated) {
+		const { user } = await getCurrentUserFn();
+		if (user) {
 			throw redirect({ to: "/map" });
 		}
 	},
@@ -25,26 +25,14 @@ export const Route = createFileRoute("/_auth/login")({
 
 function RouteComponent() {
 	const { t } = useTranslation();
-	const [errorMessage, setErrorMessage] = useState<string | null>(null);
-	const navigate = useNavigate();
-	// const [rememberMeSelected, setRememberMeSelected] = useState(false);
+	const { state } = Route.useLoaderData();
 
 	const form = useForm({
 		...loginFormOptions,
-		onSubmit: async ({ value }) => {
-			setErrorMessage(null);
-			try {
-				await loginFn({ data: value });
-				navigate({ to: "/map" });
-			} catch (error) {
-				const message =
-					error instanceof Error && error.message === "ath.003"
-						? t("login.invalid_credentials")
-						: t("login.error_generic");
-				setErrorMessage(message);
-			}
-		},
+		transform: useTransform((baseForm) => mergeForm(baseForm, state), [state]),
 	});
+
+	const formErrors = useStore(form.store, (formState) => formState.errors);
 
 	return (
 		<>
@@ -54,10 +42,9 @@ function RouteComponent() {
 				className="absolute left-8 bottom-0 z-10 lg:w-auto w-22"
 			/>
 			<form
-				onSubmit={(e) => {
-					e.preventDefault();
-					form.handleSubmit();
-				}}
+				action={loginFn.url}
+				method="post"
+				encType="multipart/form-data"
 				className="flex flex-col items-center lg:w-[480px] gap-5 max-w-[80%]"
 			>
 				<h2 className="font-epilogue font-bold lg:text-[96.96px] text-[36px] leading-[1] tracking-[-0.02em]">
@@ -66,11 +53,7 @@ function RouteComponent() {
 				<p className="font-normal text-[20.68px] leading-[31px] tracking-normal text-center">
 					{t("login.enter_email_and_password")}
 				</p>
-				{errorMessage && (
-					<p className="w-full rounded-[10px] border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-700">
-						{errorMessage}
-					</p>
-				)}
+
 				<form.Field
 					name="email"
 					validators={{ onChange: zLoginForm.shape.email }}
@@ -135,6 +118,14 @@ function RouteComponent() {
 						{t("login.forgot_password")}
 					</Link>
 				</div>
+				{formErrors.map((error) => (
+					<p
+						key={error}
+						className="w-full rounded-[10px] border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-700"
+					>
+						{t(error)}
+					</p>
+				))}
 				<form.Subscribe
 					selector={(formState) => [
 						formState.canSubmit,

@@ -1,5 +1,5 @@
 import { useNavigate } from "@tanstack/react-router";
-import { Filter, LogOut } from "lucide-react";
+import { Filter, LogOut, ShieldUser } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { toast } from "sonner";
 import ChevronDown from "@/assets/images/chevron-down.svg";
@@ -19,13 +19,15 @@ import {
 } from "../ui/dropdown-menu";
 import ActionsDrawer from "./actions-drawer";
 import FiltersDrawer from "./filters-drawer";
+import { UserRole } from "@/server/db/enums";
 
 interface User {
 	firstName: string;
 	lastName: string;
+	role: UserRole;
 }
 
-const MapHeader = ({ firstName, lastName }: User) => {
+const MapHeader = ({ firstName, lastName, role }: User) => {
 	const { t } = useTranslation("");
 	const isMobile = useIsMobile();
 	const navigate = useNavigate();
@@ -64,6 +66,21 @@ const MapHeader = ({ firstName, lastName }: User) => {
 										</div>
 									</div>
 								</DropdownMenuItem>
+								{role === "ADMIN" && (
+									<DropdownMenuItem
+										className="border-b border-[#E9EAEB] py-[6px]"
+										onClick={() => navigate({ to: "/admin" })}
+									>
+										<div className="px-[6px]">
+											<div className="p-2 flex items-center gap-2 w-full">
+												<ShieldUser size={20} color="#A4A7AE" />
+												<p className="text-gray-700 font-semibold text-[14px] leading-[20px] tracking-[0%]">
+													{t("map.admin")}
+												</p>
+											</div>
+										</div>
+									</DropdownMenuItem>
+								)}
 								<DropdownMenuItem
 									className="border-b border-[#E9EAEB] py-[6px]"
 									onClick={async () => {
