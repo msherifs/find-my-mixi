@@ -1,3 +1,4 @@
+/** biome-ignore-all lint/a11y/noSvgWithoutTitle: we love svgs without title */
 import { useNavigate } from "@tanstack/react-router";
 import { useTranslation } from "react-i18next";
 import GroupOfCats from "@/assets/images/hero-cat-group.svg";
