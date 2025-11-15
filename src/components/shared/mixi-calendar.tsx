@@ -12,6 +12,7 @@ type MixiCalendarProps = {
 	calendarClassName?: string;
 	placeholder?: string;
 	onDateChange?: (date: Date | undefined) => void;
+	captionLayout?: "dropdown" | "label" | "dropdown-months" | "dropdown-years";
 };
 
 const MixiCalendar = ({
@@ -22,6 +23,7 @@ const MixiCalendar = ({
 	selectedDate,
 	onDateChange,
 	placeholder,
+	captionLayout,
 }: MixiCalendarProps) => {
 	return (
 		<div
@@ -64,6 +66,7 @@ const MixiCalendar = ({
 						className={calendarClassName}
 						defaultMonth={selectedDate || new Date()}
 						disabled={{ after: new Date() }}
+						captionLayout={captionLayout}
 					/>
 				</PopoverContent>
 			</Popover>

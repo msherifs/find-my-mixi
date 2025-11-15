@@ -919,7 +919,7 @@ export const MultiSelect = React.forwardRef<MultiSelectRef, MultiSelectProps>(
 											})
 											.filter(Boolean)}
 									</div>
-									<div className="flex items-center justify-between">
+									{/* <div className="flex items-center justify-between">
 										<div
 											role="button"
 											tabIndex={0}
@@ -947,7 +947,7 @@ export const MultiSelect = React.forwardRef<MultiSelectRef, MultiSelectProps>(
 											className="h-4 mx-2 cursor-pointer text-muted-foreground"
 											aria-hidden="true"
 										/>
-									</div>
+									</div> */}
 								</div>
 							) : (
 								<div className="flex items-center justify-between w-full mx-auto">

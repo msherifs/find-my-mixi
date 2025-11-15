@@ -233,7 +233,11 @@
 		"country": "Country",
 		"enter_country": "Enter the country",
 		"postal_code": "Zip/Postal Code",
-		"enter_postal_code": "Enter the zip/postal code"
+		"enter_postal_code": "Enter the zip/postal code",
+		"owner_name": "Owner's Name",
+		"cats_address": "Cat's Address",
+		"country_region": "Country/Region",
+		"confirm": "Confirm"
 	},
 	"errors": {
 		"generic": "Please enter a valid value.",
@@ -244,7 +248,8 @@
 		"password_criteria": "Password must be at least 8 characters long.",
 		"duplicate_email": "this email already exists.",
 		"nonempty": "This Field cannot be empty.",
-		"upload_image": "Please upload an image file."
+		"upload_image": "Please upload an image file.",
+		"phone_number": "Please enter a valid phone number."
 	},
 	"catFurColor": {
 		"white": "White",

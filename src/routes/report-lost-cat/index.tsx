@@ -1,6 +1,7 @@
 import { mergeForm, useForm } from "@tanstack/react-form";
 import { useTransform } from "@tanstack/react-form-start";
 import { createFileRoute, useLoaderData } from "@tanstack/react-router";
+import { Loader2 } from "lucide-react";
 import { DateTime } from "luxon";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -18,12 +19,15 @@ import { Button } from "@/components/ui/button";
 import {
 	CatCoatType,
 	CatEyeColor,
+	CatFormType,
 	CatFurColor,
 	CatFurPattern,
 	CatSize,
 } from "@/server/db/enums";
 import {
 	getReportLostCatFormFn,
+	type ReportCatForm,
+	reportCatFn,
 	reportCatSchema,
 } from "@/server/functions/cat-reporting";
 
@@ -95,7 +99,7 @@ function RouteComponent() {
 	const { state } = useLoaderData({ from: "/report-lost-cat/" });
 	const form = useForm({
 		defaultValues: {
-			type: "REPORT_CAT_FOUND",
+			type: CatFormType.REPORT_CAT_FOUND,
 			catDetails: {
 				name: "",
 				furColor: [] as CatFurColor[],
@@ -135,6 +139,7 @@ function RouteComponent() {
 		<div className="h-screen h-[100dvh] flex sm:flex-row flex-col w-full sm:p-6 p-3">
 			<ProgressBar currentStep={currentStep} onStepClick={setCurrentStep} />
 			<form
+				action={reportCatFn.url}
 				method="post"
 				encType="multipart/form-data"
 				className="flex flex-col items-start sm:px-[72px] px-[24px] gap-[48px] flex-grow overflow-y-auto"
@@ -492,22 +497,7 @@ function RouteComponent() {
 									/>
 								)}
 							</form.Field>
-							<form.Field
-								name="catDetails.date"
-								validators={{
-									onBlur: ({ value }) => {
-										if (!value) {
-											return t("errors.required");
-										}
-
-										const date = DateTime.fromISO(value);
-										if (!date.isValid) {
-											return t("errors.required");
-										}
-										return undefined;
-									},
-								}}
-							>
+							<form.Field name="userDetails.dob">
 								{(field) => (
 									<MixiCalendar
 										label={t("reportCat.date_of_birth")}
@@ -526,11 +516,7 @@ function RouteComponent() {
 											const isoString = DateTime.fromJSDate(value).toISO();
 											field.handleChange(isoString ?? "");
 										}}
-										errorMessage={
-											field.state.meta.errors[0]
-												? t(field.state.meta.errors[0])
-												: undefined
-										}
+										captionLayout="dropdown"
 									/>
 								)}
 							</form.Field>
@@ -710,7 +696,178 @@ function RouteComponent() {
 						</Button>
 					</div>
 				)}
+				{currentStep === 3 && (
+					<div className="flex flex-col items-start w-full gap-6 sm:px-8 px-0 w-full">
+						<ReviewSection
+							values={
+								{
+									...form.state.values,
+									catDetails: {
+										...form.state.values.catDetails,
+										date: DateTime.fromISO(
+											form.state.values.catDetails.date,
+										).toJSDate(),
+									},
+									userDetails: {
+										...form.state.values.userDetails,
+										dob: form.state.values.userDetails.dob
+											? DateTime.fromISO(
+													form.state.values.userDetails.dob,
+												).toJSDate()
+											: undefined,
+									},
+								} as ReportCatForm
+							}
+							uploadedCatPhoto={uploadedCatPhoto}
+						/>
+						<form.Subscribe
+							selector={(formState) => [
+								formState.canSubmit,
+								formState.isSubmitting,
+							]}
+						>
+							{([canSubmit, isSubmitting]) => (
+								<Button className="w-full" type="submit" disabled={!canSubmit}>
+									{isSubmitting ? (
+										<Loader2 className="animate-spin" />
+									) : (
+										t("reportCat.confirm")
+									)}
+								</Button>
+							)}
+						</form.Subscribe>
+					</div>
+				)}
 			</form>
 		</div>
 	);
 }
+
+const ReviewSection = ({
+	values,
+	uploadedCatPhoto,
+}: {
+	values: ReportCatForm;
+	uploadedCatPhoto: File | null;
+}) => {
+	const { t } = useTranslation();
+	return (
+		<div className="flex flex-col items-start w-full gap-4 w-full">
+			{uploadedCatPhoto && (
+				<div className="bg-[#F2F2F2] rounded-[24px] p-4 flex items-center justify-center h-[150px] w-full">
+					<img
+						src={URL.createObjectURL(uploadedCatPhoto)}
+						alt="Uploaded Cat"
+						className="w-auto h-full object-cover rounded-[16px]"
+					/>
+				</div>
+			)}
+			<p className="font-medium text-xl leading-[30px] tracking-normal text-gray-900">
+				{t("reportCat.cat_information")}
+			</p>
+			<ValueCard
+				label={t("reportCat.cats_name")}
+				value={values.catDetails.name}
+			/>
+			<div className="w-full flex items-start gap-4">
+				<ValueCard
+					label={t("reportCat.fur_color")}
+					value={values.catDetails.furColor
+						.map((color) => t(`catFurColor.${color.toLowerCase()}`))
+						.join(" - ")}
+				/>
+				<ValueCard
+					label={t("reportCat.fur_pattern")}
+					value={t(
+						`catFurPattern.${values.catDetails.furPattern.toLowerCase()}`,
+					)}
+				/>
+				<ValueCard
+					label={t("reportCat.coat_type")}
+					value={t(`catCoatType.${values.catDetails.coatType.toLowerCase()}`)}
+				/>
+			</div>
+			<div className="w-full flex items-start gap-4">
+				<ValueCard
+					label={t("reportCat.eye_color")}
+					value={t(`catEyeColor.${values.catDetails.eyeColor.toLowerCase()}`)}
+				/>
+				<ValueCard
+					label={t("reportCat.size")}
+					value={t(`catSize.${values.catDetails.size.toLowerCase()}`)}
+				/>
+				<ValueCard
+					label={t("reportCat.lost_date")}
+					value={DateTime.fromJSDate(values.catDetails.date).toFormat(
+						"dd/MM/yyyy",
+					)}
+				/>
+			</div>
+			<ValueCard
+				label={t("reportCat.additional_information")}
+				value={values.catDetails.additionalInfo || "-"}
+			/>
+			<hr className="h-[2px] bg-gray-100 w-full border-none" />
+			<p className="font-medium text-xl leading-[30px] tracking-normal text-gray-900">
+				{t("reportCat.owner_information")}
+			</p>
+			<div className="w-full flex items-start gap-4">
+				<ValueCard
+					label={t("reportCat.owner_name")}
+					value={values.userDetails.name}
+				/>
+				<ValueCard
+					label={t("reportCat.phone_number")}
+					value={values.userDetails.phone}
+				/>
+				<ValueCard
+					label={t("reportCat.email")}
+					value={values.userDetails.email}
+				/>
+				<ValueCard
+					label={t("reportCat.date_of_birth")}
+					value={
+						values.userDetails.dob
+							? DateTime.fromJSDate(values.userDetails.dob).toFormat(
+									"dd/MM/yyyy",
+								)
+							: "-"
+					}
+				/>
+			</div>
+			<hr className="h-[2px] bg-gray-100 w-full border-none" />
+			<p className="font-medium text-xl leading-[30px] tracking-normal text-gray-900">
+				{t("reportCat.cats_address")}
+			</p>
+			<ValueCard
+				label={t("reportCat.cats_address")}
+				value={values.location.address}
+			/>
+			<div className="w-full grid grid-cols-2 sm:grid-cols-4 gap-4">
+				<ValueCard label={t("reportCat.city")} value={values.location.city} />
+				<ValueCard label={t("reportCat.state")} value={values.location.state} />
+				<ValueCard
+					label={t("reportCat.postal_code")}
+					value={values.location.postalCode}
+				/>
+				<ValueCard
+					label={t("reportCat.country_region")}
+					value={values.location.country}
+				/>
+			</div>
+		</div>
+	);
+};
+
+const ValueCard = ({ label, value }: { label: string; value: string }) => {
+	return (
+		<div className="flex flex-col items-start w-full flex-1">
+			<p className="font-semibold text-[14px] leading-[20px] tracking-[0] white-space-nowrap">
+				{label}
+			</p>
+			<p className="font-normal text-[14px] leading-[24px] tracking-[0] text-[#6C6C6C]">
+				{value}
+			</p>
+		</div>
+	);
+};

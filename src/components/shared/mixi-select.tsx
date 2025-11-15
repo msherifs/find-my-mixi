@@ -71,7 +71,6 @@ const MixiSelect = ({
 						"focus:ring-0 focus:outline-none focus-visible:ring-0",
 						selectClassName,
 					)}
-					value={value}
 				>
 					<SelectValue
 						placeholder={placeholder}

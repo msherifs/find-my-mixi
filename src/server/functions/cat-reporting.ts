@@ -44,11 +44,7 @@ const userDetailsSchema = z.object({
 		.max(100, { error: "errors.required" })
 		.trim(),
 	email: z.email({ error: "errors.email" }).trim().toLowerCase(),
-	phone: z
-		.string({ error: "errors.required" })
-		.min(6, { error: "errors.required" })
-		.max(25, { error: "errors.required" })
-		.trim(),
+	phone: z.e164({ error: "errors.phone_number" }),
 	dob: z.coerce.date().optional(),
 	photo: z.string().optional(),
 });
@@ -89,6 +85,8 @@ export const reportCatSchema = z.object({
 	userDetails: userDetailsSchema,
 	location: locationSchema,
 });
+
+export type ReportCatForm = z.infer<typeof reportCatSchema>;
 
 export const reportCatFn = createServerFn({ method: "POST" })
 	.inputValidator(reportCatSchema)
