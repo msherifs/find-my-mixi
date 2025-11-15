@@ -32,6 +32,7 @@ const MixiSelect = ({
 	value,
 	errorMessage,
 	defaultValue,
+	name,
 }: MixiSelectProps) => {
 	return (
 		<div
@@ -74,7 +75,10 @@ const MixiSelect = ({
 					))}
 				</SelectContent>
 			</Select>
-			{errorMessage && <p className="text-sm text-red-700">{errorMessage}</p>}
+			{name ? <input type="hidden" name={name} value={value ?? ""} /> : null}
+			{errorMessage && (
+				<p className="text-sm leading-5 text-red-700">{errorMessage}</p>
+			)}
 		</div>
 	);
 };
