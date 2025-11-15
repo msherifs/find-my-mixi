@@ -125,6 +125,13 @@ export const logoutFn = createServerFn({ method: "POST" }).handler(async () => {
 export const getCurrentUserFn = createServerFn({ method: "GET" }).handler(
 	async () => {
 		const session = await useAppSession();
+		
+		if (!session.data.userId) {
+			return {
+				user: null,
+			};
+		}
+
 		const user = await findUser({ _id: new ObjectId(session.data.userId) });
 
 		if (!user) {
