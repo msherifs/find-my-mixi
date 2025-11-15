@@ -1,9 +1,10 @@
 "use client";
 
+import { useNavigate } from "@tanstack/react-router";
+import type { ColumnDef } from "@tanstack/react-table";
 import { Button } from "@/components/ui/button";
 import { DataTable } from "@/components/ui/data-table";
-import { type UserRole } from "@/server/db/enums";
-import { ColumnDef } from "@tanstack/react-table";
+import type { UserRole } from "@/server/db/enums";
 
 export type User = {
 	id: string;
@@ -29,7 +30,7 @@ export const columns: ColumnDef<User>[] = [
 	{
 		id: "actions",
 		header: "Actions",
-		cell: ({ row }) => {
+		cell: () => {
 			return (
 				<div className="flex items-center gap-2">
 					<Button variant="outlined" size="sm">
@@ -44,6 +45,25 @@ export const columns: ColumnDef<User>[] = [
 	},
 ];
 
-export const UserTable = ({ data }: { data: User[] }) => {
-	return <DataTable columns={columns} data={data} pageSize={10} />;
+export const UserTable = (args: {
+	data: User[];
+	totalRecords: number;
+	pageNumber: number;
+	pageSize: number;
+}) => {
+	const { data, totalRecords, pageNumber, pageSize } = args;
+	const navigate = useNavigate();
+
+	return (
+		<DataTable
+			columns={columns}
+			data={data}
+			pageSize={pageSize}
+			totalRecords={totalRecords}
+			pageNumber={pageNumber}
+			loadPage={(pageNumber, pageSize) =>
+				navigate({ to: "/admin/users", search: { pageNumber, pageSize } })
+			}
+		/>
+	);
 };

@@ -1,9 +1,9 @@
 "use client";
 
+import type { ColumnDef } from "@tanstack/react-table";
 import { Button } from "@/components/ui/button";
 import { DataTable } from "@/components/ui/data-table";
-import { type CatFormType } from "@/server/db/enums";
-import { ColumnDef } from "@tanstack/react-table";
+import type { CatFormType } from "@/server/db/enums";
 
 export type CatRequestRow = {
 	id: string;

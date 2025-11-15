@@ -43,11 +43,7 @@ export const findUsersPaginated = async (
 	]);
 	return {
 		users,
-		pagination: generatePaginationObject({
-			pageSize: options.pageSize,
-			pageNumber: options.pageNumber,
-			count,
-		}),
+		count,
 	};
 };
 

@@ -1,39 +1,38 @@
-import { useEffect } from "react";
+import { useNavigate } from "@tanstack/react-router";
 import {
-	useReactTable,
+	type ColumnDef,
+	flexRender,
 	getCoreRowModel,
 	getPaginationRowModel,
-	flexRender,
-	ColumnDef,
+	useReactTable,
 } from "@tanstack/react-table";
+import { useEffect } from "react";
 import { Button } from "./button";
 import {
 	Table,
-	TableHeader,
-	TableRow,
-	TableHead,
 	TableBody,
 	TableCell,
+	TableHead,
+	TableHeader,
+	TableRow,
 } from "./table";
 
 interface DataTableProps<TData, TValue> {
 	columns: ColumnDef<TData, TValue>[];
 	data: TData[];
-	pageSize?: number;
-	pageNumber?: number;
-	totalPages?: number;
-	onNextPage?: () => void;
-	onPreviousPage?: () => void;
+	pageSize: number;
+	pageNumber: number;
+	totalRecords: number;
+	loadPage: (pageNumber: number, pageSize: number) => void;
 }
 
 export function DataTable<TData, TValue>({
 	columns,
 	data,
-	pageSize = 10,
+	pageSize,
 	pageNumber,
-	totalPages,
-	onNextPage,
-	onPreviousPage,
+	totalRecords,
+	loadPage,
 }: DataTableProps<TData, TValue>) {
 	const table = useReactTable({
 		data,
@@ -41,41 +40,6 @@ export function DataTable<TData, TValue>({
 		getCoreRowModel: getCoreRowModel(),
 		getPaginationRowModel: getPaginationRowModel(),
 	});
-
-	const hasExternalPagination = Boolean(onNextPage || onPreviousPage);
-	const currentPage = hasExternalPagination
-		? Math.max(pageNumber ?? 1, 1)
-		: table.getState().pagination.pageIndex + 1;
-	const totalPagesForDisplay = hasExternalPagination
-		? totalPages
-		: Math.max(table.getPageCount(), 1);
-	const canGoToPrevious = hasExternalPagination
-		? Boolean(onPreviousPage) && currentPage > 1
-		: table.getCanPreviousPage();
-	const canGoToNext = hasExternalPagination
-		? Boolean(onNextPage) &&
-			(typeof totalPages === "number" ? currentPage < totalPages : true)
-		: table.getCanNextPage();
-
-	const handlePrevious = () => {
-		if (hasExternalPagination) {
-			onPreviousPage?.();
-			return;
-		}
-		table.previousPage();
-	};
-
-	const handleNext = () => {
-		if (hasExternalPagination) {
-			onNextPage?.();
-			return;
-		}
-		table.nextPage();
-	};
-
-	useEffect(() => {
-		table.setPageSize(pageSize);
-	}, [table, pageSize]);
 
 	return (
 		<div className="space-y-4">
@@ -131,25 +95,22 @@ export function DataTable<TData, TValue>({
 			</div>
 			<div className="flex flex-col gap-3 px-2 pb-2 text-sm text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
 				<div>
-					Page {currentPage}
-					{typeof totalPagesForDisplay === "number" && (
-						<> of {Math.max(totalPagesForDisplay, 1)}</>
-					)}
+					Page {pageNumber} of {Math.ceil(totalRecords / pageSize)}
 				</div>
 				<div className="flex items-center gap-2">
 					<Button
 						variant="default"
 						size="sm"
-						onClick={handlePrevious}
-						disabled={!canGoToPrevious}
+						onClick={() => loadPage(pageNumber - 1, pageSize)}
+						disabled={pageNumber <= 1}
 					>
 						Previous
 					</Button>
 					<Button
 						variant="default"
 						size="sm"
-						onClick={handleNext}
-						disabled={!canGoToNext}
+						onClick={() => loadPage(pageNumber + 1, pageSize)}
+						disabled={pageNumber >= Math.ceil(totalRecords / pageSize)}
 					>
 						Next
 					</Button>
