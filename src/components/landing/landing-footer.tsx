@@ -47,6 +47,8 @@ const LandingFooter = () => {
 								</Link>
 								<Link
 									to="/contact-us"
+									preload={false}
+									hash=""
 									className="bg-transparent font-medium text-base leading-6 text-justify text-white hover:text-gray-300 transition-colors"
 								>
 									{t("landing.footer.contactUs")}
@@ -57,12 +59,16 @@ const LandingFooter = () => {
 							<div className="flex flex-col items-start gap-3 min-w-[96px]">
 								<Link
 									to="/privacy-policy"
+									hash=""
+									preload={false}
 									className="bg-transparent font-medium text-base leading-6 text-justify text-white hover:text-gray-300 transition-colors"
 								>
 									{t("landing.footer.privacyPolicy")}
 								</Link>
 								<Link
 									to="/faq"
+									hash=""
+									preload={false}
 									className="bg-transparent font-medium text-base leading-6 text-justify text-white hover:text-gray-300 transition-colors"
 								>
 									{t("landing.footer.faq")}

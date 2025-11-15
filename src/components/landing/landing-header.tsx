@@ -95,6 +95,7 @@ const LandingHeader = () => {
 						</Link>
 						<Link
 							to="/contact-us"
+							preload={false}
 							className="py-1 px-[6px] rounded-[8px] bg-transparent hover:bg-gray-100 transition-colors focus:outline-none focus:ring-0 text-black"
 							activeProps={{ className: "text-primary" }}
 						>

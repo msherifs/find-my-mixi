@@ -186,6 +186,11 @@
 		"email": "Email",
 		"admin": "Go to Admin"
 	},
+	"reportCat": {
+		"cat_information": "Cat Information",
+		"cat_address": "Cat Address",
+		"review": "Review"
+	},
 	"errors": {
 		"generic": "Please enter a valid value.",
 		"email": "Please enter a valid email address.",
