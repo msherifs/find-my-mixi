@@ -6,6 +6,7 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import CatImage from "@/assets/images/report-missing-cat.svg";
 import ProgressBar from "@/components/report/progress-bar";
+import MapLocationPicker from "@/components/shared/location-picker";
 import MixiCalendar from "@/components/shared/mixi-calendar";
 import MixiFileUpload from "@/components/shared/mixi-file-upload";
 import MixiInput from "@/components/shared/mixi-input";
@@ -78,6 +79,7 @@ function RouteComponent() {
 		await form.validateField("location.state", "blur");
 		await form.validateField("location.country", "blur");
 		await form.validateField("location.postalCode", "blur");
+		await form.validateField("location.geoPoint.coordinates", "blur");
 
 		const formState = form.state;
 		const hasErrors =
@@ -545,6 +547,40 @@ function RouteComponent() {
 				)}
 				{currentStep === 2 && (
 					<div className="flex flex-col items-start w-full gap-4 sm:px-8 px-0 w-full">
+						<form.Field
+							name="location.geoPoint.coordinates"
+							validators={{
+								onBlur: ({ value }) => {
+									if (value[0] === 0 && value[1] === 0) {
+										return "Please select a location on the map";
+									}
+
+									const [longitude, latitude] = value;
+									if (longitude < -180 || longitude > 180) {
+										return "Invalid longitude";
+									}
+									if (latitude < -90 || latitude > 90) {
+										return "Invalid latitude";
+									}
+
+									return undefined;
+								},
+							}}
+						>
+							{(field) => (
+								<MapLocationPicker
+									position={field.state.value}
+									setPosition={(position) =>
+										field.handleChange(position as [number, number])
+									}
+									errorMessage={
+										field.state.meta.errors[0]
+											? t(field.state.meta.errors[0])
+											: undefined
+									}
+								/>
+							)}
+						</form.Field>
 						<form.Field
 							name="location.address"
 							validators={{

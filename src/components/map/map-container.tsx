@@ -16,8 +16,8 @@ import { useIsMobile } from "@/hooks/use-mobile";
 import type { UserRole } from "@/server/db/enums";
 import CatDetailsModal from "./cat-details-modal";
 import CenterLocationButton from "./center-location-button";
-import LocationMarker from "./location-marker";
 import MapHeader from "./map-header";
+import MyLocationMarker from "./my-location-marker";
 
 import "@/styles/map.css";
 
@@ -77,7 +77,6 @@ export function MixiMapContainer({
 			zoom={50}
 			scrollWheelZoom={false}
 			className="h-full"
-			zoomControl={false}
 		>
 			<MapHeader
 				firstName={user?.firstName || ""}
@@ -89,7 +88,7 @@ export function MixiMapContainer({
 				subdomains={["mt0", "mt1", "mt2", "mt3"]}
 			/>
 			<ZoomControl position="bottomleft" />
-			<LocationMarker />
+			<MyLocationMarker />
 			{markers.map((m, i) => (
 				<Marker
 					key={`${m.lat}_${m.lng}_${m.label}`}

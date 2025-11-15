@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { renderToString } from "react-dom/server";
 import { Marker, useMap } from "react-leaflet";
 
-function LocationMarker() {
+function MyLocationMarker() {
 	const [position, setPosition] = useState<any | null>(null);
 	const [hasInitialized, setHasInitialized] = useState(false);
 	const map = useMap();
@@ -36,7 +36,7 @@ function LocationMarker() {
 	);
 }
 
-export default LocationMarker;
+export default MyLocationMarker;
 
 const CustomMarkerIcon = () => (
 	<div className="relative w-11 h-11 flex items-center justify-center">
