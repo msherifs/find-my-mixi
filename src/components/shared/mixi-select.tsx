@@ -30,24 +30,9 @@ const MixiSelect = ({
 	selectClassName,
 	placeholder,
 	value,
-<<<<<<< HEAD
+	errorMessage,
 	defaultValue,
-	name,
-	errorMessage,
 }: MixiSelectProps) => {
-=======
-	errorMessage,
-}: {
-	label?: string;
-	options: { value: string; label: string }[];
-	className?: string;
-	onChange?: (value: string) => void;
-	selectClassName?: string;
-	placeholder?: string;
-	value?: string;
-	errorMessage?: string;
-}) => {
->>>>>>> 98eea9c (WIP)
 	return (
 		<div
 			className={cn(
@@ -89,14 +74,7 @@ const MixiSelect = ({
 					))}
 				</SelectContent>
 			</Select>
-<<<<<<< HEAD
-			{name ? <input type="hidden" name={name} value={value ?? ""} /> : null}
-			{errorMessage && (
-				<p className="text-sm leading-5 text-red-700">{errorMessage}</p>
-			)}
-=======
 			{errorMessage && <p className="text-sm text-red-700">{errorMessage}</p>}
->>>>>>> 98eea9c (WIP)
 		</div>
 	);
 };
