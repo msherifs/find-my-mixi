@@ -8,6 +8,7 @@ import UserIcon from "@/assets/images/user.svg";
 import UserCircleIcon from "@/assets/images/user-circle.svg";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { cn, getInitials } from "@/lib/utils";
+import type { UserRole } from "@/server/db/enums";
 import { logoutFn } from "@/server/functions/auth";
 import MixiSelect from "../shared/mixi-select";
 import { Button } from "../ui/button";
@@ -19,7 +20,6 @@ import {
 } from "../ui/dropdown-menu";
 import ActionsDrawer from "./actions-drawer";
 import FiltersDrawer from "./filters-drawer";
-import { UserRole } from "@/server/db/enums";
 
 interface User {
 	firstName: string;
@@ -56,7 +56,7 @@ const MapHeader = ({ firstName, lastName, role }: User) => {
 								</Button>
 							</DropdownMenuTrigger>
 							<DropdownMenuContent className="border-1 border-[#00000014] rounded-[12px] w-[260px] p-0">
-								<DropdownMenuItem className="border-b border-[#E9EAEB] py-[6px]">
+								{/* <DropdownMenuItem className="border-b border-[#E9EAEB] py-[6px]">
 									<div className="px-[6px]">
 										<div className="p-2 flex items-center gap-2 w-full">
 											<img src={UserIcon} alt="profile" />
@@ -65,7 +65,7 @@ const MapHeader = ({ firstName, lastName, role }: User) => {
 											</p>
 										</div>
 									</div>
-								</DropdownMenuItem>
+								</DropdownMenuItem> */}
 								{role === "ADMIN" && (
 									<DropdownMenuItem
 										className="border-b border-[#E9EAEB] py-[6px]"

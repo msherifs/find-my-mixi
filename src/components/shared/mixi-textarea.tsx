@@ -1,19 +1,33 @@
+<<<<<<< HEAD
 import type { ComponentPropsWithoutRef } from "react";
+=======
+import type { ComponentProps } from "react";
+>>>>>>> 98eea9c (WIP)
 import { cn } from "@/lib/utils";
 
 type MixiTextareaProps = {
 	label?: string;
 	className?: string;
 	inputClassName?: string;
+<<<<<<< HEAD
 	errorMessage?: string;
 } & ComponentPropsWithoutRef<"textarea">;
+=======
+	placeholder?: string;
+} & Omit<ComponentProps<"textarea">, "className">;
+>>>>>>> 98eea9c (WIP)
 
 const MixiTextarea = ({
 	label,
 	className,
 	inputClassName,
+<<<<<<< HEAD
 	errorMessage,
 	...textareaProps
+=======
+	placeholder,
+	...props
+>>>>>>> 98eea9c (WIP)
 }: MixiTextareaProps) => {
 	return (
 		<div
@@ -30,7 +44,12 @@ const MixiTextarea = ({
 					"focus:ring-0 focus:outline-none focus-visible:ring-0 resize-none",
 					inputClassName,
 				)}
+<<<<<<< HEAD
 				{...textareaProps}
+=======
+				placeholder={placeholder}
+				{...props}
+>>>>>>> 98eea9c (WIP)
 			/>
 			{errorMessage && (
 				<p className="text-sm leading-5 text-red-700">{errorMessage}</p>

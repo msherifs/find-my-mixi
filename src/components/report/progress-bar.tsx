@@ -24,7 +24,7 @@ const ProgressBar = ({
 						stepNumber={1}
 						title={t("reportCat.cat_information")}
 						disabled={false}
-						onStepClick={() => onStepClick(1)}
+						onStepClick={currentStep > 1 ? () => onStepClick(1) : undefined}
 					/>
 					<MobileConnector />
 					<MobileStep
@@ -32,7 +32,7 @@ const ProgressBar = ({
 						stepNumber={2}
 						title={t("reportCat.cat_address")}
 						disabled={currentStep < 2}
-						onStepClick={() => onStepClick(2)}
+						onStepClick={currentStep > 2 ? () => onStepClick(2) : undefined}
 					/>
 					<MobileConnector />
 					<MobileStep
@@ -40,7 +40,7 @@ const ProgressBar = ({
 						stepNumber={3}
 						title={t("reportCat.review")}
 						disabled={currentStep < 3}
-						onStepClick={() => onStepClick(3)}
+						onStepClick={currentStep > 3 ? () => onStepClick(3) : undefined}
 					/>
 				</div>
 			</div>
@@ -57,7 +57,7 @@ const ProgressBar = ({
 						stepNumber={1}
 						title={t("reportCat.cat_information")}
 						disabled={false}
-						onStepClick={() => onStepClick(1)}
+						onStepClick={currentStep > 1 ? () => onStepClick(1) : undefined}
 					/>
 					<Connector />
 					<Step
@@ -65,7 +65,7 @@ const ProgressBar = ({
 						stepNumber={2}
 						title={t("reportCat.cat_address")}
 						disabled={currentStep < 2}
-						onStepClick={() => onStepClick(2)}
+						onStepClick={currentStep > 2 ? () => onStepClick(2) : undefined}
 					/>
 					<Connector />
 					<Step
@@ -73,7 +73,7 @@ const ProgressBar = ({
 						stepNumber={3}
 						title={t("reportCat.review")}
 						disabled={currentStep < 3}
-						onStepClick={() => onStepClick(3)}
+						onStepClick={currentStep > 3 ? () => onStepClick(3) : undefined}
 					/>
 				</div>
 			</div>
@@ -96,7 +96,7 @@ const Step = ({
 	isDone: boolean;
 	stepNumber: number;
 	title: string;
-	onStepClick: () => void;
+	onStepClick?: () => void;
 	disabled: boolean;
 }) => {
 	return (
@@ -151,7 +151,7 @@ const MobileStep = ({
 	stepNumber: number;
 	title: string;
 	disabled?: boolean;
-	onStepClick: () => void;
+	onStepClick?: () => void;
 }) => {
 	return (
 		<button

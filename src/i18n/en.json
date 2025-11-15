@@ -189,7 +189,51 @@
 	"reportCat": {
 		"cat_information": "Cat Information",
 		"cat_address": "Cat Address",
-		"review": "Review"
+		"review": "Review",
+		"report_lost_cat": "Report Lost Cat",
+		"cats_name": "Cat's Name",
+		"enter_cats_name": "Enter your cat's name",
+		"fur_color": "Fur Color",
+		"select_fur_color": "Select fur color",
+		"fur_pattern": "Fur Pattern",
+		"select_fur_pattern": "Select fur pattern",
+		"coat_type": "Coat Type",
+		"select_coat_type": "Select coat type",
+		"distinctive_marks": "Distinctive Marks",
+		"distinctive_marks_description": "e.g., scars, unique patterns",
+		"eye_color": "Eye Color",
+		"select_eye_color": "Select eye color",
+		"size": "Size",
+		"select_size": "Select the size of your cat",
+		"lost_date": "Date the Cat Was Lost",
+		"select_date": "Select Date",
+		"click_to_upload": "Click to upload",
+		"or_drag_and_drop": " or drag and drop",
+		"accepted_formats": "PNG, JPG (max. 5MB)",
+		"invalid_file_type": "Please upload only image files (PNG, JPG, JPEG, GIF, WebP)",
+		"file_too_large": "File size must be less than 5MB",
+		"additional_information": "Additional Relevant Information",
+		"additional_information_placeholder": "Provide any additional details about the lost cat",
+		"owner_information": "Owner Information",
+		"name": "Name",
+		"enter_your_name": "Enter your full name",
+		"phone_number": "Phone Number",
+		"enter_your_phone_number": "Enter your phone number",
+		"email": "Email",
+		"enter_your_email": "Enter your email address",
+		"date_of_birth": "Date of Birth",
+		"upload_your_photo_optional": "Upload Your Photo (Optional)",
+		"next": "Next",
+		"address": "Address",
+		"enter_address": "Enter the address where your cat was last seen",
+		"city": "City",
+		"enter_city": "Enter the city",
+		"state": "State/Province",
+		"enter_state": "Enter the state or province",
+		"country": "Country",
+		"enter_country": "Enter the country",
+		"postal_code": "Zip/Postal Code",
+		"enter_postal_code": "Enter the zip/postal code"
 	},
 	"errors": {
 		"generic": "Please enter a valid value.",
@@ -198,6 +242,42 @@
 		"tooLong": "Field can't be longer than 100 characters.",
 		"required": "This field is required.",
 		"password_criteria": "Password must be at least 8 characters long.",
-		"duplicate_email": "this email already exists."
+		"duplicate_email": "this email already exists.",
+		"nonempty": "This Field cannot be empty.",
+		"upload_image": "Please upload an image file."
+	},
+	"catFurColor": {
+		"white": "White",
+		"black": "Black",
+		"gray": "Gray",
+		"orange_ginger": "Orange Ginger",
+		"cream": "Cream",
+		"brown": "Brown"
+	},
+	"catFurPattern": {
+		"solid": "Solid",
+		"bicolor": "Bicolor",
+		"tabby": "Tabby",
+		"tricolor": "Tricolor",
+		"calico": "Calico",
+		"torbie": "Torbie",
+		"colorpoint": "Colorpoint"
+	},
+	"catCoatType": {
+		"long": "Long",
+		"curly": "Curly",
+		"short": "Short",
+		"hairless": "Hairless"
+	},
+	"catEyeColor": {
+		"yellow": "Yellow",
+		"green": "Green",
+		"blue": "Blue",
+		"amber": "Amber"
+	},
+	"catSize": {
+		"small": "Small",
+		"medium": "Medium",
+		"large": "Large"
 	}
 }

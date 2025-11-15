@@ -59,6 +59,7 @@ const CatRequestSchema = schema(
 				}),
 				date: types.date({ required: true }),
 				additionalInfo: types.string(),
+				photo: types.string({ required: true }),
 			},
 			{ required: true },
 		),
