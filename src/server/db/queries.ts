@@ -8,16 +8,6 @@ import {
 	type UserOptions,
 } from "./schema";
 
-const generatePaginationObject = (options: {
-	pageSize: number;
-	pageNumber: number;
-	count: number;
-}) => {
-	const numberOfPages = Math.ceil(options.count / options.pageSize);
-
-	return { numberOfPages };
-};
-
 export const insertUser = async (
 	args: DocumentForInsert<UserDocument, UserOptions>,
 ) => {
