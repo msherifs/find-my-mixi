@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import z from "zod";
 import { CatRequestsTable } from "@/components/admin/cat-requests/table";
+import { CatFormType } from "@/server/db/enums";
 import { getCatRequestsFn } from "@/server/functions/admin/cat-requests";
 
 export const Route = createFileRoute("/_admin/admin/cat-requests")({
@@ -20,14 +21,26 @@ function RouteComponent() {
 	const { catRequests, count } = Route.useLoaderData();
 	const { pageNumber, pageSize } = Route.useSearch();
 
-	const rows = catRequests.map((request) => ({
-		id: request.id,
-		requestType: request.type,
-		userFullName: request.userDetails.name,
-		phone: request.userDetails.phone,
-		email: request.userDetails.email,
-		catName: request.catDetails.name,
-	}));
+	// disabled for now
+	// const rows = catRequests.map((request) => ({
+	// 	id: request.id,
+	// 	requestType: request.type,
+	// 	userFullName: request.userDetails.name,
+	// 	phone: request.userDetails.phone,
+	// 	email: request.userDetails.email,
+	// 	catName: request.catDetails.name,
+	// }));
+
+	const rows = [
+		{
+			id: "1",
+			requestType: CatFormType.FIND_MY_CAT,
+			userFullName: "John Doe",
+			phone: "123-456-7890",
+			email: "john.doe@example.com",
+			catName: "Fluffy",
+		},
+	];
 
 	return (
 		<div>

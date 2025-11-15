@@ -1,7 +1,7 @@
 "use client";
 
-import * as React from "react";
 import { Cat, UsersRound } from "lucide-react";
+import type * as React from "react";
 
 import {
 	Sidebar,
@@ -21,6 +21,11 @@ const items = [
 	{
 		name: "Cat Requests",
 		url: "/admin/cat-requests",
+		icon: Cat,
+	},
+	{
+		name: "Contact Us",
+		url: "/admin/contact-us",
 		icon: Cat,
 	},
 ];

@@ -7,6 +7,21 @@ import {
 	SelectValue,
 } from "../ui/select";
 
+type MixiSelectOption = { value: string; label: string };
+
+type MixiSelectProps = {
+	label?: string;
+	options: MixiSelectOption[];
+	className?: string;
+	onChange?: (value: string) => void;
+	selectClassName?: string;
+	placeholder?: string;
+	value?: string;
+	defaultValue?: string;
+	name?: string;
+	errorMessage?: string;
+};
+
 const MixiSelect = ({
 	label,
 	options,
@@ -14,14 +29,11 @@ const MixiSelect = ({
 	onChange,
 	selectClassName,
 	placeholder,
-}: {
-	label?: string;
-	options: { value: string; label: string }[];
-	className?: string;
-	onChange?: (value: string) => void;
-	selectClassName?: string;
-	placeholder?: string;
-}) => {
+	value,
+	defaultValue,
+	name,
+	errorMessage,
+}: MixiSelectProps) => {
 	return (
 		<div
 			className={cn("flex flex-col items-start gap-[6px] w-full", className)}
@@ -31,7 +43,11 @@ const MixiSelect = ({
 					{label}
 				</h3>
 			)}
-			<Select onValueChange={onChange}>
+			<Select
+				onValueChange={onChange}
+				value={value}
+				defaultValue={defaultValue}
+			>
 				<SelectTrigger
 					className={cn(
 						"h-12! w-full py-[10px] px-[14px] rounded-[10px] border border-[#E6E6E6] bg-white",
@@ -56,6 +72,10 @@ const MixiSelect = ({
 					))}
 				</SelectContent>
 			</Select>
+			{name ? <input type="hidden" name={name} value={value ?? ""} /> : null}
+			{errorMessage && (
+				<p className="text-sm leading-5 text-red-700">{errorMessage}</p>
+			)}
 		</div>
 	);
 };

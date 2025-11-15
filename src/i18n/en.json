@@ -106,6 +106,12 @@
 		"select_a_topic": "Select a Topic",
 		"or_tell_us_what_you_need": "Or tell us what you need help with",
 		"get_assistance": "Get Assistance",
+		"submitting": "Submitting...",
+		"topics": {
+			"ENQUIRY": "General Inquiry",
+			"SUGGESTION": "Suggestion",
+			"COMPLAINT": "Report an Issue"
+		},
 		"lost_a_cat": "Lost a Cat",
 		"found_a_cat": "Found a Cat"
 	},

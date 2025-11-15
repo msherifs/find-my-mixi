@@ -77,3 +77,11 @@ export const CollarEmbellishment = {
 } as const;
 export type CollarEmbellishment =
 	(typeof CollarEmbellishment)[keyof typeof CollarEmbellishment];
+
+export const ContactUsTopic = {
+	ENQUIRY: "ENQUIRY",
+	SUGGESTION: "SUGGESTION",
+	COMPLAINT: "COMPLAINT",
+} as const;
+export type ContactUsTopic =
+	(typeof ContactUsTopic)[keyof typeof ContactUsTopic];

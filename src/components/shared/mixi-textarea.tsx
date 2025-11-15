@@ -1,17 +1,20 @@
+import type { ComponentPropsWithoutRef } from "react";
 import { cn } from "@/lib/utils";
+
+type MixiTextareaProps = {
+	label?: string;
+	className?: string;
+	inputClassName?: string;
+	errorMessage?: string;
+} & ComponentPropsWithoutRef<"textarea">;
 
 const MixiTextarea = ({
 	label,
 	className,
 	inputClassName,
-	placeholder,
-}: {
-	label?: string;
-	placeholder?: string;
-	className?: string;
-	inputClassName?: string;
-	type?: string;
-}) => {
+	errorMessage,
+	...textareaProps
+}: MixiTextareaProps) => {
 	return (
 		<div
 			className={cn("flex flex-col items-start gap-[6px] w-full", className)}
@@ -27,8 +30,11 @@ const MixiTextarea = ({
 					"focus:ring-0 focus:outline-none focus-visible:ring-0 resize-none",
 					inputClassName,
 				)}
-				placeholder={placeholder}
+				{...textareaProps}
 			/>
+			{errorMessage && (
+				<p className="text-sm leading-5 text-red-700">{errorMessage}</p>
+			)}
 		</div>
 	);
 };

@@ -3,6 +3,9 @@ import {
 	CatRequest,
 	type CatRequestDocument,
 	type CatRequestOptions,
+	ContactUs,
+	type ContactUsDocument,
+	type ContactUsOptions,
 	User,
 	type UserDocument,
 	type UserOptions,
@@ -62,6 +65,12 @@ export const insertCatRequest = async (
 	return await CatRequest.insertOne(args);
 };
 
+export const insertContactUsSubmission = async (
+	args: DocumentForInsert<ContactUsDocument, ContactUsOptions>,
+) => {
+	return await ContactUs.insertOne(args);
+};
+
 export const findCatRequestsInPolygon = async (
 	polygon: { coordinates: number[][] },
 	filter: PaprFilter<CatRequestDocument>,
@@ -85,4 +94,23 @@ export const findCatRequestsInPolygon = async (
 	];
 
 	return await CatRequest.aggregate<CatRequestDocument>(pipeline);
+};
+
+export const findContactUsSubmissionsPaginated = async (
+	filter: PaprFilter<ContactUsDocument>,
+	options: { pageSize: number; pageNumber: number },
+) => {
+	const skip = (options.pageNumber - 1) * options.pageSize;
+	const [contactUsSubmissions, count] = await Promise.all([
+		ContactUs.find(filter, {
+			skip,
+			limit: options.pageSize,
+			sort: { _id: -1 },
+		}),
+		ContactUs.countDocuments(filter),
+	]);
+	return {
+		contactUsSubmissions,
+		count,
+	};
 };

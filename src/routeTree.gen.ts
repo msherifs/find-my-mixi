@@ -31,6 +31,7 @@ import { Route as DemoStartApiRequestRouteImport } from './routes/demo/start.api
 import { Route as DemoApiTqTodosRouteImport } from './routes/demo/api.tq-todos'
 import { Route as DemoApiNamesRouteImport } from './routes/demo/api.names'
 import { Route as AdminAdminUsersRouteImport } from './routes/_admin/admin.users'
+import { Route as AdminAdminContactUsRouteImport } from './routes/_admin/admin.contact-us'
 import { Route as AdminAdminCatRequestsRouteImport } from './routes/_admin/admin.cat-requests'
 import { Route as DemoStartSsrIndexRouteImport } from './routes/demo/start.ssr.index'
 import { Route as DemoStartSsrSpaModeRouteImport } from './routes/demo/start.ssr.spa-mode'
@@ -144,6 +145,11 @@ const AdminAdminUsersRoute = AdminAdminUsersRouteImport.update({
   path: '/admin/users',
   getParentRoute: () => AdminRoute,
 } as any)
+const AdminAdminContactUsRoute = AdminAdminContactUsRouteImport.update({
+  id: '/admin/contact-us',
+  path: '/admin/contact-us',
+  getParentRoute: () => AdminRoute,
+} as any)
 const AdminAdminCatRequestsRoute = AdminAdminCatRequestsRouteImport.update({
   id: '/admin/cat-requests',
   path: '/admin/cat-requests',
@@ -185,6 +191,7 @@ export interface FileRoutesByFullPath {
   '/map': typeof MapIndexRoute
   '/report-lost-cat': typeof ReportLostCatIndexRoute
   '/admin/cat-requests': typeof AdminAdminCatRequestsRoute
+  '/admin/contact-us': typeof AdminAdminContactUsRoute
   '/admin/users': typeof AdminAdminUsersRoute
   '/demo/api/names': typeof DemoApiNamesRoute
   '/demo/api/tq-todos': typeof DemoApiTqTodosRoute
@@ -211,6 +218,7 @@ export interface FileRoutesByTo {
   '/map': typeof MapIndexRoute
   '/report-lost-cat': typeof ReportLostCatIndexRoute
   '/admin/cat-requests': typeof AdminAdminCatRequestsRoute
+  '/admin/contact-us': typeof AdminAdminContactUsRoute
   '/admin/users': typeof AdminAdminUsersRoute
   '/demo/api/names': typeof DemoApiNamesRoute
   '/demo/api/tq-todos': typeof DemoApiTqTodosRoute
@@ -241,6 +249,7 @@ export interface FileRoutesById {
   '/map/': typeof MapIndexRoute
   '/report-lost-cat/': typeof ReportLostCatIndexRoute
   '/_admin/admin/cat-requests': typeof AdminAdminCatRequestsRoute
+  '/_admin/admin/contact-us': typeof AdminAdminContactUsRoute
   '/_admin/admin/users': typeof AdminAdminUsersRoute
   '/demo/api/names': typeof DemoApiNamesRoute
   '/demo/api/tq-todos': typeof DemoApiTqTodosRoute
@@ -269,6 +278,7 @@ export interface FileRouteTypes {
     | '/map'
     | '/report-lost-cat'
     | '/admin/cat-requests'
+    | '/admin/contact-us'
     | '/admin/users'
     | '/demo/api/names'
     | '/demo/api/tq-todos'
@@ -295,6 +305,7 @@ export interface FileRouteTypes {
     | '/map'
     | '/report-lost-cat'
     | '/admin/cat-requests'
+    | '/admin/contact-us'
     | '/admin/users'
     | '/demo/api/names'
     | '/demo/api/tq-todos'
@@ -324,6 +335,7 @@ export interface FileRouteTypes {
     | '/map/'
     | '/report-lost-cat/'
     | '/_admin/admin/cat-requests'
+    | '/_admin/admin/contact-us'
     | '/_admin/admin/users'
     | '/demo/api/names'
     | '/demo/api/tq-todos'
@@ -511,6 +523,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminAdminUsersRouteImport
       parentRoute: typeof AdminRoute
     }
+    '/_admin/admin/contact-us': {
+      id: '/_admin/admin/contact-us'
+      path: '/admin/contact-us'
+      fullPath: '/admin/contact-us'
+      preLoaderRoute: typeof AdminAdminContactUsRouteImport
+      parentRoute: typeof AdminRoute
+    }
     '/_admin/admin/cat-requests': {
       id: '/_admin/admin/cat-requests'
       path: '/admin/cat-requests'
@@ -551,12 +570,14 @@ declare module '@tanstack/react-router' {
 
 interface AdminRouteChildren {
   AdminAdminCatRequestsRoute: typeof AdminAdminCatRequestsRoute
+  AdminAdminContactUsRoute: typeof AdminAdminContactUsRoute
   AdminAdminUsersRoute: typeof AdminAdminUsersRoute
   AdminAdminIndexRoute: typeof AdminAdminIndexRoute
 }
 
 const AdminRouteChildren: AdminRouteChildren = {
   AdminAdminCatRequestsRoute: AdminAdminCatRequestsRoute,
+  AdminAdminContactUsRoute: AdminAdminContactUsRoute,
   AdminAdminUsersRoute: AdminAdminUsersRoute,
   AdminAdminIndexRoute: AdminAdminIndexRoute,
 }

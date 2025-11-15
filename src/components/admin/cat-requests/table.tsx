@@ -5,6 +5,7 @@ import type { ColumnDef } from "@tanstack/react-table";
 import { Button } from "@/components/ui/button";
 import { DataTable } from "@/components/ui/data-table";
 import type { CatFormType } from "@/server/db/enums";
+import { CatRequestDetailsSheet } from "./details-sheet";
 
 export type CatRequestRow = {
 	id: string;
@@ -38,13 +39,7 @@ export const columns: ColumnDef<CatRequestRow>[] = [
 		cell: ({ row }) => {
 			return (
 				<div className="flex items-center gap-2">
-					<Button
-						variant="outlined"
-						size="sm"
-						onClick={() => console.log(row.original.id)}
-					>
-						Delete
-					</Button>
+					<CatRequestDetailsSheet></CatRequestDetailsSheet>
 				</div>
 			);
 		},
