@@ -1,5 +1,6 @@
 "use client";
 
+import { useNavigate } from "@tanstack/react-router";
 import type { ColumnDef } from "@tanstack/react-table";
 import { Button } from "@/components/ui/button";
 import { DataTable } from "@/components/ui/data-table";
@@ -52,30 +53,32 @@ export const columns: ColumnDef<CatRequestRow>[] = [
 
 interface CatRequestsTableProps {
 	data: CatRequestRow[];
-	pageNumber?: number;
-	pageSize?: number;
-	totalPages?: number;
-	onNextPage?: () => void;
-	onPreviousPage?: () => void;
+	pageNumber: number;
+	pageSize: number;
+	totalRecords: number;
 }
 
 export const CatRequestsTable = ({
 	data,
 	pageNumber,
 	pageSize,
-	totalPages,
-	onNextPage,
-	onPreviousPage,
+	totalRecords,
 }: CatRequestsTableProps) => {
+	const navigate = useNavigate();
+
 	return (
 		<DataTable
 			columns={columns}
 			data={data}
 			pageSize={pageSize}
 			pageNumber={pageNumber}
-			totalPages={totalPages}
-			onNextPage={onNextPage}
-			onPreviousPage={onPreviousPage}
+			totalRecords={totalRecords}
+			loadPage={(nextPage, nextPageSize) =>
+				navigate({
+					to: "/admin/cat-requests",
+					search: { pageNumber: nextPage, pageSize: nextPageSize },
+				})
+			}
 		/>
 	);
 };

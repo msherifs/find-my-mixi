@@ -62,11 +62,7 @@ export const findCatRequestsPaginated = async (
 	]);
 	return {
 		catRequests,
-		pagination: generatePaginationObject({
-			pageSize: options.pageSize,
-			pageNumber: options.pageNumber,
-			count,
-		}),
+		count,
 	};
 };
 
