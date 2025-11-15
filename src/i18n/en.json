@@ -237,7 +237,10 @@
 		"owner_name": "Owner's Name",
 		"cats_address": "Cat's Address",
 		"country_region": "Country/Region",
-		"confirm": "Confirm"
+		"confirm": "Confirm",
+		"search_process_starts": "The search Process Starts!",
+		"sit_back_relax": "Sit back, relax, and we'll notify you with any updates.",
+		"go_to_home": "Go to Homepage"
 	},
 	"errors": {
 		"generic": "Please enter a valid value.",
@@ -249,7 +252,8 @@
 		"duplicate_email": "this email already exists.",
 		"nonempty": "This Field cannot be empty.",
 		"upload_image": "Please upload an image file.",
-		"phone_number": "Please enter a valid phone number."
+		"phone_number": "Please enter a valid phone number.",
+		"something_went_wrong": "Something went wrong. Please try again."
 	},
 	"catFurColor": {
 		"white": "White",

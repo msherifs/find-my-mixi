@@ -5,8 +5,10 @@ import { Loader2 } from "lucide-react";
 import { DateTime } from "luxon";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
+import { toast } from "sonner";
 import CatImage from "@/assets/images/report-missing-cat.svg";
 import ProgressBar from "@/components/report/progress-bar";
+import LostCatReported from "@/components/report-cat/lost-cat-reported";
 import MapLocationPicker from "@/components/shared/location-picker";
 import MixiCalendar from "@/components/shared/mixi-calendar";
 import MixiFileUpload from "@/components/shared/mixi-file-upload";
@@ -16,10 +18,10 @@ import MixiPhoneInput from "@/components/shared/mixi-phone-input";
 import MixiSelect from "@/components/shared/mixi-select";
 import MixiTextarea from "@/components/shared/mixi-textarea";
 import { Button } from "@/components/ui/button";
+import { reportCatOptions } from "@/forms/report-cat";
 import {
 	CatCoatType,
 	CatEyeColor,
-	CatFormType,
 	CatFurColor,
 	CatFurPattern,
 	CatSize,
@@ -41,7 +43,7 @@ export const Route = createFileRoute("/report-lost-cat/")({
 });
 
 function RouteComponent() {
-	const [currentStep, setCurrentStep] = useState(2);
+	const [currentStep, setCurrentStep] = useState(1);
 	const [uploadedCatPhoto, setUploadedCatPhoto] = useState<File | null>(null);
 	const [uploadedOwnerPhoto, setUploadedOwnerPhoto] = useState<File | null>(
 		null,
@@ -98,50 +100,41 @@ function RouteComponent() {
 	};
 	const { state } = useLoaderData({ from: "/report-lost-cat/" });
 	const form = useForm({
-		defaultValues: {
-			type: CatFormType.REPORT_CAT_FOUND,
-			catDetails: {
-				name: "",
-				furColor: [] as CatFurColor[],
-				furPattern: "",
-				coatType: "",
-				distinctiveMarks: "",
-				eyeColor: "",
-				size: "",
-				date: "",
-				additionalInfo: "",
-				photo: "",
-			},
-			userDetails: {
-				name: "",
-				email: "",
-				phone: "",
-				dob: "",
-				photo:
-					"https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-			},
-			location: {
-				address: "",
-				city: "",
-				state: "",
-				country: "",
-				postalCode: "",
-				geoPoint: {
-					type: "Point",
-					coordinates: [0, 0] as [number, number],
-				},
-			},
-		},
+		...reportCatOptions,
 		transform: useTransform((baseForm) => mergeForm(baseForm, state), [state]),
+		onSubmit: async ({ value }) => {
+			const dataToSubmit = {
+				...value,
+				catDetails: {
+					...value.catDetails,
+					date: DateTime.fromISO(value.catDetails.date).toJSDate(),
+				},
+				userDetails: {
+					...value.userDetails,
+					dob: value.userDetails.dob
+						? DateTime.fromISO(value.userDetails.dob).toJSDate()
+						: undefined,
+				},
+			} as ReportCatForm;
+			const result = await reportCatFn({ data: dataToSubmit });
+			if (result.success) {
+				setCurrentStep(4);
+			} else {
+				toast.error(t("errors.something_went_wrong"));
+			}
+		},
 	});
+
+	if (currentStep === 4) return <LostCatReported />;
 
 	return (
 		<div className="h-screen h-[100dvh] flex sm:flex-row flex-col w-full sm:p-6 p-3">
 			<ProgressBar currentStep={currentStep} onStepClick={setCurrentStep} />
 			<form
-				action={reportCatFn.url}
-				method="post"
-				encType="multipart/form-data"
+				onSubmit={(e) => {
+					e.preventDefault();
+					form.handleSubmit();
+				}}
 				className="flex flex-col items-start sm:px-[72px] px-[24px] gap-[48px] flex-grow overflow-y-auto"
 			>
 				<div className="flex flex-col items-start w-full gap-3 sm:px-8 px-0">
@@ -204,6 +197,7 @@ function RouteComponent() {
 										searchable={false}
 										hideSelectAll
 										label={t("reportCat.fur_color")}
+										name="catDetails.furColor"
 										errorMessage={
 											field.state.meta.errors[0]
 												? t(field.state.meta.errors[0].message)
@@ -278,7 +272,7 @@ function RouteComponent() {
 										label={t("reportCat.distinctive_marks")}
 										placeholder={t("reportCat.distinctive_marks_description")}
 										type="text"
-										name="catDetails.name"
+										name="catDetails.distinctiveMarks"
 										value={field.state.value}
 										onChange={(event) => field.handleChange(event.target.value)}
 										onBlur={field.handleBlur}

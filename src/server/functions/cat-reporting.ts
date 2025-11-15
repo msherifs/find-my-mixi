@@ -106,7 +106,7 @@ export const reportCatFn = createServerFn({ method: "POST" })
 			},
 		});
 
-		return {};
+		return { success: true };
 	});
 
 export const getCatRequestsForMap = createServerFn()
