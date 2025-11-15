@@ -3,7 +3,7 @@ import { CatFormType, type CatFurColor } from "@/server/db/enums";
 
 export const reportCatOptions = formOptions({
 	defaultValues: {
-		type: CatFormType.REPORT_CAT_FOUND,
+		type: CatFormType.FIND_MY_CAT,
 		catDetails: {
 			name: "",
 			furColor: [] as CatFurColor[],

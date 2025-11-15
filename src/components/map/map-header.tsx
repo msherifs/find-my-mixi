@@ -221,7 +221,7 @@ const MapHeader = ({ firstName, lastName, role }: User) => {
 						</Button>
 						<Button
 							variant={"secondary"}
-							onClick={() => navigate({ to: "/found-lost-cat" })}
+							onClick={() => navigate({ to: "/report-found-cat" })}
 							className="w-full"
 						>
 							{t("map.report_found_cat")}

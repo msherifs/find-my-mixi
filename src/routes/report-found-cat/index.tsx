@@ -21,6 +21,7 @@ import { reportCatOptions } from "@/forms/report-cat";
 import {
 	CatCoatType,
 	CatEyeColor,
+	CatFormType,
 	CatFurColor,
 	CatFurPattern,
 	CatSize,
@@ -31,23 +32,19 @@ import {
 	reportCatSchema,
 } from "@/server/functions/cat-reporting";
 
-export const Route = createFileRoute("/report-lost-cat/")({
+export const Route = createFileRoute("/report-found-cat/")({
 	component: RouteComponent,
 });
 
 function RouteComponent() {
 	const [currentStep, setCurrentStep] = useState(1);
 	const [uploadedCatPhoto, setUploadedCatPhoto] = useState<File | null>(null);
-	const [uploadedOwnerPhoto, setUploadedOwnerPhoto] = useState<File | null>(
-		null,
-	);
 	const { t } = useTranslation();
 
 	const DUMMY_CAT_PHOTO_URL =
 		"https://img.freepik.com/free-photo/portrait-beautiful-purebred-pussycat-with-shorthair-orange-collar-neck-sitting-floor-reacting-camera-flash-scared-looking-light-indoor_8353-12551.jpg?semt=ais_hybrid&w=740&q=80";
 
 	const firstStepNextHandler = async () => {
-		await form.validateField("catDetails.name", "blur");
 		await form.validateField("catDetails.date", "blur");
 		await form.validateField("catDetails.furColor", "blur");
 		await form.validateField("catDetails.furPattern", "blur");
@@ -91,7 +88,11 @@ function RouteComponent() {
 		}
 	};
 	const form = useForm({
-		...reportCatOptions,
+		defaultValues: {
+			...reportCatOptions.defaultValues,
+			type: CatFormType.REPORT_CAT_FOUND,
+			name: undefined,
+		},
 		onSubmit: async ({ value }) => {
 			const dataToSubmit = {
 				...value,
@@ -118,8 +119,8 @@ function RouteComponent() {
 	if (currentStep === 4)
 		return (
 			<LostCatReported
-				title={t("reportCat.search_process_starts")}
-				description={t("reportCat.sit_back_relax")}
+				title={t("reportCat.thank_you_for_your_help")}
+				description={t("reportCat.your_info_is_vital")}
 			/>
 		);
 
@@ -136,11 +137,11 @@ function RouteComponent() {
 				<div className="flex flex-col items-start w-full gap-3 sm:px-8 px-0">
 					<img
 						src={CatImage}
-						alt="Report Lost Cat"
+						alt="Report Found Cat"
 						className="w-[62px] h-auto"
 					/>
 					<p className="font-semibold text-2xl leading-8 tracking-normal text-gray-900">
-						{t("reportCat.report_lost_cat")}
+						{t("reportCat.report_found_cat")}
 					</p>
 				</div>
 				{currentStep === 1 && (
@@ -149,34 +150,6 @@ function RouteComponent() {
 							{t("reportCat.cat_information")}
 						</p>
 						<div className="flex items-start w-full gap-4 sm:flex-row flex-col w-full">
-							<form.Field
-								name="catDetails.name"
-								validators={{
-									onBlur: ({ value }) => {
-										if (!value || value.length === 0) {
-											return "errors.required";
-										}
-									},
-								}}
-							>
-								{(field) => (
-									<MixiInput
-										label={t("reportCat.cats_name")}
-										placeholder={t("reportCat.enter_cats_name")}
-										type="text"
-										name="catDetails.name"
-										value={field.state.value}
-										onChange={(event) => field.handleChange(event.target.value)}
-										onBlur={field.handleBlur}
-										autoComplete="off"
-										errorMessage={
-											field.state.meta.errors[0]
-												? t(field.state.meta.errors[0])
-												: undefined
-										}
-									/>
-								)}
-							</form.Field>
 							<form.Field
 								name="catDetails.furColor"
 								validators={{
@@ -354,7 +327,7 @@ function RouteComponent() {
 							>
 								{(field) => (
 									<MixiCalendar
-										label={t("reportCat.lost_date")}
+										label={t("reportCat.date_found")}
 										placeholder={t("reportCat.select_date")}
 										selectedDate={
 											field.state.value
@@ -491,35 +464,7 @@ function RouteComponent() {
 									/>
 								)}
 							</form.Field>
-							<form.Field name="userDetails.dob">
-								{(field) => (
-									<MixiCalendar
-										label={t("reportCat.date_of_birth")}
-										placeholder={t("reportCat.select_date")}
-										selectedDate={
-											field.state.value
-												? DateTime.fromISO(field.state.value).toJSDate()
-												: undefined
-										}
-										onDateChange={(value) => {
-											if (!value) {
-												field.handleChange("");
-												return;
-											}
-
-											const isoString = DateTime.fromJSDate(value).toISO();
-											field.handleChange(isoString ?? "");
-										}}
-										captionLayout="dropdown"
-									/>
-								)}
-							</form.Field>
 						</div>
-						<MixiFileUpload
-							file={uploadedOwnerPhoto}
-							setFile={setUploadedOwnerPhoto}
-							label={t("reportCat.upload_your_photo_optional")}
-						/>
 						<Button className="w-full" onClick={firstStepNextHandler}>
 							{t("reportCat.next")}
 						</Button>
@@ -794,7 +739,7 @@ const ReviewSection = ({
 					value={t(`catSize.${values.catDetails.size.toLowerCase()}`)}
 				/>
 				<ValueCard
-					label={t("reportCat.lost_date")}
+					label={t("reportCat.date_found")}
 					value={DateTime.fromJSDate(values.catDetails.date).toFormat(
 						"dd/MM/yyyy",
 					)}
@@ -808,7 +753,7 @@ const ReviewSection = ({
 			<p className="font-medium text-xl leading-[30px] tracking-normal text-gray-900">
 				{t("reportCat.owner_information")}
 			</p>
-			<div className="w-full flex items-start gap-4">
+			<div className="w-full grid grid-cols-2 sm:grid-cols-4 gap-4">
 				<ValueCard
 					label={t("reportCat.owner_name")}
 					value={values.userDetails.name}
@@ -862,8 +807,8 @@ const ValueCard = ({ label, value }: { label: string; value: string }) => {
 			<p className="font-semibold text-[14px] leading-[20px] tracking-[0] white-space-nowrap">
 				{label}
 			</p>
-			<p className="font-normal text-[14px] leading-[24px] tracking-[0] text-[#6C6C6C]">
-				{value}
+			<p className="font-normal text-[14px] leading-[24px] tracking-[0] text-[#6C6C6C] truncate w-[180px] sm:w-full">
+				{value.length === 0 ? "-" : value}
 			</p>
 		</div>
 	);

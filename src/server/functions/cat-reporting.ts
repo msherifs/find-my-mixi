@@ -18,7 +18,7 @@ import {
 } from "@/server/db/queries";
 
 const catDetailsSchema = z.object({
-	name: z.string().nonempty({ error: "errors.required" }),
+	name: z.string().optional(),
 	furColor: z.enum(CatFurColor).array().min(1, { error: "errors.required" }),
 	furPattern: z.enum(CatFurPattern, { error: "errors.required" }),
 	coatType: z.enum(CatCoatType, { error: "errors.required" }),
@@ -79,12 +79,25 @@ const locationSchema = z.object({
 		.trim(),
 });
 
-export const reportCatSchema = z.object({
-	type: z.enum(CatFormType),
-	catDetails: catDetailsSchema,
-	userDetails: userDetailsSchema,
-	location: locationSchema,
-});
+export const reportCatSchema = z
+	.object({
+		type: z.enum(CatFormType),
+		catDetails: catDetailsSchema,
+		userDetails: userDetailsSchema,
+		location: locationSchema,
+	})
+	.refine(
+		(data) => {
+			if (data.type === CatFormType.FIND_MY_CAT) {
+				return data.catDetails.name && data.catDetails.name.length > 0;
+			}
+			return true;
+		},
+		{
+			message: "errors.required",
+			path: ["catDetails.name"],
+		},
+	);
 
 export type ReportCatForm = z.infer<typeof reportCatSchema>;
 

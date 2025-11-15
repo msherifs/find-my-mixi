@@ -34,7 +34,7 @@ const CatRequestSchema = schema(
 		type: types.enum(Object.values(CatFormType), { required: true }),
 		catDetails: types.object(
 			{
-				name: types.string({ required: true }),
+				name: types.string(),
 				furColor: types.array(
 					types.enum(Object.values(CatFurColor), { required: true }),
 					{ required: true },

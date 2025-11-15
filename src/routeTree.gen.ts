@@ -13,8 +13,8 @@ import { Route as LandingRouteImport } from './routes/_landing'
 import { Route as AuthRouteImport } from './routes/_auth'
 import { Route as AdminRouteImport } from './routes/_admin'
 import { Route as ReportLostCatIndexRouteImport } from './routes/report-lost-cat/index'
+import { Route as ReportFoundCatIndexRouteImport } from './routes/report-found-cat/index'
 import { Route as MapIndexRouteImport } from './routes/map/index'
-import { Route as FoundLostCatIndexRouteImport } from './routes/found-lost-cat/index'
 import { Route as LandingIndexRouteImport } from './routes/_landing/index'
 import { Route as DemoTanstackQueryRouteImport } from './routes/demo/tanstack-query'
 import { Route as DemoTableRouteImport } from './routes/demo/table'
@@ -55,14 +55,14 @@ const ReportLostCatIndexRoute = ReportLostCatIndexRouteImport.update({
   path: '/report-lost-cat/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ReportFoundCatIndexRoute = ReportFoundCatIndexRouteImport.update({
+  id: '/report-found-cat/',
+  path: '/report-found-cat/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const MapIndexRoute = MapIndexRouteImport.update({
   id: '/map/',
   path: '/map/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const FoundLostCatIndexRoute = FoundLostCatIndexRouteImport.update({
-  id: '/found-lost-cat/',
-  path: '/found-lost-cat/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LandingIndexRoute = LandingIndexRouteImport.update({
@@ -187,8 +187,8 @@ export interface FileRoutesByFullPath {
   '/demo/table': typeof DemoTableRoute
   '/demo/tanstack-query': typeof DemoTanstackQueryRoute
   '/': typeof LandingIndexRoute
-  '/found-lost-cat': typeof FoundLostCatIndexRoute
   '/map': typeof MapIndexRoute
+  '/report-found-cat': typeof ReportFoundCatIndexRoute
   '/report-lost-cat': typeof ReportLostCatIndexRoute
   '/admin/cat-requests': typeof AdminAdminCatRequestsRoute
   '/admin/contact-us': typeof AdminAdminContactUsRoute
@@ -214,8 +214,8 @@ export interface FileRoutesByTo {
   '/demo/table': typeof DemoTableRoute
   '/demo/tanstack-query': typeof DemoTanstackQueryRoute
   '/': typeof LandingIndexRoute
-  '/found-lost-cat': typeof FoundLostCatIndexRoute
   '/map': typeof MapIndexRoute
+  '/report-found-cat': typeof ReportFoundCatIndexRoute
   '/report-lost-cat': typeof ReportLostCatIndexRoute
   '/admin/cat-requests': typeof AdminAdminCatRequestsRoute
   '/admin/contact-us': typeof AdminAdminContactUsRoute
@@ -245,8 +245,8 @@ export interface FileRoutesById {
   '/demo/table': typeof DemoTableRoute
   '/demo/tanstack-query': typeof DemoTanstackQueryRoute
   '/_landing/': typeof LandingIndexRoute
-  '/found-lost-cat/': typeof FoundLostCatIndexRoute
   '/map/': typeof MapIndexRoute
+  '/report-found-cat/': typeof ReportFoundCatIndexRoute
   '/report-lost-cat/': typeof ReportLostCatIndexRoute
   '/_admin/admin/cat-requests': typeof AdminAdminCatRequestsRoute
   '/_admin/admin/contact-us': typeof AdminAdminContactUsRoute
@@ -274,8 +274,8 @@ export interface FileRouteTypes {
     | '/demo/table'
     | '/demo/tanstack-query'
     | '/'
-    | '/found-lost-cat'
     | '/map'
+    | '/report-found-cat'
     | '/report-lost-cat'
     | '/admin/cat-requests'
     | '/admin/contact-us'
@@ -301,8 +301,8 @@ export interface FileRouteTypes {
     | '/demo/table'
     | '/demo/tanstack-query'
     | '/'
-    | '/found-lost-cat'
     | '/map'
+    | '/report-found-cat'
     | '/report-lost-cat'
     | '/admin/cat-requests'
     | '/admin/contact-us'
@@ -331,8 +331,8 @@ export interface FileRouteTypes {
     | '/demo/table'
     | '/demo/tanstack-query'
     | '/_landing/'
-    | '/found-lost-cat/'
     | '/map/'
+    | '/report-found-cat/'
     | '/report-lost-cat/'
     | '/_admin/admin/cat-requests'
     | '/_admin/admin/contact-us'
@@ -354,8 +354,8 @@ export interface RootRouteChildren {
   LandingRoute: typeof LandingRouteWithChildren
   DemoTableRoute: typeof DemoTableRoute
   DemoTanstackQueryRoute: typeof DemoTanstackQueryRoute
-  FoundLostCatIndexRoute: typeof FoundLostCatIndexRoute
   MapIndexRoute: typeof MapIndexRoute
+  ReportFoundCatIndexRoute: typeof ReportFoundCatIndexRoute
   ReportLostCatIndexRoute: typeof ReportLostCatIndexRoute
   DemoApiNamesRoute: typeof DemoApiNamesRoute
   DemoApiTqTodosRoute: typeof DemoApiTqTodosRoute
@@ -397,18 +397,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ReportLostCatIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/report-found-cat/': {
+      id: '/report-found-cat/'
+      path: '/report-found-cat'
+      fullPath: '/report-found-cat'
+      preLoaderRoute: typeof ReportFoundCatIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/map/': {
       id: '/map/'
       path: '/map'
       fullPath: '/map'
       preLoaderRoute: typeof MapIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/found-lost-cat/': {
-      id: '/found-lost-cat/'
-      path: '/found-lost-cat'
-      fullPath: '/found-lost-cat'
-      preLoaderRoute: typeof FoundLostCatIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/_landing/': {
@@ -623,8 +623,8 @@ const rootRouteChildren: RootRouteChildren = {
   LandingRoute: LandingRouteWithChildren,
   DemoTableRoute: DemoTableRoute,
   DemoTanstackQueryRoute: DemoTanstackQueryRoute,
-  FoundLostCatIndexRoute: FoundLostCatIndexRoute,
   MapIndexRoute: MapIndexRoute,
+  ReportFoundCatIndexRoute: ReportFoundCatIndexRoute,
   ReportLostCatIndexRoute: ReportLostCatIndexRoute,
   DemoApiNamesRoute: DemoApiNamesRoute,
   DemoApiTqTodosRoute: DemoApiTqTodosRoute,

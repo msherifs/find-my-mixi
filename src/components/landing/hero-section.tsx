@@ -75,7 +75,7 @@ const HeroSection = () => {
 						variant={"secondary"}
 						size={"lg"}
 						className="shadow-none border-none w-full sm:w-auto"
-						onClick={() => navigate({ to: "/found-lost-cat" })}
+						onClick={() => navigate({ to: "/report-found-cat" })}
 					>
 						{t("landing.heroSection.found_a_cat")}
 					</Button>

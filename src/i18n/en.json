@@ -194,7 +194,7 @@
 		"cats_name": "Cat's Name",
 		"enter_cats_name": "Enter your cat's name",
 		"fur_color": "Fur Color",
-		"select_fur_color": "Select fur color",
+		"select_fur_color": "Select the color(s) of your cat's fur",
 		"fur_pattern": "Fur Pattern",
 		"select_fur_pattern": "Select fur pattern",
 		"coat_type": "Coat Type",
@@ -231,7 +231,7 @@
 		"state": "State/Province",
 		"enter_state": "Enter the state or province",
 		"country": "Country",
-		"enter_country": "Enter the country",
+		"enter_country": "Enter the country/region",
 		"postal_code": "Zip/Postal Code",
 		"enter_postal_code": "Enter the zip/postal code",
 		"owner_name": "Owner's Name",
@@ -240,7 +240,11 @@
 		"confirm": "Confirm",
 		"search_process_starts": "The search Process Starts!",
 		"sit_back_relax": "Sit back, relax, and we'll notify you with any updates.",
-		"go_to_home": "Go to Homepage"
+		"go_to_home": "Go to Homepage",
+		"date_found": "Date the Mixi was found",
+		"report_found_cat": "Report Found Cat",
+		"thank_you_for_your_help": "Thank you for your help!",
+		"your_info_is_vital": "Your information is vital in reuniting the cat with its family. We'll keep you updated every step of the way."
 	},
 	"errors": {
 		"generic": "Please enter a valid value.",

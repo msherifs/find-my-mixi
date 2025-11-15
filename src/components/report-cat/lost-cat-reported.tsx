@@ -3,7 +3,13 @@ import { useTranslation } from "react-i18next";
 import SearchCat from "@/assets/images/search-cat.svg";
 import { Button } from "../ui/button";
 
-function LostCatReported() {
+function LostCatReported({
+	title,
+	description,
+}: {
+	title: string;
+	description: string;
+}) {
 	const { t } = useTranslation();
 	const navigate = useNavigate();
 	return (
@@ -16,10 +22,10 @@ function LostCatReported() {
 						className="sm:w-auto w-40"
 					/>
 					<h2 className="font-epilogue font-bold text-[40px] sm:text-[63.96px] sm:leading-[92px] leading-[58px] tracking-[-0.02em] text-center">
-						{t("reportCat.search_process_starts")}
+						{title}
 					</h2>
 					<p className="font-normal text-[20.68px] leading-[31px] tracking-[0] text-center">
-						{t("reportCat.sit_back_relax")}
+						{description}
 					</p>
 					<Button onClick={() => navigate({ to: "/" })}>
 						{t("reportCat.go_to_home")}
