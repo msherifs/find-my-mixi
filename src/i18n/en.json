@@ -379,5 +379,9 @@
 	"collarEmbellishment": {
 		"reflective_strip": "Reflective strip",
 		"bell": "Bell"
+	},
+	"languages": {
+		"english": "English",
+		"spanish": "Spanish"
 	}
 }

@@ -1,6 +1,122 @@
 {
+	"landing": {
+		"header": {
+			"home": "Inicio",
+			"whyUs": "¿Por Qué Nosotros?",
+			"contactUs": "Contáctanos",
+			"testimonials": "Testimonios",
+			"login": "Iniciar Sesión",
+			"signUp": "Registrarse",
+			"goToApp": "Ir a la Aplicación"
+		},
+		"heroSection": {
+			"lost_your": "¿Perdiste a Tu",
+			"mixi": "Mixi?",
+			"we_will_help_bring_them_home": "Te ayudaremos a traerlo a casa",
+			"we_quickly_reunite_text": "Reunimos rápidamente a los gatos perdidos con sus familias usando geolocalización y promoción en redes sociales.",
+			"lost_a_cat": "Perdí un Gato",
+			"found_a_cat": "Encontré un Gato",
+			"cats_found": "Gatos Encontrados"
+		},
+		"howItWorksSection": {
+			"title": "Cómo Funciona",
+			"description": "Nuestro simple proceso de 3 pasos ayuda a reunir a las familias con sus queridos gatos de manera rápida y segura.",
+			"report_your_lost_cat": {
+				"title": "Reporta Tu Gato Perdido",
+				"description": "¿Perdiste a tu Mixi? Repórtalo aquí para comenzar el viaje a casa."
+			},
+			"wait_for_notifications": {
+				"title": "Espera por Notificaciones",
+				"description": "Mantente alerta: Espera notificaciones sobre el paradero de tu Mixi."
+			},
+			"reunite_with_your_cat": {
+				"title": "Lleva a Tu Gato a Casa",
+				"description": "Reúnete con tu amigo peludo: Trae a tu Mixi a casa de manera segura."
+			}
+		},
+		"statsSection": {
+			"cats_found": "Gatos Encontrados",
+			"cats_reported": "Gatos Reportados",
+			"cats_delivered": "Gatos Entregados",
+			"community_members": "Miembros de la Comunidad"
+		},
+		"whyUsSection": {
+			"title": "¿Por Qué Elegir FindMyMixi?",
+			"description": "Tu Plataforma Dedicada para Reunir Gatos Perdidos con sus Familias",
+			"fast_notifications": {
+				"title": "Notificaciones Rápidas y Confiables",
+				"description": "Recibe actualizaciones en tiempo real cuando tu Mixi sea encontrado o avistado."
+			},
+			"network": {
+				"title": "Red Extensa",
+				"description": "Una gran comunidad aumenta tus posibilidades de reunirte rápidamente con tu Mixi."
+			},
+			"user_friendly": {
+				"title": "Reportes Fáciles de Usar",
+				"description": "Reporta Mixis perdidos o encontrados fácilmente con solo unos clics."
+			}
+		},
+		"testimonialSection": {
+			"testimonial": "\"Cuando perdí a mi gato, publiqué en todos los grupos de Facebook que pude encontrar, pero eran para todo tipo de mascotas. Fue frustrante; recibí comentarios desorganizados sin resultados. Luego encontré FindMyMixi, y todo cambió. La plataforma es fácil de usar, y el servicio de anuncios en redes sociales fue increíblemente útil. En pocos días, gracias a las notificaciones en tiempo real y el apoyo de la comunidad, pude encontrar a mi Mixi.\"",
+			"user_description": "Mamá Gatuna de {{name}}"
+		},
+		"footer": {
+			"home": "Inicio",
+			"whyUs": "¿Por Qué Nosotros?",
+			"contactUs": "Contáctanos",
+			"testimonials": "Testimonios",
+			"privacyPolicy": "Política de Privacidad",
+			"faq": "Preguntas Frecuentes",
+			"copyright": "© 2025 FindMyMixi. Todos los derechos reservados"
+		}
+	},
+	"login": {
+		"login": "Iniciar Sesión",
+		"enter_email_and_password": "Ingresa tu correo electrónico y contraseña",
+		"email": "Correo Electrónico",
+		"password": "Contraseña",
+		"forgot_password": "¿Olvidaste tu Contraseña?",
+		"remember_me": "Recuérdame",
+		"sign_in": "Iniciar Sesión",
+		"signing_in": "Iniciando sesión...",
+		"success": "¡Bienvenido de vuelta!",
+		"sign_up": "Registrarse",
+		"dont_have_account": "¿No tienes una cuenta?",
+		"invalid_credentials": "Correo electrónico o contraseña incorrectos.",
+		"error_generic": "No pudimos iniciar sesión. Por favor intenta de nuevo."
+	},
+	"signup": {
+		"sign_up": "Registrarse",
+		"enter_required_data": "¡Ingresa los datos requeridos y estarás listo!",
+		"first_name": "Nombre",
+		"last_name": "Apellido",
+		"email": "Correo Electrónico",
+		"password": "Contraseña",
+		"creating_account": "Creando tu cuenta...",
+		"success": "¡Cuenta creada!",
+		"email_exists": "Ya existe una cuenta con este correo electrónico.",
+		"error_generic": "No pudimos completar tu registro. Por favor intenta de nuevo.",
+		"already_have_account": "¿Ya tienes una cuenta?",
+		"login": "Iniciar Sesión"
+	},
+	"contactUs": {
+		"contact_us": "Contáctanos",
+		"already_part_of_community": "¿Ya eres parte de la comunidad FindMyMixi? Inicia sesión para personalizar tu experiencia de soporte. Si no has iniciado sesión, ¡aún estamos aquí para ayudarte!",
+		"email": "Correo Electrónico",
+		"select_a_topic": "Selecciona un Tema",
+		"or_tell_us_what_you_need": "O cuéntanos en qué necesitas ayuda",
+		"get_assistance": "Obtener Asistencia",
+		"submitting": "Enviando...",
+		"topics": {
+			"ENQUIRY": "Consulta General",
+			"SUGGESTION": "Sugerencia",
+			"COMPLAINT": "Reportar un Problema"
+		},
+		"lost_a_cat": "Perdí un Gato",
+		"found_a_cat": "Encontré un Gato"
+	},
 	"faq": {
-		"faq": "FAQ",
+		"faq": "Preguntas Frecuentes",
 		"cant_find_answer": "¿No encuentras la respuesta que buscas? Comunícate con nuestro equipo de soporte al cliente",
 		"how_to_report_lost_cat_question": "¿Cómo reporto un gato perdido?",
 		"how_to_report_lost_cat_answer": "Para reportar un gato perdido, visita nuestra página de inicio y haz clic en el botón \"Reportar Gato Perdido\". Antes de comenzar, asegúrate de tener la siguiente información a la mano:",
@@ -22,10 +138,8 @@
 		"date_seen": "Fecha en que viste al gato",
 		"photo_of_cat": "Foto del gato (formatos JPEG, PNG)",
 		"share_social_media": "Además, puedes utilizar nuestras herramientas para compartir la información en redes sociales, lo que ayudará a aumentar las posibilidades de que el gato se reúna con su dueño.",
-
 		"receive_notifications_question": "¿Cómo recibo notificaciones sobre avistamientos o gatos encontrados?",
 		"receive_notifications_answer": "Una vez que hayas reportado un gato perdido en nuestra plataforma, recibirás notificaciones en tiempo real cuando se reporte un gato similar al tuyo en la zona. Es importante que proporciones un correo electrónico válido en el formulario de reporte, ya que todas las notificaciones se enviarán a esa dirección. Además, puedes configurar alertas para recibir actualizaciones sobre avistamientos en áreas específicas.",
-
 		"use_interactive_map_question": "¿De qué manera puedo aprovechar el mapa interactivo para localizar gatos?",
 		"use_interactive_map_answer": "El mapa interactivo de FindMyMixi te permite ver en tiempo real los avistamientos y reportes de gatos perdidos y encontrados cerca de la ubicación donde se perdió un gato. Los gatos encontrados se muestran en verde, mientras que los gatos perdidos se muestran en rosa, facilitando la identificación de coincidencias cercanas.",
 		"map_filter_options": "Además, puedes filtrar en el mapa por las siguientes características para afinar tu búsqueda:",
@@ -36,19 +150,14 @@
 		"filter_size": "Tamaño",
 		"filter_collar": "Collar",
 		"map_tool_description": "Esta herramienta está diseñada para ayudarte a localizar a tu gato o identificar uno que hayas encontrado con mayor facilidad.",
-
 		"safe_to_share_info_question": "¿Es seguro compartir mi información personal en la plataforma?",
 		"safe_to_share_info_answer": "Sí, toda la información que compartes en FindMyMixi es completamente confidencial y solo se utiliza con el fin de ayudar a reunir gatos perdidos con sus dueños. Tu información personal no se compartirá con otros usuarios sin tu consentimiento.",
-
 		"cat_reported_found_question": "¿Qué hago si mi gato es reportado como encontrado?",
 		"cat_reported_found_answer": "Si tu gato es reportado como encontrado en nuestra plataforma, recibirás una notificación inmediata con los detalles. Te pondremos en contacto con la persona que lo encontró para que puedan coordinar la reunificación de manera segura.",
-
 		"donate_support_platform_question": "¿Cómo puedo donar para apoyar la plataforma?",
 		"donate_support_platform_answer": "Puedes hacer una donación de manera segura a través de nuestra página web, gracias a OpenPay by BBVA, una plataforma confiable que asegura tus transacciones. Las donaciones ayudan a cubrir los costos de servidores en Amazon Web Services (AWS), el uso de la API de Google Maps para el mapa interactivo, y el mantenimiento general de la plataforma. Estos fondos son esenciales para mantener la plataforma operativa y mejorar los servicios que ofrecemos a la comunidad.",
-
 		"errors_or_issues_question": "¿Qué debo hacer si encuentro errores o tengo problemas con la plataforma?",
 		"errors_or_issues_answer": "Si encuentras algún error o tienes problemas mientras usas FindMyMixi, no dudes en contactar a nuestro equipo de soporte técnico. Puedes hacerlo a través de la página de contacto o enviando un correo electrónico directamente a contact@findmymixi.com. Estamos comprometidos en ayudarte a resolver cualquier inconveniente lo más rápido posible para garantizar una experiencia fluida y sin interrupciones en la plataforma.",
-
 		"premium_service_ads_question": "¿Qué es el servicio premium de publicidad en redes sociales?",
 		"premium_service_ads_answer": "FindMyMixi ofrece un servicio opcional de pago para aumentar la visibilidad de los reportes de gatos perdidos a través de anuncios en Facebook e Instagram. Este servicio se contrata de forma semanal y ayuda a acelerar la búsqueda de tu gato.",
 		"premium_service_notes": "Notas importantes:",
@@ -56,9 +165,162 @@
 		"ads_campaign_duration": "La duración y presupuesto de la campaña se establecen para cada campaña publicitaria",
 		"ads_views_depend": "El número de visualizaciones depende de muchos factores (ubicación, calidad de la foto, duración de la campaña)",
 		"ads_optional_service": "Este es un servicio opcional que complementa las funciones básicas gratuitas",
-
 		"cancel_premium_subscription_question": "¿Puedo cancelar mi suscripción premium?",
 		"cancel_premium_subscription_answer": "Sí, las suscripciones premium de publicidad en redes sociales se renuevan semanalmente y pueden cancelarse en cualquier momento desde el panel de usuario. Al cancelar, la suscripción no se renovará en el siguiente ciclo. Además, marcar un reporte como \"reunido\", \"fallecido\" o \"adoptado\" cancelará automáticamente todas las suscripciones vinculadas a ese reporte."
+	},
+	"privacyPolicy": {
+		"privacy_policy": "Política de Privacidad",
+		"welcome_to_findmymixi": "Bienvenido a FindMyMixi. Al acceder o usar nuestra plataforma, aceptas los siguientes términos y condiciones:",
+		"acceptance_of_terms_title": "Aceptación de Términos",
+		"acceptance_of_terms_description": "Al usar FindMyMixi, confirmas que tienes al menos 13 años y aceptas estos Términos y Condiciones. Si no estás de acuerdo, por favor no uses nuestra plataforma.",
+		"services_provided_title": "Servicios Proporcionados",
+		"services_provided_description": "FindMyMixi es una plataforma digital diseñada para reunir gatos perdidos con sus familias a través de reportes, geolocalización y apoyo comunitario.",
+		"user_responsibilities_title": "Responsabilidades del Usuario",
+		"user_responsibilities_description_1": "Proporcionar información precisa y veraz al enviar reportes de gatos perdidos o encontrados.",
+		"user_responsibilities_description_2": "Respetar a otros usuarios y evitar contenido inapropiado.",
+		"user_responsibilities_description_3": "No hacer mal uso de la plataforma con fines fraudulentos o dañinos.",
+		"account_creation_title": "Creación de Cuenta",
+		"account_creation_description": "Eres responsable de mantener la confidencialidad de las credenciales de tu cuenta. Cualquier actividad bajo tu cuenta es tu responsabilidad.",
+		"donations_payments_title": "Donaciones y Pagos",
+		"donations_payments_description": "Las donaciones y servicios premium se procesan de forma segura a través de OpenPay by BBVA. FindMyMixi no almacena información de tarjetas de crédito.",
+		"intellectual_property_title": "Propiedad Intelectual",
+		"intellectual_property_description": "Todo el contenido, diseño y marca de FindMyMixi son propiedad intelectual de FindMyMixi y no pueden ser copiados, distribuidos o usados sin consentimiento previo.",
+		"limitation_of_liability_title": "Limitación de Responsabilidad",
+		"limitation_of_liability_description": "FindMyMixi proporciona sus servicios \"tal como están\" y no garantiza reuniones exitosas. No somos responsables de daños indirectos, pérdidas o acciones de terceros.",
+		"termination_of_accounts_title": "Terminación de Cuentas",
+		"termination_of_accounts_description": "Nos reservamos el derecho de suspender o terminar cuentas que violen estos Términos.",
+		"governing_law_title": "Ley Aplicable",
+		"governing_law_description": "Estos Términos se rigen por las leyes aplicables de protección de datos y del consumidor de los Estados Unidos, México y la Unión Europea.",
+		"contact_title": "Contacto",
+		"contact_description": "Para preguntas, contáctanos en:"
+	},
+	"forgotPassword": {
+		"forgot_password": "¿Olvidaste tu contraseña?",
+		"no_worries": "No te preocupes, te enviaremos instrucciones para restablecerla.",
+		"email": "Correo Electrónico",
+		"reset_password": "Restablecer Contraseña",
+		"back_to_login": "Volver a Iniciar Sesión",
+		"check_your_email": "Revisa Tu Correo Electrónico",
+		"we_sent_reset_link": "Enviamos un enlace para restablecer la contraseña a {{email}}.",
+		"did_not_receive": "¿No recibiste el correo?",
+		"click_to_resend": "Haz clic para reenviar"
+	},
+	"resetPassword": {
+		"set_new_password": "Establecer Nueva Contraseña",
+		"new_password_must_be_different": "Tu nueva contraseña debe ser diferente a las contraseñas usadas anteriormente.",
+		"password": "Contraseña",
+		"confirm_password": "Confirmar Contraseña",
+		"reset_password": "Restablecer Contraseña",
+		"password_reset": "Contraseña Restablecida",
+		"password_successfully_reset": "Tu contraseña ha sido restablecida exitosamente. Haz clic abajo para iniciar sesión.",
+		"continue": "Continuar"
+	},
+	"map": {
+		"center_my_location": "Centrar Mi Ubicación",
+		"quick_actions": "Acciones Rápidas",
+		"report_lost_cat": "Reportar Gato Perdido",
+		"report_found_cat": "Reportar Gato Encontrado",
+		"color": "Color",
+		"eye_color": "Color de Ojos",
+		"size": "Tamaño",
+		"pattern": "Patrón",
+		"i_am_the_owner": "Soy el Dueño",
+		"filter": "Filtrar",
+		"fur": "Pelaje",
+		"length": "Longitud",
+		"collar": "Collar",
+		"embellishments": "Adornos",
+		"logout_error": "No pudimos cerrar tu sesión. Por favor intenta de nuevo.",
+		"view_profile": "Ver Perfil",
+		"sign_out": "Cerrar Sesión",
+		"submit": "Enviar",
+		"leave_your_info": "Deja tu información y nos pondremos en contacto contigo",
+		"phone_number": "Número de Teléfono",
+		"email": "Correo Electrónico",
+		"admin": "Ir a Admin",
+		"unknown_name": "Desconocido"
+	},
+	"reportCat": {
+		"cat_information": "Información del Gato",
+		"cat_address": "Dirección del Gato",
+		"review": "Revisar",
+		"report_lost_cat": "Reportar Gato Perdido",
+		"cats_name": "Nombre del Gato",
+		"enter_cats_name": "Ingresa el nombre de tu gato",
+		"fur_color": "Color de Pelaje",
+		"select_fur_color": "Selecciona el/los color(es) del pelaje de tu gato",
+		"fur_pattern": "Patrón de Pelaje",
+		"select_fur_pattern": "Selecciona el patrón de pelaje",
+		"coat_type": "Tipo de Pelaje",
+		"select_coat_type": "Selecciona el tipo de pelaje",
+		"distinctive_marks": "Marcas Distintivas",
+		"distinctive_marks_description": "ej., cicatrices, patrones únicos",
+		"eye_color": "Color de Ojos",
+		"select_eye_color": "Selecciona el color de ojos",
+		"size": "Tamaño",
+		"select_size": "Selecciona el tamaño de tu gato",
+		"lost_date": "Fecha en que se Perdió el Gato",
+		"select_date": "Seleccionar Fecha",
+		"click_to_upload": "Haz clic para subir",
+		"or_drag_and_drop": " o arrastra y suelta",
+		"accepted_formats": "PNG, JPG (máx. 5MB)",
+		"invalid_file_type": "Por favor sube solo archivos de imagen (PNG, JPG, JPEG, GIF, WebP)",
+		"file_too_large": "El tamaño del archivo debe ser menor a 5MB",
+		"additional_information": "Información Adicional Relevante",
+		"additional_information_placeholder": "Proporciona cualquier detalle adicional sobre el gato perdido",
+		"owner_information": "Información del Dueño",
+		"name": "Nombre",
+		"enter_your_name": "Ingresa tu nombre completo",
+		"phone_number": "Número de Teléfono",
+		"enter_your_phone_number": "Ingresa tu número de teléfono",
+		"email": "Correo Electrónico",
+		"enter_your_email": "Ingresa tu dirección de correo electrónico",
+		"date_of_birth": "Fecha de Nacimiento",
+		"upload_your_photo_optional": "Sube Tu Foto (Opcional)",
+		"next": "Siguiente",
+		"address": "Dirección",
+		"enter_address": "Ingresa la dirección donde se vio por última vez a tu gato",
+		"city": "Ciudad",
+		"enter_city": "Ingresa la ciudad",
+		"state": "Estado/Provincia",
+		"enter_state": "Ingresa el estado o provincia",
+		"country": "País",
+		"enter_country": "Ingresa el país/región",
+		"postal_code": "Código Postal",
+		"enter_postal_code": "Ingresa el código postal",
+		"owner_name": "Nombre del Dueño",
+		"cats_address": "Dirección del Gato",
+		"country_region": "País/Región",
+		"confirm": "Confirmar",
+		"search_process_starts": "¡El Proceso de Búsqueda Comienza!",
+		"sit_back_relax": "Relájate, te notificaremos con cualquier actualización.",
+		"go_to_home": "Ir a la Página de Inicio",
+		"date_found": "Fecha en que se Encontró el Mixi",
+		"report_found_cat": "Reportar Gato Encontrado",
+		"thank_you_for_your_help": "¡Gracias por tu ayuda!",
+		"your_info_is_vital": "Tu información es vital para reunir al gato con su familia. Te mantendremos actualizado en cada paso del camino.",
+		"was_cat_wearing_collar": "¿El gato llevaba collar?",
+		"yes": "Sí",
+		"no": "No",
+		"collar_color": "Color del Collar",
+		"collar_embellishment": "Adorno del Collar",
+		"collar_pattern": "Patrón del Collar",
+		"select_collar_color": "Selecciona el color del collar",
+		"select_collar_pattern": "Selecciona el patrón del collar",
+		"select_collar_embellishment": "Selecciona el adorno del collar"
+	},
+	"errors": {
+		"generic": "Por favor ingresa un valor válido.",
+		"email": "Por favor ingresa una dirección de correo electrónico válida.",
+		"tooShort": "El campo debe tener al menos 2 caracteres.",
+		"tooLong": "El campo no puede tener más de 100 caracteres.",
+		"required": "Este campo es obligatorio.",
+		"password_criteria": "La contraseña debe tener al menos 8 caracteres.",
+		"duplicate_email": "Este correo electrónico ya existe.",
+		"nonempty": "Este campo no puede estar vacío.",
+		"upload_image": "Por favor sube un archivo de imagen.",
+		"phone_number": "Por favor ingresa un número de teléfono válido.",
+		"something_went_wrong": "Algo salió mal. Por favor intenta de nuevo."
 	},
 	"catFurColor": {
 		"white": "Blanco",
@@ -109,5 +371,9 @@
 	"collarEmbellishment": {
 		"reflective_strip": "Tira reflectante",
 		"bell": "Campanilla"
+	},
+	"languages": {
+		"english": "Inglés",
+		"spanish": "Español"
 	}
 }
