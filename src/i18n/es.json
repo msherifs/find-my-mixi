@@ -1,0 +1,113 @@
+{
+	"faq": {
+		"faq": "FAQ",
+		"cant_find_answer": "¿No encuentras la respuesta que buscas? Comunícate con nuestro equipo de soporte al cliente",
+		"how_to_report_lost_cat_question": "¿Cómo reporto un gato perdido?",
+		"how_to_report_lost_cat_answer": "Para reportar un gato perdido, visita nuestra página de inicio y haz clic en el botón \"Reportar Gato Perdido\". Antes de comenzar, asegúrate de tener la siguiente información a la mano:",
+		"cat's_name": "Nombre del gato",
+		"fur_color_and_pattern": "Color de pelaje y patrón",
+		"coat_type": "Tipo de pelaje",
+		"distinctive_marks": "Marcas distintivas (cicatrices, patrones únicos)",
+		"eye_color": "Color de ojos",
+		"cats_size": "Tamaño del gato",
+		"date_and_location_lost": "Fecha y ubicación donde se perdió (dirección, ciudad, estado/provincia, código postal)",
+		"recent_photo": "Foto reciente del gato (formatos JPEG, PNG)",
+		"additional_information": "Cualquier información adicional relevante",
+		"after_submission": "Una vez que completes el formulario con estos detalles y lo envíes, tu reporte se añadirá a nuestra base de datos y recibirás actualizaciones si se encuentra alguna coincidencia.",
+		"what_to_do_if_find_cat_question": "¿Qué debo hacer si encuentro un gato?",
+		"what_to_do_if_find_cat_answer": "Si encuentras un gato, puedes reportarlo en nuestra plataforma a través del botón \"Reportar Gato Encontrado\". Asegúrate de tener la siguiente información a la mano antes de completar el formulario:",
+		"rescuers_location": "Ubicación del Rescatador:",
+		"address_where_found": "Dirección donde se encontró al gato (dirección, ciudad, estado/provincia, código postal, país/región)",
+		"cats_information": "Información del Gato:",
+		"date_seen": "Fecha en que viste al gato",
+		"photo_of_cat": "Foto del gato (formatos JPEG, PNG)",
+		"share_social_media": "Además, puedes utilizar nuestras herramientas para compartir la información en redes sociales, lo que ayudará a aumentar las posibilidades de que el gato se reúna con su dueño.",
+
+		"receive_notifications_question": "¿Cómo recibo notificaciones sobre avistamientos o gatos encontrados?",
+		"receive_notifications_answer": "Una vez que hayas reportado un gato perdido en nuestra plataforma, recibirás notificaciones en tiempo real cuando se reporte un gato similar al tuyo en la zona. Es importante que proporciones un correo electrónico válido en el formulario de reporte, ya que todas las notificaciones se enviarán a esa dirección. Además, puedes configurar alertas para recibir actualizaciones sobre avistamientos en áreas específicas.",
+
+		"use_interactive_map_question": "¿De qué manera puedo aprovechar el mapa interactivo para localizar gatos?",
+		"use_interactive_map_answer": "El mapa interactivo de FindMyMixi te permite ver en tiempo real los avistamientos y reportes de gatos perdidos y encontrados cerca de la ubicación donde se perdió un gato. Los gatos encontrados se muestran en verde, mientras que los gatos perdidos se muestran en rosa, facilitando la identificación de coincidencias cercanas.",
+		"map_filter_options": "Además, puedes filtrar en el mapa por las siguientes características para afinar tu búsqueda:",
+		"filter_fur_color": "Color de Pelaje",
+		"filter_fur_pattern": "Patrón de Pelaje",
+		"filter_coat_length": "Longitud del Pelaje",
+		"filter_eye_color": "Color de Ojos",
+		"filter_size": "Tamaño",
+		"filter_collar": "Collar",
+		"map_tool_description": "Esta herramienta está diseñada para ayudarte a localizar a tu gato o identificar uno que hayas encontrado con mayor facilidad.",
+
+		"safe_to_share_info_question": "¿Es seguro compartir mi información personal en la plataforma?",
+		"safe_to_share_info_answer": "Sí, toda la información que compartes en FindMyMixi es completamente confidencial y solo se utiliza con el fin de ayudar a reunir gatos perdidos con sus dueños. Tu información personal no se compartirá con otros usuarios sin tu consentimiento.",
+
+		"cat_reported_found_question": "¿Qué hago si mi gato es reportado como encontrado?",
+		"cat_reported_found_answer": "Si tu gato es reportado como encontrado en nuestra plataforma, recibirás una notificación inmediata con los detalles. Te pondremos en contacto con la persona que lo encontró para que puedan coordinar la reunificación de manera segura.",
+
+		"donate_support_platform_question": "¿Cómo puedo donar para apoyar la plataforma?",
+		"donate_support_platform_answer": "Puedes hacer una donación de manera segura a través de nuestra página web, gracias a OpenPay by BBVA, una plataforma confiable que asegura tus transacciones. Las donaciones ayudan a cubrir los costos de servidores en Amazon Web Services (AWS), el uso de la API de Google Maps para el mapa interactivo, y el mantenimiento general de la plataforma. Estos fondos son esenciales para mantener la plataforma operativa y mejorar los servicios que ofrecemos a la comunidad.",
+
+		"errors_or_issues_question": "¿Qué debo hacer si encuentro errores o tengo problemas con la plataforma?",
+		"errors_or_issues_answer": "Si encuentras algún error o tienes problemas mientras usas FindMyMixi, no dudes en contactar a nuestro equipo de soporte técnico. Puedes hacerlo a través de la página de contacto o enviando un correo electrónico directamente a contact@findmymixi.com. Estamos comprometidos en ayudarte a resolver cualquier inconveniente lo más rápido posible para garantizar una experiencia fluida y sin interrupciones en la plataforma.",
+
+		"premium_service_ads_question": "¿Qué es el servicio premium de publicidad en redes sociales?",
+		"premium_service_ads_answer": "FindMyMixi ofrece un servicio opcional de pago para aumentar la visibilidad de los reportes de gatos perdidos a través de anuncios en Facebook e Instagram. Este servicio se contrata de forma semanal y ayuda a acelerar la búsqueda de tu gato.",
+		"premium_service_notes": "Notas importantes:",
+		"ads_config_based_on_report": "Los anuncios se configuran según la información proporcionada en tu reporte",
+		"ads_campaign_duration": "La duración y presupuesto de la campaña se establecen para cada campaña publicitaria",
+		"ads_views_depend": "El número de visualizaciones depende de muchos factores (ubicación, calidad de la foto, duración de la campaña)",
+		"ads_optional_service": "Este es un servicio opcional que complementa las funciones básicas gratuitas",
+
+		"cancel_premium_subscription_question": "¿Puedo cancelar mi suscripción premium?",
+		"cancel_premium_subscription_answer": "Sí, las suscripciones premium de publicidad en redes sociales se renuevan semanalmente y pueden cancelarse en cualquier momento desde el panel de usuario. Al cancelar, la suscripción no se renovará en el siguiente ciclo. Además, marcar un reporte como \"reunido\", \"fallecido\" o \"adoptado\" cancelará automáticamente todas las suscripciones vinculadas a ese reporte."
+	},
+	"catFurColor": {
+		"white": "Blanco",
+		"black": "Negro",
+		"gray": "Gris",
+		"orange_ginger": "Naranja / Jengibre",
+		"cream": "Crema",
+		"brown": "Marrón"
+	},
+	"catFurPattern": {
+		"solid": "Sólido",
+		"bicolor": "Bicolor",
+		"tabby": "Atigrado (Tabby)",
+		"tricolor": "Tricolor",
+		"calico": "Calicó (Carey)",
+		"torbie": "Torbie (Atigrado y Carey)",
+		"colorpoint": "Point (Colorpoint)"
+	},
+	"catCoatType": {
+		"long": "Largo",
+		"curly": "Rizado",
+		"short": "Corto",
+		"hairless": "Sin Pelaje (Hairless)"
+	},
+	"catEyeColor": {
+		"yellow": "Amarillo",
+		"green": "Verde",
+		"blue": "Azul",
+		"amber": "Ámbar"
+	},
+	"catSize": {
+		"small": "Pequeño: Menos de 4 kg (8.8 lbs)",
+		"medium": "Mediano: Entre 4 kg (8.8 lbs) y 8 kg (17.6 lbs)",
+		"large": "Grande: Más de 8 kg (17.6 lbs)"
+	},
+	"collarColor": {
+		"red": "Rojo",
+		"blue": "Azul",
+		"black": "Negro",
+		"pink": "Rosa",
+		"green": "Verde"
+	},
+	"collarPattern": {
+		"stripes": "Rayas",
+		"polka_dots": "Lunares",
+		"paw_prints": "Huellas"
+	},
+	"collarEmbellishment": {
+		"reflective_strip": "Tira reflectante",
+		"bell": "Campanilla"
+	}
+}

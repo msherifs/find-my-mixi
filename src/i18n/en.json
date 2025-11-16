@@ -334,7 +334,7 @@
 		"white": "White",
 		"black": "Black",
 		"gray": "Gray",
-		"orange_ginger": "Orange Ginger",
+		"orange_ginger": "Orange / Ginger",
 		"cream": "Cream",
 		"brown": "Brown"
 	},
@@ -343,8 +343,8 @@
 		"bicolor": "Bicolor",
 		"tabby": "Tabby",
 		"tricolor": "Tricolor",
-		"calico": "Calico",
-		"torbie": "Torbie",
+		"calico": "Calico (Tortoiseshell)",
+		"torbie": "Torbie (Tabby & Tortoiseshell)",
 		"colorpoint": "Colorpoint"
 	},
 	"catCoatType": {
@@ -360,9 +360,9 @@
 		"amber": "Amber"
 	},
 	"catSize": {
-		"small": "Small",
-		"medium": "Medium",
-		"large": "Large"
+		"small": "Small: Less than 4 kg (8.8 lbs)",
+		"medium": "Between 4 kg (8.8 lbs) and 8 kg (17.6 lbs)",
+		"large": "More than 8 kg (17.6 lbs)"
 	},
 	"collarColor": {
 		"red": "Red",
