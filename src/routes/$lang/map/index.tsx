@@ -5,9 +5,19 @@ import {
 	useLoaderData,
 } from "@tanstack/react-router";
 import { useState } from "react";
-
+import z from "zod";
 import IAmTheOwnerModal from "@/components/map/i-am-the-owner-modal";
 import { MixiMapContainer } from "@/components/map/map-container";
+import {
+	CatCoatType,
+	CatEyeColor,
+	CatFurColor,
+	CatFurPattern,
+	CatSize,
+	CollarEmbellishment,
+	CollarPattern,
+	CollarSolidColor,
+} from "@/server/db/enums";
 import { getCurrentUserFn } from "@/server/functions/auth";
 
 export const Route = createFileRoute("/$lang/map/")({
@@ -19,6 +29,16 @@ export const Route = createFileRoute("/$lang/map/")({
 		}
 		return user;
 	},
+	validateSearch: z.object({
+		color: z.enum(CatFurColor).array().optional(),
+		pattern: z.enum(CatFurPattern).optional(),
+		coatType: z.enum(CatCoatType).optional(),
+		collarColor: z.enum(CollarSolidColor).optional(),
+		collarPattern: z.enum(CollarPattern).optional(),
+		size: z.enum(CatSize).optional(),
+		collarEmbellishments: z.enum(CollarEmbellishment).optional(),
+		eyeColor: z.enum(CatEyeColor).optional(),
+	}),
 });
 
 function RouteComponent() {

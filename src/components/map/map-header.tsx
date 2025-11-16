@@ -1,5 +1,6 @@
-import { useNavigate, useParams } from "@tanstack/react-router";
+import { useNavigate, useParams, useSearch } from "@tanstack/react-router";
 import { Filter, LogOut, ShieldUser } from "lucide-react";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { toast } from "sonner";
 import ChevronDown from "@/assets/images/chevron-down.svg";
@@ -7,9 +8,20 @@ import HeaderIcon from "@/assets/images/header-icon.svg";
 import UserCircleIcon from "@/assets/images/user-circle.svg";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { cn, getInitials } from "@/lib/utils";
-import type { UserRole } from "@/server/db/enums";
+import {
+	CatCoatType,
+	CatEyeColor,
+	CatFurColor,
+	CatFurPattern,
+	CatSize,
+	CollarEmbellishment,
+	CollarPattern,
+	CollarSolidColor,
+	type UserRole,
+} from "@/server/db/enums";
 import { logoutFn } from "@/server/functions/auth";
 import LanguageSwitcher from "../shared/language-switcher";
+import MixiMultiselect from "../shared/mixi-multiselect";
 import MixiSelect from "../shared/mixi-select";
 import { Button } from "../ui/button";
 import {
@@ -32,6 +44,44 @@ const MapHeader = ({ firstName, lastName, role }: User) => {
 	const isMobile = useIsMobile();
 	const navigate = useNavigate();
 	const { lang } = useParams({ from: "/$lang" });
+	const [filters, setFilters] = useState<{
+		color?: CatFurColor[];
+		eyeColor?: CatEyeColor;
+		coatType?: CatCoatType;
+		collarColor?: CollarSolidColor;
+		collarEmbellishments?: CollarEmbellishment;
+		collarPattern?: CollarPattern;
+		pattern?: CatFurPattern;
+		size?: CatSize;
+	}>({});
+	const search = useSearch({ from: "/$lang/map/" });
+
+	// biome-ignore lint/correctness/useExhaustiveDependencies: <false>
+	useEffect(() => {
+		navigate({
+			to: ".",
+			search: filters,
+			replace: true,
+		});
+	}, [filters]);
+
+	// biome-ignore lint/correctness/useExhaustiveDependencies: <false>
+	useEffect(() => {
+		if (
+			search &&
+			(search.color !== filters.color ||
+				search.eyeColor !== filters.eyeColor ||
+				search.coatType !== filters.coatType ||
+				search.collarColor !== filters.collarColor ||
+				search.collarEmbellishments !== filters.collarEmbellishments ||
+				search.collarPattern !== filters.collarPattern ||
+				search.pattern !== filters.pattern ||
+				search.size !== filters.size)
+		) {
+			setFilters(search);
+		}
+	}, [search]);
+
 	return (
 		<>
 			<div className="sticky top-0 z-1000 w-[90vw] mx-auto mt-4 md:mt-8 flex flex-col gap-2 items-start">
@@ -106,7 +156,7 @@ const MapHeader = ({ firstName, lastName, role }: User) => {
 						</DropdownMenu>
 						<LanguageSwitcher />
 						{isMobile && <ActionsDrawer />}
-						{isMobile && <FiltersDrawer />}
+						{isMobile && <FiltersDrawer setFilters={setFilters} />}
 					</div>
 				</header>
 				{!isMobile && (
@@ -121,32 +171,52 @@ const MapHeader = ({ firstName, lastName, role }: User) => {
 									{t("map.fur")}
 								</p>
 								<div className="flex items-center gap-3">
-									<MixiSelect
+									<MixiMultiselect
 										placeholder={t("map.color")}
-										options={[
-											{ value: "black", label: "Black" },
-											{ value: "white", label: "White" },
-											{ value: "orange", label: "Orange" },
-										]}
-										selectClassName="rounded-full h-[42px]!"
+										options={Object.values(CatFurColor).map((color) => ({
+											label: t(`catFurColor.${color.toLowerCase()}`),
+											value: color,
+										}))}
+										multiSelectClassName="rounded-full h-[42px]! !max-w-[200px]"
+										onValueChange={(value) => {
+											setFilters((prev) => ({
+												...prev,
+												color: value as CatFurColor[],
+											}));
+										}}
+										hideSelectAll
+										searchable={false}
+										value={search.color}
 									/>
 									<MixiSelect
 										placeholder={t("map.pattern")}
-										options={[
-											{ value: "solid", label: "Solid" },
-											{ value: "tabby", label: "Tabby" },
-											{ value: "calico", label: "Calico" },
-										]}
+										options={Object.values(CatFurPattern).map((pattern) => ({
+											label: t(`catFurPattern.${pattern.toLowerCase()}`),
+											value: pattern,
+										}))}
 										selectClassName="rounded-full h-[42px]!"
+										onChange={(value) => {
+											setFilters((prev) => ({
+												...prev,
+												pattern: value as CatFurPattern,
+											}));
+										}}
+										value={search.pattern}
 									/>
 									<MixiSelect
 										placeholder={t("map.length")}
-										options={[
-											{ value: "short", label: "Short" },
-											{ value: "medium", label: "Medium" },
-											{ value: "long", label: "Long" },
-										]}
+										options={Object.values(CatCoatType).map((type) => ({
+											label: t(`catCoatType.${type.toLowerCase()}`),
+											value: type,
+										}))}
 										selectClassName="rounded-full h-[42px]!"
+										onChange={(value) => {
+											setFilters((prev) => ({
+												...prev,
+												coatType: value as CatCoatType,
+											}));
+										}}
+										value={search.coatType}
 									/>
 								</div>
 							</div>
@@ -157,51 +227,82 @@ const MapHeader = ({ firstName, lastName, role }: User) => {
 								<div className="flex items-center gap-3">
 									<MixiSelect
 										placeholder={t("map.color")}
-										options={[
-											{ value: "black", label: "Black" },
-											{ value: "white", label: "White" },
-											{ value: "orange", label: "Orange" },
-										]}
+										options={Object.values(CollarSolidColor).map((color) => ({
+											label: t(`collarColor.${color.toLowerCase()}`),
+											value: color,
+										}))}
 										selectClassName="rounded-full h-[42px]!"
+										onChange={(value) => {
+											setFilters((prev) => ({
+												...prev,
+												collarColor: value as CollarSolidColor,
+											}));
+										}}
+										value={search.collarColor}
 									/>
 									<MixiSelect
 										placeholder={t("map.pattern")}
-										options={[
-											{ value: "full", label: "Full" },
-											{ value: "half", label: "Half" },
-											{ value: "bib", label: "Bib" },
-										]}
+										options={Object.values(CollarPattern).map((pattern) => ({
+											label: t(`collarPattern.${pattern.toLowerCase()}`),
+											value: pattern,
+										}))}
 										selectClassName="rounded-full h-[42px]!"
+										onChange={(value) => {
+											setFilters((prev) => ({
+												...prev,
+												collarPattern: value as CollarPattern,
+											}));
+										}}
+										value={search.collarPattern}
 									/>
 									<MixiSelect
 										placeholder={t("map.embellishments")}
-										options={[
-											{ value: "mask", label: "Mask" },
-											{ value: "eye-liner", label: "Eye Liner" },
-											{ value: "boots", label: "Boots" },
-										]}
+										options={Object.values(CollarEmbellishment).map(
+											(embellishment) => ({
+												label: t(
+													`collarEmbellishment.${embellishment.toLowerCase()}`,
+												),
+												value: embellishment,
+											}),
+										)}
 										selectClassName="rounded-full h-[42px]!"
+										onChange={(value) => {
+											setFilters((prev) => ({
+												...prev,
+												collarEmbellishments: value as CollarEmbellishment,
+											}));
+										}}
+										value={search.collarEmbellishments}
 									/>
 								</div>
 							</div>
 							<div className="flex items-center gap-3">
 								<MixiSelect
 									placeholder={t("map.eye_color")}
-									options={[
-										{ value: "brown", label: "Brown" },
-										{ value: "green", label: "Green" },
-										{ value: "orange", label: "Orange" },
-									]}
+									options={Object.values(CatEyeColor).map((color) => ({
+										label: t(`catEyeColor.${color.toLowerCase()}`),
+										value: color,
+									}))}
 									selectClassName="rounded-full h-[42px]!"
+									onChange={(value) => {
+										setFilters((prev) => ({
+											...prev,
+											eyeColor: value as CatEyeColor,
+										}));
+									}}
+									value={search.eyeColor}
 								/>
 								<MixiSelect
 									placeholder={t("map.size")}
-									options={[
-										{ value: "small", label: "Small" },
-										{ value: "medium", label: "Medium" },
-										{ value: "large", label: "Large" },
-									]}
+									options={Object.values(CatSize).map((size) => ({
+										label: t(`catSize.${size.toLowerCase()}`),
+										value: size,
+									}))}
 									selectClassName="rounded-full h-[42px]!"
+									onChange={(value) => {
+										setFilters((prev) => ({ ...prev, size: value as CatSize }));
+									}}
+									value={search.size}
 								/>
 							</div>
 						</div>

@@ -238,7 +238,9 @@
 		"phone_number": "Número de Teléfono",
 		"email": "Correo Electrónico",
 		"admin": "Ir a Admin",
-		"unknown_name": "Desconocido"
+		"unknown_name": "Desconocido",
+		"found": "Encontrado",
+		"lost": "Perdido"
 	},
 	"reportCat": {
 		"cat_information": "Información del Gato",

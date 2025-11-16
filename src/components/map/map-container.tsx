@@ -20,6 +20,7 @@ import MapHeader from "./map-header";
 import MyLocationMarker from "./my-location-marker";
 
 import "@/styles/map.css";
+import { useSearch } from "@tanstack/react-router";
 import type { CatRequestDocument } from "@/server/db/schema";
 import { getCatRequestsForMap } from "@/server/functions/cat-reporting";
 
@@ -149,6 +150,7 @@ function MapBoundsTracker({
 }: {
 	setRequests: (requests: CatRequest[]) => void;
 }) {
+	const searchParams = useSearch({ from: "/$lang/map/" });
 	const map = useMap();
 
 	// biome-ignore lint/correctness/useExhaustiveDependencies: <false>
@@ -174,7 +176,9 @@ function MapBoundsTracker({
 				],
 			];
 
-			const { catRequests } = await getCatRequestsForMap({ data: { polygon } });
+			const { catRequests } = await getCatRequestsForMap({
+				data: { polygon, ...searchParams },
+			});
 			setRequests(catRequests);
 		};
 
@@ -189,7 +193,7 @@ function MapBoundsTracker({
 			map.off("moveend", updateBounds);
 			map.off("zoomend", updateBounds);
 		};
-	}, [map]);
+	}, [map, searchParams]);
 
 	return null;
 }

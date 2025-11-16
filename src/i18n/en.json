@@ -246,7 +246,9 @@
 		"phone_number": "Phone Number",
 		"email": "Email",
 		"admin": "Go to Admin",
-		"unknown_name": "Unknown"
+		"unknown_name": "Unknown",
+		"found": "Found",
+		"lost": "Lost"
 	},
 	"reportCat": {
 		"cat_information": "Cat Information",

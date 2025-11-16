@@ -35,9 +35,10 @@ const LanguageSwitcher = () => {
 					)}
 				>
 					<Globe className="!h-[18px] !w-[18px]" />
-					{!isMobile && currentLanguage === "en"
-						? t("languages.english")
-						: t("languages.spanish")}
+					{!isMobile &&
+						(currentLanguage === "en"
+							? t("languages.english")
+							: t("languages.spanish"))}
 					{!isMobile && <img src={ChevronDown} alt="dropdown" />}
 				</Button>
 			</DropdownMenuTrigger>

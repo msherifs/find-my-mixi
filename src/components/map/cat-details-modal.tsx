@@ -2,6 +2,9 @@ import { DateTime } from "luxon";
 import { useTranslation } from "react-i18next";
 import YellowPin from "@/assets/images/yellow-pin.svg";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { cn } from "@/lib/utils";
+import { CatFormType } from "@/server/db/enums";
+import { Badge } from "../ui/badge";
 import { Button } from "../ui/button";
 import { Dialog, DialogContent } from "../ui/dialog";
 import type { CatRequest } from "./map-container";
@@ -22,42 +25,44 @@ const CatDetailsModal = ({
 	const { t } = useTranslation();
 	const isMobile = useIsMobile();
 
-	const defaultData = {
-		date: "20 Jan, 2025",
-		name: "Mixi Cat Name",
-		location: "Hay El Sefarat, Nasr City",
-		color: "Orange",
-		eyeColor: "Green",
-		size: "Medium",
-		pattern: "Tabby",
-	};
-
-	const data = catData || defaultData;
-
 	const content = (
 		<>
 			<div className="w-full flex flex-col gap-3">
 				<img
-					src={data.catDetails.photo}
+					src={catData.catDetails.photo}
 					alt="cat-image"
 					className="rounded-2xl w-full h-auto md:h-[280px] object-cover"
 				/>
 				<div className="flex w-full">
 					<div className="flex flex-col flex-1 gap-[6px] items-start w-full">
 						<div className="flex flex-col item-start w-full gap-1">
-							<p className="text-[#737373] font-medium text-[14px] leading-[20px] tracking-[0]">
-								{DateTime.fromJSDate(data.catDetails.date).toFormat(
-									"dd LLL, yyyy",
-								)}
-							</p>
+							<div className="w-full flex items-center justify-between">
+								<p className="text-[#737373] font-medium text-[14px] leading-[20px] tracking-[0]">
+									{DateTime.fromJSDate(catData.catDetails.date).toFormat(
+										"dd LLL, yyyy",
+									)}
+								</p>
+								<Badge
+									className={cn(
+										catData.type === CatFormType.FIND_MY_CAT
+											? "bg-red-200 text-red-700 border-1 border-red-400"
+											: "bg-[#ECFDF3] text-[#00B37E] border-1 border-[#ABEFC6]",
+									)}
+								>
+									{catData.type === CatFormType.FIND_MY_CAT
+										? t("map.lost")
+										: t("map.found")}
+								</Badge>
+							</div>
+
 							<p className="text-[#0F0F0F] font-semibold text-[16px] leading-[24px] tracking-[0]">
-								{data.catDetails.name ?? t("map.unknown_name")}
+								{catData.catDetails.name ?? t("map.unknown_name")}
 							</p>
 						</div>
 						<div className="flex items-center gap-2 w-full">
 							<img src={YellowPin} alt="yellow-pin" />
 							<p className="text-[#525252] font-medium text-[14px] leading-[20px] tracking-[0]">
-								{data.location.address}
+								{catData.location.address}
 							</p>
 						</div>
 					</div>
@@ -69,7 +74,7 @@ const CatDetailsModal = ({
 						{t("map.color")}{" "}
 						<span className="font-[500] text-[#737373]">
 							|{" "}
-							{data.catDetails.furColor
+							{catData.catDetails.furColor
 								.map((color) => t(`catFurColor.${color.toLowerCase()}`))
 								.join(" - ")}
 						</span>
@@ -77,7 +82,7 @@ const CatDetailsModal = ({
 					<p className="font-semibold text-[14px] leading-[20px] tracking-[0] text-[#0F0F0F]">
 						{t("map.eye_color")}{" "}
 						<span className="font-[500] text-[#737373]">
-							| {t(`catEyeColor.${data.catDetails.eyeColor.toLowerCase()}`)}
+							| {t(`catEyeColor.${catData.catDetails.eyeColor.toLowerCase()}`)}
 						</span>
 					</p>
 				</div>
@@ -85,13 +90,16 @@ const CatDetailsModal = ({
 					<p className="font-semibold text-[14px] leading-[20px] tracking-[0] text-[#0F0F0F]">
 						{t("map.size")}{" "}
 						<span className="font-[500] text-[#737373]">
-							| {t(`catSize.${data.catDetails.size.toLowerCase()}`)}
+							| {t(`catSize.${catData.catDetails.size.toLowerCase()}`)}
 						</span>
 					</p>
 					<p className="font-semibold text-[14px] leading-[20px] tracking-[0] text-[#0F0F0F]">
 						{t("map.pattern")}{" "}
 						<span className="font-[500] text-[#737373]">
-							| {t(`catFurPattern.${data.catDetails.furPattern.toLowerCase()}`)}
+							|{" "}
+							{t(
+								`catFurPattern.${catData.catDetails.furPattern.toLowerCase()}`,
+							)}
 						</span>
 					</p>
 				</div>
