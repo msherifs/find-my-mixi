@@ -1,23 +1,16 @@
+import { DateTime } from "luxon";
 import { useTranslation } from "react-i18next";
-import CatImage from "@/assets/images/demo-image.svg";
 import YellowPin from "@/assets/images/yellow-pin.svg";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { Button } from "../ui/button";
 import { Dialog, DialogContent } from "../ui/dialog";
+import type { CatRequest } from "./map-container";
 
 interface CatDetailsModalProps {
 	isOpen?: boolean;
 	onClose?: () => void;
 	onClickIAmTheOwner: () => void;
-	catData?: {
-		date: string;
-		name: string;
-		location: string;
-		color: string;
-		eyeColor: string;
-		size: string;
-		pattern: string;
-	};
+	catData: CatRequest;
 }
 
 const CatDetailsModal = ({
@@ -45,7 +38,7 @@ const CatDetailsModal = ({
 		<>
 			<div className="w-full flex flex-col gap-3">
 				<img
-					src={CatImage}
+					src={data.catDetails.photo}
 					alt="cat-image"
 					className="rounded-2xl w-full h-auto md:h-[280px] object-cover"
 				/>
@@ -53,40 +46,53 @@ const CatDetailsModal = ({
 					<div className="flex flex-col flex-1 gap-[6px] items-start w-full">
 						<div className="flex flex-col item-start w-full gap-1">
 							<p className="text-[#737373] font-medium text-[14px] leading-[20px] tracking-[0]">
-								{data.date}
+								{DateTime.fromJSDate(data.catDetails.date).toFormat(
+									"dd LLL, yyyy",
+								)}
 							</p>
 							<p className="text-[#0F0F0F] font-semibold text-[16px] leading-[24px] tracking-[0]">
-								{data.name}
+								{data.catDetails.name ?? t("map.unknown_name")}
 							</p>
 						</div>
 						<div className="flex items-center gap-2 w-full">
 							<img src={YellowPin} alt="yellow-pin" />
 							<p className="text-[#525252] font-medium text-[14px] leading-[20px] tracking-[0]">
-								{data.location}
+								{data.location.address}
 							</p>
 						</div>
 					</div>
 				</div>
 			</div>
-			<div className="flex items-center w-full justify-between">
-				<div className="flex flex-col items-start gap-3">
+			<div className="flex items-start w-full justify-between">
+				<div className="flex flex-col items-start gap-3 flex-3 flex-shrink-0">
 					<p className="font-semibold text-[14px] leading-[20px] tracking-[0] text-[#0F0F0F]">
 						{t("map.color")}{" "}
-						<span className="font-[500] text-[#737373]">| {data.color}</span>
+						<span className="font-[500] text-[#737373]">
+							|{" "}
+							{data.catDetails.furColor
+								.map((color) => t(`catFurColor.${color.toLowerCase()}`))
+								.join(" - ")}
+						</span>
 					</p>
 					<p className="font-semibold text-[14px] leading-[20px] tracking-[0] text-[#0F0F0F]">
 						{t("map.eye_color")}{" "}
-						<span className="font-[500] text-[#737373]">| {data.eyeColor}</span>
+						<span className="font-[500] text-[#737373]">
+							| {t(`catEyeColor.${data.catDetails.eyeColor.toLowerCase()}`)}
+						</span>
 					</p>
 				</div>
-				<div className="flex flex-col items-start gap-3">
+				<div className="flex flex-col items-start gap-3 flex-2 flex-shrink-0">
 					<p className="font-semibold text-[14px] leading-[20px] tracking-[0] text-[#0F0F0F]">
 						{t("map.size")}{" "}
-						<span className="font-[500] text-[#737373]">| {data.size}</span>
+						<span className="font-[500] text-[#737373]">
+							| {t(`catSize.${data.catDetails.size.toLowerCase()}`)}
+						</span>
 					</p>
 					<p className="font-semibold text-[14px] leading-[20px] tracking-[0] text-[#0F0F0F]">
 						{t("map.pattern")}{" "}
-						<span className="font-[500] text-[#737373]">| {data.pattern}</span>
+						<span className="font-[500] text-[#737373]">
+							| {t(`catFurPattern.${data.catDetails.furPattern.toLowerCase()}`)}
+						</span>
 					</p>
 				</div>
 			</div>
@@ -111,7 +117,7 @@ const CatDetailsModal = ({
 	}
 
 	return (
-		<div className="bg-white rounded-[28px] p-5 flex flex-col items-center min-w-[320px] shadow-[0px_7px_36px_0px_#0000000D] gap-[14px]">
+		<div className="bg-white rounded-[28px] p-5 flex flex-col items-center min-w-[320px] shadow-[0px_7px_36px_0px_#0000000D] gap-[14px] w-fit">
 			{content}
 		</div>
 	);

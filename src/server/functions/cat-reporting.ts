@@ -1,4 +1,3 @@
-import { getFormData } from "@tanstack/react-form-start";
 import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
 import {
@@ -125,7 +124,7 @@ export const reportCatFn = createServerFn({ method: "POST" })
 export const getCatRequestsForMap = createServerFn()
 	.inputValidator(
 		z.object({
-			polygon: z.number().array().array(),
+			polygon: z.number().array().array().array(),
 			// TBD other needed fields
 		}),
 	)
@@ -142,9 +141,3 @@ export const getCatRequestsForMap = createServerFn()
 			})),
 		};
 	});
-
-export const getReportLostCatFormFn = createServerFn({ method: "GET" }).handler(
-	async () => {
-		return getFormData();
-	},
-);

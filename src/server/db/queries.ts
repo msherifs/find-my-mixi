@@ -72,7 +72,7 @@ export const insertContactUsSubmission = async (
 };
 
 export const findCatRequestsInPolygon = async (
-	polygon: { coordinates: number[][] },
+	polygon: { coordinates: number[][][] },
 	filter: PaprFilter<CatRequestDocument>,
 ) => {
 	const pipeline: Record<string, unknown>[] = [
