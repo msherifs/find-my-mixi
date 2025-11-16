@@ -19,9 +19,10 @@ function isValidLanguage(lang: string): lang is Language {
 export const Route = createFileRoute("/$lang")({
 	beforeLoad: ({ params }) => {
 		if (!isValidLanguage(params.lang)) {
+			const savedLanguage = Cookies.get("language") || "en";
 			throw redirect({
 				to: "/$lang",
-				params: { lang: "en" },
+				params: { lang: savedLanguage },
 			});
 		}
 	},

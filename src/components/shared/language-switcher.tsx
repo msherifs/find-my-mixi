@@ -1,4 +1,5 @@
 import { useNavigate, useParams } from "@tanstack/react-router";
+import Cookies from "js-cookie";
 import { Globe } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import ChevronDown from "@/assets/images/chevron-down.svg";
@@ -19,6 +20,9 @@ const LanguageSwitcher = () => {
 	const currentLanguage = i18n.language;
 	const params = useParams({ strict: false });
 	const changeLanguage = (newLang: "es" | "en") => {
+		i18n.changeLanguage(newLang);
+		Cookies.set("language", newLang);
+
 		navigate({
 			to: window.location.pathname.replace(`/${params.lang}`, `/${newLang}`),
 		});
