@@ -9,17 +9,23 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as LandingRouteImport } from './routes/_landing'
+import { Route as AuthRouteImport } from './routes/_auth'
 import { Route as AdminRouteImport } from './routes/_admin'
-import { Route as LangRouteImport } from './routes/$lang'
+import { Route as ReportLostCatIndexRouteImport } from './routes/report-lost-cat/index'
+import { Route as ReportFoundCatIndexRouteImport } from './routes/report-found-cat/index'
+import { Route as MapIndexRouteImport } from './routes/map/index'
+import { Route as LandingIndexRouteImport } from './routes/_landing/index'
 import { Route as DemoTanstackQueryRouteImport } from './routes/demo/tanstack-query'
 import { Route as DemoTableRouteImport } from './routes/demo/table'
-import { Route as LangLandingRouteImport } from './routes/$lang/_landing'
-import { Route as LangAuthRouteImport } from './routes/$lang/_auth'
+import { Route as LandingPrivacyPolicyRouteImport } from './routes/_landing/privacy-policy'
+import { Route as LandingFaqRouteImport } from './routes/_landing/faq'
+import { Route as LandingContactUsRouteImport } from './routes/_landing/contact-us'
+import { Route as AuthResetPasswordRouteImport } from './routes/_auth/reset-password'
+import { Route as AuthRegisterRouteImport } from './routes/_auth/register'
+import { Route as AuthLoginRouteImport } from './routes/_auth/login'
+import { Route as AuthForgotPasswordRouteImport } from './routes/_auth/forgot-password'
 import { Route as AdminAdminIndexRouteImport } from './routes/_admin/admin.index'
-import { Route as LangReportLostCatIndexRouteImport } from './routes/$lang/report-lost-cat/index'
-import { Route as LangReportFoundCatIndexRouteImport } from './routes/$lang/report-found-cat/index'
-import { Route as LangMapIndexRouteImport } from './routes/$lang/map/index'
-import { Route as LangLandingIndexRouteImport } from './routes/$lang/_landing/index'
 import { Route as DemoStartServerFuncsRouteImport } from './routes/demo/start.server-funcs'
 import { Route as DemoStartApiRequestRouteImport } from './routes/demo/start.api-request'
 import { Route as DemoApiTqTodosRouteImport } from './routes/demo/api.tq-todos'
@@ -27,26 +33,42 @@ import { Route as DemoApiNamesRouteImport } from './routes/demo/api.names'
 import { Route as AdminAdminUsersRouteImport } from './routes/_admin/admin.users'
 import { Route as AdminAdminContactUsRouteImport } from './routes/_admin/admin.contact-us'
 import { Route as AdminAdminCatRequestsRouteImport } from './routes/_admin/admin.cat-requests'
-import { Route as LangLandingPrivacyPolicyRouteImport } from './routes/$lang/_landing/privacy-policy'
-import { Route as LangLandingFaqRouteImport } from './routes/$lang/_landing/faq'
-import { Route as LangLandingContactUsRouteImport } from './routes/$lang/_landing/contact-us'
-import { Route as LangAuthResetPasswordRouteImport } from './routes/$lang/_auth/reset-password'
-import { Route as LangAuthRegisterRouteImport } from './routes/$lang/_auth/register'
-import { Route as LangAuthLoginRouteImport } from './routes/$lang/_auth/login'
-import { Route as LangAuthForgotPasswordRouteImport } from './routes/$lang/_auth/forgot-password'
 import { Route as DemoStartSsrIndexRouteImport } from './routes/demo/start.ssr.index'
 import { Route as DemoStartSsrSpaModeRouteImport } from './routes/demo/start.ssr.spa-mode'
 import { Route as DemoStartSsrFullSsrRouteImport } from './routes/demo/start.ssr.full-ssr'
 import { Route as DemoStartSsrDataOnlyRouteImport } from './routes/demo/start.ssr.data-only'
 
+const LandingRoute = LandingRouteImport.update({
+  id: '/_landing',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthRoute = AuthRouteImport.update({
+  id: '/_auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AdminRoute = AdminRouteImport.update({
   id: '/_admin',
   getParentRoute: () => rootRouteImport,
 } as any)
-const LangRoute = LangRouteImport.update({
-  id: '/$lang',
-  path: '/$lang',
+const ReportLostCatIndexRoute = ReportLostCatIndexRouteImport.update({
+  id: '/report-lost-cat/',
+  path: '/report-lost-cat/',
   getParentRoute: () => rootRouteImport,
+} as any)
+const ReportFoundCatIndexRoute = ReportFoundCatIndexRouteImport.update({
+  id: '/report-found-cat/',
+  path: '/report-found-cat/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MapIndexRoute = MapIndexRouteImport.update({
+  id: '/map/',
+  path: '/map/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LandingIndexRoute = LandingIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => LandingRoute,
 } as any)
 const DemoTanstackQueryRoute = DemoTanstackQueryRouteImport.update({
   id: '/demo/tanstack-query',
@@ -58,38 +80,45 @@ const DemoTableRoute = DemoTableRouteImport.update({
   path: '/demo/table',
   getParentRoute: () => rootRouteImport,
 } as any)
-const LangLandingRoute = LangLandingRouteImport.update({
-  id: '/_landing',
-  getParentRoute: () => LangRoute,
+const LandingPrivacyPolicyRoute = LandingPrivacyPolicyRouteImport.update({
+  id: '/privacy-policy',
+  path: '/privacy-policy',
+  getParentRoute: () => LandingRoute,
 } as any)
-const LangAuthRoute = LangAuthRouteImport.update({
-  id: '/_auth',
-  getParentRoute: () => LangRoute,
+const LandingFaqRoute = LandingFaqRouteImport.update({
+  id: '/faq',
+  path: '/faq',
+  getParentRoute: () => LandingRoute,
+} as any)
+const LandingContactUsRoute = LandingContactUsRouteImport.update({
+  id: '/contact-us',
+  path: '/contact-us',
+  getParentRoute: () => LandingRoute,
+} as any)
+const AuthResetPasswordRoute = AuthResetPasswordRouteImport.update({
+  id: '/reset-password',
+  path: '/reset-password',
+  getParentRoute: () => AuthRoute,
+} as any)
+const AuthRegisterRoute = AuthRegisterRouteImport.update({
+  id: '/register',
+  path: '/register',
+  getParentRoute: () => AuthRoute,
+} as any)
+const AuthLoginRoute = AuthLoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => AuthRoute,
+} as any)
+const AuthForgotPasswordRoute = AuthForgotPasswordRouteImport.update({
+  id: '/forgot-password',
+  path: '/forgot-password',
+  getParentRoute: () => AuthRoute,
 } as any)
 const AdminAdminIndexRoute = AdminAdminIndexRouteImport.update({
   id: '/admin/',
   path: '/admin/',
   getParentRoute: () => AdminRoute,
-} as any)
-const LangReportLostCatIndexRoute = LangReportLostCatIndexRouteImport.update({
-  id: '/report-lost-cat/',
-  path: '/report-lost-cat/',
-  getParentRoute: () => LangRoute,
-} as any)
-const LangReportFoundCatIndexRoute = LangReportFoundCatIndexRouteImport.update({
-  id: '/report-found-cat/',
-  path: '/report-found-cat/',
-  getParentRoute: () => LangRoute,
-} as any)
-const LangMapIndexRoute = LangMapIndexRouteImport.update({
-  id: '/map/',
-  path: '/map/',
-  getParentRoute: () => LangRoute,
-} as any)
-const LangLandingIndexRoute = LangLandingIndexRouteImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => LangLandingRoute,
 } as any)
 const DemoStartServerFuncsRoute = DemoStartServerFuncsRouteImport.update({
   id: '/demo/start/server-funcs',
@@ -126,42 +155,6 @@ const AdminAdminCatRequestsRoute = AdminAdminCatRequestsRouteImport.update({
   path: '/admin/cat-requests',
   getParentRoute: () => AdminRoute,
 } as any)
-const LangLandingPrivacyPolicyRoute =
-  LangLandingPrivacyPolicyRouteImport.update({
-    id: '/privacy-policy',
-    path: '/privacy-policy',
-    getParentRoute: () => LangLandingRoute,
-  } as any)
-const LangLandingFaqRoute = LangLandingFaqRouteImport.update({
-  id: '/faq',
-  path: '/faq',
-  getParentRoute: () => LangLandingRoute,
-} as any)
-const LangLandingContactUsRoute = LangLandingContactUsRouteImport.update({
-  id: '/contact-us',
-  path: '/contact-us',
-  getParentRoute: () => LangLandingRoute,
-} as any)
-const LangAuthResetPasswordRoute = LangAuthResetPasswordRouteImport.update({
-  id: '/reset-password',
-  path: '/reset-password',
-  getParentRoute: () => LangAuthRoute,
-} as any)
-const LangAuthRegisterRoute = LangAuthRegisterRouteImport.update({
-  id: '/register',
-  path: '/register',
-  getParentRoute: () => LangAuthRoute,
-} as any)
-const LangAuthLoginRoute = LangAuthLoginRouteImport.update({
-  id: '/login',
-  path: '/login',
-  getParentRoute: () => LangAuthRoute,
-} as any)
-const LangAuthForgotPasswordRoute = LangAuthForgotPasswordRouteImport.update({
-  id: '/forgot-password',
-  path: '/forgot-password',
-  getParentRoute: () => LangAuthRoute,
-} as any)
 const DemoStartSsrIndexRoute = DemoStartSsrIndexRouteImport.update({
   id: '/demo/start/ssr/',
   path: '/demo/start/ssr/',
@@ -184,16 +177,19 @@ const DemoStartSsrDataOnlyRoute = DemoStartSsrDataOnlyRouteImport.update({
 } as any)
 
 export interface FileRoutesByFullPath {
-  '/$lang': typeof LangLandingRouteWithChildren
+  '/forgot-password': typeof AuthForgotPasswordRoute
+  '/login': typeof AuthLoginRoute
+  '/register': typeof AuthRegisterRoute
+  '/reset-password': typeof AuthResetPasswordRoute
+  '/contact-us': typeof LandingContactUsRoute
+  '/faq': typeof LandingFaqRoute
+  '/privacy-policy': typeof LandingPrivacyPolicyRoute
   '/demo/table': typeof DemoTableRoute
   '/demo/tanstack-query': typeof DemoTanstackQueryRoute
-  '/$lang/forgot-password': typeof LangAuthForgotPasswordRoute
-  '/$lang/login': typeof LangAuthLoginRoute
-  '/$lang/register': typeof LangAuthRegisterRoute
-  '/$lang/reset-password': typeof LangAuthResetPasswordRoute
-  '/$lang/contact-us': typeof LangLandingContactUsRoute
-  '/$lang/faq': typeof LangLandingFaqRoute
-  '/$lang/privacy-policy': typeof LangLandingPrivacyPolicyRoute
+  '/': typeof LandingIndexRoute
+  '/map': typeof MapIndexRoute
+  '/report-found-cat': typeof ReportFoundCatIndexRoute
+  '/report-lost-cat': typeof ReportLostCatIndexRoute
   '/admin/cat-requests': typeof AdminAdminCatRequestsRoute
   '/admin/contact-us': typeof AdminAdminContactUsRoute
   '/admin/users': typeof AdminAdminUsersRoute
@@ -201,10 +197,6 @@ export interface FileRoutesByFullPath {
   '/demo/api/tq-todos': typeof DemoApiTqTodosRoute
   '/demo/start/api-request': typeof DemoStartApiRequestRoute
   '/demo/start/server-funcs': typeof DemoStartServerFuncsRoute
-  '/$lang/': typeof LangLandingIndexRoute
-  '/$lang/map': typeof LangMapIndexRoute
-  '/$lang/report-found-cat': typeof LangReportFoundCatIndexRoute
-  '/$lang/report-lost-cat': typeof LangReportLostCatIndexRoute
   '/admin': typeof AdminAdminIndexRoute
   '/demo/start/ssr/data-only': typeof DemoStartSsrDataOnlyRoute
   '/demo/start/ssr/full-ssr': typeof DemoStartSsrFullSsrRoute
@@ -212,16 +204,19 @@ export interface FileRoutesByFullPath {
   '/demo/start/ssr': typeof DemoStartSsrIndexRoute
 }
 export interface FileRoutesByTo {
-  '/$lang': typeof LangLandingIndexRoute
+  '/forgot-password': typeof AuthForgotPasswordRoute
+  '/login': typeof AuthLoginRoute
+  '/register': typeof AuthRegisterRoute
+  '/reset-password': typeof AuthResetPasswordRoute
+  '/contact-us': typeof LandingContactUsRoute
+  '/faq': typeof LandingFaqRoute
+  '/privacy-policy': typeof LandingPrivacyPolicyRoute
   '/demo/table': typeof DemoTableRoute
   '/demo/tanstack-query': typeof DemoTanstackQueryRoute
-  '/$lang/forgot-password': typeof LangAuthForgotPasswordRoute
-  '/$lang/login': typeof LangAuthLoginRoute
-  '/$lang/register': typeof LangAuthRegisterRoute
-  '/$lang/reset-password': typeof LangAuthResetPasswordRoute
-  '/$lang/contact-us': typeof LangLandingContactUsRoute
-  '/$lang/faq': typeof LangLandingFaqRoute
-  '/$lang/privacy-policy': typeof LangLandingPrivacyPolicyRoute
+  '/': typeof LandingIndexRoute
+  '/map': typeof MapIndexRoute
+  '/report-found-cat': typeof ReportFoundCatIndexRoute
+  '/report-lost-cat': typeof ReportLostCatIndexRoute
   '/admin/cat-requests': typeof AdminAdminCatRequestsRoute
   '/admin/contact-us': typeof AdminAdminContactUsRoute
   '/admin/users': typeof AdminAdminUsersRoute
@@ -229,9 +224,6 @@ export interface FileRoutesByTo {
   '/demo/api/tq-todos': typeof DemoApiTqTodosRoute
   '/demo/start/api-request': typeof DemoStartApiRequestRoute
   '/demo/start/server-funcs': typeof DemoStartServerFuncsRoute
-  '/$lang/map': typeof LangMapIndexRoute
-  '/$lang/report-found-cat': typeof LangReportFoundCatIndexRoute
-  '/$lang/report-lost-cat': typeof LangReportLostCatIndexRoute
   '/admin': typeof AdminAdminIndexRoute
   '/demo/start/ssr/data-only': typeof DemoStartSsrDataOnlyRoute
   '/demo/start/ssr/full-ssr': typeof DemoStartSsrFullSsrRoute
@@ -240,19 +232,22 @@ export interface FileRoutesByTo {
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
-  '/$lang': typeof LangRouteWithChildren
   '/_admin': typeof AdminRouteWithChildren
-  '/$lang/_auth': typeof LangAuthRouteWithChildren
-  '/$lang/_landing': typeof LangLandingRouteWithChildren
+  '/_auth': typeof AuthRouteWithChildren
+  '/_landing': typeof LandingRouteWithChildren
+  '/_auth/forgot-password': typeof AuthForgotPasswordRoute
+  '/_auth/login': typeof AuthLoginRoute
+  '/_auth/register': typeof AuthRegisterRoute
+  '/_auth/reset-password': typeof AuthResetPasswordRoute
+  '/_landing/contact-us': typeof LandingContactUsRoute
+  '/_landing/faq': typeof LandingFaqRoute
+  '/_landing/privacy-policy': typeof LandingPrivacyPolicyRoute
   '/demo/table': typeof DemoTableRoute
   '/demo/tanstack-query': typeof DemoTanstackQueryRoute
-  '/$lang/_auth/forgot-password': typeof LangAuthForgotPasswordRoute
-  '/$lang/_auth/login': typeof LangAuthLoginRoute
-  '/$lang/_auth/register': typeof LangAuthRegisterRoute
-  '/$lang/_auth/reset-password': typeof LangAuthResetPasswordRoute
-  '/$lang/_landing/contact-us': typeof LangLandingContactUsRoute
-  '/$lang/_landing/faq': typeof LangLandingFaqRoute
-  '/$lang/_landing/privacy-policy': typeof LangLandingPrivacyPolicyRoute
+  '/_landing/': typeof LandingIndexRoute
+  '/map/': typeof MapIndexRoute
+  '/report-found-cat/': typeof ReportFoundCatIndexRoute
+  '/report-lost-cat/': typeof ReportLostCatIndexRoute
   '/_admin/admin/cat-requests': typeof AdminAdminCatRequestsRoute
   '/_admin/admin/contact-us': typeof AdminAdminContactUsRoute
   '/_admin/admin/users': typeof AdminAdminUsersRoute
@@ -260,10 +255,6 @@ export interface FileRoutesById {
   '/demo/api/tq-todos': typeof DemoApiTqTodosRoute
   '/demo/start/api-request': typeof DemoStartApiRequestRoute
   '/demo/start/server-funcs': typeof DemoStartServerFuncsRoute
-  '/$lang/_landing/': typeof LangLandingIndexRoute
-  '/$lang/map/': typeof LangMapIndexRoute
-  '/$lang/report-found-cat/': typeof LangReportFoundCatIndexRoute
-  '/$lang/report-lost-cat/': typeof LangReportLostCatIndexRoute
   '/_admin/admin/': typeof AdminAdminIndexRoute
   '/demo/start/ssr/data-only': typeof DemoStartSsrDataOnlyRoute
   '/demo/start/ssr/full-ssr': typeof DemoStartSsrFullSsrRoute
@@ -273,16 +264,19 @@ export interface FileRoutesById {
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    | '/$lang'
+    | '/forgot-password'
+    | '/login'
+    | '/register'
+    | '/reset-password'
+    | '/contact-us'
+    | '/faq'
+    | '/privacy-policy'
     | '/demo/table'
     | '/demo/tanstack-query'
-    | '/$lang/forgot-password'
-    | '/$lang/login'
-    | '/$lang/register'
-    | '/$lang/reset-password'
-    | '/$lang/contact-us'
-    | '/$lang/faq'
-    | '/$lang/privacy-policy'
+    | '/'
+    | '/map'
+    | '/report-found-cat'
+    | '/report-lost-cat'
     | '/admin/cat-requests'
     | '/admin/contact-us'
     | '/admin/users'
@@ -290,10 +284,6 @@ export interface FileRouteTypes {
     | '/demo/api/tq-todos'
     | '/demo/start/api-request'
     | '/demo/start/server-funcs'
-    | '/$lang/'
-    | '/$lang/map'
-    | '/$lang/report-found-cat'
-    | '/$lang/report-lost-cat'
     | '/admin'
     | '/demo/start/ssr/data-only'
     | '/demo/start/ssr/full-ssr'
@@ -301,16 +291,19 @@ export interface FileRouteTypes {
     | '/demo/start/ssr'
   fileRoutesByTo: FileRoutesByTo
   to:
-    | '/$lang'
+    | '/forgot-password'
+    | '/login'
+    | '/register'
+    | '/reset-password'
+    | '/contact-us'
+    | '/faq'
+    | '/privacy-policy'
     | '/demo/table'
     | '/demo/tanstack-query'
-    | '/$lang/forgot-password'
-    | '/$lang/login'
-    | '/$lang/register'
-    | '/$lang/reset-password'
-    | '/$lang/contact-us'
-    | '/$lang/faq'
-    | '/$lang/privacy-policy'
+    | '/'
+    | '/map'
+    | '/report-found-cat'
+    | '/report-lost-cat'
     | '/admin/cat-requests'
     | '/admin/contact-us'
     | '/admin/users'
@@ -318,9 +311,6 @@ export interface FileRouteTypes {
     | '/demo/api/tq-todos'
     | '/demo/start/api-request'
     | '/demo/start/server-funcs'
-    | '/$lang/map'
-    | '/$lang/report-found-cat'
-    | '/$lang/report-lost-cat'
     | '/admin'
     | '/demo/start/ssr/data-only'
     | '/demo/start/ssr/full-ssr'
@@ -328,19 +318,22 @@ export interface FileRouteTypes {
     | '/demo/start/ssr'
   id:
     | '__root__'
-    | '/$lang'
     | '/_admin'
-    | '/$lang/_auth'
-    | '/$lang/_landing'
+    | '/_auth'
+    | '/_landing'
+    | '/_auth/forgot-password'
+    | '/_auth/login'
+    | '/_auth/register'
+    | '/_auth/reset-password'
+    | '/_landing/contact-us'
+    | '/_landing/faq'
+    | '/_landing/privacy-policy'
     | '/demo/table'
     | '/demo/tanstack-query'
-    | '/$lang/_auth/forgot-password'
-    | '/$lang/_auth/login'
-    | '/$lang/_auth/register'
-    | '/$lang/_auth/reset-password'
-    | '/$lang/_landing/contact-us'
-    | '/$lang/_landing/faq'
-    | '/$lang/_landing/privacy-policy'
+    | '/_landing/'
+    | '/map/'
+    | '/report-found-cat/'
+    | '/report-lost-cat/'
     | '/_admin/admin/cat-requests'
     | '/_admin/admin/contact-us'
     | '/_admin/admin/users'
@@ -348,10 +341,6 @@ export interface FileRouteTypes {
     | '/demo/api/tq-todos'
     | '/demo/start/api-request'
     | '/demo/start/server-funcs'
-    | '/$lang/_landing/'
-    | '/$lang/map/'
-    | '/$lang/report-found-cat/'
-    | '/$lang/report-lost-cat/'
     | '/_admin/admin/'
     | '/demo/start/ssr/data-only'
     | '/demo/start/ssr/full-ssr'
@@ -360,10 +349,14 @@ export interface FileRouteTypes {
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-  LangRoute: typeof LangRouteWithChildren
   AdminRoute: typeof AdminRouteWithChildren
+  AuthRoute: typeof AuthRouteWithChildren
+  LandingRoute: typeof LandingRouteWithChildren
   DemoTableRoute: typeof DemoTableRoute
   DemoTanstackQueryRoute: typeof DemoTanstackQueryRoute
+  MapIndexRoute: typeof MapIndexRoute
+  ReportFoundCatIndexRoute: typeof ReportFoundCatIndexRoute
+  ReportLostCatIndexRoute: typeof ReportLostCatIndexRoute
   DemoApiNamesRoute: typeof DemoApiNamesRoute
   DemoApiTqTodosRoute: typeof DemoApiTqTodosRoute
   DemoStartApiRequestRoute: typeof DemoStartApiRequestRoute
@@ -376,6 +369,20 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/_landing': {
+      id: '/_landing'
+      path: ''
+      fullPath: ''
+      preLoaderRoute: typeof LandingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_auth': {
+      id: '/_auth'
+      path: ''
+      fullPath: ''
+      preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/_admin': {
       id: '/_admin'
       path: ''
@@ -383,12 +390,33 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/$lang': {
-      id: '/$lang'
-      path: '/$lang'
-      fullPath: '/$lang'
-      preLoaderRoute: typeof LangRouteImport
+    '/report-lost-cat/': {
+      id: '/report-lost-cat/'
+      path: '/report-lost-cat'
+      fullPath: '/report-lost-cat'
+      preLoaderRoute: typeof ReportLostCatIndexRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/report-found-cat/': {
+      id: '/report-found-cat/'
+      path: '/report-found-cat'
+      fullPath: '/report-found-cat'
+      preLoaderRoute: typeof ReportFoundCatIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/map/': {
+      id: '/map/'
+      path: '/map'
+      fullPath: '/map'
+      preLoaderRoute: typeof MapIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_landing/': {
+      id: '/_landing/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof LandingIndexRouteImport
+      parentRoute: typeof LandingRoute
     }
     '/demo/tanstack-query': {
       id: '/demo/tanstack-query'
@@ -404,19 +432,54 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DemoTableRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/$lang/_landing': {
-      id: '/$lang/_landing'
-      path: ''
-      fullPath: '/$lang'
-      preLoaderRoute: typeof LangLandingRouteImport
-      parentRoute: typeof LangRoute
+    '/_landing/privacy-policy': {
+      id: '/_landing/privacy-policy'
+      path: '/privacy-policy'
+      fullPath: '/privacy-policy'
+      preLoaderRoute: typeof LandingPrivacyPolicyRouteImport
+      parentRoute: typeof LandingRoute
     }
-    '/$lang/_auth': {
-      id: '/$lang/_auth'
-      path: ''
-      fullPath: '/$lang'
-      preLoaderRoute: typeof LangAuthRouteImport
-      parentRoute: typeof LangRoute
+    '/_landing/faq': {
+      id: '/_landing/faq'
+      path: '/faq'
+      fullPath: '/faq'
+      preLoaderRoute: typeof LandingFaqRouteImport
+      parentRoute: typeof LandingRoute
+    }
+    '/_landing/contact-us': {
+      id: '/_landing/contact-us'
+      path: '/contact-us'
+      fullPath: '/contact-us'
+      preLoaderRoute: typeof LandingContactUsRouteImport
+      parentRoute: typeof LandingRoute
+    }
+    '/_auth/reset-password': {
+      id: '/_auth/reset-password'
+      path: '/reset-password'
+      fullPath: '/reset-password'
+      preLoaderRoute: typeof AuthResetPasswordRouteImport
+      parentRoute: typeof AuthRoute
+    }
+    '/_auth/register': {
+      id: '/_auth/register'
+      path: '/register'
+      fullPath: '/register'
+      preLoaderRoute: typeof AuthRegisterRouteImport
+      parentRoute: typeof AuthRoute
+    }
+    '/_auth/login': {
+      id: '/_auth/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof AuthLoginRouteImport
+      parentRoute: typeof AuthRoute
+    }
+    '/_auth/forgot-password': {
+      id: '/_auth/forgot-password'
+      path: '/forgot-password'
+      fullPath: '/forgot-password'
+      preLoaderRoute: typeof AuthForgotPasswordRouteImport
+      parentRoute: typeof AuthRoute
     }
     '/_admin/admin/': {
       id: '/_admin/admin/'
@@ -424,34 +487,6 @@ declare module '@tanstack/react-router' {
       fullPath: '/admin'
       preLoaderRoute: typeof AdminAdminIndexRouteImport
       parentRoute: typeof AdminRoute
-    }
-    '/$lang/report-lost-cat/': {
-      id: '/$lang/report-lost-cat/'
-      path: '/report-lost-cat'
-      fullPath: '/$lang/report-lost-cat'
-      preLoaderRoute: typeof LangReportLostCatIndexRouteImport
-      parentRoute: typeof LangRoute
-    }
-    '/$lang/report-found-cat/': {
-      id: '/$lang/report-found-cat/'
-      path: '/report-found-cat'
-      fullPath: '/$lang/report-found-cat'
-      preLoaderRoute: typeof LangReportFoundCatIndexRouteImport
-      parentRoute: typeof LangRoute
-    }
-    '/$lang/map/': {
-      id: '/$lang/map/'
-      path: '/map'
-      fullPath: '/$lang/map'
-      preLoaderRoute: typeof LangMapIndexRouteImport
-      parentRoute: typeof LangRoute
-    }
-    '/$lang/_landing/': {
-      id: '/$lang/_landing/'
-      path: '/'
-      fullPath: '/$lang/'
-      preLoaderRoute: typeof LangLandingIndexRouteImport
-      parentRoute: typeof LangLandingRoute
     }
     '/demo/start/server-funcs': {
       id: '/demo/start/server-funcs'
@@ -502,55 +537,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminAdminCatRequestsRouteImport
       parentRoute: typeof AdminRoute
     }
-    '/$lang/_landing/privacy-policy': {
-      id: '/$lang/_landing/privacy-policy'
-      path: '/privacy-policy'
-      fullPath: '/$lang/privacy-policy'
-      preLoaderRoute: typeof LangLandingPrivacyPolicyRouteImport
-      parentRoute: typeof LangLandingRoute
-    }
-    '/$lang/_landing/faq': {
-      id: '/$lang/_landing/faq'
-      path: '/faq'
-      fullPath: '/$lang/faq'
-      preLoaderRoute: typeof LangLandingFaqRouteImport
-      parentRoute: typeof LangLandingRoute
-    }
-    '/$lang/_landing/contact-us': {
-      id: '/$lang/_landing/contact-us'
-      path: '/contact-us'
-      fullPath: '/$lang/contact-us'
-      preLoaderRoute: typeof LangLandingContactUsRouteImport
-      parentRoute: typeof LangLandingRoute
-    }
-    '/$lang/_auth/reset-password': {
-      id: '/$lang/_auth/reset-password'
-      path: '/reset-password'
-      fullPath: '/$lang/reset-password'
-      preLoaderRoute: typeof LangAuthResetPasswordRouteImport
-      parentRoute: typeof LangAuthRoute
-    }
-    '/$lang/_auth/register': {
-      id: '/$lang/_auth/register'
-      path: '/register'
-      fullPath: '/$lang/register'
-      preLoaderRoute: typeof LangAuthRegisterRouteImport
-      parentRoute: typeof LangAuthRoute
-    }
-    '/$lang/_auth/login': {
-      id: '/$lang/_auth/login'
-      path: '/login'
-      fullPath: '/$lang/login'
-      preLoaderRoute: typeof LangAuthLoginRouteImport
-      parentRoute: typeof LangAuthRoute
-    }
-    '/$lang/_auth/forgot-password': {
-      id: '/$lang/_auth/forgot-password'
-      path: '/forgot-password'
-      fullPath: '/$lang/forgot-password'
-      preLoaderRoute: typeof LangAuthForgotPasswordRouteImport
-      parentRoute: typeof LangAuthRoute
-    }
     '/demo/start/ssr/': {
       id: '/demo/start/ssr/'
       path: '/demo/start/ssr'
@@ -582,60 +568,6 @@ declare module '@tanstack/react-router' {
   }
 }
 
-interface LangAuthRouteChildren {
-  LangAuthForgotPasswordRoute: typeof LangAuthForgotPasswordRoute
-  LangAuthLoginRoute: typeof LangAuthLoginRoute
-  LangAuthRegisterRoute: typeof LangAuthRegisterRoute
-  LangAuthResetPasswordRoute: typeof LangAuthResetPasswordRoute
-}
-
-const LangAuthRouteChildren: LangAuthRouteChildren = {
-  LangAuthForgotPasswordRoute: LangAuthForgotPasswordRoute,
-  LangAuthLoginRoute: LangAuthLoginRoute,
-  LangAuthRegisterRoute: LangAuthRegisterRoute,
-  LangAuthResetPasswordRoute: LangAuthResetPasswordRoute,
-}
-
-const LangAuthRouteWithChildren = LangAuthRoute._addFileChildren(
-  LangAuthRouteChildren,
-)
-
-interface LangLandingRouteChildren {
-  LangLandingContactUsRoute: typeof LangLandingContactUsRoute
-  LangLandingFaqRoute: typeof LangLandingFaqRoute
-  LangLandingPrivacyPolicyRoute: typeof LangLandingPrivacyPolicyRoute
-  LangLandingIndexRoute: typeof LangLandingIndexRoute
-}
-
-const LangLandingRouteChildren: LangLandingRouteChildren = {
-  LangLandingContactUsRoute: LangLandingContactUsRoute,
-  LangLandingFaqRoute: LangLandingFaqRoute,
-  LangLandingPrivacyPolicyRoute: LangLandingPrivacyPolicyRoute,
-  LangLandingIndexRoute: LangLandingIndexRoute,
-}
-
-const LangLandingRouteWithChildren = LangLandingRoute._addFileChildren(
-  LangLandingRouteChildren,
-)
-
-interface LangRouteChildren {
-  LangAuthRoute: typeof LangAuthRouteWithChildren
-  LangLandingRoute: typeof LangLandingRouteWithChildren
-  LangMapIndexRoute: typeof LangMapIndexRoute
-  LangReportFoundCatIndexRoute: typeof LangReportFoundCatIndexRoute
-  LangReportLostCatIndexRoute: typeof LangReportLostCatIndexRoute
-}
-
-const LangRouteChildren: LangRouteChildren = {
-  LangAuthRoute: LangAuthRouteWithChildren,
-  LangLandingRoute: LangLandingRouteWithChildren,
-  LangMapIndexRoute: LangMapIndexRoute,
-  LangReportFoundCatIndexRoute: LangReportFoundCatIndexRoute,
-  LangReportLostCatIndexRoute: LangReportLostCatIndexRoute,
-}
-
-const LangRouteWithChildren = LangRoute._addFileChildren(LangRouteChildren)
-
 interface AdminRouteChildren {
   AdminAdminCatRequestsRoute: typeof AdminAdminCatRequestsRoute
   AdminAdminContactUsRoute: typeof AdminAdminContactUsRoute
@@ -652,11 +584,48 @@ const AdminRouteChildren: AdminRouteChildren = {
 
 const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
 
+interface AuthRouteChildren {
+  AuthForgotPasswordRoute: typeof AuthForgotPasswordRoute
+  AuthLoginRoute: typeof AuthLoginRoute
+  AuthRegisterRoute: typeof AuthRegisterRoute
+  AuthResetPasswordRoute: typeof AuthResetPasswordRoute
+}
+
+const AuthRouteChildren: AuthRouteChildren = {
+  AuthForgotPasswordRoute: AuthForgotPasswordRoute,
+  AuthLoginRoute: AuthLoginRoute,
+  AuthRegisterRoute: AuthRegisterRoute,
+  AuthResetPasswordRoute: AuthResetPasswordRoute,
+}
+
+const AuthRouteWithChildren = AuthRoute._addFileChildren(AuthRouteChildren)
+
+interface LandingRouteChildren {
+  LandingContactUsRoute: typeof LandingContactUsRoute
+  LandingFaqRoute: typeof LandingFaqRoute
+  LandingPrivacyPolicyRoute: typeof LandingPrivacyPolicyRoute
+  LandingIndexRoute: typeof LandingIndexRoute
+}
+
+const LandingRouteChildren: LandingRouteChildren = {
+  LandingContactUsRoute: LandingContactUsRoute,
+  LandingFaqRoute: LandingFaqRoute,
+  LandingPrivacyPolicyRoute: LandingPrivacyPolicyRoute,
+  LandingIndexRoute: LandingIndexRoute,
+}
+
+const LandingRouteWithChildren =
+  LandingRoute._addFileChildren(LandingRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
-  LangRoute: LangRouteWithChildren,
   AdminRoute: AdminRouteWithChildren,
+  AuthRoute: AuthRouteWithChildren,
+  LandingRoute: LandingRouteWithChildren,
   DemoTableRoute: DemoTableRoute,
   DemoTanstackQueryRoute: DemoTanstackQueryRoute,
+  MapIndexRoute: MapIndexRoute,
+  ReportFoundCatIndexRoute: ReportFoundCatIndexRoute,
+  ReportLostCatIndexRoute: ReportLostCatIndexRoute,
   DemoApiNamesRoute: DemoApiNamesRoute,
   DemoApiTqTodosRoute: DemoApiTqTodosRoute,
   DemoStartApiRequestRoute: DemoStartApiRequestRoute,

@@ -1,4 +1,4 @@
-import { useNavigate, useParams, useSearch } from "@tanstack/react-router";
+import { useNavigate, useSearch } from "@tanstack/react-router";
 import { Filter, LogOut, ShieldUser } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -43,7 +43,6 @@ const MapHeader = ({ firstName, lastName, role }: User) => {
 	const { t } = useTranslation("");
 	const isMobile = useIsMobile();
 	const navigate = useNavigate();
-	const { lang } = useParams({ from: "/$lang" });
 	const [filters, setFilters] = useState<{
 		color?: CatFurColor[];
 		eyeColor?: CatEyeColor;
@@ -54,7 +53,7 @@ const MapHeader = ({ firstName, lastName, role }: User) => {
 		pattern?: CatFurPattern;
 		size?: CatSize;
 	}>({});
-	const search = useSearch({ from: "/$lang/map/" });
+	const search = useSearch({ from: "/map/" });
 
 	// biome-ignore lint/correctness/useExhaustiveDependencies: <false>
 	useEffect(() => {
@@ -137,7 +136,7 @@ const MapHeader = ({ firstName, lastName, role }: User) => {
 									onClick={async () => {
 										try {
 											await logoutFn();
-											navigate({ to: "/$lang", params: { lang } });
+											navigate({ to: "/" });
 										} catch (_) {
 											toast.error(t("map.logout_error"));
 										}
@@ -316,18 +315,14 @@ const MapHeader = ({ firstName, lastName, role }: User) => {
 					</p>
 					<div className="flex flex-col gap-3 items-start">
 						<Button
-							onClick={() =>
-								navigate({ to: "/$lang/report-lost-cat", params: { lang } })
-							}
+							onClick={() => navigate({ to: "/report-lost-cat" })}
 							className="w-full"
 						>
 							{t("map.report_lost_cat")}
 						</Button>
 						<Button
 							variant={"secondary"}
-							onClick={() =>
-								navigate({ to: "/$lang/report-found-cat", params: { lang } })
-							}
+							onClick={() => navigate({ to: "/report-found-cat" })}
 							className="w-full"
 						>
 							{t("map.report_found_cat")}

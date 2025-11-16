@@ -1,11 +1,6 @@
 import { useForm } from "@tanstack/react-form";
 import { mergeForm, useStore, useTransform } from "@tanstack/react-form-start";
-import {
-	createFileRoute,
-	Link,
-	redirect,
-	useParams,
-} from "@tanstack/react-router";
+import { createFileRoute, Link, redirect } from "@tanstack/react-router";
 import { useTranslation } from "react-i18next";
 import LoginCat from "@/assets/images/login-cat.svg";
 import MixiInput from "@/components/shared/mixi-input";
@@ -13,17 +8,17 @@ import { Button } from "@/components/ui/button";
 import { loginFormOptions, zLoginForm } from "@/forms/auth";
 import { getCurrentUserFn, getFormFn, loginFn } from "@/server/functions/auth";
 
-export const Route = createFileRoute("/$lang/_auth/login")({
+export const Route = createFileRoute("/_auth/login")({
 	component: RouteComponent,
 	loader: async () => {
 		return {
 			state: await getFormFn(),
 		};
 	},
-	beforeLoad: async ({ params }) => {
+	beforeLoad: async () => {
 		const { user } = await getCurrentUserFn();
 		if (user) {
-			throw redirect({ to: "/$lang/map", params: { lang: params.lang } });
+			throw redirect({ to: "/map" });
 		}
 	},
 });
@@ -31,7 +26,6 @@ export const Route = createFileRoute("/$lang/_auth/login")({
 function RouteComponent() {
 	const { t } = useTranslation();
 	const { state } = Route.useLoaderData();
-	const { lang } = useParams({ from: "/$lang" });
 
 	const form = useForm({
 		...loginFormOptions,
@@ -118,8 +112,7 @@ function RouteComponent() {
 						</p>
 					</div> */}
 						<Link
-							to="/$lang/forgot-password"
-							params={{ lang }}
+							to="/forgot-password"
 							className="font-semibold text-sm leading-5 tracking-normal text-primary"
 						>
 							{t("login.forgot_password")}
@@ -150,8 +143,7 @@ function RouteComponent() {
 							{t("login.dont_have_account")}
 						</p>
 						<Link
-							to="/$lang/register"
-							params={{ lang }}
+							to="/register"
 							className="font-semibold text-sm leading-5 tracking-normal text-primary"
 						>
 							{t("login.sign_up")}

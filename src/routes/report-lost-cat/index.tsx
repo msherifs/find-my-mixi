@@ -35,7 +35,7 @@ import {
 	reportCatSchema,
 } from "@/server/functions/cat-reporting";
 
-export const Route = createFileRoute("/$lang/report-lost-cat/")({
+export const Route = createFileRoute("/report-lost-cat/")({
 	component: RouteComponent,
 });
 

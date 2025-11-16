@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from "@tanstack/react-router";
+import { useNavigate } from "@tanstack/react-router";
 import { useTranslation } from "react-i18next";
 import SearchCat from "@/assets/images/search-cat.svg";
 import { Button } from "../ui/button";
@@ -12,7 +12,6 @@ function LostCatReported({
 }) {
 	const { t } = useTranslation();
 	const navigate = useNavigate();
-	const { lang } = useParams({ from: "/$lang" });
 	return (
 		<div className="relative min-h-screen min-h-[100dvh] flex flex-col">
 			<div className="flex-grow flex justify-center items-center">
@@ -28,7 +27,7 @@ function LostCatReported({
 					<p className="font-normal text-[20.68px] leading-[31px] tracking-[0] text-center">
 						{description}
 					</p>
-					<Button onClick={() => navigate({ to: "/$lang", params: { lang } })}>
+					<Button onClick={() => navigate({ to: "/" })}>
 						{t("reportCat.go_to_home")}
 					</Button>
 				</div>

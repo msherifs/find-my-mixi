@@ -20,12 +20,12 @@ import {
 } from "@/server/db/enums";
 import { getCurrentUserFn } from "@/server/functions/auth";
 
-export const Route = createFileRoute("/$lang/map/")({
+export const Route = createFileRoute("/map/")({
 	component: RouteComponent,
-	loader: async ({ params }) => {
+	loader: async () => {
 		const { user } = await getCurrentUserFn();
 		if (!user) {
-			throw redirect({ to: "/$lang", params: { lang: params.lang } });
+			throw redirect({ to: "/" });
 		}
 		return user;
 	},
@@ -43,7 +43,7 @@ export const Route = createFileRoute("/$lang/map/")({
 
 function RouteComponent() {
 	const [isOwnerModalOpen, setIsOwnerModalOpen] = useState(false);
-	const user = useLoaderData({ from: "/$lang/map/" });
+	const user = useLoaderData({ from: "/map/" });
 
 	return (
 		<div className="h-screen h-[100dvh] w-screen">

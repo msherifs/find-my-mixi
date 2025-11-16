@@ -2,7 +2,6 @@ import type { QueryClient } from "@tanstack/react-query";
 import {
 	createRootRouteWithContext,
 	HeadContent,
-	redirect,
 	Scripts,
 } from "@tanstack/react-router";
 import appCss from "../styles.css?url";
@@ -41,20 +40,12 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
 	}),
 
 	shellComponent: RootDocument,
-	beforeLoad: ({ location }) => {
-		if (location.pathname === "/") {
-			const lang = Cookies.get("language") || "en";
-			throw redirect({
-				to: "/$lang",
-				params: { lang },
-			});
-		}
-	},
 });
 
 function RootDocument({ children }: { children: React.ReactNode }) {
+	const lang = Cookies.get("language") || "en";
 	return (
-		<html lang="en">
+		<html lang={lang}>
 			<head>
 				<HeadContent />
 			</head>

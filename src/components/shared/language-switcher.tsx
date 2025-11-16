@@ -1,4 +1,3 @@
-import { useNavigate, useParams } from "@tanstack/react-router";
 import Cookies from "js-cookie";
 import { Globe } from "lucide-react";
 import { useTranslation } from "react-i18next";
@@ -15,17 +14,11 @@ import {
 
 const LanguageSwitcher = () => {
 	const { t, i18n } = useTranslation("");
-	const navigate = useNavigate();
 	const isMobile = useIsMobile();
 	const currentLanguage = i18n.language;
-	const params = useParams({ strict: false });
 	const changeLanguage = (newLang: "es" | "en") => {
 		i18n.changeLanguage(newLang);
 		Cookies.set("language", newLang);
-
-		navigate({
-			to: window.location.pathname.replace(`/${params.lang}`, `/${newLang}`),
-		});
 	};
 
 	return (

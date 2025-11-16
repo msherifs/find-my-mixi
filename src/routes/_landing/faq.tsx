@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { cn } from "@/lib/utils";
 
-export const Route = createFileRoute("/$lang/_landing/faq")({
+export const Route = createFileRoute("/_landing/faq")({
 	component: RouteComponent,
 });
 

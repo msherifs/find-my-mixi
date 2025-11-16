@@ -1,5 +1,5 @@
 /** biome-ignore-all lint/a11y/noSvgWithoutTitle: we love svgs without title */
-import { useNavigate, useParams } from "@tanstack/react-router";
+import { useNavigate } from "@tanstack/react-router";
 import { useTranslation } from "react-i18next";
 import GroupOfCats from "@/assets/images/hero-cat-group.svg";
 import NameContainer from "@/assets/images/hero-cat-mixi.svg";
@@ -11,7 +11,6 @@ import { Button } from "../ui/button";
 const HeroSection = () => {
 	const { t } = useTranslation("");
 	const navigate = useNavigate();
-	const { lang } = useParams({ from: "/$lang" });
 	return (
 		<section className="max-w-[1280px] mx-auto w-full px-4 md:px-9">
 			<div className="bg-[#FEDAFFB2] rounded-[40px] px-6 pt-20 lg:px-[72px] lg:pt-28">
@@ -69,7 +68,7 @@ const HeroSection = () => {
 						size={"lg"}
 						className="w-full sm:w-auto"
 						onClick={() =>
-							navigate({ to: "/$lang/report-lost-cat", params: { lang } })
+							navigate({ to: "/report-lost-cat" })
 						}
 					>
 						{t("landing.heroSection.lost_a_cat")}
@@ -79,7 +78,7 @@ const HeroSection = () => {
 						size={"lg"}
 						className="shadow-none border-none w-full sm:w-auto"
 						onClick={() =>
-							navigate({ to: "/$lang/report-found-cat", params: { lang } })
+							navigate({ to: "/report-found-cat" })
 						}
 					>
 						{t("landing.heroSection.found_a_cat")}

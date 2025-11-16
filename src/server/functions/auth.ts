@@ -6,7 +6,6 @@ import {
 } from "@tanstack/react-form-start";
 import { redirect } from "@tanstack/react-router";
 import { createServerFn } from "@tanstack/react-start";
-import { getCookie } from "@tanstack/react-start/server";
 import { ObjectId } from "mongodb";
 import {
 	loginFormOptions,
@@ -64,14 +63,13 @@ export const loginFn = createServerFn({ method: "POST" })
 			if (!user) {
 				throw new LiteralError("INVALID_CREDENTIALS");
 			}
-			const lang = getCookie("language") || "en";
 			const session = await useAppSession();
 			await session.update({
 				userId: user._id.toHexString(),
 				role: user.role,
 			});
 
-			return redirect({ to: "/$lang/map", params: { lang } });
+			return redirect({ to: "/map" });
 		} catch (error) {
 			if (error instanceof ServerValidateError) {
 				return error.response;
@@ -101,14 +99,13 @@ export const registerFn = createServerFn({ method: "POST" })
 				role: UserRole.USER,
 			});
 
-			const lang = getCookie("language") || "en";
 			const session = await useAppSession();
 			await session.update({
 				userId: user._id.toHexString(),
 				role: user.role,
 			});
 
-			return redirect({ to: "/$lang/map", params: { lang } });
+			return redirect({ to: "/map" });
 		} catch (error) {
 			if (error instanceof ServerValidateError) {
 				return error.response;

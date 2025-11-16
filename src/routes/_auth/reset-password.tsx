@@ -1,15 +1,11 @@
-import {
-	createFileRoute,
-	useNavigate,
-	useParams,
-} from "@tanstack/react-router";
+import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import GreenCheckMark from "@/assets/images/green-check-mark.svg";
 import MixiInput from "@/components/shared/mixi-input";
 import { Button } from "@/components/ui/button";
 
-export const Route = createFileRoute("/$lang/_auth/reset-password")({
+export const Route = createFileRoute("/_auth/reset-password")({
 	component: RouteComponent,
 });
 
@@ -59,7 +55,6 @@ const EnterPasswordScreen = ({ onNext }: { onNext: () => void }) => {
 const LoginScreen = () => {
 	const { t } = useTranslation();
 	const navigate = useNavigate();
-	const { lang } = useParams({ from: "/$lang" });
 	return (
 		<div className="flex flex-col items-center gap-5 max-w-[80%]">
 			<img
@@ -76,7 +71,7 @@ const LoginScreen = () => {
 			<Button
 				className="w-full max-w-[480px]"
 				onClick={() => {
-					navigate({ to: "/$lang/login", params: { lang } });
+					navigate({ to: "/login" });
 				}}
 			>
 				{t("resetPassword.continue")}

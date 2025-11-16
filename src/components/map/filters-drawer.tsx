@@ -23,7 +23,7 @@ const FiltersDrawer = ({
 	setFilters: React.Dispatch<React.SetStateAction<{ [key: string]: any }>>;
 }) => {
 	const { t } = useTranslation("");
-	const search = useSearch({ from: "/$lang/map/" });
+	const search = useSearch({ from: "/map/" });
 	return (
 		<Drawer>
 			<DrawerTrigger>

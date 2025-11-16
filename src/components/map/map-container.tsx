@@ -150,7 +150,7 @@ function MapBoundsTracker({
 }: {
 	setRequests: (requests: CatRequest[]) => void;
 }) {
-	const searchParams = useSearch({ from: "/$lang/map/" });
+	const searchParams = useSearch({ from: "/map/" });
 	const map = useMap();
 
 	// biome-ignore lint/correctness/useExhaustiveDependencies: <false>
