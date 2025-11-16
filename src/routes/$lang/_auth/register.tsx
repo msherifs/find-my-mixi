@@ -4,7 +4,12 @@ import {
 	useStore,
 	useTransform,
 } from "@tanstack/react-form-start";
-import { createFileRoute, Link, redirect } from "@tanstack/react-router";
+import {
+	createFileRoute,
+	Link,
+	redirect,
+	useParams,
+} from "@tanstack/react-router";
 import { useTranslation } from "react-i18next";
 import SignupCat from "@/assets/images/signup-cat.svg";
 import MixiInput from "@/components/shared/mixi-input";
@@ -16,12 +21,12 @@ import {
 	registerFn,
 } from "@/server/functions/auth";
 
-export const Route = createFileRoute("/_auth/register")({
+export const Route = createFileRoute("/$lang/_auth/register")({
 	component: RouteComponent,
-	beforeLoad: async () => {
+	beforeLoad: async ({ params }) => {
 		const { user } = await getCurrentUserFn();
 		if (user) {
-			throw redirect({ to: "/map" });
+			throw redirect({ to: "/$lang/map", params: { lang: params.lang } });
 		}
 	},
 	loader: async () => {
@@ -34,6 +39,7 @@ export const Route = createFileRoute("/_auth/register")({
 function RouteComponent() {
 	const { state } = Route.useLoaderData();
 	const { t } = useTranslation();
+	const { lang } = useParams({ from: "/$lang" });
 
 	const form = useForm({
 		...registerFormOptions,
@@ -176,7 +182,8 @@ function RouteComponent() {
 						{t("signup.already_have_account")}
 					</p>
 					<Link
-						to="/login"
+						to="/$lang/login"
+						params={{ lang }}
 						className="font-semibold text-sm leading-5 tracking-normal text-primary"
 					>
 						{t("signup.login")}

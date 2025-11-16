@@ -1,4 +1,4 @@
-import { Link } from "@tanstack/react-router";
+import { Link, useParams } from "@tanstack/react-router";
 import { useTranslation } from "react-i18next";
 import DoneStep from "@/assets/images/done-step.svg";
 import Logo from "@/assets/images/logo-letters.svg";
@@ -14,11 +14,12 @@ const ProgressBar = ({
 }) => {
 	const { t } = useTranslation("");
 	const isMobile = useIsMobile();
+	const { lang } = useParams({ from: "/$lang" });
 
 	if (isMobile) {
 		return (
 			<div className="w-full flex flex-col gap-4 p-4 bg-[#FAF9F9] rounded-[32px]">
-				<Link to="/">
+				<Link to="/$lang" params={{ lang }}>
 					<img src={Logo} alt="Find My Mixi Logo" className="h-8 w-auto" />
 				</Link>
 				<div className="flex items-start justify-between w-full">
@@ -53,7 +54,7 @@ const ProgressBar = ({
 	return (
 		<div className="h-full bg-[#FAF9F9] rounded-[32px] max-w-[440px] w-[25vw] flex flex-col justify-between">
 			<div className="flex flex-col items-start pt-8 px-8 gap-[80px] w-full">
-				<Link to="/">
+				<Link to="/$lang" params={{ lang }}>
 					<img src={Logo} alt="Find My Mixi Logo" />
 				</Link>
 				<div className="flex flex-col items-start gap-1 pr-8 w-full">
@@ -127,7 +128,7 @@ const Step = ({
 			)}
 			<p
 				className={cn(
-					"font-semibold text-[16px] leading-[24px] tracking-[0]",
+					"font-semibold text-[16px] leading-[24px] tracking-[0] text-start",
 					disabled && "text-gray-500",
 				)}
 			>

@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useTranslation } from "react-i18next";
 
-export const Route = createFileRoute("/_landing/privacy-policy")({
+export const Route = createFileRoute("/$lang/_landing/privacy-policy")({
 	component: RouteComponent,
 });
 
@@ -95,7 +95,7 @@ function RouteComponent() {
 				</ol>
 			</div>
 		</div>
-	);
+	)
 }
 
 const PrivacyPolicy = ({
@@ -130,5 +130,5 @@ const PrivacyPolicy = ({
 				</p>
 			)}
 		</li>
-	);
+	)
 };

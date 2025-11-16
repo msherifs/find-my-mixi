@@ -1,4 +1,4 @@
-import { useNavigate } from "@tanstack/react-router";
+import { useNavigate, useParams } from "@tanstack/react-router";
 import { MoreVertical } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
@@ -7,6 +7,7 @@ import { Drawer, DrawerContent, DrawerTrigger } from "@/components/ui/drawer";
 const ActionsDrawer = () => {
 	const { t } = useTranslation("");
 	const navigate = useNavigate();
+	const { lang } = useParams({ from: "/$lang" });
 	return (
 		<Drawer>
 			<DrawerTrigger>
@@ -20,14 +21,18 @@ const ActionsDrawer = () => {
 				</p>
 				<div className="flex w-full flex-col gap-3 items-center">
 					<Button
-						onClick={() => navigate({ to: "/report-lost-cat" })}
+						onClick={() =>
+							navigate({ to: "/$lang/report-lost-cat", params: { lang } })
+						}
 						className="w-full"
 					>
 						{t("map.report_lost_cat")}
 					</Button>
 					<Button
 						variant={"secondary"}
-						onClick={() => navigate({ to: "/report-found-cat" })}
+						onClick={() =>
+							navigate({ to: "/$lang/report-found-cat", params: { lang } })
+						}
 						className="w-full"
 					>
 						{t("map.report_found_cat")}

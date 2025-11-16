@@ -22,7 +22,6 @@ import { reportCatOptions } from "@/forms/report-cat";
 import {
 	CatCoatType,
 	CatEyeColor,
-	CatFormType,
 	CatFurColor,
 	CatFurPattern,
 	CatSize,
@@ -36,7 +35,7 @@ import {
 	reportCatSchema,
 } from "@/server/functions/cat-reporting";
 
-export const Route = createFileRoute("/report-found-cat/")({
+export const Route = createFileRoute("/$lang/report-lost-cat/")({
 	component: RouteComponent,
 });
 
@@ -46,12 +45,16 @@ function RouteComponent() {
 	const [isCatWearingCollar, setIsCatWearingCollar] = useState<
 		boolean | undefined
 	>(false);
+	const [uploadedOwnerPhoto, setUploadedOwnerPhoto] = useState<File | null>(
+		null,
+	)
 	const { t } = useTranslation();
 
 	const DUMMY_CAT_PHOTO_URL =
 		"https://img.freepik.com/free-photo/portrait-beautiful-purebred-pussycat-with-shorthair-orange-collar-neck-sitting-floor-reacting-camera-flash-scared-looking-light-indoor_8353-12551.jpg?semt=ais_hybrid&w=740&q=80";
 
 	const firstStepNextHandler = async () => {
+		await form.validateField("catDetails.name", "blur");
 		await form.validateField("catDetails.date", "blur");
 		await form.validateField("catDetails.furColor", "blur");
 		await form.validateField("catDetails.furPattern", "blur");
@@ -74,12 +77,12 @@ function RouteComponent() {
 			formState.errors.length > 0 ||
 			Object.values(formState.fieldMeta).some(
 				(field) => field?.errors?.length && field?.errors?.length > 0,
-			);
+			)
 
 		if (!hasErrors) {
 			setCurrentStep(2);
 		}
-	};
+	}
 
 	const secondStepNextHandler = async () => {
 		await form.validateField("location.address", "blur");
@@ -94,18 +97,14 @@ function RouteComponent() {
 			formState.errors.length > 0 ||
 			Object.values(formState.fieldMeta).some(
 				(field) => field?.errors?.length && field?.errors?.length > 0,
-			);
+			)
 
 		if (!hasErrors) {
 			setCurrentStep(3);
 		}
-	};
+	}
 	const form = useForm({
-		defaultValues: {
-			...reportCatOptions.defaultValues,
-			type: CatFormType.REPORT_CAT_FOUND,
-			name: undefined,
-		},
+		...reportCatOptions,
 		onSubmit: async ({ value }) => {
 			const dataToSubmit = {
 				...value,
@@ -127,15 +126,15 @@ function RouteComponent() {
 				toast.error(t("errors.something_went_wrong"));
 			}
 		},
-	});
+	})
 
 	if (currentStep === 4)
 		return (
 			<LostCatReported
-				title={t("reportCat.thank_you_for_your_help")}
-				description={t("reportCat.your_info_is_vital")}
+				title={t("reportCat.search_process_starts")}
+				description={t("reportCat.sit_back_relax")}
 			/>
-		);
+		)
 
 	return (
 		<div className="h-screen h-[100dvh] flex sm:flex-row flex-col w-full sm:p-6 p-3">
@@ -150,11 +149,11 @@ function RouteComponent() {
 				<div className="flex flex-col items-start w-full gap-3 sm:px-8 px-0">
 					<img
 						src={CatImage}
-						alt="Report Found Cat"
+						alt="Report Lost Cat"
 						className="w-[62px] h-auto"
 					/>
 					<p className="font-semibold text-2xl leading-8 tracking-normal text-gray-900">
-						{t("reportCat.report_found_cat")}
+						{t("reportCat.report_lost_cat")}
 					</p>
 				</div>
 				{currentStep === 1 && (
@@ -163,6 +162,34 @@ function RouteComponent() {
 							{t("reportCat.cat_information")}
 						</p>
 						<div className="flex items-start w-full gap-4 sm:flex-row flex-col w-full">
+							<form.Field
+								name="catDetails.name"
+								validators={{
+									onBlur: ({ value }) => {
+										if (!value || value.length === 0) {
+											return "errors.required"
+										}
+									},
+								}}
+							>
+								{(field) => (
+									<MixiInput
+										label={t("reportCat.cats_name")}
+										placeholder={t("reportCat.enter_cats_name")}
+										type="text"
+										name="catDetails.name"
+										value={field.state.value}
+										onChange={(event) => field.handleChange(event.target.value)}
+										onBlur={field.handleBlur}
+										autoComplete="off"
+										errorMessage={
+											field.state.meta.errors[0]
+												? t(field.state.meta.errors[0])
+												: undefined
+										}
+									/>
+								)}
+							</form.Field>
 							<form.Field
 								name="catDetails.furColor"
 								validators={{
@@ -212,7 +239,7 @@ function RouteComponent() {
 											return {
 												label: t(`catFurPattern.${pattern.toLowerCase()}`),
 												value: pattern,
-											};
+											}
 										})}
 										errorMessage={
 											field.state.meta.errors[0]
@@ -240,7 +267,7 @@ function RouteComponent() {
 											return {
 												label: t(`catCoatType.${type.toLowerCase()}`),
 												value: type,
-											};
+											}
 										})}
 										errorMessage={
 											field.state.meta.errors[0]
@@ -284,7 +311,7 @@ function RouteComponent() {
 											return {
 												label: t(`catEyeColor.${color.toLowerCase()}`),
 												value: color,
-											};
+											}
 										})}
 										errorMessage={
 											field.state.meta.errors[0]
@@ -312,7 +339,7 @@ function RouteComponent() {
 											return {
 												label: t(`catSize.${size.toLowerCase()}`),
 												value: size,
-											};
+											}
 										})}
 										errorMessage={
 											field.state.meta.errors[0]
@@ -327,20 +354,20 @@ function RouteComponent() {
 								validators={{
 									onBlur: ({ value }) => {
 										if (!value) {
-											return t("errors.required");
+											return t("errors.required")
 										}
 
 										const date = DateTime.fromISO(value);
 										if (!date.isValid) {
-											return t("errors.required");
+											return t("errors.required")
 										}
-										return undefined;
+										return undefined
 									},
 								}}
 							>
 								{(field) => (
 									<MixiCalendar
-										label={t("reportCat.date_found")}
+										label={t("reportCat.lost_date")}
 										placeholder={t("reportCat.select_date")}
 										selectedDate={
 											field.state.value
@@ -349,8 +376,8 @@ function RouteComponent() {
 										}
 										onDateChange={(value) => {
 											if (!value) {
-												field.handleChange("");
-												return;
+												field.handleChange("")
+												return
 											}
 
 											const isoString = DateTime.fromJSDate(value).toISO();
@@ -381,12 +408,12 @@ function RouteComponent() {
 									<Checkbox
 										checked={!isCatWearingCollar}
 										onCheckedChange={() => {
-											setIsCatWearingCollar(false);
+											setIsCatWearingCollar(false)
 											form.setFieldValue("catDetails.collar", {
 												color: "",
 												pattern: "",
 												embellishment: "",
-											});
+											})
 										}}
 									/>
 									<p>{t("reportCat.no")}</p>
@@ -400,9 +427,9 @@ function RouteComponent() {
 									validators={{
 										onBlur: ({ value }) => {
 											if (!value || value.length === 0) {
-												return t("errors.required");
+												return t("errors.required")
 											}
-											return undefined;
+											return undefined
 										},
 									}}
 								>
@@ -418,7 +445,7 @@ function RouteComponent() {
 												return {
 													label: t(`collarColor.${collor.toLowerCase()}`),
 													value: collor,
-												};
+												}
 											})}
 											errorMessage={
 												field.state.meta.errors[0]
@@ -433,9 +460,9 @@ function RouteComponent() {
 									validators={{
 										onBlur: ({ value }) => {
 											if (!value || value.length === 0) {
-												return t("errors.required");
+												return t("errors.required")
 											}
-											return undefined;
+											return undefined
 										},
 									}}
 								>
@@ -451,7 +478,7 @@ function RouteComponent() {
 												return {
 													label: t(`collarPattern.${pattern.toLowerCase()}`),
 													value: pattern,
-												};
+												}
 											})}
 											errorMessage={
 												field.state.meta.errors[0]
@@ -466,9 +493,9 @@ function RouteComponent() {
 									validators={{
 										onBlur: ({ value }) => {
 											if (!value || value.length === 0) {
-												return t("errors.required");
+												return t("errors.required")
 											}
-											return undefined;
+											return undefined
 										},
 									}}
 								>
@@ -487,7 +514,7 @@ function RouteComponent() {
 															`collarEmbellishment.${embellishment.toLowerCase()}`,
 														),
 														value: embellishment,
-													};
+													}
 												},
 											)}
 											errorMessage={
@@ -510,7 +537,7 @@ function RouteComponent() {
 								<MixiFileUpload
 									file={uploadedCatPhoto}
 									setFile={(file) => {
-										setUploadedCatPhoto(file);
+										setUploadedCatPhoto(file)
 										field.handleChange(file ? DUMMY_CAT_PHOTO_URL : "");
 									}}
 									errorMessage={
@@ -612,7 +639,35 @@ function RouteComponent() {
 									/>
 								)}
 							</form.Field>
+							<form.Field name="userDetails.dob">
+								{(field) => (
+									<MixiCalendar
+										label={t("reportCat.date_of_birth")}
+										placeholder={t("reportCat.select_date")}
+										selectedDate={
+											field.state.value
+												? DateTime.fromISO(field.state.value).toJSDate()
+												: undefined
+										}
+										onDateChange={(value) => {
+											if (!value) {
+												field.handleChange("")
+												return
+											}
+
+											const isoString = DateTime.fromJSDate(value).toISO();
+											field.handleChange(isoString ?? "");
+										}}
+										captionLayout="dropdown"
+									/>
+								)}
+							</form.Field>
 						</div>
+						<MixiFileUpload
+							file={uploadedOwnerPhoto}
+							setFile={setUploadedOwnerPhoto}
+							label={t("reportCat.upload_your_photo_optional")}
+						/>
 						<Button className="w-full" onClick={firstStepNextHandler}>
 							{t("reportCat.next")}
 						</Button>
@@ -633,13 +688,13 @@ function RouteComponent() {
 
 									const [longitude, latitude] = value;
 									if (longitude < -180 || longitude > 180) {
-										return "Invalid longitude";
+										return "Invalid longitude"
 									}
 									if (latitude < -90 || latitude > 90) {
-										return "Invalid latitude";
+										return "Invalid latitude"
 									}
 
-									return undefined;
+									return undefined
 								},
 							}}
 						>
@@ -830,7 +885,7 @@ function RouteComponent() {
 				)}
 			</form>
 		</div>
-	);
+	)
 }
 
 const ReviewSection = ({
@@ -887,7 +942,7 @@ const ReviewSection = ({
 					value={t(`catSize.${values.catDetails.size.toLowerCase()}`)}
 				/>
 				<ValueCard
-					label={t("reportCat.date_found")}
+					label={t("reportCat.lost_date")}
 					value={DateTime.fromJSDate(values.catDetails.date).toFormat(
 						"dd/MM/yyyy",
 					)}
@@ -901,7 +956,7 @@ const ReviewSection = ({
 			<p className="font-medium text-xl leading-[30px] tracking-normal text-gray-900">
 				{t("reportCat.owner_information")}
 			</p>
-			<div className="w-full grid grid-cols-2 sm:grid-cols-4 gap-4">
+			<div className="w-full flex items-start gap-4">
 				<ValueCard
 					label={t("reportCat.owner_name")}
 					value={values.userDetails.name}
@@ -946,7 +1001,7 @@ const ReviewSection = ({
 				/>
 			</div>
 		</div>
-	);
+	)
 };
 
 const ValueCard = ({ label, value }: { label: string; value: string }) => {
@@ -955,9 +1010,9 @@ const ValueCard = ({ label, value }: { label: string; value: string }) => {
 			<p className="font-semibold text-[14px] leading-[20px] tracking-[0] white-space-nowrap">
 				{label}
 			</p>
-			<p className="font-normal text-[14px] leading-[24px] tracking-[0] text-[#6C6C6C] truncate w-[180px] sm:w-full">
-				{value.length === 0 ? "-" : value}
+			<p className="font-normal text-[14px] leading-[24px] tracking-[0] text-[#6C6C6C]">
+				{value}
 			</p>
 		</div>
-	);
+	)
 };

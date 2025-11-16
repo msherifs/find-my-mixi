@@ -7,7 +7,6 @@ import CatImage from "@/assets/images/why-us-image.svg";
 const WhyUsSection = () => {
 	const { t } = useTranslation("");
 	return (
-		// biome-ignore lint/correctness/useUniqueElementIds: <false>
 		<section
 			className="w-full flex flex-col items-start gap-[64px] lg:py-[96px] py-[64px] max-w-[1280px] mx-auto md:px-9 px-4 scroll-mt-10"
 			id="why-us"

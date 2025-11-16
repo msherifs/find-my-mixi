@@ -5,7 +5,7 @@ import StatsSection from "@/components/landing/stats-section";
 import TestimonialSection from "@/components/landing/testimonial-section";
 import WhyUsSection from "@/components/landing/why-us-section";
 
-export const Route = createFileRoute("/_landing/")({
+export const Route = createFileRoute("/$lang/_landing/")({
 	component: App,
 });
 
@@ -18,5 +18,5 @@ function App() {
 			<WhyUsSection />
 			<TestimonialSection />
 		</div>
-	);
+	)
 }

@@ -1,6 +1,6 @@
 import { createFileRoute, Outlet } from "@tanstack/react-router";
 
-export const Route = createFileRoute("/_auth")({
+export const Route = createFileRoute("/$lang/_auth")({
 	component: RouteComponent,
 });
 
@@ -14,5 +14,5 @@ function RouteComponent() {
 				© FindMyMixi 2024
 			</footer>
 		</div>
-	);
+	)
 }

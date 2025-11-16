@@ -10,12 +10,12 @@ import IAmTheOwnerModal from "@/components/map/i-am-the-owner-modal";
 import { MixiMapContainer } from "@/components/map/map-container";
 import { getCurrentUserFn } from "@/server/functions/auth";
 
-export const Route = createFileRoute("/map/")({
+export const Route = createFileRoute("/$lang/map/")({
 	component: RouteComponent,
-	loader: async () => {
+	loader: async ({ params }) => {
 		const { user } = await getCurrentUserFn();
 		if (!user) {
-			throw redirect({ to: "/" });
+			throw redirect({ to: "/$lang", params: { lang: params.lang } });
 		}
 		return user;
 	},
@@ -23,7 +23,7 @@ export const Route = createFileRoute("/map/")({
 
 function RouteComponent() {
 	const [isOwnerModalOpen, setIsOwnerModalOpen] = useState(false);
-	const user = useLoaderData({ from: "/map/" });
+	const user = useLoaderData({ from: "/$lang/map/" });
 
 	return (
 		<div className="h-screen h-[100dvh] w-screen">

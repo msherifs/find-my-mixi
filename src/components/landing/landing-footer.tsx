@@ -1,4 +1,4 @@
-import { Link } from "@tanstack/react-router";
+import { Link, useParams } from "@tanstack/react-router";
 import { useTranslation } from "react-i18next";
 import FacebookIcon from "@/assets/images/facebook-icon.svg";
 import FooterIcon from "@/assets/images/footer-icon.svg";
@@ -8,6 +8,7 @@ import TwitterIcon from "@/assets/images/twitter-icon.svg";
 
 const LandingFooter = () => {
 	const { t } = useTranslation("");
+	const { lang } = useParams({ from: "/$lang" });
 	return (
 		<footer className="w-full h-auto rounded-t-[40px] lg:rounded-t-[80px] bg-[#090009] overflow-hidden">
 			{/* Top Section: Logo and Navigation Links */}
@@ -26,27 +27,31 @@ const LandingFooter = () => {
 							{/* Navigation Group 1: Main Links */}
 							<div className="flex flex-col items-start gap-3 min-w-[96px]">
 								<Link
-									to="/"
+									to="/$lang"
+									params={{ lang }}
 									className="bg-transparent font-medium text-base leading-6 text-justify text-white hover:text-gray-300 transition-colors"
 								>
 									{t("landing.footer.home")}
 								</Link>
 								<Link
-									to="/"
+									to="/$lang"
+									params={{ lang }}
 									hash="why-us"
 									className="bg-transparent font-medium text-base leading-6 text-justify text-white hover:text-gray-300 transition-colors"
 								>
 									{t("landing.footer.whyUs")}
 								</Link>
 								<Link
-									to="/"
+									to="/$lang"
+									params={{ lang }}
 									hash="testimonials"
 									className="bg-transparent font-medium text-base leading-6 text-justify text-white hover:text-gray-300 transition-colors"
 								>
 									{t("landing.footer.testimonials")}
 								</Link>
 								<Link
-									to="/contact-us"
+									to="/$lang/contact-us"
+									params={{ lang }}
 									preload={false}
 									hash=""
 									className="bg-transparent font-medium text-base leading-6 text-justify text-white hover:text-gray-300 transition-colors"
@@ -58,7 +63,8 @@ const LandingFooter = () => {
 							{/* Navigation Group 2: Policy Links */}
 							<div className="flex flex-col items-start gap-3 min-w-[96px]">
 								<Link
-									to="/privacy-policy"
+									to="/$lang/privacy-policy"
+									params={{ lang }}
 									hash=""
 									preload={false}
 									className="bg-transparent font-medium text-base leading-6 text-justify text-white hover:text-gray-300 transition-colors"
@@ -66,7 +72,8 @@ const LandingFooter = () => {
 									{t("landing.footer.privacyPolicy")}
 								</Link>
 								<Link
-									to="/faq"
+									to="/$lang/faq"
+									params={{ lang }}
 									hash=""
 									preload={false}
 									className="bg-transparent font-medium text-base leading-6 text-justify text-white hover:text-gray-300 transition-colors"

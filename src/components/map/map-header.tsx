@@ -1,15 +1,15 @@
-import { useNavigate } from "@tanstack/react-router";
+import { useNavigate, useParams } from "@tanstack/react-router";
 import { Filter, LogOut, ShieldUser } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { toast } from "sonner";
 import ChevronDown from "@/assets/images/chevron-down.svg";
 import HeaderIcon from "@/assets/images/header-icon.svg";
-import UserIcon from "@/assets/images/user.svg";
 import UserCircleIcon from "@/assets/images/user-circle.svg";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { cn, getInitials } from "@/lib/utils";
 import type { UserRole } from "@/server/db/enums";
 import { logoutFn } from "@/server/functions/auth";
+import LanguageSwitcher from "../shared/language-switcher";
 import MixiSelect from "../shared/mixi-select";
 import { Button } from "../ui/button";
 import {
@@ -31,6 +31,7 @@ const MapHeader = ({ firstName, lastName, role }: User) => {
 	const { t } = useTranslation("");
 	const isMobile = useIsMobile();
 	const navigate = useNavigate();
+	const { lang } = useParams({ from: "/$lang" });
 	return (
 		<>
 			<div className="sticky top-0 z-1000 w-[90vw] mx-auto mt-4 md:mt-8 flex flex-col gap-2 items-start">
@@ -86,7 +87,7 @@ const MapHeader = ({ firstName, lastName, role }: User) => {
 									onClick={async () => {
 										try {
 											await logoutFn();
-											navigate({ to: "/" });
+											navigate({ to: "/$lang", params: { lang } });
 										} catch (_) {
 											toast.error(t("map.logout_error"));
 										}
@@ -103,7 +104,7 @@ const MapHeader = ({ firstName, lastName, role }: User) => {
 								</DropdownMenuItem>
 							</DropdownMenuContent>
 						</DropdownMenu>
-
+						<LanguageSwitcher />
 						{isMobile && <ActionsDrawer />}
 						{isMobile && <FiltersDrawer />}
 					</div>
@@ -214,14 +215,18 @@ const MapHeader = ({ firstName, lastName, role }: User) => {
 					</p>
 					<div className="flex flex-col gap-3 items-start">
 						<Button
-							onClick={() => navigate({ to: "/report-lost-cat" })}
+							onClick={() =>
+								navigate({ to: "/$lang/report-lost-cat", params: { lang } })
+							}
 							className="w-full"
 						>
 							{t("map.report_lost_cat")}
 						</Button>
 						<Button
 							variant={"secondary"}
-							onClick={() => navigate({ to: "/report-found-cat" })}
+							onClick={() =>
+								navigate({ to: "/$lang/report-found-cat", params: { lang } })
+							}
 							className="w-full"
 						>
 							{t("map.report_found_cat")}

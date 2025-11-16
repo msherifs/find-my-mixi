@@ -6,7 +6,6 @@ import Avatar from "@/assets/images/testimonial-profile-pic.svg";
 const TestimonialSection = () => {
 	const { t } = useTranslation();
 	return (
-		// biome-ignore lint/correctness/useUniqueElementIds: <false>
 		<section
 			className="w-full flex items-center justify-center lg:py-[96px] py-[64px] relative lg:mb-15 scroll-mt-10 px-4 md:px-9 lg:px-0"
 			id="testimonials"

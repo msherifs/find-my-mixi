@@ -17,12 +17,12 @@ import {
 	submitContactUsFn,
 } from "@/server/functions/contact-us";
 
-export const Route = createFileRoute("/_landing/contact-us")({
+export const Route = createFileRoute("/$lang/_landing/contact-us")({
 	component: RouteComponent,
 	loader: async () => {
 		return {
 			state: await getContactUsFormFn(),
-		};
+		}
 	},
 });
 
@@ -33,7 +33,7 @@ function RouteComponent() {
 	const form = useForm({
 		...contactUsFormOptions,
 		transform: useTransform((baseForm) => mergeForm(baseForm, state), [state]),
-	});
+	})
 
 	const formErrors = useStore(form.store, (formState) => formState.errors);
 
@@ -44,7 +44,7 @@ function RouteComponent() {
 			label: t("contactUs.topics.SUGGESTION"),
 		},
 		{ value: ContactUsTopic.COMPLAINT, label: t("contactUs.topics.COMPLAINT") },
-	];
+	]
 
 	return (
 		<div className="flex flex-col items-center justify-center h-full gap-4 my-20 mx-auto">
@@ -96,7 +96,7 @@ function RouteComponent() {
 							value={field.state.value}
 							onChange={(newValue) => {
 								field.handleChange(newValue);
-								field.handleBlur();
+								field.handleBlur()
 							}}
 							errorMessage={
 								field.state.meta.errors[0]
@@ -157,5 +157,5 @@ function RouteComponent() {
 				</form.Subscribe>
 			</form>
 		</div>
-	);
+	)
 }

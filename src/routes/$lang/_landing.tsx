@@ -3,7 +3,7 @@ import LandingFooter from "@/components/landing/landing-footer";
 import LandingHeader from "@/components/landing/landing-header";
 import { getCurrentUserFn } from "@/server/functions/auth";
 
-export const Route = createFileRoute("/_landing")({
+export const Route = createFileRoute("/$lang/_landing")({
 	component: RouteComponent,
 	loader: async () => {
 		const { user } = await getCurrentUserFn();
@@ -20,5 +20,5 @@ function RouteComponent() {
 			</div>
 			<LandingFooter />
 		</div>
-	);
+	)
 }
