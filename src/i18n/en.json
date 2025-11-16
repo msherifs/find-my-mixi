@@ -115,6 +115,67 @@
 		"lost_a_cat": "Lost a Cat",
 		"found_a_cat": "Found a Cat"
 	},
+	"faq": {
+		"faq": "FAQ",
+		"cant_find_answer": "Can't find the answer you're looking for? Reach out to our customer support team",
+		"how_to_report_lost_cat_question": "How do I report a lost cat?",
+		"how_to_report_lost_cat_answer": "To report a lost cat, visit our homepage and click on the \"Report Lost Cat\" button. Before you begin, make sure you have the following information ready:",
+		"cat's_name": "Cat's Name",
+		"fur_color_and_pattern": "Fur Color and Pattern",
+		"coat_type": "Coat Type",
+		"distinctive_marks": "Distinctive Marks (scars, unique patterns)",
+		"eye_color": "Eye Color",
+		"cats_size": "Cat's Size",
+		"date_and_location_lost": "Date and Location Where the Cat Was Lost (address, city, state/province, postal code)",
+		"recent_photo": "Recent Photo of the Cat (JPEG, PNG formats)",
+		"additional_information": "Any Additional Relevant Information",
+		"after_submission": "Once you complete the form with these details and submit it, your report will be added to our database and you will receive updates if any matches are found.",
+		"what_to_do_if_find_cat_question": "What should I do if I find a cat?",
+		"what_to_do_if_find_cat_answer": "If you find a cat, you can report it on our platform by clicking the \"Report Found Cat\" button. Make sure you have the following information ready before completing the form:",
+		"rescuers_location": "Rescuer's Location",
+		"address_where_found": "Address where the cat was found (address, city, state/province, postal code, country/region)",
+		"cats_information": "Cat's Information",
+		"date_seen": "Date when you saw the cat",
+		"photo_of_cat": "Photo of the Cat (JPEG, PNG formats)",
+		"share_social_media": "Additionally, you can use our tools to share the information on social media, which will help increase the chances of reuniting the cat with its owner.",
+
+		"receive_notifications_question": "How do I receive notifications about sightings or found cats?",
+		"receive_notifications_answer": "Once you have reported a lost cat on our platform, you will receive real-time notifications when a cat similar to yours is reported in the area. It is important that you provide a valid email address in the report form, as all notifications will be sent to that address. Additionally, you can set up alerts to receive updates on sightings in specific areas.",
+
+		"use_interactive_map_question": "How can I use the interactive map to locate cats?",
+		"use_interactive_map_answer": "The FindMyMixi interactive map allows you to view real-time sightings and reports of lost and found cats near the location where a cat was lost. Found cats are shown in green, while lost cats are shown in pink, making it easier to identify nearby matches.",
+		"map_filter_options": "Additionally, you can filter the map by the following characteristics to refine your search:",
+		"filter_fur_color": "Fur Color",
+		"filter_fur_pattern": "Fur Pattern",
+		"filter_coat_length": "Coat Length",
+		"filter_eye_color": "Eye Color",
+		"filter_size": "Size",
+		"filter_collar": "Collar",
+		"map_tool_description": "This tool is designed to help you locate your cat or identify one that you have found with greater ease.",
+
+		"safe_to_share_info_question": "Is it safe to share my personal information on the platform?",
+		"safe_to_share_info_answer": "Yes, all the information you share on FindMyMixi is completely confidential and is only used for the purpose of reuniting lost cats with their owners. Your personal information will not be shared with other users without your consent.",
+
+		"cat_reported_found_question": "What should I do if my cat is reported found?",
+		"cat_reported_found_answer": "If your cat is reported found on our platform, you will receive an immediate notification with the details. We will connect you with the person who found your cat so you can coordinate the reunion safely.",
+
+		"donate_support_platform_question": "How can I donate to support the platform?",
+		"donate_support_platform_answer": "You can make a donation securely through our website, thanks to OpenPay by BBVA, a trusted platform that ensures your transactions are safe. Donations help cover the costs of servers on Amazon Web Services (AWS), the use of the Google Maps API for the interactive map, and general maintenance of the platform. These funds are essential to keep the platform operational and to improve the services we offer to the community.",
+
+		"errors_or_issues_question": "What should I do if I encounter errors or have issues with the platform?",
+		"errors_or_issues_answer": "If you encounter any errors or have problems while using FindMyMixi, please contact our technical support team. You can do this through the contact page or by sending an email directly to contact@findmymixi.com. We are committed to helping you resolve any issues as quickly as possible to ensure a smooth and uninterrupted experience on the platform.",
+
+		"premium_service_ads_question": "What is the premium service for social media ads?",
+		"premium_service_ads_answer": "FindMyMixi offers an optional paid service to increase the visibility of your lost cat reports through Facebook and Instagram ads. This service is contracted on a weekly basis and helps expedite the search for your cat.",
+		"premium_service_notes": "Important notes:",
+		"ads_config_based_on_report": "Ads are configured based on the information provided in your report",
+		"ads_campaign_duration": "Campaign duration and budget are set for each ad campaign",
+		"ads_views_depend": "The number of views depends on many factors (location, photo quality, campaign duration)",
+		"ads_optional_service": "This is an optional service to complement the free basic features.",
+
+		"cancel_premium_subscription_question": "Can I cancel my premium subscription?",
+		"cancel_premium_subscription_answer": "Yes, premium social media advertising subscriptions renew weekly and can be canceled at any time from the user dashboard. Upon cancellation, the subscription will not renew in the following billing cycle. Additionally, marking a report as 'reunited,' 'deceased,' or 'adopted' will automatically cancel all subscriptions linked to that report."
+	},
 	"privacyPolicy": {
 		"privacy_policy": "Privacy Policy",
 		"welcome_to_findmymixi": "Welcome to FindMyMixi. By accessing or using our platform, you agree to the following terms and conditions:",
