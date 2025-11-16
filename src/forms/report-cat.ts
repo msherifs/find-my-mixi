@@ -15,6 +15,11 @@ export const reportCatOptions = formOptions({
 			date: "",
 			additionalInfo: "",
 			photo: "",
+			collar: {
+				color: "",
+				pattern: "",
+				embellishment: "",
+			},
 		},
 		userDetails: {
 			name: "",

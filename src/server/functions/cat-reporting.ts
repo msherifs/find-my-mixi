@@ -125,13 +125,35 @@ export const getCatRequestsForMap = createServerFn()
 	.inputValidator(
 		z.object({
 			polygon: z.number().array().array().array(),
-			// TBD other needed fields
+			color: z.enum(CatFurColor).array().optional(),
+			pattern: z.enum(CatFurPattern).optional(),
+			coatType: z.enum(CatCoatType).optional(),
+			collarColor: z.enum(CollarSolidColor).optional(),
+			collarPattern: z.enum(CollarPattern).optional(),
+			size: z.enum(CatSize).optional(),
+			collarEmbellishments: z.enum(CollarEmbellishment).optional(),
+			eyeColor: z.enum(CatEyeColor).optional(),
 		}),
 	)
 	.handler(async ({ data }) => {
 		const requests = await findCatRequestsInPolygon(
 			{ coordinates: data.polygon },
-			{},
+			{
+				...(data.color && { "catDetails.furColor": { $in: data.color } }),
+				...(data.pattern && { "catDetails.furPattern": data.pattern }),
+				...(data.coatType && { "catDetails.coatType": data.coatType }),
+				...(data.size && { "catDetails.size": data.size }),
+				...(data.eyeColor && { "catDetails.eyeColor": data.eyeColor }),
+				...(data.collarColor && {
+					"catDetails.collar.color": data.collarColor,
+				}),
+				...(data.collarPattern && {
+					"catDetails.collar.pattern": data.collarPattern,
+				}),
+				...(data.collarEmbellishments && {
+					"catDetails.collar.embellishment": data.collarEmbellishments,
+				}),
+			},
 		);
 
 		return {

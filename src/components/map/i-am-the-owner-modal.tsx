@@ -34,7 +34,9 @@ const IAmTheOwnerModal = ({
 						type="email"
 					/>
 				</div>
-				<Button className="w-full">{t("map.submit")}</Button>
+				<Button className="w-full" onClick={onClose}>
+					{t("map.submit")}
+				</Button>
 			</DialogContent>
 		</Dialog>
 	);

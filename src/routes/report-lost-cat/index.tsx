@@ -17,6 +17,7 @@ import MixiPhoneInput from "@/components/shared/mixi-phone-input";
 import MixiSelect from "@/components/shared/mixi-select";
 import MixiTextarea from "@/components/shared/mixi-textarea";
 import { Button } from "@/components/ui/button";
+import { Checkbox } from "@/components/ui/checkbox";
 import { reportCatOptions } from "@/forms/report-cat";
 import {
 	CatCoatType,
@@ -24,6 +25,9 @@ import {
 	CatFurColor,
 	CatFurPattern,
 	CatSize,
+	CollarEmbellishment,
+	CollarPattern,
+	CollarSolidColor,
 } from "@/server/db/enums";
 import {
 	type ReportCatForm,
@@ -38,6 +42,9 @@ export const Route = createFileRoute("/report-lost-cat/")({
 function RouteComponent() {
 	const [currentStep, setCurrentStep] = useState(1);
 	const [uploadedCatPhoto, setUploadedCatPhoto] = useState<File | null>(null);
+	const [isCatWearingCollar, setIsCatWearingCollar] = useState<
+		boolean | undefined
+	>(false);
 	const [uploadedOwnerPhoto, setUploadedOwnerPhoto] = useState<File | null>(
 		null,
 	);
@@ -58,6 +65,12 @@ function RouteComponent() {
 		await form.validateField("userDetails.name", "blur");
 		await form.validateField("userDetails.phone", "blur");
 		await form.validateField("userDetails.email", "blur");
+
+		if (isCatWearingCollar) {
+			await form.validateField("catDetails.collar.color", "blur");
+			await form.validateField("catDetails.collar.pattern", "blur");
+			await form.validateField("catDetails.collar.embellishment", "blur");
+		}
 
 		const formState = form.state;
 		const hasErrors =
@@ -379,6 +392,141 @@ function RouteComponent() {
 								)}
 							</form.Field>
 						</div>
+						<div className="flex flex-col items-start gap-2">
+							<p className="font-medium text-sm leading-5 tracking-normal text-gray-700">
+								{t("reportCat.was_cat_wearing_collar")}
+							</p>
+							<div className="flex w-full items-center gap-5">
+								<div className="flex items-center gap-3">
+									<Checkbox
+										checked={isCatWearingCollar}
+										onCheckedChange={() => setIsCatWearingCollar(true)}
+									/>
+									<p>{t("reportCat.yes")}</p>
+								</div>
+								<div className="flex items-center gap-3">
+									<Checkbox
+										checked={!isCatWearingCollar}
+										onCheckedChange={() => {
+											setIsCatWearingCollar(false);
+											form.setFieldValue("catDetails.collar", {
+												color: "",
+												pattern: "",
+												embellishment: "",
+											});
+										}}
+									/>
+									<p>{t("reportCat.no")}</p>
+								</div>
+							</div>
+						</div>
+						{isCatWearingCollar && (
+							<div className="flex items-start w-full gap-4 sm:flex-row flex-col w-full">
+								<form.Field
+									name="catDetails.collar.color"
+									validators={{
+										onBlur: ({ value }) => {
+											if (!value || value.length === 0) {
+												return t("errors.required");
+											}
+											return undefined;
+										},
+									}}
+								>
+									{(field) => (
+										<MixiSelect
+											label={t("reportCat.collar_color")}
+											placeholder={t("reportCat.select_collar_color")}
+											value={field.state.value}
+											onChange={(value) =>
+												field.handleChange(value as CollarSolidColor)
+											}
+											options={Object.values(CollarSolidColor).map((collor) => {
+												return {
+													label: t(`collarColor.${collor.toLowerCase()}`),
+													value: collor,
+												};
+											})}
+											errorMessage={
+												field.state.meta.errors[0]
+													? t(field.state.meta.errors[0])
+													: undefined
+											}
+										/>
+									)}
+								</form.Field>
+								<form.Field
+									name="catDetails.collar.pattern"
+									validators={{
+										onBlur: ({ value }) => {
+											if (!value || value.length === 0) {
+												return t("errors.required");
+											}
+											return undefined;
+										},
+									}}
+								>
+									{(field) => (
+										<MixiSelect
+											label={t("reportCat.collar_pattern")}
+											placeholder={t("reportCat.select_collar_pattern")}
+											value={field.state.value}
+											onChange={(value) =>
+												field.handleChange(value as CollarPattern)
+											}
+											options={Object.values(CollarPattern).map((pattern) => {
+												return {
+													label: t(`collarPattern.${pattern.toLowerCase()}`),
+													value: pattern,
+												};
+											})}
+											errorMessage={
+												field.state.meta.errors[0]
+													? t(field.state.meta.errors[0])
+													: undefined
+											}
+										/>
+									)}
+								</form.Field>
+								<form.Field
+									name="catDetails.collar.embellishment"
+									validators={{
+										onBlur: ({ value }) => {
+											if (!value || value.length === 0) {
+												return t("errors.required");
+											}
+											return undefined;
+										},
+									}}
+								>
+									{(field) => (
+										<MixiSelect
+											label={t("reportCat.collar_embellishment")}
+											placeholder={t("reportCat.select_collar_embellishment")}
+											value={field.state.value}
+											onChange={(value) =>
+												field.handleChange(value as CollarEmbellishment)
+											}
+											options={Object.values(CollarEmbellishment).map(
+												(embellishment) => {
+													return {
+														label: t(
+															`collarEmbellishment.${embellishment.toLowerCase()}`,
+														),
+														value: embellishment,
+													};
+												},
+											)}
+											errorMessage={
+												field.state.meta.errors[0]
+													? t(field.state.meta.errors[0])
+													: undefined
+											}
+										/>
+									)}
+								</form.Field>
+							</div>
+						)}
 						<form.Field
 							name="catDetails.photo"
 							validators={{

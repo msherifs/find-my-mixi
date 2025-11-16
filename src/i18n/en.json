@@ -245,7 +245,16 @@
 		"date_found": "Date the Mixi was found",
 		"report_found_cat": "Report Found Cat",
 		"thank_you_for_your_help": "Thank you for your help!",
-		"your_info_is_vital": "Your information is vital in reuniting the cat with its family. We'll keep you updated every step of the way."
+		"your_info_is_vital": "Your information is vital in reuniting the cat with its family. We'll keep you updated every step of the way.",
+		"was_cat_wearing_collar": "Was the cat wearing a collar?",
+		"yes": "Yes",
+		"no": "No",
+		"collar_color": "Collar Color",
+		"collar_embellishment": "Collar Embellishment",
+		"collar_pattern": "Collar Pattern",
+		"select_collar_color": "Select collar color",
+		"select_collar_pattern": "Select collar pattern",
+		"select_collar_embellishment": "Select collar embellishment"
 	},
 	"errors": {
 		"generic": "Please enter a valid value.",
@@ -293,5 +302,21 @@
 		"small": "Small",
 		"medium": "Medium",
 		"large": "Large"
+	},
+	"collarColor": {
+		"red": "Red",
+		"blue": "Blue",
+		"black": "Black",
+		"pink": "Pink",
+		"green": "Green"
+	},
+	"collarPattern": {
+		"stripes": "Stripes",
+		"polka_dots": "Polka dots",
+		"paw_prints": "Paw prints"
+	},
+	"collarEmbellishment": {
+		"reflective_strip": "Reflective strip",
+		"bell": "Bell"
 	}
 }
