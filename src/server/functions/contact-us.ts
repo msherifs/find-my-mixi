@@ -8,6 +8,7 @@ import { createServerFn } from "@tanstack/react-start";
 import { contactUsFormOptions, zContactUsForm } from "@/forms/contact-us";
 import { insertContactUsSubmission } from "@/server/db/queries";
 import { LiteralError } from "../error";
+import { getCookie } from "@tanstack/react-start/server";
 
 const contactUsServerValidate = createServerValidate({
 	...contactUsFormOptions,
@@ -32,7 +33,9 @@ export const submitContactUsFn = createServerFn({ method: "POST" })
 				message,
 			});
 
-			return redirect({ to: "/contact-us" });
+			const lang = getCookie("language") || "en";
+
+			return redirect({ to: "/$lang/contact-us", params: { lang }});
 		} catch (error) {
 			if (error instanceof ServerValidateError) {
 				return error.response;
