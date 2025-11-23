@@ -87,10 +87,7 @@ export function MixiMapContainer({
 				lastName={user?.lastName || ""}
 				role={user?.role || "USER"}
 			/>
-			<TileLayer
-				url="http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}"
-				subdomains={["mt0", "mt1", "mt2", "mt3"]}
-			/>
+			<TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
 			<ZoomControl position="bottomleft" />
 			<MyLocationMarker />
 			{catRequests.map((m, i) => (

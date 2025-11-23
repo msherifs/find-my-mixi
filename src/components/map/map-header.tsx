@@ -186,6 +186,8 @@ const MapHeader = ({ firstName, lastName, role }: User) => {
 										hideSelectAll
 										searchable={false}
 										value={search.color}
+										allOptionsLabel={t("map.all")}
+										defaultValue={search.color}
 									/>
 									<MixiSelect
 										placeholder={t("map.pattern")}
@@ -305,6 +307,7 @@ const MapHeader = ({ firstName, lastName, role }: User) => {
 								/>
 							</div>
 						</div>
+						<Button onClick={() => setFilters({})}>{t("map.reset")}</Button>
 					</div>
 				)}
 			</div>

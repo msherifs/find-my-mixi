@@ -240,7 +240,9 @@
 		"admin": "Ir a Admin",
 		"unknown_name": "Desconocido",
 		"found": "Encontrado",
-		"lost": "Perdido"
+		"lost": "Perdido",
+		"all": "Todos",
+		"reset": "Restablecer"
 	},
 	"reportCat": {
 		"cat_information": "Información del Gato",

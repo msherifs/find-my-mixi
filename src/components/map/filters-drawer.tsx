@@ -52,6 +52,8 @@ const FiltersDrawer = ({
 						hideSelectAll
 						searchable={false}
 						value={search.color}
+						allOptionsLabel={t("map.all")}
+						defaultValue={search.color}
 					/>
 					<MixiSelect
 						placeholder={t("map.pattern")}
@@ -150,6 +152,9 @@ const FiltersDrawer = ({
 						value={search.size}
 					/>
 				</div>
+				<Button className="w-full" onClick={() => setFilters({})}>
+					{t("map.reset")}
+				</Button>
 			</DrawerContent>
 		</Drawer>
 	);

@@ -114,6 +114,7 @@ export interface MultiSelectProps
 			"animationConfig"
 		>,
 		VariantProps<typeof multiSelectVariants> {
+	allOptionsLabel?: string;
 	/**
 	 * An array of option objects or groups to be displayed in the multi-select component.
 	 */
@@ -312,6 +313,7 @@ export const MultiSelect = React.forwardRef<MultiSelectRef, MultiSelectProps>(
 			variant,
 			defaultValue = [],
 			placeholder = "Select options",
+			allOptionsLabel = "All",
 			animation = 0,
 			animationConfig,
 			maxCount = 3,
@@ -1011,7 +1013,7 @@ export const MultiSelect = React.forwardRef<MultiSelectRef, MultiSelectProps>(
 								{!hideSelectAll && !searchValue && (
 									<CommandGroup>
 										<CommandItem
-											key="all"
+											key="select-all"
 											onSelect={toggleAll}
 											role="option"
 											aria-selected={
@@ -1097,6 +1099,27 @@ export const MultiSelect = React.forwardRef<MultiSelectRef, MultiSelectProps>(
 									))
 								) : (
 									<CommandGroup>
+										<CommandItem
+											key="clear-all"
+											onSelect={handleClear}
+											role="option"
+											aria-selected={selectedValues.length === 0}
+											aria-label="Clear all selections"
+											className="cursor-pointer"
+										>
+											<div
+												className={cn(
+													"mr-2 flex h-4 w-4 items-center justify-center rounded-sm border border-primary",
+													selectedValues.length === 0
+														? "bg-primary text-white"
+														: "opacity-50 [&_svg]:invisible",
+												)}
+												aria-hidden="true"
+											>
+												<CheckIcon className="h-4 w-4" />
+											</div>
+											<span className="text-black">{allOptionsLabel}</span>
+										</CommandItem>
 										{filteredOptions.map((option) => {
 											const isSelected = selectedValues.includes(option.value);
 											return (
@@ -1182,4 +1205,4 @@ export const MultiSelect = React.forwardRef<MultiSelectRef, MultiSelectProps>(
 );
 
 MultiSelect.displayName = "MultiSelect";
-export type { MultiSelectOption, MultiSelectGroup, MultiSelectProps };
+export type { MultiSelectOption, MultiSelectGroup };

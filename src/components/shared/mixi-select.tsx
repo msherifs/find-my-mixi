@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { cn } from "@/lib/utils";
 import {
 	Select,
@@ -13,7 +14,7 @@ type MixiSelectProps = {
 	label?: string;
 	options: MixiSelectOption[];
 	className?: string;
-	onChange?: (value: string) => void;
+	onChange?: (value?: string) => void;
 	selectClassName?: string;
 	placeholder?: string;
 	value?: string;
@@ -34,6 +35,7 @@ const MixiSelect = ({
 	defaultValue,
 	name,
 }: MixiSelectProps) => {
+	const { t } = useTranslation();
 	return (
 		<div
 			className={cn(
@@ -47,8 +49,10 @@ const MixiSelect = ({
 				</h3>
 			)}
 			<Select
-				onValueChange={onChange}
-				value={value}
+				onValueChange={(value) =>
+					onChange?.(value === "all" ? undefined : value)
+				}
+				value={value === undefined || value === "all" ? "" : value}
 				defaultValue={defaultValue}
 			>
 				<SelectTrigger
@@ -64,6 +68,12 @@ const MixiSelect = ({
 					/>
 				</SelectTrigger>
 				<SelectContent className="border border-[#E6E6E6] bg-white space-y-1">
+					<SelectItem
+						value="all"
+						className="cursor-pointer hover:bg-primary/5 data-[state=checked]:bg-primary/10 my-1"
+					>
+						{t("map.all")}
+					</SelectItem>
 					{options.map((option) => (
 						<SelectItem
 							key={option.value}

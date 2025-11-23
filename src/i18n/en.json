@@ -248,7 +248,9 @@
 		"admin": "Go to Admin",
 		"unknown_name": "Unknown",
 		"found": "Found",
-		"lost": "Lost"
+		"lost": "Lost",
+		"all": "All",
+		"reset": "Reset"
 	},
 	"reportCat": {
 		"cat_information": "Cat Information",
