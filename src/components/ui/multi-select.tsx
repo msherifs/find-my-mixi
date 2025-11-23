@@ -826,13 +826,6 @@ export const MultiSelect = React.forwardRef<MultiSelectRef, MultiSelectProps>(
 											"flex items-center gap-1 overflow-x-auto flex-nowrap",
 											responsiveSettings.compactMode && "gap-0.5",
 										)}
-										style={
-											singleLine
-												? {
-														paddingBottom: "4px",
-													}
-												: {}
-										}
 									>
 										{selectedValues
 											.map((value) => {

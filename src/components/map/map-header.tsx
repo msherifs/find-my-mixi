@@ -170,32 +170,34 @@ const MapHeader = ({ firstName, lastName, role }: User) => {
 									{t("map.fur")}
 								</p>
 								<div className="flex items-center gap-3">
-									<MixiMultiselect
-										placeholder={t("map.color")}
-										options={Object.values(CatFurColor).map((color) => ({
-											label: t(`catFurColor.${color.toLowerCase()}`),
-											value: color,
-										}))}
-										multiSelectClassName="rounded-full h-[42px]! !max-w-[200px]"
-										onValueChange={(value) => {
-											setFilters((prev) => ({
-												...prev,
-												color: value as CatFurColor[],
-											}));
-										}}
-										hideSelectAll
-										searchable={false}
-										value={search.color}
-										allOptionsLabel={t("map.all")}
-										defaultValue={search.color}
-									/>
+									<div className="max-w-[200px]">
+										<MixiMultiselect
+											placeholder={t("map.color")}
+											options={Object.values(CatFurColor).map((color) => ({
+												label: t(`catFurColor.${color.toLowerCase()}`),
+												value: color,
+											}))}
+											multiSelectClassName="rounded-full h-[42px]! w-fit"
+											onValueChange={(value) => {
+												setFilters((prev) => ({
+													...prev,
+													color: value as CatFurColor[],
+												}));
+											}}
+											hideSelectAll
+											searchable={false}
+											value={search.color}
+											allOptionsLabel={t("map.all")}
+											defaultValue={search.color}
+										/>
+									</div>
 									<MixiSelect
 										placeholder={t("map.pattern")}
 										options={Object.values(CatFurPattern).map((pattern) => ({
 											label: t(`catFurPattern.${pattern.toLowerCase()}`),
 											value: pattern,
 										}))}
-										selectClassName="rounded-full h-[42px]!"
+										selectClassName="rounded-full h-[42px]! w-fit"
 										onChange={(value) => {
 											setFilters((prev) => ({
 												...prev,
@@ -210,7 +212,7 @@ const MapHeader = ({ firstName, lastName, role }: User) => {
 											label: t(`catCoatType.${type.toLowerCase()}`),
 											value: type,
 										}))}
-										selectClassName="rounded-full h-[42px]!"
+										selectClassName="rounded-full h-[42px]! w-fit"
 										onChange={(value) => {
 											setFilters((prev) => ({
 												...prev,
@@ -232,7 +234,7 @@ const MapHeader = ({ firstName, lastName, role }: User) => {
 											label: t(`collarColor.${color.toLowerCase()}`),
 											value: color,
 										}))}
-										selectClassName="rounded-full h-[42px]!"
+										selectClassName="rounded-full h-[42px]! w-fit"
 										onChange={(value) => {
 											setFilters((prev) => ({
 												...prev,
@@ -247,7 +249,7 @@ const MapHeader = ({ firstName, lastName, role }: User) => {
 											label: t(`collarPattern.${pattern.toLowerCase()}`),
 											value: pattern,
 										}))}
-										selectClassName="rounded-full h-[42px]!"
+										selectClassName="rounded-full h-[42px]! w-fit"
 										onChange={(value) => {
 											setFilters((prev) => ({
 												...prev,
@@ -266,7 +268,7 @@ const MapHeader = ({ firstName, lastName, role }: User) => {
 												value: embellishment,
 											}),
 										)}
-										selectClassName="rounded-full h-[42px]!"
+										selectClassName="rounded-full h-[42px]! w-fit"
 										onChange={(value) => {
 											setFilters((prev) => ({
 												...prev,
@@ -284,7 +286,7 @@ const MapHeader = ({ firstName, lastName, role }: User) => {
 										label: t(`catEyeColor.${color.toLowerCase()}`),
 										value: color,
 									}))}
-									selectClassName="rounded-full h-[42px]!"
+									selectClassName="rounded-full h-[42px]! w-fit"
 									onChange={(value) => {
 										setFilters((prev) => ({
 											...prev,
@@ -299,15 +301,15 @@ const MapHeader = ({ firstName, lastName, role }: User) => {
 										label: t(`catSize.${size.toLowerCase()}`),
 										value: size,
 									}))}
-									selectClassName="rounded-full h-[42px]!"
+									selectClassName="rounded-full h-[42px]! w-fit"
 									onChange={(value) => {
 										setFilters((prev) => ({ ...prev, size: value as CatSize }));
 									}}
 									value={search.size}
 								/>
 							</div>
+							<Button onClick={() => setFilters({})}>{t("map.reset")}</Button>
 						</div>
-						<Button onClick={() => setFilters({})}>{t("map.reset")}</Button>
 					</div>
 				)}
 			</div>

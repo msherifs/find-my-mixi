@@ -38,10 +38,7 @@ const MixiSelect = ({
 	const { t } = useTranslation();
 	return (
 		<div
-			className={cn(
-				"flex flex-col items-start gap-[6px] w-full flex-shrink-0 flex-1 min-w-0",
-				className,
-			)}
+			className={cn("flex flex-col items-start gap-[6px] w-full", className)}
 		>
 			{label && (
 				<h3 className="font-medium text-sm leading-5 tracking-normal text-gray-700">
