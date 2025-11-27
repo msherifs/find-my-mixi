@@ -2,7 +2,7 @@ import { useForm } from "@tanstack/react-form";
 import { createFileRoute } from "@tanstack/react-router";
 import { Loader2 } from "lucide-react";
 import { DateTime } from "luxon";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { toast } from "sonner";
 import CatImage from "@/assets/images/report-missing-cat.svg";
@@ -47,6 +47,11 @@ function RouteComponent() {
 		boolean | undefined
 	>(false);
 	const { t } = useTranslation();
+
+	// biome-ignore lint/correctness/useExhaustiveDependencies: <false>
+	useEffect(() => {
+		window.scrollTo({ top: 0, behavior: "smooth" });
+	}, [currentStep]);
 
 	const DUMMY_CAT_PHOTO_URL =
 		"https://img.freepik.com/free-photo/portrait-beautiful-purebred-pussycat-with-shorthair-orange-collar-neck-sitting-floor-reacting-camera-flash-scared-looking-light-indoor_8353-12551.jpg?semt=ais_hybrid&w=740&q=80";
@@ -112,6 +117,7 @@ function RouteComponent() {
 				catDetails: {
 					...value.catDetails,
 					date: DateTime.fromISO(value.catDetails.date).toJSDate(),
+					collar: isCatWearingCollar ? value.catDetails.collar : undefined,
 				},
 				userDetails: {
 					...value.userDetails,
@@ -145,7 +151,7 @@ function RouteComponent() {
 					e.preventDefault();
 					form.handleSubmit();
 				}}
-				className="flex flex-col items-start sm:px-[72px] px-[24px] gap-[48px] flex-grow overflow-y-auto pt-6 w-full sm:pt-0"
+				className="flex flex-col items-start sm:px-[72px] px-[24px] gap-[48px] flex-grow sm:overflow-y-auto py-6 w-full"
 			>
 				<div className="flex flex-col items-start w-full gap-3 sm:px-8 px-0">
 					<img
@@ -867,7 +873,7 @@ const ReviewSection = ({
 				label={t("reportCat.cats_name")}
 				value={values.catDetails.name ?? "-"}
 			/>
-			<div className="w-full flex items-start gap-4">
+			<div className="w-full grid grid-cols-2 sm:grid-cols-3 gap-4">
 				<ValueCard
 					label={t("reportCat.fur_color")}
 					value={values.catDetails.furColor
@@ -885,7 +891,7 @@ const ReviewSection = ({
 					value={t(`catCoatType.${values.catDetails.coatType.toLowerCase()}`)}
 				/>
 			</div>
-			<div className="w-full flex items-start gap-4">
+			<div className="w-full grid grid-cols-2 sm:grid-cols-3 gap-4">
 				<ValueCard
 					label={t("reportCat.eye_color")}
 					value={t(`catEyeColor.${values.catDetails.eyeColor.toLowerCase()}`)}

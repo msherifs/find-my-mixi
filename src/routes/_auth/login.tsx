@@ -53,7 +53,7 @@ function RouteComponent() {
 				<p className="font-normal text-[20.68px] leading-[31px] tracking-normal text-center">
 					{t("login.enter_email_and_password")}
 				</p>
-				<div className="w-[480px] flex flex-col items-center gap-5">
+				<div className="w-full flex flex-col items-center gap-5">
 					<form.Field
 						name="email"
 						validators={{ onChange: zLoginForm.shape.email }}
