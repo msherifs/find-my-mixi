@@ -21,6 +21,7 @@ type MixiSelectProps = {
 	defaultValue?: string;
 	name?: string;
 	errorMessage?: string;
+	hideAllOption?: boolean;
 };
 
 const MixiSelect = ({
@@ -34,6 +35,7 @@ const MixiSelect = ({
 	errorMessage,
 	defaultValue,
 	name,
+	hideAllOption,
 }: MixiSelectProps) => {
 	const { t } = useTranslation();
 	return (
@@ -65,12 +67,14 @@ const MixiSelect = ({
 					/>
 				</SelectTrigger>
 				<SelectContent className="border border-[#E6E6E6] bg-white space-y-1">
-					<SelectItem
-						value="all"
-						className="cursor-pointer hover:bg-primary/5 data-[state=checked]:bg-primary/10 my-1"
-					>
-						{t("map.all")}
-					</SelectItem>
+					{!hideAllOption && (
+						<SelectItem
+							value="all"
+							className="cursor-pointer hover:bg-primary/5 data-[state=checked]:bg-primary/10 my-1"
+						>
+							{t("map.all")}
+						</SelectItem>
+					)}
 					{options.map((option) => (
 						<SelectItem
 							key={option.value}
