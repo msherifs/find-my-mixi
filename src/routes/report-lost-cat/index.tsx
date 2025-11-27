@@ -47,7 +47,7 @@ function RouteComponent() {
 	>(false);
 	const [uploadedOwnerPhoto, setUploadedOwnerPhoto] = useState<File | null>(
 		null,
-	)
+	);
 	const { t } = useTranslation();
 
 	const DUMMY_CAT_PHOTO_URL =
@@ -77,12 +77,12 @@ function RouteComponent() {
 			formState.errors.length > 0 ||
 			Object.values(formState.fieldMeta).some(
 				(field) => field?.errors?.length && field?.errors?.length > 0,
-			)
+			);
 
 		if (!hasErrors) {
 			setCurrentStep(2);
 		}
-	}
+	};
 
 	const secondStepNextHandler = async () => {
 		await form.validateField("location.address", "blur");
@@ -97,12 +97,12 @@ function RouteComponent() {
 			formState.errors.length > 0 ||
 			Object.values(formState.fieldMeta).some(
 				(field) => field?.errors?.length && field?.errors?.length > 0,
-			)
+			);
 
 		if (!hasErrors) {
 			setCurrentStep(3);
 		}
-	}
+	};
 	const form = useForm({
 		...reportCatOptions,
 		onSubmit: async ({ value }) => {
@@ -126,7 +126,7 @@ function RouteComponent() {
 				toast.error(t("errors.something_went_wrong"));
 			}
 		},
-	})
+	});
 
 	if (currentStep === 4)
 		return (
@@ -134,7 +134,7 @@ function RouteComponent() {
 				title={t("reportCat.search_process_starts")}
 				description={t("reportCat.sit_back_relax")}
 			/>
-		)
+		);
 
 	return (
 		<div className="h-screen h-[100dvh] flex sm:flex-row flex-col w-full sm:p-6 p-3">
@@ -167,7 +167,7 @@ function RouteComponent() {
 								validators={{
 									onBlur: ({ value }) => {
 										if (!value || value.length === 0) {
-											return "errors.required"
+											return "errors.required";
 										}
 									},
 								}}
@@ -216,6 +216,7 @@ function RouteComponent() {
 												? t(field.state.meta.errors[0].message)
 												: undefined
 										}
+										showClearAll={false}
 									/>
 								)}
 							</form.Field>
@@ -239,13 +240,14 @@ function RouteComponent() {
 											return {
 												label: t(`catFurPattern.${pattern.toLowerCase()}`),
 												value: pattern,
-											}
+											};
 										})}
 										errorMessage={
 											field.state.meta.errors[0]
 												? t(field.state.meta.errors[0].message)
 												: undefined
 										}
+										hideAllOption
 									/>
 								)}
 							</form.Field>
@@ -267,13 +269,14 @@ function RouteComponent() {
 											return {
 												label: t(`catCoatType.${type.toLowerCase()}`),
 												value: type,
-											}
+											};
 										})}
 										errorMessage={
 											field.state.meta.errors[0]
 												? t(field.state.meta.errors[0].message)
 												: undefined
 										}
+										hideAllOption
 									/>
 								)}
 							</form.Field>
@@ -311,13 +314,14 @@ function RouteComponent() {
 											return {
 												label: t(`catEyeColor.${color.toLowerCase()}`),
 												value: color,
-											}
+											};
 										})}
 										errorMessage={
 											field.state.meta.errors[0]
 												? t(field.state.meta.errors[0].message)
 												: undefined
 										}
+										hideAllOption
 									/>
 								)}
 							</form.Field>
@@ -339,13 +343,14 @@ function RouteComponent() {
 											return {
 												label: t(`catSize.${size.toLowerCase()}`),
 												value: size,
-											}
+											};
 										})}
 										errorMessage={
 											field.state.meta.errors[0]
 												? t(field.state.meta.errors[0].message)
 												: undefined
 										}
+										hideAllOption
 									/>
 								)}
 							</form.Field>
@@ -354,14 +359,14 @@ function RouteComponent() {
 								validators={{
 									onBlur: ({ value }) => {
 										if (!value) {
-											return t("errors.required")
+											return t("errors.required");
 										}
 
 										const date = DateTime.fromISO(value);
 										if (!date.isValid) {
-											return t("errors.required")
+											return t("errors.required");
 										}
-										return undefined
+										return undefined;
 									},
 								}}
 							>
@@ -376,8 +381,8 @@ function RouteComponent() {
 										}
 										onDateChange={(value) => {
 											if (!value) {
-												field.handleChange("")
-												return
+												field.handleChange("");
+												return;
 											}
 
 											const isoString = DateTime.fromJSDate(value).toISO();
@@ -408,12 +413,12 @@ function RouteComponent() {
 									<Checkbox
 										checked={!isCatWearingCollar}
 										onCheckedChange={() => {
-											setIsCatWearingCollar(false)
+											setIsCatWearingCollar(false);
 											form.setFieldValue("catDetails.collar", {
 												color: "",
 												pattern: "",
 												embellishment: "",
-											})
+											});
 										}}
 									/>
 									<p>{t("reportCat.no")}</p>
@@ -427,9 +432,9 @@ function RouteComponent() {
 									validators={{
 										onBlur: ({ value }) => {
 											if (!value || value.length === 0) {
-												return t("errors.required")
+												return t("errors.required");
 											}
-											return undefined
+											return undefined;
 										},
 									}}
 								>
@@ -445,13 +450,14 @@ function RouteComponent() {
 												return {
 													label: t(`collarColor.${collor.toLowerCase()}`),
 													value: collor,
-												}
+												};
 											})}
 											errorMessage={
 												field.state.meta.errors[0]
 													? t(field.state.meta.errors[0])
 													: undefined
 											}
+											hideAllOption
 										/>
 									)}
 								</form.Field>
@@ -460,9 +466,9 @@ function RouteComponent() {
 									validators={{
 										onBlur: ({ value }) => {
 											if (!value || value.length === 0) {
-												return t("errors.required")
+												return t("errors.required");
 											}
-											return undefined
+											return undefined;
 										},
 									}}
 								>
@@ -478,13 +484,14 @@ function RouteComponent() {
 												return {
 													label: t(`collarPattern.${pattern.toLowerCase()}`),
 													value: pattern,
-												}
+												};
 											})}
 											errorMessage={
 												field.state.meta.errors[0]
 													? t(field.state.meta.errors[0])
 													: undefined
 											}
+											hideAllOption
 										/>
 									)}
 								</form.Field>
@@ -493,9 +500,9 @@ function RouteComponent() {
 									validators={{
 										onBlur: ({ value }) => {
 											if (!value || value.length === 0) {
-												return t("errors.required")
+												return t("errors.required");
 											}
-											return undefined
+											return undefined;
 										},
 									}}
 								>
@@ -514,7 +521,7 @@ function RouteComponent() {
 															`collarEmbellishment.${embellishment.toLowerCase()}`,
 														),
 														value: embellishment,
-													}
+													};
 												},
 											)}
 											errorMessage={
@@ -522,6 +529,7 @@ function RouteComponent() {
 													? t(field.state.meta.errors[0])
 													: undefined
 											}
+											hideAllOption
 										/>
 									)}
 								</form.Field>
@@ -537,7 +545,7 @@ function RouteComponent() {
 								<MixiFileUpload
 									file={uploadedCatPhoto}
 									setFile={(file) => {
-										setUploadedCatPhoto(file)
+										setUploadedCatPhoto(file);
 										field.handleChange(file ? DUMMY_CAT_PHOTO_URL : "");
 									}}
 									errorMessage={
@@ -651,8 +659,8 @@ function RouteComponent() {
 										}
 										onDateChange={(value) => {
 											if (!value) {
-												field.handleChange("")
-												return
+												field.handleChange("");
+												return;
 											}
 
 											const isoString = DateTime.fromJSDate(value).toISO();
@@ -688,13 +696,13 @@ function RouteComponent() {
 
 									const [longitude, latitude] = value;
 									if (longitude < -180 || longitude > 180) {
-										return "Invalid longitude"
+										return "Invalid longitude";
 									}
 									if (latitude < -90 || latitude > 90) {
-										return "Invalid latitude"
+										return "Invalid latitude";
 									}
 
-									return undefined
+									return undefined;
 								},
 							}}
 						>
@@ -885,7 +893,7 @@ function RouteComponent() {
 				)}
 			</form>
 		</div>
-	)
+	);
 }
 
 const ReviewSection = ({
@@ -1001,7 +1009,7 @@ const ReviewSection = ({
 				/>
 			</div>
 		</div>
-	)
+	);
 };
 
 const ValueCard = ({ label, value }: { label: string; value: string }) => {
@@ -1014,5 +1022,5 @@ const ValueCard = ({ label, value }: { label: string; value: string }) => {
 				{value}
 			</p>
 		</div>
-	)
+	);
 };
