@@ -13,10 +13,10 @@ function RouteComponent() {
 	return (
 		<div className="flex flex-col items-center justify-center h-full gap-[40px] md:gap-[80px] my-20 mx-auto">
 			<div className="flex flex-col items-center w-full gap-4">
-				<h2 className="font-epilogue font-bold lg:text-[96.96px] text-[36px] leading-[1] tracking-[-0.02em]">
+				<h2 className="font-epilogue font-bold lg:text-[96.96px] text-[36px] leading-[1] tracking-[-0.02em] max-w-[90vw] text-center">
 					{t("faq.faq")}
 				</h2>
-				<p className="font-normal text-[20.68px] leading-[31px] tracking-[0] text-center lg:w-[420px] max-w-[80%]">
+				<p className="font-normal text-[20.68px] leading-[31px] tracking-[0] text-center lg:w-[420px] max-w-[90vw]">
 					{t("faq.cant_find_answer")}
 				</p>
 			</div>
@@ -147,7 +147,7 @@ function RouteComponent() {
 				</FAQCard>
 			</div>
 		</div>
-	)
+	);
 }
 
 const FAQCard = ({
@@ -175,5 +175,5 @@ const FAQCard = ({
 			</button>
 			{!isCollapsed && <div className="mt-4">{children}</div>}
 		</div>
-	)
+	);
 };
