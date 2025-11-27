@@ -31,7 +31,7 @@ const CatDetailsModal = ({
 				<img
 					src={catData.catDetails.photo}
 					alt="cat-image"
-					className="rounded-2xl w-full h-auto md:h-[280px] object-cover"
+					className="rounded-2xl w-full max-h-[320px] object-cover"
 				/>
 				<div className="flex w-full">
 					<div className="flex flex-col flex-1 gap-[6px] items-start w-full">

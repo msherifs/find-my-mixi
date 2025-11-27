@@ -129,14 +129,11 @@ function RouteComponent() {
 					)}
 				</form.Field>
 
-				{formErrors.map((error) => (
-					<p
-						key={error}
-						className="w-full rounded-[10px] border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-700"
-					>
-						{t(error)}
+				{formErrors.length > 0 && (
+					<p className="w-full rounded-[10px] border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-700">
+						{t("errors.enter_valid_data")}
 					</p>
-				))}
+				)}
 
 				<form.Subscribe
 					selector={(formState) => [

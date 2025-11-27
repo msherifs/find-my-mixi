@@ -332,7 +332,8 @@
 		"nonempty": "This Field cannot be empty.",
 		"upload_image": "Please upload an image file.",
 		"phone_number": "Please enter a valid phone number.",
-		"something_went_wrong": "Something went wrong. Please try again."
+		"something_went_wrong": "Something went wrong. Please try again.",
+		"enter_valid_data": "Please enter valid data."
 	},
 	"catFurColor": {
 		"white": "White",
