@@ -48,7 +48,7 @@ function RouteComponent() {
 
 	return (
 		<div className="flex flex-col items-center justify-center h-full gap-4 my-20 mx-auto">
-			<h2 className="font-epilogue font-bold lg:text-[96.96px] text-[36px] leading-[1] tracking-[-0.02em]">
+			<h2 className="font-epilogue font-bold lg:text-[96.96px] text-[36px] leading-[1] tracking-[-0.02em] max-w-[90vw] text-center">
 				{t("contactUs.contact_us")}
 			</h2>
 			<p className="font-normal text-[20.68px] leading-[31px] tracking-normal text-center lg:w-[668px] max-w-[80%]">

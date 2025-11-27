@@ -13,7 +13,7 @@ const HeroSection = () => {
 	const navigate = useNavigate();
 	return (
 		<section className="max-w-[1280px] mx-auto w-full px-4 md:px-9">
-			<div className="bg-[#FEDAFFB2] rounded-[40px] px-6 pt-20 lg:px-[72px] lg:pt-28">
+			<div className="bg-[#FEDAFFB2] rounded-[40px] px-6 pt-10 lg:px-[72px] lg:pt-14">
 				<svg className="absolute w-0 h-0">
 					<defs>
 						<filter id="roughen">
@@ -34,20 +34,20 @@ const HeroSection = () => {
 					</defs>
 				</svg>
 
-				<div className="flex flex-col sm:flex-row lg:items-end">
+				<div className="flex items-end gap-[10px] flex-wrap">
 					<h1 className="font-epilogue font-bold text-[36px] lg:text-[50.68px] tracking-[-0.02em] text-black">
 						{t("landing.heroSection.lost_your")}
-						<div className="relative inline-block pl-[24px]">
-							<img
-								src={NameContainer}
-								alt=""
-								className="absolute w-[120px] lg:w-auto bottom-1 right-[-10px] z-0"
-							/>
-							<span className="font-[900] text-white uppercase relative z-10">
-								{t("landing.heroSection.mixi")}
-							</span>
-						</div>
 					</h1>
+					<div className="flex items-end w-[120px] lg:w-auto ">
+						<img
+							src={NameContainer}
+							alt=""
+							className="w-full z-0 relative bottom-[2px] lg:bottom-1"
+						/>
+						<span className="relative right-[110px] lg:right-[150px] font-[900] text-white uppercase relative z-10 font-epilogue text-[36px] lg:text-[50.68px] tracking-[-0.02em]">
+							{t("landing.heroSection.mixi")}
+						</span>
+					</div>
 				</div>
 
 				<p className="font-epilogue font-bold text-[36px] lg:text-[50.68px] tracking-[-0.02em]">
@@ -67,9 +67,7 @@ const HeroSection = () => {
 					<Button
 						size={"lg"}
 						className="w-full sm:w-auto"
-						onClick={() =>
-							navigate({ to: "/report-lost-cat" })
-						}
+						onClick={() => navigate({ to: "/report-lost-cat" })}
 					>
 						{t("landing.heroSection.lost_a_cat")}
 					</Button>
@@ -77,9 +75,7 @@ const HeroSection = () => {
 						variant={"secondary"}
 						size={"lg"}
 						className="shadow-none border-none w-full sm:w-auto"
-						onClick={() =>
-							navigate({ to: "/report-found-cat" })
-						}
+						onClick={() => navigate({ to: "/report-found-cat" })}
 					>
 						{t("landing.heroSection.found_a_cat")}
 					</Button>
