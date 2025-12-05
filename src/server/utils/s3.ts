@@ -1,5 +1,9 @@
 import { randomUUID } from "node:crypto";
-import { GetObjectCommand, PutObjectCommand, S3Client } from "@aws-sdk/client-s3";
+import {
+	GetObjectCommand,
+	PutObjectCommand,
+	S3Client,
+} from "@aws-sdk/client-s3";
 import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
 import { Env } from "./env";
 
@@ -41,7 +45,7 @@ function generateFileKey(fileName: string): string {
 	const timestamp = Date.now();
 	const uuid = randomUUID();
 	const sanitized = sanitizeFileName(fileName);
-	return `uploads/${timestamp}-${uuid}-${sanitized}`;
+	return `uploads/${Env.ENV}/${timestamp}-${uuid}-${sanitized}`;
 }
 
 /**
