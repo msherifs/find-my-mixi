@@ -64,6 +64,12 @@ const createCustomIconRed = ({ image }: { image: string }) => {
 
 export type CatRequest = Omit<CatRequestDocument, "_id"> & { _id: string };
 
+function clampCoord(lng: number, lat: number) {
+	const safeLng = Math.max(-180, Math.min(180, lng));
+	const safeLat = Math.max(-90, Math.min(90, lat));
+	return [safeLng, safeLat];
+}
+
 export function MixiMapContainer({
 	user,
 	openOwnerModal,
@@ -94,8 +100,8 @@ export function MixiMapContainer({
 				<Marker
 					key={m._id}
 					position={[
-						m.location.geoPoint.coordinates[0],
-						m.location.geoPoint.coordinates[1],
+						m.location.geoPoint.coordinates[1], // lat (stored as second coordinate)
+						m.location.geoPoint.coordinates[0], // lng (stored as first coordinate)
 					]}
 					icon={
 						m.type === CatFormType.REPORT_CAT_FOUND
@@ -165,11 +171,11 @@ function MapBoundsTracker({
 			// Create polygon coordinates (clockwise or counter-clockwise)
 			const polygon = [
 				[
-					[northWest.lat, northWest.lng],
-					[northEast.lat, northEast.lng],
-					[southEast.lat, southEast.lng],
-					[southWest.lat, southWest.lng],
-					[northWest.lat, northWest.lng],
+					clampCoord(northWest.lng, northWest.lat),
+					clampCoord(northEast.lng, northEast.lat),
+					clampCoord(southEast.lng, southEast.lat),
+					clampCoord(southWest.lng, southWest.lat),
+					clampCoord(northWest.lng, northWest.lat), // close the ring
 				],
 			];
 

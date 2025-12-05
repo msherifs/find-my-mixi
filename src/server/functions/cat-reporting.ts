@@ -105,7 +105,8 @@ export type ReportCatForm = z.infer<typeof reportCatSchema>;
 export const reportCatFn = createServerFn({ method: "POST" })
 	.inputValidator(reportCatSchema)
 	.handler(async ({ data }) => {
-		const coordinates = [...data.location.geoPoint.coordinates];
+		// Convert from [lat, lng] format (from UI) to [lng, lat] format (for GeoJSON)
+		const coordinates = [data.location.geoPoint.coordinates[1], data.location.geoPoint.coordinates[0]];
 
 		await insertCatRequest({
 			status: "SUBMITTED",
