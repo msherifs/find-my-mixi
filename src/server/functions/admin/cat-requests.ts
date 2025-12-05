@@ -1,5 +1,11 @@
 import { createServerFn } from "@tanstack/react-start";
-import { findCatRequestsPaginated } from "@/server/db/queries";
+import { z } from "zod";
+import { CatFormStatus } from "@/server/db/enums";
+import {
+	findCatRequestById,
+	findCatRequestsPaginated,
+	updateCatRequestStatus,
+} from "@/server/db/queries";
 import { zPagination } from "../shared-schemas";
 
 export const getCatRequestsFn = createServerFn({ method: "GET" })
@@ -19,4 +25,28 @@ export const getCatRequestsFn = createServerFn({ method: "GET" })
 			})),
 			count,
 		};
+	});
+
+const updateRequestStatusSchema = z.object({
+	catRequestId: z.string().min(1, { error: "errors.required" }),
+	status: z.enum([CatFormStatus.APPROVED, CatFormStatus.REJECTED], {
+		error: "errors.invalid_status",
+	}),
+});
+
+export const updateRequestStatusFn = createServerFn({ method: "POST" })
+	.inputValidator(updateRequestStatusSchema)
+	.handler(async ({ data }) => {
+		const { catRequestId, status } = data;
+
+		// Check if cat request exists
+		const catRequest = await findCatRequestById(catRequestId);
+		if (!catRequest) {
+			throw new Error("Cat request not found");
+		}
+
+		// Update the status
+		await updateCatRequestStatus(catRequestId, status);
+
+		return { success: true };
 	});

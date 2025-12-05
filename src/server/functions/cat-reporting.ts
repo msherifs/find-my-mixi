@@ -12,6 +12,8 @@ import {
 	CollarSolidColor,
 } from "@/server/db/enums";
 import {
+	addPresumedOwnerToCatRequest,
+	findCatRequestById,
 	findCatRequestsInPolygon,
 	insertCatRequest,
 } from "@/server/db/queries";
@@ -106,7 +108,9 @@ export const reportCatFn = createServerFn({ method: "POST" })
 		const coordinates = [...data.location.geoPoint.coordinates];
 
 		await insertCatRequest({
+			status: "SUBMITTED",
 			type: data.type,
+			presumedOwners: [],
 			catDetails: data.catDetails,
 			userDetails: data.userDetails,
 			location: {
@@ -139,6 +143,7 @@ export const getCatRequestsForMap = createServerFn()
 		const requests = await findCatRequestsInPolygon(
 			{ coordinates: data.polygon },
 			{
+				status: "APPROVED",
 				...(data.color && { "catDetails.furColor": { $in: data.color } }),
 				...(data.pattern && { "catDetails.furPattern": data.pattern }),
 				...(data.coatType && { "catDetails.coatType": data.coatType }),
@@ -162,4 +167,38 @@ export const getCatRequestsForMap = createServerFn()
 				_id: request._id.toHexString(),
 			})),
 		};
+	});
+
+const markAsPresumedOwnerSchema = z.object({
+	catRequestId: z.string().min(1, { error: "errors.required" }),
+	name: z
+		.string({ error: "errors.required" })
+		.min(2, { error: "errors.required" })
+		.max(100, { error: "errors.required" })
+		.trim(),
+	phone: z.e164({ error: "errors.phone_number" }),
+});
+
+export const markAsPresumedOwnerFn = createServerFn({ method: "POST" })
+	.inputValidator(markAsPresumedOwnerSchema)
+	.handler(async ({ data }) => {
+		const { catRequestId, name, phone } = data;
+
+		// Check if cat request exists
+		const catRequest = await findCatRequestById(catRequestId);
+		if (!catRequest) {
+			throw new Error("Cat request not found");
+		}
+
+		// Add presumed owner (this will throw if phone is duplicate)
+		try {
+			await addPresumedOwnerToCatRequest(catRequestId, { name, phone });
+		} catch (error) {
+			if (error instanceof Error && error.message === "DUPLICATE_PHONE") {
+				throw new Error("Phone number already registered as presumed owner");
+			}
+			throw error;
+		}
+
+		return { success: true };
 	});

@@ -85,3 +85,10 @@ export const ContactUsTopic = {
 } as const;
 export type ContactUsTopic =
 	(typeof ContactUsTopic)[keyof typeof ContactUsTopic];
+
+export const CatFormStatus = {
+	SUBMITTED: "SUBMITTED",
+	APPROVED: "APPROVED",
+	REJECTED: "REJECTED",
+} as const;
+export type CatFormStatus = (typeof CatFormStatus)[keyof typeof CatFormStatus];

@@ -1,4 +1,6 @@
+import { ObjectId } from "mongodb";
 import type { DocumentForInsert, PaprFilter } from "papr";
+import type { CatFormStatus } from "./enums";
 import {
 	CatRequest,
 	type CatRequestDocument,
@@ -113,4 +115,48 @@ export const findContactUsSubmissionsPaginated = async (
 		contactUsSubmissions,
 		count,
 	};
+};
+
+export const findCatRequestById = async (id: string) => {
+	if (!ObjectId.isValid(id)) {
+		return null;
+	}
+	return await CatRequest.findById(new ObjectId(id));
+};
+
+export const updateCatRequestStatus = async (
+	id: string,
+	status: CatFormStatus,
+) => {
+	if (!ObjectId.isValid(id)) {
+		return null;
+	}
+	return await CatRequest.updateOne(
+		{ _id: new ObjectId(id) },
+		{ $set: { status } },
+	);
+};
+
+export const addPresumedOwnerToCatRequest = async (
+	id: string,
+	presumedOwner: { name: string; phone: string },
+) => {
+	if (!ObjectId.isValid(id)) {
+		return null;
+	}
+
+	// Check if phone already exists in presumedOwners array
+	const existingRequest = await CatRequest.findOne({
+		_id: new ObjectId(id),
+		"presumedOwners.phone": presumedOwner.phone,
+	});
+
+	if (existingRequest) {
+		throw new Error("DUPLICATE_PHONE");
+	}
+
+	return await CatRequest.updateOne(
+		{ _id: new ObjectId(id) },
+		{ $push: { presumedOwners: presumedOwner } },
+	);
 };

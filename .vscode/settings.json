@@ -1,4 +1,5 @@
 {
+	"editor.formatOnSave": true,
 	"files.watcherExclude": {
 		"**/routeTree.gen.ts": true
 	},
@@ -34,5 +35,8 @@
 		"source.fixAll": "explicit",
 		"source.fixAll.biome": "explicit"
 	},
-	"kiroAgent.configureMCP": "Disabled"
+	"kiroAgent.configureMCP": "Disabled",
+	"cSpell.words": [
+		"papr"
+	]
 }

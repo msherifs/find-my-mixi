@@ -3,6 +3,7 @@ import { papr } from ".";
 import {
 	CatCoatType,
 	CatEyeColor,
+	CatFormStatus,
 	CatFormType,
 	CatFurColor,
 	CatFurPattern,
@@ -32,6 +33,7 @@ export const User = papr.model("users", UserSchema);
 const CatRequestSchema = schema(
 	{
 		type: types.enum(Object.values(CatFormType), { required: true }),
+		status: types.enum(Object.values(CatFormStatus), { required: true }),
 		catDetails: types.object(
 			{
 				name: types.string(),
@@ -90,8 +92,18 @@ const CatRequestSchema = schema(
 			},
 			{ required: true },
 		),
+		presumedOwners: types.array(
+			types.object(
+				{
+					name: types.string({ required: true }),
+					phone: types.string({ required: true }),
+				},
+				{ required: true },
+			),
+			{ required: true },
+		),
 	},
-	{ timestamps: true },
+	{ timestamps: true, defaults: { status: "SUBMITTED", presumedOwners: [] } },
 );
 
 export type CatRequestDocument = (typeof CatRequestSchema)[0];
