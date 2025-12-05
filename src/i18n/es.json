@@ -199,11 +199,13 @@
 		"no_worries": "No te preocupes, te enviaremos instrucciones para restablecerla.",
 		"email": "Correo Electrónico",
 		"reset_password": "Restablecer Contraseña",
+		"sending": "Enviando...",
 		"back_to_login": "Volver a Iniciar Sesión",
 		"check_your_email": "Revisa Tu Correo Electrónico",
 		"we_sent_reset_link": "Enviamos un enlace para restablecer la contraseña a {{email}}.",
 		"did_not_receive": "¿No recibiste el correo?",
-		"click_to_resend": "Haz clic para reenviar"
+		"click_to_resend": "Haz clic para reenviar",
+		"resending": "Reenviando..."
 	},
 	"resetPassword": {
 		"set_new_password": "Establecer Nueva Contraseña",
@@ -211,6 +213,7 @@
 		"password": "Contraseña",
 		"confirm_password": "Confirmar Contraseña",
 		"reset_password": "Restablecer Contraseña",
+		"resetting": "Restableciendo...",
 		"password_reset": "Contraseña Restablecida",
 		"password_successfully_reset": "Tu contraseña ha sido restablecida exitosamente. Haz clic abajo para iniciar sesión.",
 		"continue": "Continuar"
@@ -325,7 +328,10 @@
 		"upload_image": "Por favor sube un archivo de imagen.",
 		"phone_number": "Por favor ingresa un número de teléfono válido.",
 		"something_went_wrong": "Algo salió mal. Por favor intenta de nuevo.",
-		"enter_valid_data": "Por favor ingresa datos válidos."
+		"enter_valid_data": "Por favor ingresa datos válidos.",
+		"INVALID_TOKEN": "Token de restablecimiento inválido o expirado. Por favor solicita un nuevo restablecimiento de contraseña.",
+		"RATE_LIMIT_EXCEEDED": "Demasiadas solicitudes de restablecimiento de contraseña. Por favor intenta de nuevo más tarde.",
+		"passwords_do_not_match": "Las contraseñas no coinciden."
 	},
 	"catFurColor": {
 		"white": "Blanco",

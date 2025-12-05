@@ -95,7 +95,7 @@ function RouteComponent() {
 				</ol>
 			</div>
 		</div>
-	)
+	);
 }
 
 const PrivacyPolicy = ({
@@ -130,5 +130,5 @@ const PrivacyPolicy = ({
 				</p>
 			)}
 		</li>
-	)
+	);
 };

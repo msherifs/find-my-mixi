@@ -207,11 +207,13 @@
 		"no_worries": "No worries, we'll send you reset instructions.",
 		"email": "Email",
 		"reset_password": "Reset Password",
+		"sending": "Sending...",
 		"back_to_login": "Back to Login",
 		"check_your_email": "Check Your Email",
 		"we_sent_reset_link": "We sent a password reset link to {{email}}.",
 		"did_not_receive": "Didn't receive the email?",
-		"click_to_resend": "Click to resend"
+		"click_to_resend": "Click to resend",
+		"resending": "Resending..."
 	},
 	"resetPassword": {
 		"set_new_password": "Set New Password",
@@ -219,6 +221,7 @@
 		"password": "Password",
 		"confirm_password": "Confirm Password",
 		"reset_password": "Reset Password",
+		"resetting": "Resetting...",
 		"password_reset": " Password Reset",
 		"password_successfully_reset": "Your password has been successfully reset. Click below to log in magically.",
 		"continue": "Continue"
@@ -333,7 +336,10 @@
 		"upload_image": "Please upload an image file.",
 		"phone_number": "Please enter a valid phone number.",
 		"something_went_wrong": "Something went wrong. Please try again.",
-		"enter_valid_data": "Please enter valid data."
+		"enter_valid_data": "Please enter valid data.",
+		"INVALID_TOKEN": "Invalid or expired reset token. Please request a new password reset.",
+		"RATE_LIMIT_EXCEEDED": "Too many password reset requests. Please try again later.",
+		"passwords_do_not_match": "Passwords do not match."
 	},
 	"catFurColor": {
 		"white": "White",

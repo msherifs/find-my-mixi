@@ -8,6 +8,7 @@ import {
 	ContactUs,
 	type ContactUsDocument,
 	type ContactUsOptions,
+	PasswordReset,
 	User,
 	type UserDocument,
 	type UserOptions,
@@ -159,4 +160,34 @@ export const addPresumedOwnerToCatRequest = async (
 		{ _id: new ObjectId(id) },
 		{ $push: { presumedOwners: presumedOwner } },
 	);
+};
+
+export const insertPasswordReset = async (
+	userId: ObjectId,
+	hashedToken: string,
+	expiresAt: Date,
+) => {
+	return await PasswordReset.insertOne({
+		userId,
+		token: hashedToken,
+		expiresAt,
+	});
+};
+
+export const findPasswordReset = async (hashedToken: string) => {
+	return await PasswordReset.findOne({ token: hashedToken });
+};
+
+export const deletePasswordReset = async (id: ObjectId) => {
+	return await PasswordReset.deleteOne({ _id: id });
+};
+
+export const invalidatePreviousResets = async (userId: ObjectId) => {
+	return await PasswordReset.deleteMany({ userId });
+};
+
+export const cleanupExpiredTokens = async () => {
+	return await PasswordReset.deleteMany({
+		expiresAt: { $lt: new Date() },
+	});
 };

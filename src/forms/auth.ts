@@ -34,3 +34,29 @@ export const registerFormOptions = formOptions({
 		password: "",
 	},
 });
+
+export const zForgotPasswordForm = z.object({
+	email: z.email({ error: "errors.email" }),
+});
+
+export const forgotPasswordFormOptions = formOptions({
+	defaultValues: {
+		email: "",
+	},
+});
+
+export const zResetPasswordForm = z.object({
+	password: z
+		.string({ error: "errors.required" })
+		.min(6, { error: "errors.password_criteria" }),
+	confirmPassword: z.string({ error: "errors.required" }),
+	token: z.string({ error: "errors.required" }),
+});
+
+export const resetPasswordFormOptions = formOptions({
+	defaultValues: {
+		password: "",
+		confirmPassword: "",
+		token: "",
+	},
+});

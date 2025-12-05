@@ -9,6 +9,9 @@ const envSchema = z.object({
 	SPACES_BUCKET: z.string().min(1),
 	SPACES_ACCESS_KEY_ID: z.string().min(1),
 	SPACES_SECRET_ACCESS_KEY: z.string().min(1),
+	MAILGUN_API_KEY: z.string().optional(),
+	MAILGUN_DOMAIN: z.string().optional(),
+	APP_URL: z.string().default("http://localhost:3000"),
 });
 
 export type Env = z.infer<typeof envSchema>;

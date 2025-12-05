@@ -20,5 +20,5 @@ function RouteComponent() {
 			</div>
 			<LandingFooter />
 		</div>
-	)
+	);
 }

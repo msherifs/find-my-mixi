@@ -1,3 +1,4 @@
+import { createHash, randomBytes } from "node:crypto";
 import { hash, verify } from "argon2";
 
 export async function hashPassword(password: string) {
@@ -9,7 +10,15 @@ export async function verifyPassword(hash: string, password: string) {
 }
 
 export function generateOTP(numberOfDigits: number) {
-	const min = Math.pow(10, numberOfDigits - 1);
-	const max = Math.pow(10, numberOfDigits) - 1;
+	const min = 10 ** (numberOfDigits - 1);
+	const max = 10 ** numberOfDigits - 1;
 	return (Math.floor(Math.random() * (max - min + 1)) + min).toString();
+}
+
+export function generateSecureToken(length = 32): string {
+	return randomBytes(length).toString("hex");
+}
+
+export function hashToken(token: string): string {
+	return createHash("sha256").update(token).digest("hex");
 }

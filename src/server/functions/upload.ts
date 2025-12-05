@@ -6,11 +6,7 @@ import { LiteralError } from "../error";
 const MAX_FILE_SIZE = 10 * 1024 * 1024;
 
 // Allowed file types (images and common document formats)
-const ALLOWED_MIME_TYPES = [
-	"image/jpeg",
-	"image/jpg",
-	"image/png",
-];
+const ALLOWED_MIME_TYPES = ["image/jpeg", "image/jpg", "image/png"];
 
 /**
  * Server function that handles file upload requests

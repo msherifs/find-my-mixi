@@ -18,5 +18,5 @@ function App() {
 			<WhyUsSection />
 			<TestimonialSection />
 		</div>
-	)
+	);
 }

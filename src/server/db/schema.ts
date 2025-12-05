@@ -122,3 +122,16 @@ const ContactUsSchema = schema(
 export type ContactUsDocument = (typeof ContactUsSchema)[0];
 export type ContactUsOptions = (typeof ContactUsSchema)[1];
 export const ContactUs = papr.model("contactUsSubmissions", ContactUsSchema);
+
+const PasswordResetSchema = schema(
+	{
+		userId: types.objectId({ required: true }),
+		token: types.string({ required: true }),
+		expiresAt: types.date({ required: true }),
+	},
+	{ timestamps: true },
+);
+
+export type PasswordResetDocument = (typeof PasswordResetSchema)[0];
+export type PasswordResetOptions = (typeof PasswordResetSchema)[1];
+export const PasswordReset = papr.model("passwordResets", PasswordResetSchema);

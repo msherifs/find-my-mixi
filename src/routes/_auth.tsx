@@ -14,5 +14,5 @@ function RouteComponent() {
 				© FindMyMixi 2024
 			</footer>
 		</div>
-	)
+	);
 }
