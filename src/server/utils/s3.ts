@@ -1,5 +1,6 @@
 import { randomUUID } from "node:crypto";
-import { PutObjectCommand, S3Client } from "@aws-sdk/client-s3";
+import { GetObjectCommand, PutObjectCommand, S3Client } from "@aws-sdk/client-s3";
+import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
 import { Env } from "./env";
 
 // Global S3 client instance initialized once at module load
@@ -111,5 +112,38 @@ export async function uploadToS3(
 
 		// Generic error for any other cases
 		throw new Error("File upload failed. Please try again.");
+	}
+}
+
+export interface SignedUrlOptions {
+	key: string;
+	expiresIn?: number; // Expiration time in seconds (default: 3600 = 1 hour)
+}
+
+/**
+ * Generate a signed URL for accessing a private file in S3
+ * @param options - Configuration for signed URL generation
+ * @returns A temporary signed URL that grants access to the file
+ */
+export async function generateSignedUrl(
+	options: SignedUrlOptions,
+): Promise<string> {
+	const { key, expiresIn = 3600 } = options;
+
+	try {
+		const command = new GetObjectCommand({
+			Bucket: Env.SPACES_BUCKET,
+			Key: key,
+		});
+
+		// Generate signed URL with expiration
+		const signedUrl = await getSignedUrl(s3Client, command, {
+			expiresIn,
+		});
+
+		return signedUrl;
+	} catch (error) {
+		console.error("Error generating signed URL:", error);
+		throw new Error("Failed to generate signed URL");
 	}
 }
