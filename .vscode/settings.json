@@ -33,5 +33,6 @@
 		"source.organizeImports.biome": "explicit",
 		"source.fixAll": "explicit",
 		"source.fixAll.biome": "explicit"
-	}
+	},
+	"kiroAgent.configureMCP": "Disabled"
 }
