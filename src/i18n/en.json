@@ -245,6 +245,8 @@
 		"view_profile": "View Profile",
 		"sign_out": "Sign Out",
 		"submit": "Submit",
+		"submitting": "Submitting...",
+		"submitted": "Submitted!",
 		"leave_your_info": "Leave your info and we will contact you",
 		"phone_number": "Phone Number",
 		"email": "Email",
@@ -253,7 +255,17 @@
 		"found": "Found",
 		"lost": "Lost",
 		"all": "All",
-		"reset": "Reset"
+		"reset": "Reset",
+		"owner_claim_success": "Your claim has been submitted successfully! We will contact you soon.",
+		"duplicate_contact_error": "This contact information has already been registered as a presumed owner for this cat.",
+		"cat_not_found_error": "Cat request no longer exists.",
+		"unexpected_error": "An unexpected error occurred. Please try again.",
+		"validation_error": "{{field}}: {{message}}",
+		"validation_error_generic": "Please check your form inputs and try again.",
+		"name_validation_error": "Name must be between 2 and 100 characters",
+		"phone_validation_error": "Please enter a valid phone number in international format (e.g., +1234567890)",
+		"email_validation_error": "Please enter a valid email address",
+		"field_validation_error": "Please check this field"
 	},
 	"reportCat": {
 		"cat_information": "Cat Information",
@@ -335,12 +347,14 @@
 		"duplicate_email": "this email already exists.",
 		"nonempty": "This Field cannot be empty.",
 		"upload_image": "Please upload an image file.",
-		"phone_number": "Please enter a valid phone number.",
+		"phone_number": "Please enter a valid phone number in international format (e.g., +1234567890).",
 		"something_went_wrong": "Something went wrong. Please try again.",
 		"enter_valid_data": "Please enter valid data.",
 		"INVALID_TOKEN": "Invalid or expired reset token. Please request a new password reset.",
 		"RATE_LIMIT_EXCEEDED": "Too many password reset requests. Please try again later.",
-		"passwords_do_not_match": "Passwords do not match."
+		"passwords_do_not_match": "Passwords do not match.",
+		"name_min_length": "Name must be at least 2 characters long.",
+		"name_max_length": "Name cannot be longer than 100 characters."
 	},
 	"catFurColor": {
 		"white": "White",

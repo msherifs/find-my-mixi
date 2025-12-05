@@ -106,7 +106,10 @@ export const reportCatFn = createServerFn({ method: "POST" })
 	.inputValidator(reportCatSchema)
 	.handler(async ({ data }) => {
 		// Convert from [lat, lng] format (from UI) to [lng, lat] format (for GeoJSON)
-		const coordinates = [data.location.geoPoint.coordinates[1], data.location.geoPoint.coordinates[0]];
+		const coordinates = [
+			data.location.geoPoint.coordinates[1],
+			data.location.geoPoint.coordinates[0],
+		];
 
 		await insertCatRequest({
 			status: "SUBMITTED",
@@ -178,12 +181,13 @@ const markAsPresumedOwnerSchema = z.object({
 		.max(100, { error: "errors.required" })
 		.trim(),
 	phone: z.e164({ error: "errors.phone_number" }),
+	email: z.email({ error: "errors.email" }),
 });
 
 export const markAsPresumedOwnerFn = createServerFn({ method: "POST" })
 	.inputValidator(markAsPresumedOwnerSchema)
 	.handler(async ({ data }) => {
-		const { catRequestId, name, phone } = data;
+		const { catRequestId, name, phone, email } = data;
 
 		// Check if cat request exists
 		const catRequest = await findCatRequestById(catRequestId);
@@ -193,7 +197,7 @@ export const markAsPresumedOwnerFn = createServerFn({ method: "POST" })
 
 		// Add presumed owner (this will throw if phone is duplicate)
 		try {
-			await addPresumedOwnerToCatRequest(catRequestId, { name, phone });
+			await addPresumedOwnerToCatRequest(catRequestId, { name, phone, email });
 		} catch (error) {
 			if (error instanceof Error && error.message === "DUPLICATE_PHONE") {
 				throw new Error("Phone number already registered as presumed owner");

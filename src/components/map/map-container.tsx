@@ -75,7 +75,7 @@ export function MixiMapContainer({
 	openOwnerModal,
 }: {
 	user: { firstName: string; lastName: string; role: UserRole };
-	openOwnerModal: () => void;
+	openOwnerModal: (catData: CatRequest) => void;
 }) {
 	const isMobile = useIsMobile();
 	const [selectedMarker, setSelectedMarker] = useState<number | null>(null);
@@ -124,7 +124,7 @@ export function MixiMapContainer({
 						>
 							<CatDetailsModal
 								onClickIAmTheOwner={() => {
-									openOwnerModal();
+									openOwnerModal(m);
 								}}
 								catData={m}
 							/>
@@ -137,7 +137,9 @@ export function MixiMapContainer({
 					isOpen={selectedMarker !== null}
 					onClose={() => setSelectedMarker(null)}
 					onClickIAmTheOwner={() => {
-						openOwnerModal();
+						if (selectedMarker !== null) {
+							openOwnerModal(catRequests[selectedMarker]);
+						}
 					}}
 					catData={catRequests[selectedMarker]}
 				/>

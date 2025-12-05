@@ -97,6 +97,7 @@ const CatRequestSchema = schema(
 				{
 					name: types.string({ required: true }),
 					phone: types.string({ required: true }),
+					email: types.string({ required: true }),
 				},
 				{ required: true },
 			),

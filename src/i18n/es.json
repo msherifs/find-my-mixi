@@ -237,6 +237,8 @@
 		"view_profile": "Ver Perfil",
 		"sign_out": "Cerrar Sesión",
 		"submit": "Enviar",
+		"submitting": "Enviando...",
+		"submitted": "¡Enviado!",
 		"leave_your_info": "Deja tu información y nos pondremos en contacto contigo",
 		"phone_number": "Número de Teléfono",
 		"email": "Correo Electrónico",
@@ -245,7 +247,17 @@
 		"found": "Encontrado",
 		"lost": "Perdido",
 		"all": "Todos",
-		"reset": "Restablecer"
+		"reset": "Restablecer",
+		"owner_claim_success": "¡Tu reclamación ha sido enviada exitosamente! Nos pondremos en contacto contigo pronto.",
+		"duplicate_contact_error": "Esta información de contacto ya ha sido registrada como propietario presunto para este gato.",
+		"cat_not_found_error": "La solicitud del gato ya no existe.",
+		"unexpected_error": "Ocurrió un error inesperado. Por favor intenta de nuevo.",
+		"validation_error": "{{field}}: {{message}}",
+		"validation_error_generic": "Por favor revisa los campos del formulario e intenta de nuevo.",
+		"name_validation_error": "El nombre debe tener entre 2 y 100 caracteres",
+		"phone_validation_error": "Por favor ingresa un número de teléfono válido en formato internacional (ej: +1234567890)",
+		"email_validation_error": "Por favor ingresa una dirección de correo válida",
+		"field_validation_error": "Por favor revisa este campo"
 	},
 	"reportCat": {
 		"cat_information": "Información del Gato",
@@ -327,12 +339,14 @@
 		"duplicate_email": "Este correo electrónico ya existe.",
 		"nonempty": "Este campo no puede estar vacío.",
 		"upload_image": "Por favor sube un archivo de imagen.",
-		"phone_number": "Por favor ingresa un número de teléfono válido.",
+		"phone_number": "Por favor ingresa un número de teléfono válido en formato internacional (ej: +1234567890).",
 		"something_went_wrong": "Algo salió mal. Por favor intenta de nuevo.",
 		"enter_valid_data": "Por favor ingresa datos válidos.",
 		"INVALID_TOKEN": "Token de restablecimiento inválido o expirado. Por favor solicita un nuevo restablecimiento de contraseña.",
 		"RATE_LIMIT_EXCEEDED": "Demasiadas solicitudes de restablecimiento de contraseña. Por favor intenta de nuevo más tarde.",
-		"passwords_do_not_match": "Las contraseñas no coinciden."
+		"passwords_do_not_match": "Las contraseñas no coinciden.",
+		"name_min_length": "El nombre debe tener al menos 2 caracteres.",
+		"name_max_length": "El nombre no puede tener más de 100 caracteres."
 	},
 	"catFurColor": {
 		"white": "Blanco",

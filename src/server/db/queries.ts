@@ -140,7 +140,7 @@ export const updateCatRequestStatus = async (
 
 export const addPresumedOwnerToCatRequest = async (
 	id: string,
-	presumedOwner: { name: string; phone: string },
+	presumedOwner: { name: string; phone: string; email: string },
 ) => {
 	if (!ObjectId.isValid(id)) {
 		return null;
@@ -149,7 +149,10 @@ export const addPresumedOwnerToCatRequest = async (
 	// Check if phone already exists in presumedOwners array
 	const existingRequest = await CatRequest.findOne({
 		_id: new ObjectId(id),
-		"presumedOwners.phone": presumedOwner.phone,
+		$or: [
+			{ "presumedOwners.phone": presumedOwner.phone },
+			{ "presumedOwners.email": presumedOwner.email },
+		],
 	});
 
 	if (existingRequest) {

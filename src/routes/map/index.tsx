@@ -1,13 +1,13 @@
+import { useState } from "react";
 import {
 	ClientOnly,
 	createFileRoute,
 	redirect,
 	useLoaderData,
 } from "@tanstack/react-router";
-import { useState } from "react";
 import z from "zod";
 import IAmTheOwnerModal from "@/components/map/i-am-the-owner-modal";
-import { MixiMapContainer } from "@/components/map/map-container";
+import { MixiMapContainer, type CatRequest } from "@/components/map/map-container";
 import {
 	CatCoatType,
 	CatEyeColor,
@@ -43,18 +43,26 @@ export const Route = createFileRoute("/map/")({
 
 function RouteComponent() {
 	const [isOwnerModalOpen, setIsOwnerModalOpen] = useState(false);
+	const [selectedCatData, setSelectedCatData] = useState<CatRequest | null>(null);
 	const user = useLoaderData({ from: "/map/" });
 
 	return (
 		<div className="h-screen h-[100dvh] w-screen">
 			<IAmTheOwnerModal
 				isOpen={isOwnerModalOpen}
-				onClose={() => setIsOwnerModalOpen(false)}
+				onClose={() => {
+					setIsOwnerModalOpen(false);
+					setSelectedCatData(null);
+				}}
+				catData={selectedCatData}
 			/>
 			<ClientOnly>
 				<MixiMapContainer
 					user={user}
-					openOwnerModal={() => setIsOwnerModalOpen(true)}
+					openOwnerModal={(catData) => {
+						setSelectedCatData(catData);
+						setIsOwnerModalOpen(true);
+					}}
 				/>
 			</ClientOnly>
 		</div>
