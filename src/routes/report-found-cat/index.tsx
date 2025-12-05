@@ -35,6 +35,7 @@ import {
 	reportCatFn,
 	reportCatSchema,
 } from "@/server/functions/cat-reporting";
+import { uploadFileFn } from "@/server/functions/upload";
 
 export const Route = createFileRoute("/report-found-cat/")({
 	component: RouteComponent,
@@ -52,9 +53,6 @@ function RouteComponent() {
 	useEffect(() => {
 		window.scrollTo({ top: 0, behavior: "smooth" });
 	}, [currentStep]);
-
-	const DUMMY_CAT_PHOTO_URL =
-		"https://img.freepik.com/free-photo/portrait-beautiful-purebred-pussycat-with-shorthair-orange-collar-neck-sitting-floor-reacting-camera-flash-scared-looking-light-indoor_8353-12551.jpg?semt=ais_hybrid&w=740&q=80";
 
 	const firstStepNextHandler = async () => {
 		await form.validateField("catDetails.date", "blur");
@@ -523,9 +521,26 @@ function RouteComponent() {
 							{(field) => (
 								<MixiFileUpload
 									file={uploadedCatPhoto}
-									setFile={(file) => {
+									setFile={async (file) => {
 										setUploadedCatPhoto(file);
-										field.handleChange(file ? DUMMY_CAT_PHOTO_URL : "");
+										if (file) {
+											try {
+												const formData = new FormData();
+												formData.append('file', file);
+												const result = await uploadFileFn({ data: formData });
+												if (typeof result === 'object' && result.url) {
+													field.handleChange(result.url);
+												} else {
+													toast.error(typeof result === 'string' ? result : 'Upload failed');
+													field.handleChange("");
+												}
+											} catch {
+												toast.error('Upload failed');
+												field.handleChange("");
+											}
+										} else {
+											field.handleChange("");
+										}
 									}}
 									errorMessage={
 										field.state.meta.errors[0]
