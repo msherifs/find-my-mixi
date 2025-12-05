@@ -322,7 +322,8 @@
 		"collar_pattern": "Collar Pattern",
 		"select_collar_color": "Select collar color",
 		"select_collar_pattern": "Select collar pattern",
-		"select_collar_embellishment": "Select collar embellishment"
+		"select_collar_embellishment": "Select collar embellishment",
+		"image_uploaded": "Image uploaded successfully"
 	},
 	"errors": {
 		"generic": "Please enter a valid value.",

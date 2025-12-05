@@ -314,7 +314,8 @@
 		"collar_pattern": "Patrón del Collar",
 		"select_collar_color": "Selecciona el color del collar",
 		"select_collar_pattern": "Selecciona el patrón del collar",
-		"select_collar_embellishment": "Selecciona el adorno del collar"
+		"select_collar_embellishment": "Selecciona el adorno del collar",
+		"image_uploaded": "Imagen subida exitosamente"
 	},
 	"errors": {
 		"generic": "Por favor ingresa un valor válido.",

@@ -118,7 +118,7 @@ const Step = ({
 			) : (
 				<div
 					className={cn(
-						"bg-primary w-12 h-12 rounded-[10px] border border-1 border-[#D5D7DA] font-semibold text-[16px] leading-[24px] tracking-[0] text-white flex items-center justify-center",
+						"bg-primary w-12 h-12 rounded-[10px] border border-1 border-[#D5D7DA] font-semibold text-[16px] leading-[24px] tracking-[0] text-white flex items-center justify-center flex-shrink-0",
 						disabled && "text-gray-500 bg-white",
 					)}
 				>

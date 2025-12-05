@@ -526,16 +526,21 @@ function RouteComponent() {
 										if (file) {
 											try {
 												const formData = new FormData();
-												formData.append('file', file);
+												formData.append("file", file);
 												const result = await uploadFileFn({ data: formData });
-												if (typeof result === 'object' && result.url) {
+												if (typeof result === "object" && result.url) {
 													field.handleChange(result.url);
+													toast.success(t("reportCat.image_uploaded"));
 												} else {
-													toast.error(typeof result === 'string' ? result : 'Upload failed');
+													toast.error(
+														typeof result === "string"
+															? result
+															: "Upload failed",
+													);
 													field.handleChange("");
 												}
 											} catch {
-												toast.error('Upload failed');
+												toast.error("Upload failed");
 												field.handleChange("");
 											}
 										} else {
