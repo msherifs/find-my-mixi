@@ -1,4 +1,14 @@
 /** biome-ignore-all lint/correctness/useHookAtTopLevel: this is a server component file */
+
+import {
+	createServerValidate,
+	getFormData,
+	ServerValidateError,
+} from "@tanstack/react-form-start";
+import { redirect } from "@tanstack/react-router";
+import { createServerFn } from "@tanstack/react-start";
+import { ObjectId } from "mongodb";
+import z from "zod";
 import {
 	forgotPasswordFormOptions,
 	loginFormOptions,
@@ -26,15 +36,6 @@ import {
 	verifyPassword,
 } from "@/server/utils/crypto";
 import { sendPasswordResetEmail } from "@/server/utils/mailgun";
-import {
-	createServerValidate,
-	getFormData,
-	ServerValidateError,
-} from "@tanstack/react-form-start";
-import { redirect } from "@tanstack/react-router";
-import { createServerFn } from "@tanstack/react-start";
-import { ObjectId } from "mongodb";
-import z from "zod";
 import { useAppSession } from "../auth";
 import { LiteralError } from "../error";
 import { checkRateLimit } from "../utils/rate-limiter";
@@ -178,9 +179,11 @@ export const getFormFn = createServerFn({ method: "GET" }).handler(async () => {
 const forgotPasswordServerValidate = createServerValidate({
 	...forgotPasswordFormOptions,
 	onServerValidate: async ({ value }) => {
-		zForgotPasswordForm.parse(value);
-		// No validation errors - we don't reveal if email exists
-		return undefined;
+		const { success } = zForgotPasswordForm.safeParse(value);
+
+		if (!success) {
+			return "invalid email";
+		}
 	},
 });
 
@@ -195,29 +198,23 @@ export const forgotPasswordFn = createServerFn({ method: "POST" })
 		try {
 			const { email } = await forgotPasswordServerValidate(ctx.data);
 
-			// Find user by email
 			const user = await findUser({ email });
-
 			if (user) {
-				// Generate secure random token
 				const token = generateSecureToken(32);
 				const hashedToken = hashToken(token);
 
-				// Invalidate previous tokens
 				await invalidatePreviousResets(user._id);
 
-				// Create expiration date (1 hour from now)
 				const expiresAt = new Date(Date.now() + 60 * 60 * 1000);
-
-				// Store hashed token in database
 				await insertPasswordReset(user._id, hashedToken, expiresAt);
 
-				// Send password reset email
 				await sendPasswordResetEmail(email, token);
 			}
 
-			// Always return success to prevent email enumeration
-			return { success: true, email };
+			return redirect({
+				to: "/forgot-password/check-email",
+				search: { email },
+			});
 		} catch (error) {
 			if (error instanceof ServerValidateError) {
 				return error.response;
