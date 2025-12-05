@@ -1,18 +1,17 @@
-import { AdminAppSidebar } from "@/components/admin/app-sidebar";
-import { Separator } from "@/components/ui/separator";
-import {
-	SidebarProvider,
-	SidebarInset,
-	SidebarTrigger,
-} from "@/components/ui/sidebar";
-import { getCurrentUserFn } from "@/server/functions/auth";
-
 import {
 	createFileRoute,
 	Outlet,
 	redirect,
 	useLoaderData,
 } from "@tanstack/react-router";
+import { AdminAppSidebar } from "@/components/admin/app-sidebar";
+import { Separator } from "@/components/ui/separator";
+import {
+	SidebarInset,
+	SidebarProvider,
+	SidebarTrigger,
+} from "@/components/ui/sidebar";
+import { getCurrentUserFn } from "@/server/functions/auth";
 
 export const Route = createFileRoute("/_admin")({
 	component: AdminIndexPage,
