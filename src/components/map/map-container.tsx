@@ -160,41 +160,58 @@ function MapBoundsTracker({
 
 	// biome-ignore lint/correctness/useExhaustiveDependencies: <false>
 	useEffect(() => {
+		let isInitialLoad = true;
+		let timeoutId: NodeJS.Timeout | null = null;
+
 		const updateBounds = async () => {
-			// Get the current bounds
-			const bounds = map.getBounds();
+			// Clear any pending timeout
+			if (timeoutId) {
+				clearTimeout(timeoutId);
+			}
 
-			// Extract corner coordinates
-			const northEast = bounds.getNorthEast();
-			const southWest = bounds.getSouthWest();
-			const northWest = bounds.getNorthWest();
-			const southEast = bounds.getSouthEast();
+			// Debounce the update
+			timeoutId = setTimeout(async () => {
+				// Get the current bounds
+				const bounds = map.getBounds();
 
-			// Create polygon coordinates (clockwise or counter-clockwise)
-			const polygon = [
-				[
-					clampCoord(northWest.lng, northWest.lat),
-					clampCoord(northEast.lng, northEast.lat),
-					clampCoord(southEast.lng, southEast.lat),
-					clampCoord(southWest.lng, southWest.lat),
-					clampCoord(northWest.lng, northWest.lat), // close the ring
-				],
-			];
+				// Extract corner coordinates
+				const northEast = bounds.getNorthEast();
+				const southWest = bounds.getSouthWest();
+				const northWest = bounds.getNorthWest();
+				const southEast = bounds.getSouthEast();
 
-			const { catRequests } = await getCatRequestsForMap({
-				data: { polygon, ...searchParams },
-			});
-			setRequests(catRequests);
+				// Create polygon coordinates (clockwise or counter-clockwise)
+				const polygon = [
+					[
+						clampCoord(northWest.lng, northWest.lat),
+						clampCoord(northEast.lng, northEast.lat),
+						clampCoord(southEast.lng, southEast.lat),
+						clampCoord(southWest.lng, southWest.lat),
+						clampCoord(northWest.lng, northWest.lat), // close the ring
+					],
+				];
+
+				const { catRequests } = await getCatRequestsForMap({
+					data: { polygon, ...searchParams },
+				});
+				setRequests(catRequests);
+			}, 300); // 300ms debounce
 		};
 
 		// Update on map move/zoom
 		map.on("moveend", updateBounds);
 		map.on("zoomend", updateBounds);
 
-		// Initial update
-		updateBounds();
+		// Initial update - only once
+		if (isInitialLoad) {
+			updateBounds();
+			isInitialLoad = false;
+		}
 
 		return () => {
+			if (timeoutId) {
+				clearTimeout(timeoutId);
+			}
 			map.off("moveend", updateBounds);
 			map.off("zoomend", updateBounds);
 		};
