@@ -45,15 +45,6 @@ const columns: ColumnDef<PresumedOwnerResult>[] = [
 		),
 	},
 	{
-		accessorKey: "catDetails.name",
-		header: "Cat Name",
-		cell: ({ row }) => (
-			<p className="line-clamp-2 max-w-sm text-sm text-muted-foreground">
-				{row.original.catDetails.name}
-			</p>
-		),
-	},
-	{
 		id: "actions",
 		header: "Actions",
 		cell: ({ row }) => <PresumedOwnerDetails submission={row.original} />,
