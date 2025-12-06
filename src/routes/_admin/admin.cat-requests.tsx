@@ -51,7 +51,7 @@ function RouteComponent() {
 			<h1 className="font-extrabold text-2xl">Cat Requests</h1>
 			<div className="flex items-center gap-4">
 				<Input
-					placeholder="Search by name or email"
+					placeholder="Search by name, phone or email"
 					value={filters.searchTerm}
 					onChange={(e) =>
 						setFilters((prev) => ({ ...prev, searchTerm: e.target.value }))

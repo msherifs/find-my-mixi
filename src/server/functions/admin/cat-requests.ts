@@ -27,6 +27,7 @@ export const getCatRequestsFn = createServerFn({ method: "GET" })
 					$or: [
 						{ "userDetails.name": { $regex: data.searchTerm, $options: "i" } },
 						{ "userDetails.email": { $regex: data.searchTerm, $options: "i" } },
+						{ "userDetails.phone": { $regex: data.searchTerm, $options: "i" } },
 						{ "catDetails.name": { $regex: data.searchTerm, $options: "i" } },
 					],
 				}),
@@ -70,12 +71,26 @@ export const updateRequestStatusFn = createServerFn({ method: "POST" })
 		return { success: true };
 	});
 
+const presumedOwnersSearchParamsSchema = z
+	.object({
+		searchTerm: z.string().optional(),
+	})
+	.extend(zPagination.shape);
+
 export const getPresumedOwnersFn = createServerFn({ method: "GET" })
-	.inputValidator(zPagination)
+	.inputValidator(presumedOwnersSearchParamsSchema)
 	.handler(async ({ data }) => {
-		const { pageNumber, pageSize } = data;
+		const { pageNumber, pageSize, searchTerm } = data;
 		const { presumedOwners, count } = await findPresumedOwnersPaginated(
-			{},
+			{
+				...(searchTerm && {
+					$or: [
+						{ "presumedOwners.email": { $regex: searchTerm, $options: "i" } },
+						{ "presumedOwners.name": { $regex: searchTerm, $options: "i" } },
+						{ "presumedOwners.phone": { $regex: searchTerm, $options: "i" } },
+					],
+				}),
+			},
 			{ pageNumber, pageSize },
 		);
 
