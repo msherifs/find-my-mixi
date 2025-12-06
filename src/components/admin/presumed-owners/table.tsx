@@ -3,55 +3,65 @@
 import { useNavigate } from "@tanstack/react-router";
 import type { ColumnDef } from "@tanstack/react-table";
 import { DataTable } from "@/components/ui/data-table";
-import type { ContactUsTopic } from "@/server/db/enums";
-import { ContactUsDetailsSheet } from "./details-sheet";
+import type { CatRequestDocument } from "@/server/db/schema";
+import { PresumedOwnerDetails } from "./details-sheet";
 
-export type ContactUsSubmissionRow = {
+export type PresumedOwnerResult = Pick<
+	CatRequestDocument,
+	"catDetails" | "userDetails" | "location"
+> & {
 	id: string;
-	email: string;
-	topic: ContactUsTopic;
-	message: string;
-	createdAt: string;
+	presumedOwnerName: string;
+	presumedOwnerPhone: string;
+	presumedOwnerEmail: string;
 };
 
-const columns: ColumnDef<ContactUsSubmissionRow>[] = [
+const columns: ColumnDef<PresumedOwnerResult>[] = [
 	{
-		accessorKey: "email",
-		header: "Email",
-	},
-	{
-		accessorKey: "topic",
-		header: "Topic",
-	},
-	{
-		accessorKey: "createdAt",
-		header: "Received",
-		cell: ({ row }) => {
-			const date = row.original.createdAt
-				? new Date(row.original.createdAt)
-				: null;
-
-			return <span>{date ? date.toLocaleString() : "Not available"}</span>;
-		},
-	},
-	{
-		accessorKey: "message",
-		header: "Message",
+		accessorKey: "presumedOwnerName",
+		header: "Full Name",
 		cell: ({ row }) => (
 			<p className="line-clamp-2 max-w-sm text-sm text-muted-foreground">
-				{row.original.message}
+				{row.original.presumedOwnerName}
+			</p>
+		),
+	},
+	{
+		accessorKey: "presumedOwnerPhone",
+		header: "Phone",
+		cell: ({ row }) => (
+			<p className="line-clamp-2 max-w-sm text-sm text-muted-foreground">
+				{row.original.presumedOwnerPhone}
+			</p>
+		),
+	},
+	{
+		accessorKey: "presumedOwnerEmail",
+		header: "Email",
+		cell: ({ row }) => (
+			<p className="line-clamp-2 max-w-sm text-sm text-muted-foreground">
+				{row.original.presumedOwnerEmail}
+			</p>
+		),
+	},
+	{
+		accessorKey: "catDetails.name",
+		header: "Cat Name",
+		cell: ({ row }) => (
+			<p className="line-clamp-2 max-w-sm text-sm text-muted-foreground">
+				{row.original.catDetails.name}
 			</p>
 		),
 	},
 	{
 		id: "actions",
 		header: "Actions",
-		cell: ({ row }) => <ContactUsDetailsSheet submission={row.original} />,
+		cell: ({ row }) => <PresumedOwnerDetails submission={row.original} />,
 	},
 ];
 
-interface ContactUsTableProps {
-	data: ContactUsSubmissionRow[];
+interface PresumedOwnersTableProps {
+	data: PresumedOwnerResult[];
 	pageNumber: number;
 	pageSize: number;
 	totalRecords: number;
@@ -62,7 +72,7 @@ export const PresumedOwnersTable = ({
 	pageNumber,
 	pageSize,
 	totalRecords,
-}: ContactUsTableProps) => {
+}: PresumedOwnersTableProps) => {
 	const navigate = useNavigate();
 
 	return (

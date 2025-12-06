@@ -289,10 +289,7 @@ export function CatRequestDetailsSheet({
 						</>
 					) : (
 						<SheetClose asChild>
-							<Button
-								variant="secondary"
-								className="w-full sm:w-auto border border-slate-200"
-							>
+							<Button className="bg-slate-100 text-slate-700 hover:bg-slate-200 border border-slate-200">
 								Close
 							</Button>
 						</SheetClose>

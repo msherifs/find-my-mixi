@@ -194,3 +194,50 @@ export const cleanupExpiredTokens = async () => {
 		expiresAt: { $lt: new Date() },
 	});
 };
+
+export const findPresumedOwnersPaginated = async (
+	filter: PaprFilter<CatRequestDocument>,
+	options: { pageSize: number; pageNumber: number },
+) => {
+	const skip = (options.pageNumber - 1) * options.pageSize;
+
+	const pipeline: Record<string, unknown>[] = [
+		{ $match: filter },
+		{ $match: { presumedOwners: { $exists: true, $ne: [] } } },
+		{ $unwind: "$presumedOwners" },
+		{
+			$project: {
+				_id: 1,
+				catDetails: 1,
+				userDetails: 1,
+				location: 1,
+				createdAt: 1,
+				presumedOwnerName: "$presumedOwners.name",
+				presumedOwnerPhone: "$presumedOwners.phone",
+				presumedOwnerEmail: "$presumedOwners.email",
+			},
+		},
+		{ $sort: { _id: -1 } },
+		{ $skip: skip },
+		{ $limit: options.pageSize },
+	];
+
+	const countPipeline = [
+		{ $match: filter },
+		{ $match: { presumedOwners: { $exists: true, $ne: [] } } },
+		{ $unwind: "$presumedOwners" },
+		{ $count: "total" },
+	];
+
+	const [presumedOwners, countResult] = await Promise.all([
+		CatRequest.aggregate(pipeline),
+		CatRequest.aggregate<{ total: number }>(countPipeline),
+	]);
+
+	const count = countResult[0]?.total || 0;
+
+	return {
+		presumedOwners,
+		count,
+	};
+};

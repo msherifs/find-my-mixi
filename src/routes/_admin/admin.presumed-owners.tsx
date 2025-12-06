@@ -1,8 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import z from "zod";
-import { ContactUsTable } from "@/components/admin/contact-us/table";
 import { PresumedOwnersTable } from "@/components/admin/presumed-owners/table";
-import { getContactUsSubmissionsFn } from "@/server/functions/admin/contact-us";
+import { getPresumedOwnersFn } from "@/server/functions/admin/cat-requests";
 
 export const Route = createFileRoute("/_admin/admin/presumed-owners")({
 	component: RouteComponent,
@@ -13,7 +12,7 @@ export const Route = createFileRoute("/_admin/admin/presumed-owners")({
 	loaderDeps: ({ search }) => [search],
 	loader: async ({ deps }) => {
 		const { pageNumber, pageSize } = deps[0];
-		return await getContactUsSubmissionsFn({
+		return await getPresumedOwnersFn({
 			data: { pageNumber, pageSize },
 		});
 	},
@@ -27,7 +26,8 @@ function RouteComponent() {
 		<div className="space-y-4 p-4">
 			<h1 className="font-extrabold text-2xl">Presumed Owners</h1>
 			<PresumedOwnersTable
-				data={presumedOwners}
+				// biome-ignore lint/suspicious/noExplicitAny: <false>
+				data={presumedOwners as any}
 				pageNumber={pageNumber}
 				pageSize={pageSize}
 				totalRecords={count}

@@ -4,6 +4,7 @@ import { CatFormStatus } from "@/server/db/enums";
 import {
 	findCatRequestById,
 	findCatRequestsPaginated,
+	findPresumedOwnersPaginated,
 	updateCatRequestStatus,
 } from "@/server/db/queries";
 import { zPagination } from "../shared-schemas";
@@ -49,4 +50,23 @@ export const updateRequestStatusFn = createServerFn({ method: "POST" })
 		await updateCatRequestStatus(catRequestId, status);
 
 		return { success: true };
+	});
+
+export const getPresumedOwnersFn = createServerFn({ method: "GET" })
+	.inputValidator(zPagination)
+	.handler(async ({ data }) => {
+		const { pageNumber, pageSize } = data;
+		const { presumedOwners, count } = await findPresumedOwnersPaginated(
+			{},
+			{ pageNumber, pageSize },
+		);
+
+		return {
+			presumedOwners: presumedOwners.map((owner) => ({
+				...owner,
+				_id: undefined,
+				id: owner._id.toHexString(),
+			})),
+			count,
+		};
 	});
