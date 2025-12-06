@@ -12,7 +12,7 @@ export type User = {
 	lastName: string;
 	role: UserRole;
 	email: string;
-	createdAt: string;
+	createdAt: Date;
 };
 
 export const columns: ColumnDef<User>[] = [
