@@ -104,13 +104,15 @@ const CatDetailsModal = ({
 					</p>
 				</div>
 			</div>
-			<Button
-				variant={"secondary"}
-				className="w-full border-[#D5D7DA]"
-				onClick={onClickIAmTheOwner}
-			>
-				{t("map.i_am_the_owner")}
-			</Button>
+			{catData.type === CatFormType.REPORT_CAT_FOUND && (
+				<Button
+					variant={"secondary"}
+					className="w-full border-[#D5D7DA]"
+					onClick={onClickIAmTheOwner}
+				>
+					{t("map.i_am_the_owner")}
+				</Button>
+			)}
 		</>
 	);
 
