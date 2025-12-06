@@ -16,7 +16,7 @@ export function CatRequestDetailsSheet() {
 	return (
 		<Sheet>
 			<SheetTrigger asChild>
-				<Button variant="outlined">Open</Button>
+				<Button variant="outline">Open</Button>
 			</SheetTrigger>
 			<SheetContent>
 				<SheetHeader>

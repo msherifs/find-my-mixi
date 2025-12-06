@@ -27,7 +27,7 @@ export function ContactUsDetailsSheet({
 	return (
 		<Sheet>
 			<SheetTrigger asChild>
-				<Button size="sm" variant="outlined">
+				<Button size="sm" variant="outline">
 					View
 				</Button>
 			</SheetTrigger>

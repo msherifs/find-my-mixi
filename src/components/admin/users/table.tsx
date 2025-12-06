@@ -33,7 +33,7 @@ export const columns: ColumnDef<User>[] = [
 		cell: () => {
 			return (
 				<div className="flex items-center gap-2">
-					<Button variant="outlined" size="sm">
+					<Button variant="outline" size="sm">
 						Edit
 					</Button>
 					<Button variant="destructive" size="sm">
