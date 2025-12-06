@@ -11,6 +11,8 @@ import {
 	User,
 	XCircle,
 } from "lucide-react";
+import { useState } from "react";
+import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import {
 	Sheet,
@@ -28,29 +30,46 @@ import type { CatRequestRow } from "./table"; // Assuming this type matches your
 
 interface CatRequestDetailsSheetProps {
 	request: CatRequestRow;
+	onUpdate?: () => void; // Callback to refetch data
 }
 
 export function CatRequestDetailsSheet({
 	request,
+	onUpdate,
 }: CatRequestDetailsSheetProps) {
+	const [open, setOpen] = useState(false);
 	const isSubmitted = request.status === "SUBMITTED";
 
 	const onApprove = async (id: string) => {
-		await updateRequestStatusFn({
-			data: {
-				catRequestId: id,
-				status: CatFormStatus.APPROVED,
-			},
-		});
+		try {
+			await updateRequestStatusFn({
+				data: {
+					catRequestId: id,
+					status: CatFormStatus.APPROVED,
+				},
+			});
+			// Close the sheet and refetch data
+			setOpen(false);
+			onUpdate?.();
+		} catch (_) {
+			toast.error("Error approving request");
+		}
 	};
 
 	const onReject = async (id: string) => {
-		await updateRequestStatusFn({
-			data: {
-				catRequestId: id,
-				status: CatFormStatus.REJECTED,
-			},
-		});
+		try {
+			await updateRequestStatusFn({
+				data: {
+					catRequestId: id,
+					status: CatFormStatus.REJECTED,
+				},
+			});
+			// Close the sheet and refetch data
+			setOpen(false);
+			onUpdate?.();
+		} catch (_) {
+			toast.error("Error rejecting request");
+		}
 	};
 
 	const formatDate = (date: Date | string) => {
@@ -63,7 +82,7 @@ export function CatRequestDetailsSheet({
 	};
 
 	return (
-		<Sheet>
+		<Sheet open={open} onOpenChange={setOpen}>
 			<SheetTrigger asChild>
 				<Button
 					variant="outline"
