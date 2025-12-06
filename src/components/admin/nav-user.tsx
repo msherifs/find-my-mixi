@@ -1,7 +1,7 @@
 "use client";
 
 import { useNavigate } from "@tanstack/react-router";
-import { ChevronsUpDown, LogOut } from "lucide-react";
+import { AppWindow, ChevronsUpDown, LogOut } from "lucide-react";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import {
 	DropdownMenu,
@@ -72,6 +72,14 @@ export function AdminNavUser({
 							</div>
 						</DropdownMenuLabel>
 						<DropdownMenuSeparator />
+						<DropdownMenuItem
+							onClick={() => {
+								navigate({ to: "/map" });
+							}}
+						>
+							<AppWindow />
+							Go To App
+						</DropdownMenuItem>
 						<DropdownMenuItem
 							onClick={async () => {
 								await logoutFn();

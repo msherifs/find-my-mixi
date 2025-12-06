@@ -31,8 +31,7 @@ export const submitContactUsFn = createServerFn({ method: "POST" })
 				topic,
 				message,
 			});
-
-			return redirect({ to: "/contact-us" });
+			return redirect({ to: "/" });
 		} catch (error) {
 			if (error instanceof ServerValidateError) {
 				return error.response;

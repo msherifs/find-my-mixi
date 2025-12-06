@@ -21,8 +21,8 @@ function RouteComponent() {
 	const { pageNumber, pageSize } = Route.useSearch();
 
 	return (
-		<div>
-			<h1 className="p-4 font-extrabold">Users</h1>
+		<div className="space-y-4 p-4">
+			<h1 className="font-extrabold text-2xl">Users</h1>
 			<UserTable
 				data={users}
 				pageNumber={pageNumber}

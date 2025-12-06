@@ -3,6 +3,7 @@
 import { useNavigate } from "@tanstack/react-router";
 import type { ColumnDef } from "@tanstack/react-table";
 import { DataTable } from "@/components/ui/data-table";
+import { formatEnumString } from "@/lib/utils";
 import type { UserRole } from "@/server/db/enums";
 
 export type User = {
@@ -11,6 +12,7 @@ export type User = {
 	lastName: string;
 	role: UserRole;
 	email: string;
+	createdAt: string;
 };
 
 export const columns: ColumnDef<User>[] = [
@@ -29,6 +31,18 @@ export const columns: ColumnDef<User>[] = [
 	{
 		accessorKey: "role",
 		header: "Role",
+		cell: ({ row }) => <span>{formatEnumString(row.original.role)}</span>,
+	},
+	{
+		accessorKey: "createdAt",
+		header: "Resgistered On",
+		cell: ({ row }) => {
+			const date = row.original.createdAt
+				? new Date(row.original.createdAt)
+				: null;
+
+			return <span>{date ? date.toLocaleString() : "Not available"}</span>;
+		},
 	},
 ];
 

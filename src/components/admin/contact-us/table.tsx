@@ -3,6 +3,7 @@
 import { useNavigate } from "@tanstack/react-router";
 import type { ColumnDef } from "@tanstack/react-table";
 import { DataTable } from "@/components/ui/data-table";
+import { formatEnumString } from "@/lib/utils";
 import type { ContactUsTopic } from "@/server/db/enums";
 import { ContactUsDetailsSheet } from "./details-sheet";
 
@@ -22,6 +23,7 @@ const columns: ColumnDef<ContactUsSubmissionRow>[] = [
 	{
 		accessorKey: "topic",
 		header: "Topic",
+		cell: ({ row }) => <span>{formatEnumString(row.original.topic)}</span>,
 	},
 	{
 		accessorKey: "createdAt",
