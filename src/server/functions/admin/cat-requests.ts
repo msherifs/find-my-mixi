@@ -1,6 +1,6 @@
 import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
-import { CatFormStatus } from "@/server/db/enums";
+import { CatFormStatus, CatFormType } from "@/server/db/enums";
 import {
 	findCatRequestById,
 	findCatRequestsPaginated,
@@ -9,12 +9,30 @@ import {
 } from "@/server/db/queries";
 import { zPagination } from "../shared-schemas";
 
+const searchParamsSchema = z
+	.object({
+		searchTerm: z.string().optional(),
+		type: z.enum(CatFormType).optional(),
+		status: z.enum(CatFormStatus).optional(),
+	})
+	.extend(zPagination.shape);
+
 export const getCatRequestsFn = createServerFn({ method: "GET" })
-	.inputValidator(zPagination)
+	.inputValidator(searchParamsSchema)
 	.handler(async ({ data }) => {
 		const { pageNumber, pageSize } = data;
 		const { catRequests, count } = await findCatRequestsPaginated(
-			{},
+			{
+				...(data.searchTerm && {
+					$or: [
+						{ "userDetails.name": { $regex: data.searchTerm, $options: "i" } },
+						{ "userDetails.email": { $regex: data.searchTerm, $options: "i" } },
+						{ "catDetails.name": { $regex: data.searchTerm, $options: "i" } },
+					],
+				}),
+				...(data.type && { type: data.type }),
+				...(data.status && { status: data.status }),
+			},
 			{ pageNumber, pageSize },
 		);
 
