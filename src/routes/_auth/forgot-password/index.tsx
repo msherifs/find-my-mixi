@@ -8,12 +8,12 @@ import { Button } from "@/components/ui/button";
 import { forgotPasswordFormOptions, zForgotPasswordForm } from "@/forms/auth";
 import { forgotPasswordFn, getFormFn } from "@/server/functions/auth";
 
-export const Route = createFileRoute("/_auth/forgot-password")({
+export const Route = createFileRoute("/_auth/forgot-password/")({
 	component: RouteComponent,
 	loader: async () => {
 		return {
 			state: await getFormFn(),
-		};
+		}
 	},
 });
 
@@ -24,7 +24,7 @@ function RouteComponent() {
 	const form = useForm({
 		...forgotPasswordFormOptions,
 		transform: useTransform((baseForm) => mergeForm(baseForm, state), [state]),
-	});
+	})
 
 	const formErrors = useStore(form.store, (formState) => formState.errors);
 
@@ -104,5 +104,5 @@ function RouteComponent() {
 				</div>
 			</form>
 		</>
-	);
+	)
 }

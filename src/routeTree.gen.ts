@@ -22,9 +22,9 @@ import { Route as LandingContactUsRouteImport } from './routes/_landing/contact-
 import { Route as AuthResetPasswordRouteImport } from './routes/_auth/reset-password'
 import { Route as AuthRegisterRouteImport } from './routes/_auth/register'
 import { Route as AuthLoginRouteImport } from './routes/_auth/login'
-import { Route as AuthForgotPasswordRouteImport } from './routes/_auth/forgot-password'
+import { Route as AuthForgotPasswordIndexRouteImport } from './routes/_auth/forgot-password/index'
 import { Route as AdminAdminIndexRouteImport } from './routes/_admin/admin.index'
-import { Route as AuthForgotPasswordCheckEmailRouteImport } from './routes/_auth/forgot-password.check-email'
+import { Route as AuthForgotPasswordCheckEmailRouteImport } from './routes/_auth/forgot-password/check-email'
 import { Route as AdminAdminUsersRouteImport } from './routes/_admin/admin.users'
 import { Route as AdminAdminPresumedOwnersRouteImport } from './routes/_admin/admin.presumed-owners'
 import { Route as AdminAdminContactUsRouteImport } from './routes/_admin/admin.contact-us'
@@ -92,9 +92,9 @@ const AuthLoginRoute = AuthLoginRouteImport.update({
   path: '/login',
   getParentRoute: () => AuthRoute,
 } as any)
-const AuthForgotPasswordRoute = AuthForgotPasswordRouteImport.update({
-  id: '/forgot-password',
-  path: '/forgot-password',
+const AuthForgotPasswordIndexRoute = AuthForgotPasswordIndexRouteImport.update({
+  id: '/forgot-password/',
+  path: '/forgot-password/',
   getParentRoute: () => AuthRoute,
 } as any)
 const AdminAdminIndexRoute = AdminAdminIndexRouteImport.update({
@@ -104,9 +104,9 @@ const AdminAdminIndexRoute = AdminAdminIndexRouteImport.update({
 } as any)
 const AuthForgotPasswordCheckEmailRoute =
   AuthForgotPasswordCheckEmailRouteImport.update({
-    id: '/check-email',
-    path: '/check-email',
-    getParentRoute: () => AuthForgotPasswordRoute,
+    id: '/forgot-password/check-email',
+    path: '/forgot-password/check-email',
+    getParentRoute: () => AuthRoute,
   } as any)
 const AdminAdminUsersRoute = AdminAdminUsersRouteImport.update({
   id: '/admin/users',
@@ -131,7 +131,6 @@ const AdminAdminCatRequestsRoute = AdminAdminCatRequestsRouteImport.update({
 } as any)
 
 export interface FileRoutesByFullPath {
-  '/forgot-password': typeof AuthForgotPasswordRouteWithChildren
   '/login': typeof AuthLoginRoute
   '/register': typeof AuthRegisterRoute
   '/reset-password': typeof AuthResetPasswordRoute
@@ -148,9 +147,9 @@ export interface FileRoutesByFullPath {
   '/admin/users': typeof AdminAdminUsersRoute
   '/forgot-password/check-email': typeof AuthForgotPasswordCheckEmailRoute
   '/admin': typeof AdminAdminIndexRoute
+  '/forgot-password': typeof AuthForgotPasswordIndexRoute
 }
 export interface FileRoutesByTo {
-  '/forgot-password': typeof AuthForgotPasswordRouteWithChildren
   '/login': typeof AuthLoginRoute
   '/register': typeof AuthRegisterRoute
   '/reset-password': typeof AuthResetPasswordRoute
@@ -167,13 +166,13 @@ export interface FileRoutesByTo {
   '/admin/users': typeof AdminAdminUsersRoute
   '/forgot-password/check-email': typeof AuthForgotPasswordCheckEmailRoute
   '/admin': typeof AdminAdminIndexRoute
+  '/forgot-password': typeof AuthForgotPasswordIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/_admin': typeof AdminRouteWithChildren
   '/_auth': typeof AuthRouteWithChildren
   '/_landing': typeof LandingRouteWithChildren
-  '/_auth/forgot-password': typeof AuthForgotPasswordRouteWithChildren
   '/_auth/login': typeof AuthLoginRoute
   '/_auth/register': typeof AuthRegisterRoute
   '/_auth/reset-password': typeof AuthResetPasswordRoute
@@ -190,11 +189,11 @@ export interface FileRoutesById {
   '/_admin/admin/users': typeof AdminAdminUsersRoute
   '/_auth/forgot-password/check-email': typeof AuthForgotPasswordCheckEmailRoute
   '/_admin/admin/': typeof AdminAdminIndexRoute
+  '/_auth/forgot-password/': typeof AuthForgotPasswordIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    | '/forgot-password'
     | '/login'
     | '/register'
     | '/reset-password'
@@ -211,9 +210,9 @@ export interface FileRouteTypes {
     | '/admin/users'
     | '/forgot-password/check-email'
     | '/admin'
+    | '/forgot-password'
   fileRoutesByTo: FileRoutesByTo
   to:
-    | '/forgot-password'
     | '/login'
     | '/register'
     | '/reset-password'
@@ -230,12 +229,12 @@ export interface FileRouteTypes {
     | '/admin/users'
     | '/forgot-password/check-email'
     | '/admin'
+    | '/forgot-password'
   id:
     | '__root__'
     | '/_admin'
     | '/_auth'
     | '/_landing'
-    | '/_auth/forgot-password'
     | '/_auth/login'
     | '/_auth/register'
     | '/_auth/reset-password'
@@ -252,6 +251,7 @@ export interface FileRouteTypes {
     | '/_admin/admin/users'
     | '/_auth/forgot-password/check-email'
     | '/_admin/admin/'
+    | '/_auth/forgot-password/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -356,11 +356,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthLoginRouteImport
       parentRoute: typeof AuthRoute
     }
-    '/_auth/forgot-password': {
-      id: '/_auth/forgot-password'
+    '/_auth/forgot-password/': {
+      id: '/_auth/forgot-password/'
       path: '/forgot-password'
       fullPath: '/forgot-password'
-      preLoaderRoute: typeof AuthForgotPasswordRouteImport
+      preLoaderRoute: typeof AuthForgotPasswordIndexRouteImport
       parentRoute: typeof AuthRoute
     }
     '/_admin/admin/': {
@@ -372,10 +372,10 @@ declare module '@tanstack/react-router' {
     }
     '/_auth/forgot-password/check-email': {
       id: '/_auth/forgot-password/check-email'
-      path: '/check-email'
+      path: '/forgot-password/check-email'
       fullPath: '/forgot-password/check-email'
       preLoaderRoute: typeof AuthForgotPasswordCheckEmailRouteImport
-      parentRoute: typeof AuthForgotPasswordRoute
+      parentRoute: typeof AuthRoute
     }
     '/_admin/admin/users': {
       id: '/_admin/admin/users'
@@ -426,29 +426,20 @@ const AdminRouteChildren: AdminRouteChildren = {
 
 const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
 
-interface AuthForgotPasswordRouteChildren {
-  AuthForgotPasswordCheckEmailRoute: typeof AuthForgotPasswordCheckEmailRoute
-}
-
-const AuthForgotPasswordRouteChildren: AuthForgotPasswordRouteChildren = {
-  AuthForgotPasswordCheckEmailRoute: AuthForgotPasswordCheckEmailRoute,
-}
-
-const AuthForgotPasswordRouteWithChildren =
-  AuthForgotPasswordRoute._addFileChildren(AuthForgotPasswordRouteChildren)
-
 interface AuthRouteChildren {
-  AuthForgotPasswordRoute: typeof AuthForgotPasswordRouteWithChildren
   AuthLoginRoute: typeof AuthLoginRoute
   AuthRegisterRoute: typeof AuthRegisterRoute
   AuthResetPasswordRoute: typeof AuthResetPasswordRoute
+  AuthForgotPasswordCheckEmailRoute: typeof AuthForgotPasswordCheckEmailRoute
+  AuthForgotPasswordIndexRoute: typeof AuthForgotPasswordIndexRoute
 }
 
 const AuthRouteChildren: AuthRouteChildren = {
-  AuthForgotPasswordRoute: AuthForgotPasswordRouteWithChildren,
   AuthLoginRoute: AuthLoginRoute,
   AuthRegisterRoute: AuthRegisterRoute,
   AuthResetPasswordRoute: AuthResetPasswordRoute,
+  AuthForgotPasswordCheckEmailRoute: AuthForgotPasswordCheckEmailRoute,
+  AuthForgotPasswordIndexRoute: AuthForgotPasswordIndexRoute,
 }
 
 const AuthRouteWithChildren = AuthRoute._addFileChildren(AuthRouteChildren)

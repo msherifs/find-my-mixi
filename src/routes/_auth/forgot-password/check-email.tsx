@@ -14,7 +14,7 @@ export const Route = createFileRoute("/_auth/forgot-password/check-email")({
 	): ForgotPasswordCheckEmailSearch => {
 		return {
 			email: (search.email as string) || "",
-		};
+		}
 	},
 });
 
@@ -37,5 +37,5 @@ function RouteComponent() {
 			</p>
 			<ResendResetEmail email={email} />
 		</div>
-	);
+	)
 }
