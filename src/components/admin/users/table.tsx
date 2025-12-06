@@ -2,7 +2,6 @@
 
 import { useNavigate } from "@tanstack/react-router";
 import type { ColumnDef } from "@tanstack/react-table";
-import { Button } from "@/components/ui/button";
 import { DataTable } from "@/components/ui/data-table";
 import type { UserRole } from "@/server/db/enums";
 
@@ -28,20 +27,8 @@ export const columns: ColumnDef<User>[] = [
 		header: "Email",
 	},
 	{
-		id: "actions",
-		header: "Actions",
-		cell: () => {
-			return (
-				<div className="flex items-center gap-2">
-					<Button variant="outline" size="sm">
-						Edit
-					</Button>
-					<Button variant="destructive" size="sm">
-						Delete
-					</Button>
-				</div>
-			);
-		},
+		accessorKey: "role",
+		header: "Role",
 	},
 ];
 

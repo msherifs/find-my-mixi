@@ -1,14 +1,11 @@
-"use client";
-
-import { Cat, UsersRound } from "lucide-react";
-import type * as React from "react";
-
+import { Cat, MessageSquareText, UsersRound } from "lucide-react";
 import {
 	Sidebar,
 	SidebarContent,
 	SidebarFooter,
-	SidebarRail,
-} from "@/components/ui/sidebar";
+	SidebarHeader,
+	useSidebar,
+} from "../ui/sidebar";
 import { AdminNavMain } from "./nav-main";
 import { AdminNavUser } from "./nav-user";
 
@@ -24,33 +21,42 @@ const items = [
 		icon: Cat,
 	},
 	{
+		name: "Presumed Owners",
+		url: "/admin/presumed-owners",
+		icon: UsersRound,
+	},
+	{
 		name: "Contact Us",
 		url: "/admin/contact-us",
-		icon: Cat,
+		icon: MessageSquareText,
 	},
 ];
 
-export function AdminAppSidebar({
+export const AdminAppSidebar = ({
 	user,
-	...props
 }: React.ComponentProps<typeof Sidebar> & {
-	user: { firstName: string; lastName: string };
-}) {
+	user: { firstName: string; lastName: string; email: string };
+}) => {
+	const { state } = useSidebar();
+
 	return (
-		<Sidebar collapsible="icon" {...props}>
-			<SidebarContent>
+		<Sidebar variant="inset" collapsible="icon">
+			<SidebarHeader>
+				<p className="tracking-widest font-extrabold text-3xl w-full">
+					{state === "collapsed" ? "Mixi" : "Find My Mixi"}
+				</p>
+			</SidebarHeader>
+			<SidebarContent className="group-data-[collapsible=icon]:overflow-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
 				<AdminNavMain items={items} />
 			</SidebarContent>
 			<SidebarFooter>
 				<AdminNavUser
 					user={{
 						name: `${user.firstName} ${user.lastName}`,
-						email: "",
-						avatar: "/avatars/shadcn.jpg",
+						email: user.email,
 					}}
 				/>
 			</SidebarFooter>
-			<SidebarRail />
 		</Sidebar>
 	);
-}
+};

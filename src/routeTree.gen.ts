@@ -26,6 +26,7 @@ import { Route as AuthForgotPasswordRouteImport } from './routes/_auth/forgot-pa
 import { Route as AdminAdminIndexRouteImport } from './routes/_admin/admin.index'
 import { Route as AuthForgotPasswordCheckEmailRouteImport } from './routes/_auth/forgot-password.check-email'
 import { Route as AdminAdminUsersRouteImport } from './routes/_admin/admin.users'
+import { Route as AdminAdminPresumedOwnersRouteImport } from './routes/_admin/admin.presumed-owners'
 import { Route as AdminAdminContactUsRouteImport } from './routes/_admin/admin.contact-us'
 import { Route as AdminAdminCatRequestsRouteImport } from './routes/_admin/admin.cat-requests'
 
@@ -112,6 +113,12 @@ const AdminAdminUsersRoute = AdminAdminUsersRouteImport.update({
   path: '/admin/users',
   getParentRoute: () => AdminRoute,
 } as any)
+const AdminAdminPresumedOwnersRoute =
+  AdminAdminPresumedOwnersRouteImport.update({
+    id: '/admin/presumed-owners',
+    path: '/admin/presumed-owners',
+    getParentRoute: () => AdminRoute,
+  } as any)
 const AdminAdminContactUsRoute = AdminAdminContactUsRouteImport.update({
   id: '/admin/contact-us',
   path: '/admin/contact-us',
@@ -137,6 +144,7 @@ export interface FileRoutesByFullPath {
   '/report-lost-cat': typeof ReportLostCatIndexRoute
   '/admin/cat-requests': typeof AdminAdminCatRequestsRoute
   '/admin/contact-us': typeof AdminAdminContactUsRoute
+  '/admin/presumed-owners': typeof AdminAdminPresumedOwnersRoute
   '/admin/users': typeof AdminAdminUsersRoute
   '/forgot-password/check-email': typeof AuthForgotPasswordCheckEmailRoute
   '/admin': typeof AdminAdminIndexRoute
@@ -155,6 +163,7 @@ export interface FileRoutesByTo {
   '/report-lost-cat': typeof ReportLostCatIndexRoute
   '/admin/cat-requests': typeof AdminAdminCatRequestsRoute
   '/admin/contact-us': typeof AdminAdminContactUsRoute
+  '/admin/presumed-owners': typeof AdminAdminPresumedOwnersRoute
   '/admin/users': typeof AdminAdminUsersRoute
   '/forgot-password/check-email': typeof AuthForgotPasswordCheckEmailRoute
   '/admin': typeof AdminAdminIndexRoute
@@ -177,6 +186,7 @@ export interface FileRoutesById {
   '/report-lost-cat/': typeof ReportLostCatIndexRoute
   '/_admin/admin/cat-requests': typeof AdminAdminCatRequestsRoute
   '/_admin/admin/contact-us': typeof AdminAdminContactUsRoute
+  '/_admin/admin/presumed-owners': typeof AdminAdminPresumedOwnersRoute
   '/_admin/admin/users': typeof AdminAdminUsersRoute
   '/_auth/forgot-password/check-email': typeof AuthForgotPasswordCheckEmailRoute
   '/_admin/admin/': typeof AdminAdminIndexRoute
@@ -197,6 +207,7 @@ export interface FileRouteTypes {
     | '/report-lost-cat'
     | '/admin/cat-requests'
     | '/admin/contact-us'
+    | '/admin/presumed-owners'
     | '/admin/users'
     | '/forgot-password/check-email'
     | '/admin'
@@ -215,6 +226,7 @@ export interface FileRouteTypes {
     | '/report-lost-cat'
     | '/admin/cat-requests'
     | '/admin/contact-us'
+    | '/admin/presumed-owners'
     | '/admin/users'
     | '/forgot-password/check-email'
     | '/admin'
@@ -236,6 +248,7 @@ export interface FileRouteTypes {
     | '/report-lost-cat/'
     | '/_admin/admin/cat-requests'
     | '/_admin/admin/contact-us'
+    | '/_admin/admin/presumed-owners'
     | '/_admin/admin/users'
     | '/_auth/forgot-password/check-email'
     | '/_admin/admin/'
@@ -371,6 +384,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminAdminUsersRouteImport
       parentRoute: typeof AdminRoute
     }
+    '/_admin/admin/presumed-owners': {
+      id: '/_admin/admin/presumed-owners'
+      path: '/admin/presumed-owners'
+      fullPath: '/admin/presumed-owners'
+      preLoaderRoute: typeof AdminAdminPresumedOwnersRouteImport
+      parentRoute: typeof AdminRoute
+    }
     '/_admin/admin/contact-us': {
       id: '/_admin/admin/contact-us'
       path: '/admin/contact-us'
@@ -391,6 +411,7 @@ declare module '@tanstack/react-router' {
 interface AdminRouteChildren {
   AdminAdminCatRequestsRoute: typeof AdminAdminCatRequestsRoute
   AdminAdminContactUsRoute: typeof AdminAdminContactUsRoute
+  AdminAdminPresumedOwnersRoute: typeof AdminAdminPresumedOwnersRoute
   AdminAdminUsersRoute: typeof AdminAdminUsersRoute
   AdminAdminIndexRoute: typeof AdminAdminIndexRoute
 }
@@ -398,6 +419,7 @@ interface AdminRouteChildren {
 const AdminRouteChildren: AdminRouteChildren = {
   AdminAdminCatRequestsRoute: AdminAdminCatRequestsRoute,
   AdminAdminContactUsRoute: AdminAdminContactUsRoute,
+  AdminAdminPresumedOwnersRoute: AdminAdminPresumedOwnersRoute,
   AdminAdminUsersRoute: AdminAdminUsersRoute,
   AdminAdminIndexRoute: AdminAdminIndexRoute,
 }

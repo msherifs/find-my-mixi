@@ -6,11 +6,7 @@ import {
 } from "@tanstack/react-router";
 import { AdminAppSidebar } from "@/components/admin/app-sidebar";
 import { Separator } from "@/components/ui/separator";
-import {
-	SidebarInset,
-	SidebarProvider,
-	SidebarTrigger,
-} from "@/components/ui/sidebar";
+import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import { getCurrentUserFn } from "@/server/functions/auth";
 
 export const Route = createFileRoute("/_admin")({
@@ -29,12 +25,15 @@ function AdminIndexPage() {
 	return (
 		<SidebarProvider>
 			<AdminAppSidebar
-				user={{ firstName: user.firstName, lastName: user.lastName }}
+				user={{
+					firstName: user.firstName,
+					lastName: user.lastName,
+					email: user.email,
+				}}
 			/>
-			<SidebarInset>
+			<SidebarInset className="!my-4 !mr-4">
 				<header className="flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12">
 					<div className="flex items-center gap-2 px-4">
-						<SidebarTrigger className="-ml-1" />
 						<Separator
 							orientation="vertical"
 							className="mr-2 data-[orientation=vertical]:h-4"
