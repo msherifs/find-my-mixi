@@ -354,7 +354,8 @@
 		"RATE_LIMIT_EXCEEDED": "Too many password reset requests. Please try again later.",
 		"passwords_do_not_match": "Passwords do not match.",
 		"name_min_length": "Name must be at least 2 characters long.",
-		"name_max_length": "Name cannot be longer than 100 characters."
+		"name_max_length": "Name cannot be longer than 100 characters.",
+		"internal_server_error": "Something went wrong. Please try again later."
 	},
 	"catFurColor": {
 		"white": "White",

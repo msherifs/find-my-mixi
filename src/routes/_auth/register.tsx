@@ -6,6 +6,7 @@ import {
 } from "@tanstack/react-form-start";
 import { createFileRoute, Link, redirect } from "@tanstack/react-router";
 import { useTranslation } from "react-i18next";
+import z from "zod";
 import SignupCat from "@/assets/images/signup-cat.svg";
 import MixiInput from "@/components/shared/mixi-input";
 import { Button } from "@/components/ui/button";
@@ -18,6 +19,9 @@ import {
 
 export const Route = createFileRoute("/_auth/register")({
 	component: RouteComponent,
+	validateSearch: z.object({
+		error: z.string().optional(),
+	}),
 	beforeLoad: async () => {
 		const { user } = await getCurrentUserFn();
 		if (user) {
@@ -34,6 +38,7 @@ export const Route = createFileRoute("/_auth/register")({
 function RouteComponent() {
 	const { state } = Route.useLoaderData();
 	const { t } = useTranslation();
+	const { error } = Route.useSearch();
 
 	const form = useForm({
 		...registerFormOptions,
@@ -157,6 +162,11 @@ function RouteComponent() {
 						{t(error)}
 					</p>
 				))}
+				{error && (
+					<p className="w-full rounded-[10px] border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-700">
+						{t(`errors.${error}`)}
+					</p>
+				)}
 				<form.Subscribe
 					selector={(formState) => [
 						formState.canSubmit,

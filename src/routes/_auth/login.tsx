@@ -2,6 +2,7 @@ import { useForm } from "@tanstack/react-form";
 import { mergeForm, useStore, useTransform } from "@tanstack/react-form-start";
 import { createFileRoute, Link, redirect } from "@tanstack/react-router";
 import { useTranslation } from "react-i18next";
+import z from "zod";
 import LoginCat from "@/assets/images/login-cat.svg";
 import MixiInput from "@/components/shared/mixi-input";
 import { Button } from "@/components/ui/button";
@@ -10,6 +11,9 @@ import { getCurrentUserFn, getFormFn, loginFn } from "@/server/functions/auth";
 
 export const Route = createFileRoute("/_auth/login")({
 	component: RouteComponent,
+	validateSearch: z.object({
+		error: z.string().optional(),
+	}),
 	loader: async () => {
 		return {
 			state: await getFormFn(),
@@ -26,6 +30,7 @@ export const Route = createFileRoute("/_auth/login")({
 function RouteComponent() {
 	const { t } = useTranslation();
 	const { state } = Route.useLoaderData();
+	const { error } = Route.useSearch();
 
 	const form = useForm({
 		...loginFormOptions,
@@ -126,6 +131,11 @@ function RouteComponent() {
 							{t(error)}
 						</p>
 					))}
+					{error && (
+						<p className="w-full rounded-[10px] border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-700">
+							{t(`errors.${error}`)}
+						</p>
+					)}
 					<form.Subscribe
 						selector={(formState) => [
 							formState.canSubmit,

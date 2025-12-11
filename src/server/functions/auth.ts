@@ -95,7 +95,10 @@ export const loginFn = createServerFn({ method: "POST" })
 			if (error instanceof ServerValidateError) {
 				return error.response;
 			}
-			return "Internal Server Error";
+			return redirect({
+				to: "/login",
+				search: { error: "internal_server_error" },
+			});
 		}
 	});
 
@@ -132,7 +135,10 @@ export const registerFn = createServerFn({ method: "POST" })
 				return error.response;
 			}
 			console.error(error);
-			return "Internal Server Error";
+			return redirect({
+				to: "/register",
+				search: { error: "internal_server_error" },
+			});
 		}
 	});
 
@@ -220,7 +226,10 @@ export const forgotPasswordFn = createServerFn({ method: "POST" })
 				return error.response;
 			}
 			console.error(error);
-			return { success: false, error: "Internal Server Error" };
+			return redirect({
+				to: "/forgot-password",
+				search: { error: "internal_server_error" },
+			});
 		}
 	});
 
@@ -288,7 +297,10 @@ export const resetPasswordFn = createServerFn({ method: "POST" })
 				return error.response;
 			}
 			console.error(error);
-			return { success: false, error: "Internal Server Error" };
+			return redirect({
+				to: "/reset-password",
+				search: { error: "internal_server_error" },
+			});
 		}
 	});
 

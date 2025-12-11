@@ -6,6 +6,7 @@ import {
 } from "@tanstack/react-form-start";
 import { createFileRoute } from "@tanstack/react-router";
 import { useTranslation } from "react-i18next";
+import z from "zod";
 import MixiInput from "@/components/shared/mixi-input";
 import MixiSelect from "@/components/shared/mixi-select";
 import MixiTextarea from "@/components/shared/mixi-textarea";
@@ -19,6 +20,9 @@ import {
 
 export const Route = createFileRoute("/_landing/contact-us")({
 	component: RouteComponent,
+	validateSearch: z.object({
+		error: z.string().optional(),
+	}),
 	loader: async () => {
 		return {
 			state: await getContactUsFormFn(),
@@ -29,6 +33,7 @@ export const Route = createFileRoute("/_landing/contact-us")({
 function RouteComponent() {
 	const { t } = useTranslation();
 	const { state } = Route.useLoaderData();
+	const { error } = Route.useSearch();
 
 	const form = useForm({
 		...contactUsFormOptions,
@@ -132,6 +137,12 @@ function RouteComponent() {
 				{formErrors.length > 0 && (
 					<p className="w-full rounded-[10px] border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-700">
 						{t("errors.enter_valid_data")}
+					</p>
+				)}
+
+				{error && (
+					<p className="w-full rounded-[10px] border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-700">
+						{t(`errors.${error}`)}
 					</p>
 				)}
 

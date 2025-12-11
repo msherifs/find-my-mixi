@@ -38,7 +38,10 @@ export const submitContactUsFn = createServerFn({ method: "POST" })
 			}
 
 			console.error(error);
-			return "Internal Server Error";
+			return redirect({
+				to: "/contact-us",
+				search: { error: "internal_server_error" },
+			});
 		}
 	});
 
