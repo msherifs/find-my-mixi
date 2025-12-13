@@ -264,21 +264,39 @@ export const resetPasswordFn = createServerFn({ method: "POST" })
 			const resetRecord = await findPasswordReset(hashedToken);
 
 			if (!resetRecord) {
-				return { success: false, error: "INVALID_TOKEN" };
+				return redirect({
+					to: "/reset-password",
+					search: {
+						error: "invalid_token",
+						token: ctx.data.get("token") as string,
+					},
+				});
 			}
 
 			// Check if token is expired
 			if (resetRecord.expiresAt < new Date()) {
 				// Delete expired token
 				await deletePasswordReset(resetRecord._id);
-				return { success: false, error: "INVALID_TOKEN" };
+				return redirect({
+					to: "/reset-password",
+					search: {
+						error: "invalid_token",
+						token: ctx.data.get("token") as string,
+					},
+				});
 			}
 
 			// Find the user
 			const user = await findUser({ _id: resetRecord.userId });
 
 			if (!user) {
-				return { success: false, error: "INVALID_TOKEN" };
+				return redirect({
+					to: "/reset-password",
+					search: {
+						error: "invalid_token",
+						token: ctx.data.get("token") as string,
+					},
+				});
 			}
 
 			// Update user password
@@ -291,7 +309,9 @@ export const resetPasswordFn = createServerFn({ method: "POST" })
 			// Delete the token document
 			await deletePasswordReset(resetRecord._id);
 
-			return { success: true };
+			return redirect({
+				to: "/login",
+			});
 		} catch (error) {
 			if (error instanceof ServerValidateError) {
 				return error.response;
@@ -299,7 +319,10 @@ export const resetPasswordFn = createServerFn({ method: "POST" })
 			console.error(error);
 			return redirect({
 				to: "/reset-password",
-				search: { error: "internal_server_error" },
+				search: {
+					error: "internal_server_error",
+					token: ctx.data.get("token") as string,
+				},
 			});
 		}
 	});

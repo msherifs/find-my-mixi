@@ -355,7 +355,8 @@
 		"passwords_do_not_match": "Passwords do not match.",
 		"name_min_length": "Name must be at least 2 characters long.",
 		"name_max_length": "Name cannot be longer than 100 characters.",
-		"internal_server_error": "Something went wrong. Please try again later."
+		"internal_server_error": "Something went wrong. Please try again later.",
+		"invalid_token": "The reset token is invalid or has expired. Please request a new password reset."
 	},
 	"catFurColor": {
 		"white": "White",

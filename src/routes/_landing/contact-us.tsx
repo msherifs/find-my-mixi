@@ -100,7 +100,7 @@ function RouteComponent() {
 							name="topic"
 							value={field.state.value}
 							onChange={(newValue) => {
-								field.handleChange(newValue ?? "");
+								field.handleChange((newValue ?? "") as ContactUsTopic);
 								field.handleBlur();
 							}}
 							errorMessage={

@@ -27,7 +27,7 @@ function LostCatReported({
 					<p className="font-normal text-[20.68px] leading-[31px] tracking-[0] text-center">
 						{description}
 					</p>
-					<Button onClick={() => navigate({ to: "/" })}>
+					<Button onClick={() => navigate({ to: "/map" })}>
 						{t("reportCat.go_to_home")}
 					</Button>
 				</div>

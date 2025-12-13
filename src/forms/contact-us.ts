@@ -4,7 +4,7 @@ import { ContactUsTopic } from "@/server/db/enums";
 
 export const zContactUsForm = z.object({
 	email: z.email({ error: "errors.email" }).trim().toLowerCase(),
-	topic: z.enum(ContactUsTopic),
+	topic: z.enum(ContactUsTopic, { error: "errors.required" }),
 	message: z
 		.string({ error: "errors.required" })
 		.min(1, { error: "errors.required" })
@@ -15,7 +15,7 @@ export const zContactUsForm = z.object({
 export const contactUsFormOptions = formOptions({
 	defaultValues: {
 		email: "",
-		topic: "",
+		topic: "" as ContactUsTopic,
 		message: "",
 	},
 });

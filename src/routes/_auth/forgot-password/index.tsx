@@ -2,6 +2,7 @@ import { useForm } from "@tanstack/react-form";
 import { mergeForm, useStore, useTransform } from "@tanstack/react-form-start";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useTranslation } from "react-i18next";
+import z from "zod";
 import ForgotPasswordCat from "@/assets/images/forgot-password-cat.svg";
 import MixiInput from "@/components/shared/mixi-input";
 import { Button } from "@/components/ui/button";
@@ -10,21 +11,25 @@ import { forgotPasswordFn, getFormFn } from "@/server/functions/auth";
 
 export const Route = createFileRoute("/_auth/forgot-password/")({
 	component: RouteComponent,
+	validateSearch: z.object({
+		error: z.string().optional(),
+	}),
 	loader: async () => {
 		return {
 			state: await getFormFn(),
-		}
+		};
 	},
 });
 
 function RouteComponent() {
 	const { state } = Route.useLoaderData();
 	const { t } = useTranslation();
+	const { error } = Route.useSearch();
 
 	const form = useForm({
 		...forgotPasswordFormOptions,
 		transform: useTransform((baseForm) => mergeForm(baseForm, state), [state]),
-	})
+	});
 
 	const formErrors = useStore(form.store, (formState) => formState.errors);
 
@@ -77,6 +82,11 @@ function RouteComponent() {
 						{t(error)}
 					</p>
 				))}
+				{error && (
+					<p className="w-full rounded-[10px] border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-700">
+						{t(`errors.${error}`)}
+					</p>
+				)}
 				<form.Subscribe
 					selector={(formState) => [
 						formState.canSubmit,
@@ -104,5 +114,5 @@ function RouteComponent() {
 				</div>
 			</form>
 		</>
-	)
+	);
 }

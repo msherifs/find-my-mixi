@@ -18,6 +18,7 @@ export const Route = createFileRoute("/_auth/reset-password")({
 	validateSearch: (search: Record<string, unknown>) => {
 		return {
 			token: (search.token as string) || "",
+			error: (search.error as string) || undefined,
 		};
 	},
 	loader: async () => {
@@ -31,7 +32,7 @@ function RouteComponent() {
 	const [step, setStep] = useState<"enterPassword" | "loginScreen">(
 		"enterPassword",
 	);
-	const { token } = useSearch({ from: "/_auth/reset-password" });
+	const { token, error } = useSearch({ from: "/_auth/reset-password" });
 	const { state } = Route.useLoaderData();
 
 	return (
@@ -40,6 +41,7 @@ function RouteComponent() {
 				<EnterPasswordScreen
 					token={token}
 					state={state}
+					error={error}
 					onNext={() => setStep("loginScreen")}
 				/>
 			)}
@@ -51,10 +53,12 @@ function RouteComponent() {
 const EnterPasswordScreen = ({
 	token,
 	state,
+	error,
 	onNext,
 }: {
 	token: string;
 	state: unknown;
+	error?: string;
 	onNext: () => void;
 }) => {
 	const { t } = useTranslation();
@@ -141,11 +145,16 @@ const EnterPasswordScreen = ({
 			{formErrors.map((error) => (
 				<p
 					key={error}
-					className="w-full rounded-[10px] border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-700"
+					className="w-full rounded-[10px] border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-700 lg:w-[480px]"
 				>
 					{t(error)}
 				</p>
 			))}
+			{error && (
+				<p className="w-full rounded-[10px] border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-700 lg:w-[480px]">
+					{t(`errors.${error}`)}
+				</p>
+			)}
 			<form.Subscribe
 				selector={(formState) => [formState.canSubmit, formState.isSubmitting]}
 			>
