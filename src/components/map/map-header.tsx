@@ -59,7 +59,10 @@ const MapHeader = ({ firstName, lastName, role }: User) => {
 	useEffect(() => {
 		navigate({
 			to: ".",
-			search: filters,
+			search: {
+				...filters,
+				color: filters.color?.length ? filters.color : undefined,
+			},
 			replace: true,
 		});
 	}, [filters]);
