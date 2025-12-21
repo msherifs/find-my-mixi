@@ -43,7 +43,7 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
 });
 
 function RootDocument({ children }: { children: React.ReactNode }) {
-	const lang = Cookies.get("language") || "en";
+	const lang = Cookies.get("language") || "es";
 	return (
 		<html lang={lang}>
 			<head>

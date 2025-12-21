@@ -13,11 +13,11 @@ const resources = {
 	},
 };
 
-const savedLanguage = Cookies.get("language") || "en";
+const savedLanguage = Cookies.get("language") || "es";
 
 i18n.use(initReactI18next).init({
 	resources,
-	fallbackLng: "en",
+	fallbackLng: "es",
 	lng: savedLanguage,
 	interpolation: {
 		escapeValue: false,
